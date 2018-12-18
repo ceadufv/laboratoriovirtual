@@ -5,14 +5,14 @@ Laboratório Virtual produzido durante o proejto "Laboratório Virtual de Quimic
 Todo o conteúdo artistico do laboratório está licenciado sob licença creative commons "Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)". A fim de contribuir para a melhor utilização do código produzido software, todo o código foi licenciado sob a licença "GNU Affero General Public License v3.0"
 
 
-#Equipe
-##Briefing/Definição do MVP
+## Equipe
+### Briefing/Definição do MVP
 Andre Fernando Oliveira/DEQ-UFV
 Sergio Olivo
 Pedro de Almeida Sacramento/CEAD-UFV
 Thaynara Rocha Mendonça/DEQ-UFV
 
-##Equipe de desenvolvimento
+### Equipe de desenvolvimento
 Bruno de Lima Santos/DEQ-UFV
 Carolina Castro Freitas Prado/DEQ-UFV
 Cesar Ruben Francisco Gennaro Campos/DPI-UFV
@@ -21,27 +21,27 @@ Maria Eduarda Oliveira Miranda/DPI-UFV
 Pedro de Almeida Sacramento/CEAD-UFV
 Thaynara Rocha Mendonça/DEQ-UFV
 
-##Equipe de testes
+### Equipe de testes
 Angélica Lorena dos Santos Oliveira/DEQ-UFV
 Laísa Bullerjahn/DEQ-UFV
 Stefania Mora Güezguán/DEQ-UFV
 
-##Estudo ISO17025
+### Estudo ISO17025
 Anna Luisa Ribeiro Miguel/DEQ-UFV
 Algoritmos para Equilíbrios Químicos Simultâneos
 Carolina Castro Freitas Prado/DEQ-UFV
 Thaynara Rocha Mendonça/DEQ-UFV
 Andre Fernando Oliveira/DEQ-UFV
 
-##Comportamento Experimental dos Instrumentos
+### Comportamento Experimental dos Instrumentos
 Alessandra Zinatto Rodrigues/DEQ-UFV
 Stefania Mora Güezguán/DEQ-UFV
 
-##Práticas realizadas Experimentalmente
+### Práticas realizadas Experimentalmente
 Carolina Teixeira Costa Alpino/DEQ-UFV
 Felipe Santana/DEQ-UFV
 
-##Ilustração e design
+### Ilustração e design
 Cristian de Aguiar Silva/CEAD-UFV
 Edson Ney Duarte Nogueira/CEAD-UFV
 Wildson Lima Paiva Osório/CEAD-UFV
