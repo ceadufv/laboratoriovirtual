@@ -1,0 +1,44 @@
+/* Fontes externas */
+@font-face { font-family: bask; src: url('../fontes/LibreBaskerville-Regular.ttf'); }
+
+/* Classes relativas aos textos */
+.texto-titulo { font-family: bask; font-size: 1.5rem; }
+.texto-icone-modal { font-family: bask; font-size: 1rem; }
+.texto-botao { font-family: bask; font-size: 1rem; }
+
+/* Elementos de clique personalizados */
+.caixa-botao-login { padding: 5px; background-color: rgba(11, 12, 11, 0.75); border-radius: 5px; color: rgba(255,255,255,0.8); margin-bottom: 5px; }
+.caixa-botao-selecao { padding: 5px; background-color: rgba(59,79,154,0.75); border-radius: 5px; color: rgba(255,255,255,0.8); }
+.caixa-botao-login:hover { cursor: pointer; background-color: rgb(20,144,61); color: rgb(255,255,255); }
+.caixa-botao-selecao:hover { cursor: pointer; background-color: rgb(59,79,154); color: rgb(255,255,255); }
+
+.caixa-log {
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid rgb(99,97,97);
+    border-radius: 3px;
+    height: 100%;
+}
+
+/* Dimensão do lg */
+@media(max-width: 992px) {
+    .caixa-botao-selecao { margin-top: 5px; }
+}
+
+/* Dimensão do md */
+@media(max-width: 768px) {
+    .caixa-botao-selecao { margin-top: 5px; }
+}
+
+/* Dimensão do sm */
+@media(max-width: 576px) {
+    .caixa-icone-input { width: 25% !important; }
+}
+
+@media(max-width: 411px) {
+    .caixa-icone-input { width: 30% !important; }
+}
+
+@media(max-width: 300px) {
+    .caixa-icone-input { width: 35% !important; }
+}

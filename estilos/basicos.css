@@ -1,0 +1,80 @@
+/* Fontes externas */
+@font-face { font-family: 'Raleway', sans-serif; src: url('../fontes/SongMyung-Regular.ttf'); }
+
+/* Padronização do body */
+@media(min-width: 900px) { html { font-size: 100%; } }
+@media(max-width: 700px) { html { font-size: 90%; } }
+@media(max-width: 500px) { html { font-size: 70%; } }
+
+/* Centralização de elementos */
+.centro-vertical { min-height: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.centro-vertical-parcial { display: flex; align-items: center; justify-content: center; }
+
+/* Posicionamento, margem e padding */
+.zero { position: absolute; left: 0; top: 0; width: 100%; }
+.margem-superior { margin-top: 30px; }
+.margem-superior-p1 { margin-top: 20px; }
+.margem-superior-p2 { margin-top: 15px; }
+.margem-inferior-p1 { margin-bottom: 15px; }
+.pad-inferior-p1 { padding-bottom: 15px; }
+.pad-superior-p2 { padding-top: 5px; }
+.margem-superior-inicial { margin-top: 90px; }
+
+/* Elementos de entrada de dados */
+.caixa-entrada-dados { width: 100% !important; }
+.caixa-total { width: 100% !important; }
+.caixa-icone-input { width: 20% !important; }
+
+/* Caixas personalizadas */
+.caixa-botao { margin: 5px; padding: 5px; background-color: rgb(4,25,47); border-radius: 5px; color: rgba(255,255,255,0.65); }
+.caixa-botao:hover { cursor: pointer; background-color: rgba(197,215,234,1); color: rgb(110,117,224); }
+.link-icone { font-size: 1.3rem; color: rgb(255,255,255); }
+.link-icone:hover { cursor: pointer; color: rgb(208,185,8); }
+.link-barra { cursor: pointer; font-size: 1rem; color: rgb(255,255,255); text-align: center; }
+.caixa-barra { background-color: rgba(64,22,111,0.67); height: 50px; width: 100%; }
+.caixa-barra:hover { background-color: rgba(64,22,111,1); }
+.caixa-botao-add { padding: 5px; background-color: rgba(0,0,0,0.67); color: rgba(255,255,255,0.67); border-radius: 5px; }
+.caixa-botao-add:hover { background-color: rgba(0,0,0,1); color: rgba(255,255,255,1); cursor: pointer; }
+.borda-sup-inf { border-bottom: 1px solid rgb(181,173,173); border-top: 1px solid rgb(181,173,173); width: 100%; padding-top: 15px; padding-bottom: 15px; margin-top: 15px; }
+.icone-formulario-principal { width: 10%; }
+.icone-formulario-secundario { width: 100%; }
+.botao-confirmar { background-color: rgba(49,49,49,0.8); color: rgba(255,255,255,0.75); }
+.botao-confirmar:hover { background-color: rgba(49,49,49,1); color: rgba(255,255,255,1); }
+
+/* Preenchimento total */
+.full-w { min-width: 100%; min-width: 100vh; }
+.full-h { min-height: 100%; min-height: 100vh; }
+.full-h-90 { min-height: 90%; min-height: 90vh; }
+
+/* Texto */
+.texto-saudacao { font-size: 2.5rem; text-align: center; }
+.texto-botao { font-size: 1.7rem; }
+.texto-icone { font-size: 1.3rem; }
+.texto-rotulo { font-size: 1.7rem; text-align: justify; }
+.texto-icone-mx { font-size: 1.7rem; }
+.texto-icone-p { font-size: 1rem; }
+.texto-geral { font-size: 1.2rem; text-align: justify; }
+
+/* Coloração de plano de fundo */
+.fundo-preto { background-color: rgb(0,0,0); }
+.fundo-azul-sobrepor { background-color: rgba(83,61,214,0.58); }
+.fundo-inicial { background-image: url('../imagens/tela-1.png'); background-size: cover; }
+
+/* Coloração de fontes */
+.branco { color: rgb(255,255,255); }
+
+/* Visibilidade de blocos */
+.visivel { display: block !important; width: 100%; }
+.oculta { display: none; }
+
+/* Responsividade */
+@media(max-width: 576px) {
+    .rotulo { text-align: center; }
+    .opcoes { text-align: center; }
+}
+@media(min-width: 576px) {
+    .opcoes { text-align: right; }
+}
+
+/* Alterações em elementos */
+select { height: auto !important; }

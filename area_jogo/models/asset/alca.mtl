@@ -1,0 +1,15 @@
+# Blender MTL File: 'phmetro.blend'
+# Material Count: 1
+
+newmtl alca
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+map_Kd alca.png
+map_Ka alca.png
+illum 2
+

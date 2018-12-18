@@ -1,0 +1,62 @@
+# Blender MTL File: 'displacementlab7.blend'
+# Material Count: 5
+
+newmtl None
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+
+newmtl bancada
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.328750 0.175354 0.091372
+Ks 0.139080 0.144158 0.118955
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd bancada.png
+map_Ka bancada.png
+
+
+newmtl bancada-lateral
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.495224 0.640000 0.565524
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd bancada.png
+map_Ka bancada.png
+
+
+newmtl bancada-metal
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd bancada.png
+map_Ka bancada.png
+
+
+newmtl bancada-topo
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.397517 0.585681 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd bancada.png
+map_Ka bancada.png
+

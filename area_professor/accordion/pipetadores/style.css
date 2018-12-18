@@ -1,0 +1,19 @@
+* { font-family: 'Open Sans Condensed', sans-serif; -webkit-font-smoothing: antialiased; }
+
+header { background: #1b1615; color: #fff !important; } 
+header h1 { font-weight: 600; font-size: 16px; }	
+
+header .controle { background: #c14447; padding: 0; }
+header .controle button { padding: 15px 15px; background: transparent; border: 0px; font-size: 14px; font-weight: 600; color: #fff; margin: 0px; outline: 0px; }
+header .controle button i { color: rgba(255,255,255,.5); }
+header .controle button:hover { background: rgba(0,0,0,.1); }
+
+main { background-color: #fff; text-align: center; }
+main ul li { list-style: none; padding: 5px; }
+main p { font-size: 12px; }
+main tr td { border: 1px solid #ccc; vertical-align: middle !important;   }
+
+input { text-align: center; }
+
+.table td { vertical-align: middle !important; padding: 4px 4px 4px 10px !important; }
+.table select { height: 100%; }

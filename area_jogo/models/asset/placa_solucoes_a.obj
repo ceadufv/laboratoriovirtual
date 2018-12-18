@@ -1,0 +1,18 @@
+# Blender v2.79 (sub 0) OBJ File: 'phmetro.blend'
+# www.blender.org
+mtllib placa_solucoes_a.mtl
+o placa-solucoes.001_Cube.047
+v 20.936296 -2.521939 19.835096
+v 20.936296 -2.128439 19.835096
+v 19.443087 -2.521939 19.835096
+v 19.443087 -2.128439 19.835096
+vt 0.166073 0.037413
+vt 0.833927 0.962586
+vt 0.166073 0.962586
+vt 0.833927 0.037414
+vn 0.0000 0.0000 -1.0000
+g placa-solucoes.001_Cube.047_Material
+usemtl Material
+s off
+f 1/1/1 4/2/1 2/3/1
+f 1/1/1 3/4/1 4/2/1
