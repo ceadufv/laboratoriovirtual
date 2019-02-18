@@ -1,0 +1,2 @@
+#Ignorar arquivos de configuracao que podem conter senhas
+*-config.php
