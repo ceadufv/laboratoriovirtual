@@ -30,7 +30,7 @@ if (!file_exists("lab-config.php")) header("location:install.php");
 
         <div class="caixinha interna">
           <h1><small>Bem-vindo à NeoAlice</small><br/>Laboratório Virtual de Química</h1>
-          <h2>UFV - 2018</h2>
+          <h2>UFV - 2019</h2>
 
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
             <polygon points="0,0 0,100 100,100"/>
@@ -72,11 +72,13 @@ if (!file_exists("lab-config.php")) header("location:install.php");
             </form>
 
             <div class="logomarcas">
+              <!--
               <h3>Realização:</h3>
               <div>
                 <a href="http://www.cead.ufv.br" target="blank"><img src="imagens/cead.png"></a>
                 <a href="http://www.deq.ufv.br" target="blank"><img src="imagens/GPEQA.png"></a>
               </div>
+            -->
             </div>
 
           </div>
@@ -199,13 +201,15 @@ if (!file_exists("lab-config.php")) header("location:install.php");
         <div class="logos">
           <div class="parceiros">
             <div>
-              <h3>Parceiros:</h3>
+              <h3>Realização:</h3>
             </div>
             <div>
               <hr>
+              <a href="http://www.ufv.br" target="blank"><img src="imagens/UFV.png"></a>              
+              <a href="http://www.cead.ufv.br" target="blank"><img src="imagens/cead.png"></a>
+              <a href="http://www.deq.ufv.br" target="blank"><img src="imagens/GPEQA.png"></a>
               <a href="http://www.capes.gov.br/uab" target="blank"><img src="imagens/uab2.png"></a>
               <a href="http://www.capes.gov.br/" target="blank"><img src="imagens/capes2.png"></a>
-              <a href="http://www.ufv.br" target="blank"><img src="imagens/UFV.png"></a>
             </div>
           </div>
         </div>
@@ -213,7 +217,7 @@ if (!file_exists("lab-config.php")) header("location:install.php");
       <div class="w-100"></div>
       <div class="col copyright">
         <div class="float-left">
-          <h4>©2018 - Todos os Direitos Reservados - Desenvolvido pela Cead</h4>
+          <h4>©2019 - Todos os Direitos Reservados - Desenvolvido pela Cead</h4>
         </div>
         <div class="float-right creative">
           <img src="https://acervo.cead.ufv.br/wp-content/themes/acervo/img/creativecommons.png">
