@@ -2,6 +2,7 @@
 
 class LabJogo {
 	private $_dbh;
+    private $_error;
 
 	function __construct(){
 
@@ -10,11 +11,13 @@ class LabJogo {
       try {
           $this->_dbh = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASSWORD);
       } catch (PDOException $e) {
-          throw new Exception($e->getMessage());
-          exit;
+          $this->_error = $e->getMessage();
+          //exit;
       }               
 
     }
+
+    function error() { return $this->_error; }
 
     function getPratica($id_pratica) {
         $sql = $this->_dbh->prepare( "SELECT id_modelo_pratica as id, nome_pratica as nome, resumo, id_cenario from modelo_pratica where id_modelo_pratica=?" );

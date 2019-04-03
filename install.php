@@ -3,22 +3,33 @@ $action = @$_REQUEST['action'];
 $error = @$_REQUEST['error'];
 $path = pathinfo(__FILE__);
 $config_file = $path['dirname']."/lab-config.php";
-$fwrite = file_exists($config_file);
 $error_message = @$_REQUEST['error_message'];
+$error_title = @$_REQUEST['error_title'];
 $debug = @$_REQUEST['debug'];
 $database_created = 0;
 
-if ($action == "salvar" && !$debug) {
+// Estados
+$estado = "index";
 
-$db_name = @$_REQUEST['db_name'];
-$db_user = @$_REQUEST['db_user'];
-$db_password = @$_REQUEST['db_password'];
-$db_host = @$_REQUEST['db_host'];
+// Verifica o estado atual do processo de instalacao
+switch ($action) {
+  case "criar-config":
+    $estado = "erro-criar-config";
 
-$file = sprintf("<?php
+    // Verifica se conseguira escrever no arquivo
+    if (is_writeable($config_file)) {
+      $estado = "criar-config";
+    }
+
+    $db_name = @$_REQUEST['db_name'];
+    $db_user = @$_REQUEST['db_user'];
+    $db_password = @$_REQUEST['db_password'];
+    $db_host = @$_REQUEST['db_host'];
+
+    $file = sprintf("<?php
 /**
- * As configurações básicas do Laboratorio Virtual de Quimica
- */
+* As configurações básicas do Laboratorio Virtual de Quimica
+*/
 
 define('DB_NAME', '%s');
 define('DB_USER', '%s');
@@ -28,22 +39,54 @@ define('LAB_DEBUG', false);
 
 /** Caminho absoluto para o diretório raiz */
 if ( !defined('ABSPATH') ) define('ABSPATH', dirname(__FILE__) . '/');
-",addslashes($db_name),addslashes($db_user),addslashes($db_password),addslashes($db_host));
+",addslashes($db_name),addslashes($db_user),addslashes($db_password),addslashes($db_host));    
+  break;
+  case "instalar":
+    $estado = "erro-criar-config";
 
-  $fp = @fopen($config_file,"w+");
-  $fwrite = @fwrite($fp, $file);
-  @fclose($fp);
+    // Verifica se o arquivo lab-config.php existe e se possui as constantes esperadas
+    if (file_exists($config_file)) {
+      @include($config_file);
+
+      if (
+        defined('DB_NAME') &&
+        defined('DB_USER') &&
+        defined('DB_HOST')
+      ) {
+        $estado = "instalar";
+      }
+    }
+
+    if ($estado != "instalar") {
+      header("location:install.php?action=error&error_title=".urlencode("Erro no arquivo de configuração")."&error_message=".urlencode("Não foi possível criar o arquivo \"$config_file\"."));
+      exit;
+    }
+  break;
 }
 
-// Se ja existe arquivo de configuracao
-if ($action == "salvar" && $fwrite && !$error) {
+// Executa a acao esperada para o estado atual
+switch ($estado) {
+  case "criar-config":
+    // Cria o arquivo de configuracao
+    $fp = @fopen($config_file,"w+");
+    $fwrite = @fwrite($fp, $file);
+    @fclose($fp);
+
+    if ($fwrite) {
+      header("location:install.php?action=instalar");
+      exit;
+    } else {
+      header("location:install.php?action=error&error_title=".urlencode("Erro no arquivo de configuração")."&error_message=".urlencode("O arquivo \"$config_file\" não foi criado corretamente."));
+      exit;
+    }
+  break;
+  case "instalar":
     // Tenta se conectar
-    include $config_file;
     include "banco/conexao.php";
 
     // Se a conexao falhar
     if (!$dbh) {
-      header("location:install.php?action=error&error_message=".urlencode($error_message));
+      header("location:install.php?action=error&error_title=".urlencode("Erro ao tentar acessar o banco de dados")."&error_message=".urlencode($error_message));
       exit;
     }
 
@@ -495,18 +538,19 @@ INSERT INTO `solucoes` (`id_solucao`, `descricao`, `tecnico`, `nome`, `intervalo
 INSERT INTO `solucoes_praticas` (`idsolucao`, `idpratica`) VALUES ('1', '1'), ('1', '2');
 */
 
-  if ($dbh) {
-     try {
-          $database_created = $dbh->exec($sql);
-      } catch (PDOException $e) {
-          $error_message = $e->getMessage();
-          header("location:install.php?action=error&error_message=".urlencode($error_message));
-          exit;
-      }
-
-  }
-
+    if ($dbh) {
+       try {
+            $database_created = $dbh->exec($sql);
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            header("location:install.php?action=error&error_title=".urlencode("Erro ao tentar escrever no banco de dados")."&error_message=".urlencode($error_message));
+            exit;
+        }
+    }
+  break;
 }
+
+echo $estado;
 ?>
 <!DOCTYPE html>
 <html>
@@ -539,27 +583,17 @@ INSERT INTO `solucoes_praticas` (`idsolucao`, `idpratica`) VALUES ('1', '1'), ('
 
         <div class="caixinha interna">
           <h1><br/>Laboratório Virtual de Química</h1>
-          <h2>UFV - 2018</h2>
+          <h2>Universidade Federal de Viçosa</h2>
 
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
             <polygon points="0,0 0,100 100,100"/>
           </svg>
           <div class="content">
-
-<?php
-  if ($action != "salvar"):
-?>
-            <!--  -->
-            <form class="opcoeslogin" method="post" action="install.php?action=salvar">
-
-              <h3>Instalação do Banco de Dados</h3>
-              <p>
-              <small>O laboratório virtual precisa de um banco de dados MySQL para funcionar. Informe a seguir os dados para criação do banco</small>
 <?php
 if ($error_message) {
 ?>
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <?php echo "<strong>Erro ao tentar acessar o banco de dados:</strong> ".$error_message; ?>
+  <?php echo "<strong>".$error_title.":</strong> ".$error_message; ?>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -567,6 +601,18 @@ if ($error_message) {
 <?php
 }
 ?>
+<?php
+
+
+
+  if ($estado == "index"):
+?>
+            <!--  -->
+            <form class="opcoeslogin" method="post" action="install.php?action=criar-config">
+
+              <h3>Instalação do Banco de Dados</h3>
+              <p>
+              <small>O laboratório virtual precisa de um banco de dados MySQL para funcionar. Informe a seguir os dados para criação do banco</small>
               </p>
 
               <div class="">
@@ -611,10 +657,10 @@ if ($error_message) {
 <?php
 endif;
 
-if ($action == "salvar"):
-    if ($fwrite === false) {
+//if ($estado == "criar-config"):
+    if ($estado == "erro-criar-config") {
 ?>
-<form class="opcoeslogin" method="post" action="install.php">
+<form class="opcoeslogin" method="post" action="install.php?action=instalar">
 <div class="form-group">
   <strong></strong>
   <label for="">Não foi possível criar o arquivo "lab-config.php". Por gentileza, copie o conteudo abaixo e crie o arquivo  manualmente no seguinte caminho: <?php
@@ -627,7 +673,8 @@ if ($action == "salvar"):
 </form>
 <?php
     }
-    if ($action == "salvar" && $fwrite) {
+
+    if ($estado == "instalar") {
 ?>
 <form class="opcoeslogin" method="post" action="index.php">
   <div class="form-group">
@@ -648,14 +695,15 @@ if ($action == "salvar"):
 </form>
 <?php      
     }
-  endif;
+//endif;
 ?>
             <div class="logomarcas">
+              <!--
               <h3>Realização:</h3>
               <div>
-                <a href="http://www.cead.ufv.br" target="blank"><img src="imagens/cead.png"></a>
-                <a href="http://www.deq.ufv.br" target="blank"><img src="imagens/GPEQA.png"></a>
+
               </div>
+            -->
             </div>
 
           </div>
@@ -683,13 +731,15 @@ if ($action == "salvar"):
         <div class="logos">
           <div class="parceiros">
             <div>
-              <h3>Parceiros:</h3>
+              <h3>Realização:</h3>
             </div>
             <div>
               <hr>
+              <a href="http://www.ufv.br" target="blank"><img src="imagens/UFV.png"></a>              
+              <a href="http://www.cead.ufv.br" target="blank"><img src="imagens/cead.png"></a>
+              <a href="http://www.deq.ufv.br" target="blank"><img src="imagens/GPEQA.png"></a>
               <a href="http://www.capes.gov.br/uab" target="blank"><img src="imagens/uab2.png"></a>
               <a href="http://www.capes.gov.br/" target="blank"><img src="imagens/capes2.png"></a>
-              <a href="http://www.ufv.br" target="blank"><img src="imagens/UFV.png"></a>
             </div>
           </div>
         </div>
@@ -697,7 +747,7 @@ if ($action == "salvar"):
       <div class="w-100"></div>
       <div class="col copyright">
         <div class="float-left">
-          <h4>©2018 - Todos os Direitos Reservados - Desenvolvido pela Cead</h4>
+          <h4>©2019 - Todos os Direitos Reservados - Desenvolvido pela Cead</h4>
         </div>
         <div class="float-right creative">
           <img src="https://acervo.cead.ufv.br/wp-content/themes/acervo/img/creativecommons.png">
