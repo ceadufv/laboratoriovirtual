@@ -1,7 +1,7 @@
 /**
 * @name	Secar Eletrodo com papel
 * @description Essa ação seca
-* @valid_source ["eletrodo"]
+* @valid_source ["papel"]
 * @valid_target ["eletrodo"]
 */
 function secarEletrodo(interacao) {

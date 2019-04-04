@@ -225,7 +225,7 @@ LabJogo.prototype.init = function (f) {
 	    this.load.image('bequer', 'assets/bequer.png');
 	    this.load.image('bequer_frente', 'assets/bequer-frente.png');
 	    this.load.image('bequer_repouso', 'assets/bequer-repouso.png');
-	    this.load.image('bequer_vazio', 'assets/bequer-vazio.png');
+	    this.load.image('bequer_vazio', 'assets/bequer-descarte.png');
 	    this.load.image('cubeta', 'assets/cubeta.png');	    
 	    this.load.image('eletrodo', 'assets/eletrodo.png');    
 	    this.load.image('frasco', 'assets/frasco.png');

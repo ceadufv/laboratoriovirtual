@@ -29,4 +29,6 @@ LabState.completado = function (o) {
 	return (delta < 0.001)?true:false;
 }
 
-LabState.seco = function (o) { return o.data('seco'); }
+LabState.seco = function (o) { return o.data('seco')?true:false; }
+
+
