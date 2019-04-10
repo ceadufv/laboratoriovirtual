@@ -2,16 +2,17 @@ LabEspectrofotometro = function (data) {
 }
 
 LabEspectrofotometro.medirabs = function medirabs(data) {
+    var raiz = (arguments.length > 1)?arguments[1]:'';
 	var mc = LabPhmetro.mc;
 	var arquivos = [];
 
 	function preloader(f) {
 	    abrirArquivos([
-	      {id: 'intensidadefonteVisivel', url: 'js/rotinas/intensidadefonteVisivel.txt'},
-	      {id: 'intensidadefonteUV', url: 'js/rotinas/intensidadefonteUV.txt'},
-	      {id: 'intensidadefonteUVeVisivel', url: 'js/rotinas/intensidadefonteUVeVisivel.txt'},
-	      {id: 'azulacido', url: 'js/rotinas/azulacido.txt'},
-	      {id: 'azulbasico', url: 'js/rotinas/azulbasico.txt'},
+	      {id: 'intensidadefonteVisivel', url: raiz+'js/rotinas/intensidadefonteVisivel.txt'},
+	      {id: 'intensidadefonteUV', url: raiz+'js/rotinas/intensidadefonteUV.txt'},
+	      {id: 'intensidadefonteUVeVisivel', url: raiz+'js/rotinas/intensidadefonteUVeVisivel.txt'},
+	      {id: 'azulacido', url: raiz+'js/rotinas/azulacido.txt'},
+	      {id: 'azulbasico', url: raiz+'js/rotinas/azulbasico.txt'},
 	    ], function (a) {
 	        arquivos = a;
 	        f();
@@ -101,24 +102,16 @@ LabEspectrofotometro.medirabs = function medirabs(data) {
     function Espectrofotometro(){
 
         var intensidadefonteVisivel = lerArquivo(arquivos.intensidadefonteVisivel);
-        //console.log('IfonteVisivel: ', intensidadefonte)
-
         var intensidadefonteUV = lerArquivo(arquivos.intensidadefonteUV);
-        //console.log('IfonteUV: ', intensidadefonteUV)
-
         var intensidadefonteUVeVisivel = lerArquivo(arquivos.intensidadefonteUVeVisivel);
-        //console.log('IfonteUVeVisivel: ', intensidadefonteUVeVisivel)
 
         var azulacido = lerArquivo(arquivos.azulacido);
         //console.log('azulacido ', azulacido)
 
         var azulbasico = lerArquivo(arquivos.azulbasico);
-        //console.log('azulbasico ', azulbasico)
-
 
         // Atribui de acordo com qual lampada está ligada
-        var intensidadefonte = intensidadefonteVisivel
-
+        var intensidadefonte = intensidadefonteVisivel;
 
         // Define os limites
         var slitS = 1; // tamanho da fenda
@@ -126,11 +119,10 @@ LabEspectrofotometro.medirabs = function medirabs(data) {
         
         var limS = Lmed + slitS/2; 
         var limI = Lmed - slitS/2; 
-        // console.log ('limI: ', limI)
-        // console.log ('limS: ', limS)
+        //console.log ('limI: ', limI)
+        //console.log ('limS: ', limS)
 
         var comprimentos = separarComprimentos(intensidadefonte)
-        //console.log('comprimentos:', comprimentos)
 
         var fslit = slit(intensidadefonte, limI, limS)
         //console.log('fslit: ', fslit)
@@ -156,7 +148,6 @@ LabEspectrofotometro.medirabs = function medirabs(data) {
         for (var i = 0; i< comprimentos.length; i++){ 
             ftotal.push(fMONO*fSS*fFiltro*fCubeta[i]);
         }
-        //console.log('ftotal: ',ftotal);
 
         var c = [0.0001, 0.0005];
         var epslon = [separarAbsortividade(azulacido), separarAbsortividade(azulbasico)];
@@ -181,8 +172,8 @@ LabEspectrofotometro.medirabs = function medirabs(data) {
         var Ile = Ilef + status*Ifea + mc(le);
     
         
-        // console.log('ILE:', Ile)
-        // console.log('IDC:', Idc)
+        //console.log('ILE:', Ile)
+        //console.log('IDC:', Idc)
 
         var intensidade0 = [];
         for (var i = 0; i< intensidadefonte.length; i++){ 
@@ -209,8 +200,8 @@ LabEspectrofotometro.medirabs = function medirabs(data) {
         var Tmed0 = 100 * somaI0/ somaI0; 
         var Amed0 = 2 - Math.log10(Tmed);
 
-        // console.log('Tmed:', Tmed);
-        // console.log('Amed:', Amed);
+        console.log('Tmed:', Tmed);
+        console.log('Amed:', Amed);
 
         return [[Amed0, Tmed0],[Amed, Tmed]];
     }
