@@ -18,7 +18,7 @@ LabPhmetro._loop = function () {
     var handlerPhmetro = busca[0];
     handlerPhmetro.data('pHmodo').text = 'pH';
 
-    var variacao = 1;
+    var variacao = 0.2;
     var d = (Math.random() * variacao);
 
     handlerPhmetro.data('pHvisor').text = (7 + d-variacao/2).toFixed(2);

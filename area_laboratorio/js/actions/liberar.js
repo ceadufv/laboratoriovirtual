@@ -15,4 +15,6 @@ function liberar(interacao) {
 	target.data('cheio',true);
 	target.data('cheio');
 
+	target.setConcept('bequer_cheio');
+
 }
