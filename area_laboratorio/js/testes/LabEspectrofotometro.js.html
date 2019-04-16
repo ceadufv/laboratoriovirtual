@@ -1,3 +1,6 @@
+<!--
+	TODO: Remover da classe "LabEspectrofotometro" o uso dos arquivos TXT (tudo deve vir do servidor)
+-->
 <html>
 <head>
 	<meta charset="utf-8" />
@@ -5,10 +8,24 @@
 	<script src="../LabUtils.js"></script>
 	<script src="../LabHandler.js"></script>
 	<script src="../LabPhmetro.js"></script>
-	<script src="../LabEspectrofotometro.js"></script>
+	<script src="LabEspectrofotometro.js"></script>
+	<script src="LabEspectrofotometro.class.js"></script>
 	<script>
-		var resultado = LabEspectrofotometro.medirabs({status:0},'../../');
-		console.log(resultado);
+		getSolucao([
+			{ id: 'azulacido', volume: 10 },
+			{ id: 'azulbasico', volume: 10 }
+		]).done(function (sol) {
+			// Espectrofotometro
+			var espectrofotometro = new LabEspectrofotometro();
+			espectrofotometro.status(0);
+			var resultado = espectrofotometro.medirAbsorbancia(sol);
+
+			// pHmetro
+			//var pHmetro = new LabpHmetro();
+			//var resultado = pHmetro.medirpH(sol);
+
+		});
+
 	</script>
 </head>
 </html>
