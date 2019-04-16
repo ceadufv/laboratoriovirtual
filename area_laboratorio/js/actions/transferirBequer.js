@@ -1,8 +1,8 @@
 /**
 * @name	Transferir do béquer 
-* @description Transfere o conteúdo do béquer com solução para a cubeta
+* @description Transfere o conteúdo do béquer
 * @valid_source ["cheio(bequer_cheio)"]
-* @valid_target ["vazio(cubeta)","bequer", "vazio(bequer)&&limpo(bequer)"]
+* @valid_target ["bequer","vazio(bequer)&&limpo(bequer)"]
 */
 function transferirBequer(interacao) {
 
