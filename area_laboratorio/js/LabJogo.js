@@ -222,10 +222,11 @@ LabJogo.prototype.init = function (f) {
 	{
 	    this.load.image('background', 'assets/background.png');
 	    this.load.image('popup', 'assets/popup.png');
-	    this.load.image('bequer', 'assets/bequer.png');
+	    this.load.image('bequer', 'assets/bequer-vazio.png');
 	    this.load.image('bequer_frente', 'assets/bequer-frente.png');
 	    this.load.image('bequer_repouso', 'assets/bequer-repouso.png');
 	    this.load.image('bequer_vazio', 'assets/bequer-descarte.png');
+	    this.load.image('bequer_cheio', 'assets/bequer.png');
 	    this.load.image('cubeta', 'assets/cubeta.png');	    
 	    this.load.image('eletrodo', 'assets/eletrodo.png');    
 	    this.load.image('frasco', 'assets/frasco.png');
@@ -243,7 +244,7 @@ LabJogo.prototype.init = function (f) {
 	    this.load.image('phmetro_frente', 'assets/phmetro-frente.png');
 	    this.load.image('pisseta', 'assets/pisseta.png');
 	    this.load.image('pia', 'assets/pia.png');
-	    this.load.image('espectrofotometro', 'assets/espectrofotometro.png');	    
+	    this.load.image('espectrofotometro', 'assets/espectrofotometro2.png');	    
 	    this.load.image('tampa_espectrofotometro', 'assets/tampa_espectrofotometro.png');	 
 	}
 

@@ -2,7 +2,7 @@
 * @name	Medir pH
 * @description Apenas uma função de teste
 * @valid_source ["eletrodo"]
-* @valid_target ["cheio(bequer)"]
+* @valid_target ["cheio(bequer_cheio)"]
 * 
 * @error {"sujo(eletrodo)" : "É preciso lavar e secar o eletrodo antes de realizar a medição"}
 */
@@ -18,7 +18,10 @@ function medirpH(interacao) {
 	handlerPhmetro.data('pHmodo').text = 'pH';
 
 	// Acopla ao pHmetro
-	phmetro.acoplarAopHmetro(target);
+	//phmetro.acoplarAopHmetro(target);
+
+	// Muda o béquer de lugar
+	LabHandler.procurar('bequer_cheio')[0].moveTo('phmetro_bequer')
 
 	// Realiza rotiza de medidcao de pH
 	var tempo = 0;
