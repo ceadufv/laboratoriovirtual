@@ -1,5 +1,7 @@
 <!--
-	TODO: Remover da classe "LabEspectrofotometro" o uso dos arquivos TXT (tudo deve vir do servidor)
+	TODO:
+	- Colocar agitador magnetico
+	- Bancada de preparo de solucao
 -->
 <html>
 <head>
@@ -11,21 +13,29 @@
 	<script src="LabEspectrofotometro.js"></script>
 	<script src="LabEspectrofotometro.class.js"></script>
 	<script>
-		getSolucao([
-			{ id: 'azulacido', volume: 10 },
-			{ id: 'azulbasico', volume: 10 }
-		]).done(function (sol) {
-			// Espectrofotometro
-			var espectrofotometro = new LabEspectrofotometro();
-			espectrofotometro.status(0);
-			var resultado = espectrofotometro.medirAbsorbancia(sol);
-
-			// pHmetro
-			//var pHmetro = new LabpHmetro();
-			//var resultado = pHmetro.medirpH(sol);
-
-		});
-
+/*
+espectrofotometro()
+	.lampadaTungstenio(true)
+	.lampadaDeuterio(false)
+	.medirAbsorbancia(
+		solucao() // Recebe uma "promessa" para abstrair que eh assincrono
+			.adicionar('azulbasico',10)
+			.adicionar('azulacido',10)
+	).done(function (data) {
+		console.log('Absorbancia',data)
+	});
+*/
+	//
+	solucao([
+		{ id: 'azulacido', volume: 10 },
+		{ id: 'azulbasico', volume: 10 }
+	]).done(function (sol) {
+		espectrofotometro()
+			.lampada('tungstenio', true)
+			.lampada('deuterio', false)
+			.status(0)
+			.medirAbsorbancia(sol)
+	});
 	</script>
 </head>
 </html>

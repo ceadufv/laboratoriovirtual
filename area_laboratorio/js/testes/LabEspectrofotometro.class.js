@@ -75,20 +75,13 @@ SubstanciaNaSolucao.prototype.concentracaoEstoque = function () {
 }
 
 SubstanciaNaSolucao.prototype.epslon = function () {
-    var result = [];
-    for (var i = 0 ; i < this._data.substancia._data.epslon.length ; i++) {
-        result.push({
-            l:this._data.substancia._data.epslon[i][0],
-            I:this._data.substancia._data.epslon[i][1]
-        });
-    }
-
-    return result; //this._data.substancia._data.epslon;    
+    return this._data.substancia._data.epslon;    
 }
 
 SubstanciaNaSolucao.prototype.absortividade = function () {
     var dados = this.epslon();
     var vetor = [];
+
     for (var i = 0; i< dados.length; i++){ 
             vetor.push(dados[i].I)
     }
@@ -122,26 +115,27 @@ QuerySolucao.prototype.done = function (f) {
     }
 }
 
-function getSolucao(sol) {
+function solucao(sol) {
     var query = new QuerySolucao();
 
     $.ajax({
         url:'data.php',
         method: 'post',
         data: {
+            action: 'solucao',
             data: JSON.stringify(sol)
         }
     }).done(function (data) {
-        var solucao = new Solucao();
+        var s = new Solucao();
         var substancia;
 
         for (var i = 0 ; i < data.length ; i++) {
             substancia = new Substancia(data[i]);
-            solucao.adicionarSubstancia(substancia, data[i].volume);
+            s.adicionarSubstancia(substancia, data[i].volume);
         }
 
         //solucao._server = data;
-        query.data(solucao);
+        query.data(s);
 
         // Executa o callback passando "this._data" como argumento
         query.done();

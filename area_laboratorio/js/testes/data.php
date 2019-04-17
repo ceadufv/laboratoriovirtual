@@ -2,7 +2,6 @@
 header("Content-type: application/json; charset=utf-8");
 
 $data = @$_REQUEST['data'];
-$data_json = json_decode($data);
 
 if (empty($data)) exit;
 
@@ -11,31 +10,71 @@ function getEpslon($id) {
 	$epslon = array();
 	foreach ($epslon_raw as $item) {
 		$eps = explode("\t", $item);
-		$epslon[] = array((int) $eps[0], (float) str_replace(",",".",$eps[1]));
+//		$epslon[] = array((int) $eps[0], (float) str_replace(",",".",$eps[1]));
+
+		$epslon[] = array(
+			"l" => (int) $eps[0],
+			"I" => (float) str_replace(",",".",$eps[1])
+		);
+
 	}
 	return $epslon;
 }
 
-$nomes = array(
-	"azulacido" => "Azul Ácido",
-	"azulbasico" => "Azul Básico"
-);
+function getIntensidadeFonte($id) {
+	$result_raw = file("../rotinas/$id.txt");
+	$result = array();
+	foreach ($result_raw as $item) {
+		$eps = explode("\t", $item);
+		$result[] = array(
+			"l" => (int) $eps[0],
+			"I" => (float) str_replace(",",".",$eps[1])
+		);
+	}
 
-$concentracaoEstoque = array(
-	"azulacido" => 0.0001,
-	"azulbasico" => 0.0005
-);
-
-$result = array();
-
-foreach ($data_json as $d) {
-	$result[] = array(
-		"id" => $d->id,
-		"nome" => $nomes[$d->id],
-		"epslon" => getEpslon($d->id),
-		"concentracaoEstoque" => $concentracaoEstoque[$d->id],
-		"volume" => $d->volume
-	);
+	return $result;
 }
 
-echo json_encode($result);
+$action = @$_REQUEST['action'];
+
+switch ($action) {
+
+	case "solucao":
+		$data_json = json_decode($data);
+
+		$nomes = array(
+			"azulacido" => "Azul Ácido",
+			"azulbasico" => "Azul Básico"
+		);
+
+		$concentracaoEstoque = array(
+			"azulacido" => 0.0001,
+			"azulbasico" => 0.0005
+		);
+
+		$result = array();
+
+		foreach ($data_json as $d) {
+			$result[] = array(
+				"id" => $d->id,
+				"nome" => $nomes[$d->id],
+				"epslon" => getEpslon($d->id),
+				"concentracaoEstoque" => $concentracaoEstoque[$d->id],
+				"volume" => $d->volume
+			);
+		}
+
+		echo json_encode($result);
+	break;
+
+	case "espectrofotometro":
+		$result = array(
+			"intensidadefonteVisivel" => getIntensidadeFonte("intensidadefonteVisivel"),
+			"intensidadefonteUV" => getIntensidadeFonte("intensidadefonteUV"),
+			"intensidadefonteUVeVisivel" => getIntensidadeFonte("intensidadefonteUVeVisivel")
+		);
+
+		echo json_encode($result);
+	break;
+
+}

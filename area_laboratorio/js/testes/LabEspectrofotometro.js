@@ -1,4 +1,10 @@
-LabEspectrofotometro = function (data) {
+LabEspectrofotometro = function () {
+	this._data = (arguments.length)?arguments[0]:{
+		lampada: {
+			deuterio: false,
+			tungstenio: false
+		}
+	};
     this._status = 0;
 }
 
@@ -6,9 +12,42 @@ LabEspectrofotometro.prototype.status = function () {
     var args = arguments;
     if (args.length > 0) {
         this._status = args[0];
+        return this;
     } else {
         return this._status;
     }
+}
+
+LabEspectrofotometro.prototype.lampada = function (id, value) {
+	if (!this._data) {
+		this._data.lampada = {};
+	}
+	this._data.lampada[id] = value;
+	return this;
+}
+
+LabEspectrofotometro.prototype.intensidadeFonte = function () {
+	var deuterio = this._data.lampada.deuterio;
+	var tungstenio = this._data.lampada.tungstenio;
+	var result = [];
+
+   	// Tungstenio
+    var intensidadefonteVisivel = this._data.intensidadeFonte.intensidadefonteVisivel;
+    // Deuterio
+    var intensidadefonteUV = this._data.intensidadeFonte.intensidadefonteUV;
+    // As duas
+    var intensidadefonteUVeVisivel = this._data.intensidadeFonte.intensidadefonteUVeVisivel;
+
+	if (!deuterio && tungstenio)
+		result = intensidadefonteVisivel;
+
+	if (deuterio && !tungstenio)
+		result = intensidadefonteUV;
+
+	if (deuterio && tungstenio)
+		result = intensidadefonteUVeVisivel;
+
+	return result;
 }
 
 LabEspectrofotometro.prototype.medirAbsorbancia = function medirabs(solucao) {
@@ -18,65 +57,29 @@ LabEspectrofotometro.prototype.medirAbsorbancia = function medirabs(solucao) {
     var $this = this;
 
 	function preloader(f) {
-	    abrirArquivos([
-	      {id: 'intensidadefonteVisivel', url: raiz+'js/rotinas/intensidadefonteVisivel.txt'},
-	      {id: 'intensidadefonteUV', url: raiz+'js/rotinas/intensidadefonteUV.txt'},
-	      {id: 'intensidadefonteUVeVisivel', url: raiz+'js/rotinas/intensidadefonteUVeVisivel.txt'},
-	    ], function (a) {
-	        arquivos = a;
-	        f();
-	    } );    
+		$.ajax({
+			url: 'data.php',
+			method: 'post',
+			data: {
+				action: 'espectrofotometro',
+				data: true
+			}
+		}).done(function (data) {
+			$this._data.intensidadeFonte = data;
+			f();
+		})
 	}
-
-	function abrirArquivos(o, f) {
-	    var total = o.length;
-	    var loaded = 0;
-	    var result = {};
-
-	    for (var i = 0 ; i < o.length ; i++) {
-
-	        jQuery.ajax({
-	            url: o[i].url+'?'+i
-	        }).done(function (data) {
-	            var n = parseInt(this.url.split('?').pop() );
-	            var id = o[n].id;
-	            result[id] = data;
-	            loaded++;
-	        })
-	    }
-
-	    var interval = setInterval(function () {
-	        if (loaded == total) {
-	            clearInterval(interval);
-	            f(result);
-	        }
-	    });
-	}
-
-    function lerArquivo(data) {
-    	var lines = data.split(/\r?\n/);
-        var res = [];
-
-        for(var i = 0; i < lines.length; i++){
-            if (lines[i].indexOf('\t') == -1) continue;
-            var s = lines[i].split('\t');
-            res.push({l: parseFloat(s[0]), I: parseFloat(s[1])});
-            
-        }
-
-        return res;
-    }
 
     // Criar array de corte
     function slit(dados, limiteinferior, limitesuperior){
         var vetor = [];
         for (var i = 0; i< dados.length; i++){ 
-                if (dados[i].l > limiteinferior && dados[i].l < limitesuperior){
-                    vetor.push(1)
-                }
-                else{
-                    vetor.push(0)
-                }
+            if (dados[i].l > limiteinferior && dados[i].l < limitesuperior){
+                vetor.push(1)
+            }
+            else{
+                vetor.push(0)
+            }
         }
         return vetor;
     }
@@ -103,19 +106,14 @@ LabEspectrofotometro.prototype.medirAbsorbancia = function medirabs(solucao) {
     function somatorio(vetor){
         var soma = 0;
         for(var i=0 ;i < vetor.length; i++){
-        soma = soma + vetor[i]
+        	soma = soma + vetor[i]
         }
         return soma;
     }
 
     function Espectrofotometro(){
-
-        var intensidadefonteVisivel = lerArquivo(arquivos.intensidadefonteVisivel);
-        var intensidadefonteUV = lerArquivo(arquivos.intensidadefonteUV);
-        var intensidadefonteUVeVisivel = lerArquivo(arquivos.intensidadefonteUVeVisivel);
-
-        // Atribui de acordo com qual lampada está ligada
-        var intensidadefonte = intensidadefonteVisivel;
+		// Atribui de acordo com qual lampada está ligada
+        var intensidadefonte = $this.intensidadeFonte();
 
         // Define os limites
         var slitS = 1; // tamanho da fenda
@@ -209,7 +207,11 @@ LabEspectrofotometro.prototype.medirAbsorbancia = function medirabs(solucao) {
 
 
     preloader(function () {
-    	var rs = Espectrofotometro();
+    	Espectrofotometro();
     	//if (data.funcao) data.funcao(rs)
     });
+}
+
+function espectrofotometro() {
+	return new LabEspectrofotometro();
 }
