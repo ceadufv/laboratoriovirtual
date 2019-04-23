@@ -31,4 +31,8 @@ LabState.completado = function (o) {
 
 LabState.seco = function (o) { return o.data('seco')?true:false; }
 
+LabState.calibrado = function (o) { return o.data('calibrado')?true:false; }
+
+LabState.naoCalibrado = function (o) { return !LabState.calibrado(o); }
+
 

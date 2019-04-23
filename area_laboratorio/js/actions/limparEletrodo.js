@@ -22,7 +22,7 @@ function limparEletrodo(interacao) {
 	//$('#interacao .modal-title').text('Lavando...');
 	//console.log('Volume Maximo', target.data('volumeMaximo'))
 
-	target.data('limpo',true);
+	//target.data('limpo',true);
 	
 	
 }

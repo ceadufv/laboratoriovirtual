@@ -52,20 +52,25 @@ LabUtils.objetoCriar = function (sprite, origem) {
             var modo = "pH";
             var temperatura = 25;
             var scene = sprite.scene;
+            
             var TextopH = scene.add.text(0, 0, pHcorreto , { fontFamily: fonte, fontSize: 32, color: '#ffffff' });
-
             var TextoModo = scene.add.text(0, 0, 'pH', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
+            
             var TextoModo1 = scene.add.text(0, 0, 'Modo:', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });            
 
             var utc = new Date().toJSON().slice(0,10).split('-').reverse().join('/');
 
             var TextoTemperatura = scene.add.text(0, 0, temperatura + '°C', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
             var TextoDataAtual = scene.add.text(0, 0, utc, { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
-            var TextoDataCalibracao = scene.add.text(0, 0, "CAL: "+utc, { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
+            
+            var TextoDataCalibracao = scene.add.text(0, 0, 'CAL: ', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
+            
+
 
             // TODO:
             handler.data('pHvisor', TextopH);
             handler.data('pHmodo', TextoModo);
+            handler.data('calibracao', TextoDataCalibracao);
 
             TextopH.x = -50; TextopH.y = -75 - 150;
             TextoModo.x = -75; TextoModo.y = -88 - 150;

@@ -277,14 +277,24 @@ LabPhmetro.prototype.medirpH = function ( tempo ) {
 
         // Função para exibir o potencial na tela
         function potencialDisplay(){
-            var El = calculoPotencial();
-            var t = data.tempo;// tempo de contato do eletrodo com a solução?
-            var tmax = 20 + mc(0.05);
-            var desvio = mc(json1.obj1[0].desvioPadrao);
-            var t95 = tmax/Math.abs(El);
-            var k = Math.log(0.05)/t95;
-            var Edisplay = El * ( 1 - Math.exp(k*t) ) + desvio;
+            // var El = calculoPotencial();
+            // var t = data.tempo;// tempo de contato do eletrodo com a solução?
+            // var tmax = 20 + mc(0.05);
+            // var desvio = mc(json1.obj1[0].desvioPadrao);
+            // var t95 = tmax/Math.abs(El);
+            // var k = Math.log(0.05)/t95;
+            // var Edisplay = El * ( 1 - Math.exp(k*t) ) + desvio;
             //console.log(Edisplay)
+
+            var E = calculoPotencial();
+            var desvio = mc(0.05);
+            var Eant = E + desvio/2
+            var t = data.tempo;
+            var tmax = 20;
+            var t95 = tmax/Math.abs(Eant - E);
+            var k = Math.log(0.05)/t95;
+            var Edisplay = E - (E - Eant)*Math.exp(-k*t) + desvio;
+
 
             return Edisplay;
 

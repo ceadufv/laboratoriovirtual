@@ -5,6 +5,7 @@
 * @valid_target ["cheio(bequer_cheio)"]
 *
 * @error {"sujo(eletrodo)" : "É preciso lavar e secar o eletrodo antes de realizar a medição"}
+* @error {"naoCalibrado(eletrodo)" : "É preciso calibrar o pHmetro antes de realizar a medição"}
 */
 function medirpotencial(interacao) {
 
