@@ -5,6 +5,7 @@ LabPhmetro = function ( data ) {
     // Objeto contendo a solucao
     this._solucao;
     this._desvioPadrao = data.desvioPadrao;
+    this._vars = {};
 
     // 
     var a = this;
@@ -22,6 +23,7 @@ LabPhmetro._loop = function () {
     var d = (Math.random() * variacao);
 
     handlerPhmetro.data('pHvisor').text = (7 + d-variacao/2).toFixed(2);
+
 };
 
 setInterval(function () {
@@ -69,9 +71,45 @@ LabPhmetro.mc = function (sd) {
     return mc;
 }
 
-LabPhmetro.prototype.medirpH = function ( tempo ) {
+LabPhmetro.prototype.novoMedirpH = function (tempo) {
+    if (tempo < 10) {
+        var m = this.MedirpH(tempo);
+        this._vars = m.vars;
+
+        /// console.log(m);
+
+        //m.pHDisplay = 0;
+    } else {
+        var t = tempo;
+        var da = this._vars;
+        //console.log(da)
+
+        var E = da.E;
+        var desvio = 0.99;
+        var Eant = E + desvio/2;
+        var k = da.k;
+        var Edisplay = E - (E - Eant)*Math.exp(k*t) + desvio;
+
+        var fTcal = da.fTcal;
+        var Ecal = da.Ecal;
+        var feletrodo = da.feletrodo;
+        var Scal = da.Scal;
+        var pHDisplay = (Edisplay - Ecal)/ Scal*fTcal;
+
+        // console.log('~',pHDisplay)
+
+        m = {
+            potencialDisplay: Edisplay,
+            pHDisplay: pHDisplay
+        };
+    }
+
+    return m;
+}
 
 
+
+LabPhmetro.prototype.MedirpH = function ( tempo ) {
 
     var solucao = this._solucao.content();
 
@@ -277,46 +315,80 @@ LabPhmetro.prototype.medirpH = function ( tempo ) {
 
         // Função para exibir o potencial na tela
         function potencialDisplay(){
-            // var El = calculoPotencial();
-            // var t = data.tempo;// tempo de contato do eletrodo com a solução?
-            // var tmax = 20 + mc(0.05);
-            // var desvio = mc(json1.obj1[0].desvioPadrao);
-            // var t95 = tmax/Math.abs(El);
-            // var k = Math.log(0.05)/t95;
-            // var Edisplay = El * ( 1 - Math.exp(k*t) ) + desvio;
-            //console.log(Edisplay)
+            var args = arguments;
 
-            var E = calculoPotencial();
-            var desvio = mc(0.05);
-            var Eant = E + desvio/2
-            var t = data.tempo;
-            var tmax = 20;
-            var t95 = tmax/Math.abs(Eant - E);
-            var k = Math.log(0.05)/t95;
-            var Edisplay = E - (E - Eant)*Math.exp(-k*t) + desvio;
-
-
-            return Edisplay;
-
-        }
-
-        function pHDisplay(){
-            var Ecal = 380 + mc(20);
-            var feletrodo = 0.95 + mc(0.02)
-            var Scal = - 59.16 * feletrodo;
             var Tcal = 25;
             var T = 25;
-            var fTcal = (T+273.15)/(Tcal+273.15);
-            var pHDisplay = (potencialDisplay() - Ecal)/ Scal*fTcal
+            var tmax = 20;
+            if (args.length == 0) {
+                var E = calculoPotencial();
+                var desvio = mc(0.05);
+                var Eant = E + desvio/2
+                var t = data.tempo;
+                var t95 = tmax/Math.abs(Eant - E);
+                var k = Math.log(0.05)/t95;
 
+                var fTcal = (T+273.15)/(Tcal+273.15);
+                var Ecal = 380 + mc(20);
+                var feletrodo = 0.95 + mc(0.02)
+                var Scal = - 59.16 * feletrodo;
 
-            return pHDisplay;
+            } else {
+                var da = args[0];
+                
+                var E = da.E;
+                var desvio = da.desvio;
+                var Eant = da.Eant;
+                var k = da.k;
+
+                var fTcal = (T+273.15)/(Tcal+273.15);
+                var Ecal = 380 + mc(20);
+                var feletrodo = 0.95 + mc(0.02)
+                var Scal = - 59.16 * feletrodo;
+
+                /*var fTcal = da.fTcal;
+                var Ecal = da.Ecal;
+                var feletrodo = da.feletrodo;
+                var Scal = da.Scal;*/
+
+            }
+
+            var Edisplay = E - (E - Eant)*Math.exp(k*t) + desvio;
+            var pHDisplay = (Edisplay - Ecal)/ Scal*fTcal
+
+            return {
+                E: E,
+                desvio: desvio,
+                Eant: Eant,
+                k: k,
+                Edisplay: Edisplay,
+
+                fTcal: fTcal,
+                Ecal: Ecal,
+                feletrodo: feletrodo,
+                Scal: Scal,
+                pHDisplay: pHDisplay
+            };
+
         }
 
 
+        var ttt = potencialDisplay();
+
         return { 
-            potencialDisplay: potencialDisplay(),
-            pHDisplay: pHDisplay()
+            potencialDisplay: ttt.Edisplay,
+            pHDisplay: ttt.pHDisplay,
+            vars: {
+                E: ttt.E,
+                Eant: ttt.Eant,
+                desvio: ttt.desvio,
+                k: ttt.k,
+
+                fTcal: ttt.fTcal,
+                Ecal: ttt.Ecal,
+                feletrodo: ttt.feletrodo,
+                Scal: ttt.Scal
+            }
         }
     }
 

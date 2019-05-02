@@ -202,6 +202,9 @@ $('#armario').on('click', '.btn-armario-pegar', function () {
 // Adiciona a bancada os objetos selecionados
 $('.btn-armario-adicionar').click(function () {
     var selecionados = armarioSelecionados();
+
+    console.log(selecionados)
+
     for (var i = 0 ; i < selecionados.length ; i++) {
         jogo.armario().pegar(selecionados[i]);
     }
