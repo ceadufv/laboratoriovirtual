@@ -27,8 +27,12 @@ function medirpotencial(interacao) {
 
 	var tempo = 0;
 	LabPhmetro._loop = function () {
-		if (tempo >= 20) return;
-		handlerPhmetro.data('pHvisor').text = pHmetro.medirpH( tempo ).potencialDisplay.toFixed(2)+' mV'
+		if (tempo >= 60) return;
+		handlerPhmetro.data('pHvisor').text = pHmetro.novoMedirpH( tempo ).potencialDisplay.toFixed(3)+' mV'
 		tempo ++;
 	}
+
+	//Muda o estado do eletrodo para sujo
+	phmetro.data('limpo',false);
+
 }

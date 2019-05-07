@@ -6,6 +6,7 @@ LabEspectrofotometro = function () {
 		}
 	};
     this._status = 0;
+    this._callback = function () {};
 }
 
 LabEspectrofotometro.prototype.status = function () {
@@ -24,6 +25,13 @@ LabEspectrofotometro.prototype.lampada = function (id, value) {
 	}
 	this._data.lampada[id] = value;
 	return this;
+}
+
+LabEspectrofotometro.prototype.done = function () {
+    if (arguments.length > 0)
+        this._callback = arguments[0];
+    else
+        this._callback();
 }
 
 LabEspectrofotometro.prototype.intensidadeFonte = function () {
@@ -50,7 +58,7 @@ LabEspectrofotometro.prototype.intensidadeFonte = function () {
 	return result;
 }
 
-LabEspectrofotometro.prototype.medirAbsorbancia = function medirabs(solucao) {
+LabEspectrofotometro.prototype.medir = function medirabs(solucao) {
     var raiz = '../../';
 	var mc = LabPhmetro.mc;
 	var arquivos = [];
@@ -198,18 +206,19 @@ LabEspectrofotometro.prototype.medirAbsorbancia = function medirabs(solucao) {
         var Tmed0 = 100 * somaI0/ somaI0; 
         var Amed0 = 2 - Math.log10(Tmed);
 
-        console.log('Tmed:', Tmed);
-        console.log('Amed:', Amed);
+        //console.log('Tmed:', Tmed);
+        //console.log('Amed:', Amed);
 
-        return [[Amed0, Tmed0],[Amed, Tmed]];
+        return { Tmed: Tmed, Amed: Amed };
+        //return [[Amed0, Tmed0],[Amed, Tmed]];
     }
 
-
-
     preloader(function () {
-    	Espectrofotometro();
+        $this._callback(Espectrofotometro());
     	//if (data.funcao) data.funcao(rs)
     });
+
+    return this;
 }
 
 function espectrofotometro() {

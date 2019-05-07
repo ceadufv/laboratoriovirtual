@@ -34,8 +34,11 @@ espectrofotometro()
 			.lampada('tungstenio', true)
 			.lampada('deuterio', false)
 			.status(0)
-			.medirAbsorbancia(sol)
+			.medir(sol).done(function (dtacoa) {
+				console.log(data);
+			})
 	});
+
 	</script>
 </head>
 </html>

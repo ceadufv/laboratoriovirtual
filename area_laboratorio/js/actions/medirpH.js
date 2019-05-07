@@ -13,6 +13,8 @@ function medirpH(interacao) {
 	var target = interacao.target();
 	var phmetro = interacao.source();
 
+	console.log(target)
+
 	var pHmetro = new LabPhmetro({ desvioPadrao:0.02 });
 	pHmetro.solucao(target);
 
@@ -29,8 +31,8 @@ function medirpH(interacao) {
 	// Realiza rotiza de medidcao de pH
 	var tempo = 0;
 	LabPhmetro._loop = function () {
-		if (tempo >= 20) return;
-		handlerPhmetro.data('pHvisor').text = pHmetro.medirpH( tempo ).pHDisplay.toFixed(2)
+		if (tempo >= 60) return;
+		handlerPhmetro.data('pHvisor').text = pHmetro.novoMedirpH( tempo ).pHDisplay.toFixed(3)
 		tempo ++;
 	}
 
