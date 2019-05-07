@@ -36,6 +36,8 @@ LabUtils.objetoCriar = function (sprite, origem) {
     // os recursos de manipulacao de sprites ja disponiveis no phaserjs
     var handler = new LabHandler(sprite);
     sprite.setData('handler', handler);
+    var scene = sprite.scene;    
+    //console.log(handler.concept())
 
     switch (handler.concept()) {
         case "espectrofotometro":
@@ -45,14 +47,28 @@ LabUtils.objetoCriar = function (sprite, origem) {
             //s.add.sprite(0,0,'tampa_aberta_espectrofotometro');
         break;
 
+        case "eletrodo":
+            var braco = LabUtils.buscarPorConceito('phmetro_braco')[0];
+            var elet = LabUtils.buscarPorConceito('eletrodo')[0];
+            var fio_eletrodo = scene.add.graphics();
+            fio_eletrodo.x = braco.data().x;
+            fio_eletrodo.y = braco.data().y;
+            fio_eletrodo.lineStyle(10, 0xff0000, 1.0);
+            fio_eletrodo.beginPath();
+            fio_eletrodo.moveTo(40, -130);
+            fio_eletrodo.lineTo(33, -10);            
+            fio_eletrodo.closePath();
+            fio_eletrodo.strokePath();
+            elet.data('fio', fio_eletrodo);
+        break;
+
         case "phmetro":
             var fonte = 'Open Sans Condensed';
             var pH = 0;
             var pHcorreto = pH.toString().replace(".",",") // Alterar ponto por vírgula
             var modo = "pH";
             var temperatura = 25;
-            var scene = sprite.scene;
-            
+           
             var TextopH = scene.add.text(0, 0, pHcorreto , { fontFamily: fonte, fontSize: 32, color: '#ffffff' });
             var TextoModo = scene.add.text(0, 0, 'pH', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
             
@@ -64,13 +80,12 @@ LabUtils.objetoCriar = function (sprite, origem) {
             var TextoDataAtual = scene.add.text(0, 0, utc, { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
             
             var TextoDataCalibracao = scene.add.text(0, 0, 'CAL: ', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
-            
-
 
             // TODO:
             handler.data('pHvisor', TextopH);
             handler.data('pHmodo', TextoModo);
             handler.data('calibracao', TextoDataCalibracao);
+            //handler.data('fio_eletrodo', fio_eletrodo);
 
             TextopH.x = -50; TextopH.y = -75 - 150;
             TextoModo.x = -75; TextoModo.y = -88 - 150;
@@ -92,7 +107,6 @@ LabUtils.objetoCriar = function (sprite, origem) {
                 child.y += sprite.y;
             });
 
-
 //            sprite.add(TextopH)
 
         break;
@@ -101,6 +115,15 @@ LabUtils.objetoCriar = function (sprite, origem) {
     //var handler = sprite.data.get('handler');
     // A principio a profundidade do objeto coincide com o UID
     //sprite.setData('index', uid);
+/*
+    handler.static(
+        (json.static)
+        ?
+        json.static
+        :
+        false
+    );
+*/    
 
     sprites[uid] = sprite;
 

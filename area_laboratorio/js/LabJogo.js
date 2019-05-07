@@ -215,7 +215,29 @@ LabJogo.prototype.init = function (f) {
 	    Phaser.Actions.Call(o._popupGroup.getChildren(), function(child) {
 	        child.alpha = o._popupAlpha;
 	        child.alpha = o._popupAlpha;
-	    });		
+	    });
+
+	    // Braco do pHmetro
+	    var elet = LabUtils.buscarPorConceito('eletrodo');
+	    var eletrodo = elet[0];
+	    var phm = LabUtils.buscarPorConceito('phmetro')[0];
+	    var braco = LabUtils.buscarPorConceito('phmetro_braco')[0];
+	    if (elet.length) {
+	    	var fio_eletrodo = eletrodo.data('fio');
+
+	    	var dx = eletrodo.data().x - phm.data().x;
+	    	var dy = eletrodo.data().y - phm.data().y;
+
+	    	fio_eletrodo.clear();
+	    	fio_eletrodo.lineStyle(10, 0xc0c0c0, 1.0);
+	    	fio_eletrodo.beginPath();
+            fio_eletrodo.moveTo(40, -130);
+            fio_eletrodo.lineTo(dx - 260, -90 + dy);
+            fio_eletrodo.closePath();
+            fio_eletrodo.strokePath();
+            // TODO: Verificar se isso nao deixa pesado o processo
+			LabUtils.bringToFront(fio_eletrodo);
+	    }
 	}
 
 	function preload ()
@@ -264,21 +286,6 @@ LabJogo.prototype.init = function (f) {
 	    this.data.set('lab', o);
 
 	    var armarios = this.add.group();
-	    /*
-	    armarios.create(123,915,'fundo').setDisplaySize(735, 170);
-	    armarios.create(880,915,'fundo').setDisplaySize(495, 145);
-	    armarios.create(1390,915,'fundo').setDisplaySize(545, 145);
-	    armarios.create(1955,915,'fundo').setDisplaySize(450, 145);
-
-	    Phaser.Actions.Call(armarios.getChildren(), function(child) {
-	        child.setAlpha(0.00001).setOrigin(0).setDepth(1).setInteractive({
-	        pixelPerfect: true,
-	        alphaTolerance: 120,
-	        draggable: false,
-	        cursor: 'pointer',
-	        }).on('pointerdown', abrirArmario);
-	    });
-	    */
 
 	    bgCriar(this);
 
@@ -380,6 +387,9 @@ LabJogo.prototype.init = function (f) {
 		var graphics = this.add.graphics();
 		o._popup.setData('graphics',graphics);
 		group.add(graphics);
+
+
+		// Linha que conecta o pHmetro ao eletrodo
 
 		//o.popupPorcentagem(50);
 

@@ -66,7 +66,7 @@ LabHandler.onPointerUp = function (o) {
 	// do objeto clicado
 	var menu = interacts.menu();
 
-	console.log(interacts)
+	//console.log(interacts)
 
 
 	// Para evitar excesso de dialogos na tela,
