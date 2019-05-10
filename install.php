@@ -416,7 +416,7 @@ CREATE TABLE `usuarios_cadastrados` (
 --
 
 INSERT INTO `usuarios_cadastrados` (`id_usuario`, `nome`, `email`, `senha`, `id_tipo_usuario`, `usuario`) VALUES
-(1, 'Administrador', NULL, '".$lab->codificarSenha($new_password)."', 1, 'admin');
+(1, 'Administrador', NULL, '".$lab->codificarSenha($new_password)."', 2, 'admin');
 
 --
 -- Índices de tabelas apagadas
