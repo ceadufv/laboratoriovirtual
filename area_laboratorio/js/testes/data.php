@@ -44,12 +44,14 @@ switch ($action) {
 
 		$nomes = array(
 			"azulacido" => "Azul Ácido",
-			"azulbasico" => "Azul Básico"
+			"azulbasico" => "Azul Básico",
+			"violetademetila" => "Violeta de Metila"
 		);
 
 		$concentracaoEstoque = array(
-			"azulacido" => 0.0001,
-			"azulbasico" => 0.0005
+			"azulacido" => 0.0000001,
+			"azulbasico" => 0.0000005,
+			"violetademetila" => 0.0000005
 		);
 
 		$result = array();

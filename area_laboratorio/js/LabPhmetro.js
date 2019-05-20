@@ -22,7 +22,7 @@ LabPhmetro._loop = function () {
     var variacao = 0.2;
     var d = (Math.random() * variacao);
 
-    handlerPhmetro.data('pHvisor').text = (7 + d-variacao/2).toFixed(2);
+    handlerPhmetro.data('pHvisor').text = (7 + d-variacao/2).toFixed(3);
 
 };
 
@@ -94,9 +94,10 @@ LabPhmetro.prototype.novoMedirpH = function (tempo) {
         var Ecal = da.Ecal;
         var feletrodo = da.feletrodo;
         var Scal = da.Scal;
-        var pHDisplay = (Edisplay - Ecal)/ Scal*fTcal;
+        function getRandomArbitrary(min, max) { return Math.random() * (max - min) + min; }
+        var pHDisplay = ((Edisplay - Ecal)/ (Scal*fTcal) ) - getRandomArbitrary(0.001, 0.01)
 
-        // console.log('~',pHDisplay)
+        //console.log('~',pHDisplay)
 
         m = {
             potencialDisplay: Edisplay,
