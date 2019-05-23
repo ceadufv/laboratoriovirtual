@@ -45,13 +45,16 @@ switch ($action) {
 		$nomes = array(
 			"azulacido" => "Azul Ácido",
 			"azulbasico" => "Azul Básico",
-			"violetademetila" => "Violeta de Metila"
+			"violetademetila" => "Violeta de Metila",
+			"branco"=> "Branco"
 		);
 
 		$concentracaoEstoque = array(
-			"azulacido" => 0.0000001,
-			"azulbasico" => 0.0000005,
-			"violetademetila" => 0.0000005
+			"azulacido" => 0.00001,
+			"azulbasico" => 0.000005,
+			"violetademetila" => 0.000005,
+			"branco" => 0.000003
+
 		);
 
 		$result = array();
@@ -73,7 +76,7 @@ switch ($action) {
 		$result = array(
 			"intensidadefonteVisivel" => getIntensidadeFonte("intensidadefonteVisivel"),
 			"intensidadefonteUV" => getIntensidadeFonte("intensidadefonteUV"),
-			"intensidadefonteUVeVisivel" => getIntensidadeFonte("intensidadefonteUVeVisivel")
+			"intensidadefonteUVeVisivel" => getIntensidadeFonte("intensidadefonteUVeVisivel"),
 		);
 
 		echo json_encode($result);

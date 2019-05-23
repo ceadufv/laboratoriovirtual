@@ -20,12 +20,31 @@
 	</style>
 	
 	<h1>Espectrofotometro</h1>
-	<form method="post" action="#" name="form1" >
+
+	<form method="post" action="#" name="form0" >
 		<label for="Lmed">Comprimento de onda médio:</label>		
 		<input type="number" name="Lmed" min="190" max="1100">
 		<br /><br />
   		<input type="radio" name="rdtipo" id="tipo" value="vidro"/> Cubeta de Vidro <br />
   		<input type="radio" name="rdtipo" id="tipo" value="quartzo"/> Cubeta de Quartzo <br />
+		<h2>Branco</h2>
+		<input type="checkbox" name = "comp" id="branco" value="on">Branco
+		<br /><br />
+        <input type="checkbox" name = "comp" id="azulbasico" value="on">Azul básico
+        <br /><br />
+        <input type="button" onclick="validarBranco()" value="OK"></button>
+    </form>
+    	<h2>Lampadas</h2>
+		<span class="deuterio off"></span> Deuterio <span class="tungstenio off"></span> Tungstenio
+		<br /><br />
+		<button onclick="ligar('deuterio')">Deutério</button>
+		<button onclick="ligar('tungstenio')"> Tungstênio </button>
+		<button onclick="status(1)"> Abrir </button>
+		<button onclick="status(0)"> Fechar </button>
+		<br /><br />
+    	<button onclick="medirBranco()"> Medir Branco </button>
+    
+    <form method="post" action="#" name="form1">
   		<h2>Soluções</h2>
         <input type="checkbox" name = "comp" id="azulacido" value="on">Azul ácido
         <br /><br />
@@ -33,22 +52,10 @@
         <br /><br />
         <input type="checkbox" name = "comp" id="violeta" value="on">Violeta de Metila
         <br /><br />
-		<input type="button" onclick="validar()" value="OK"></button>
+		<input type="button" onclick="validarSolucao()" value="OK"></button>
 	</form>
 
-	<h2>Lampada</h2>
-		<span class="deuterio off"></span> Deuterio <span class="tungstenio off"></span> Tungstenio
-
-
-	<h2>Medir</h2>
-		<button onclick="ligar('deuterio')">Deutério</button>
-		<button onclick="ligar('tungstenio')"> Tungstênio </button>
-		<button onclick="status(1)"> Abrir </button>
-		<button onclick="status(0)"> Fechar </button>
-		<br /><br />
 		<button onclick="medir()"> Medir </button>
-
-
 
 	<script>
 /*
@@ -73,14 +80,25 @@ espectrofotometro()
 		cubeta: 370
 	};
 
-	var comp = {
-		azulacido: true,
-		azulbásico: false,
-		violetademetila: false
+	var branco = {
+		branco: false,
+		azulbasico: false,
+		soma: 0
 	};
 
-	function validar (){
-		var Lmed = form1.Lmed.value;
+
+	var comp = {
+		azulacido: false,
+		azulbasico: false,
+		violetademetila: false,
+		soma: 0
+	};
+
+
+
+
+	function validarBranco (){
+		var Lmed = form0.Lmed.value;
 		if (Lmed == "") {
 			alert('Preencha o campo com comprimento de onda');
 			form1.Lmed.focus();
@@ -96,30 +114,51 @@ espectrofotometro()
 		config.Lmed = Lmed*1
 
 
-		if((form1.rdtipo[0].checked == false)&&(form1.rdtipo[1].checked == false)){
+		if((form0.rdtipo[0].checked == false)&&(form0.rdtipo[1].checked == false)){
 			alert('Informe o tipo de cubeta');
     		form1.rdtipo[0].focus();
     		return false;
 		}
 
-		if((form1.rdtipo[0].checked == true)&&(form1.rdtipo[1].checked == false)){
+		if((form0.rdtipo[0].checked == true)&&(form0.rdtipo[1].checked == false)){
     		config.cubeta = 370
 		}
 
-		if((form1.rdtipo[0].checked == false)&&(form1.rdtipo[1].checked == true)){
+		if((form0.rdtipo[0].checked == false)&&(form0.rdtipo[1].checked == true)){
     		config.cubeta = 160
 		}
-
-		if((form1.comp[0].checked == false)&&(form1.comp[1].checked == false)&&(form1.comp[2].checked == false)){
-			alert('Informe a solucao');
-    		form1.comp[0].focus();
-    		return false;
+		
+		if((form0.comp[0].checked == true)&&(form0.comp[1].checked == false)){
+			branco = {
+				branco: true,
+				azulbasico: false
+			}
+		console.log(branco)
 		}
 
+		if((form0.comp[0].checked == true)&&(form0.comp[1].checked == true)){
+			branco = {
+				branco: true,
+				azulbasico: true
+			}
+		console.log(branco)
+		}
+
+		if((form0.comp[0].checked == false)&&(form0.comp[1].checked == true)){
+			branco = {
+				branco: false,
+				azulbasico: true
+			}
+		console.log(branco)
+		}
+
+	}
+
+	function validarSolucao (){
 		if((form1.comp[0].checked == true)&&(form1.comp[1].checked == false)&&(form1.comp[2].checked == false)){
 			comp = {
 				azulacido: true,
-				azulbásico: false,
+				azulbasico: false,
 				violetademetila: false
 			}
 		console.log(comp)
@@ -128,7 +167,7 @@ espectrofotometro()
 		if((form1.comp[0].checked == true)&&(form1.comp[1].checked == true)&&(form1.comp[2].checked == false)){
 			comp = {
 				azulacido: true,
-				azulbásico: true,
+				azulbasico: true,
 				violetademetila: false
 			}
 		console.log(comp)
@@ -137,7 +176,7 @@ espectrofotometro()
 		if((form1.comp[0].checked == true)&&(form1.comp[1].checked == true)&&(form1.comp[2].checked == true)){
 			comp = {
 				azulacido: true,
-				azulbásico: true,
+				azulbasico: true,
 				violetademetila: true
 			}
 		console.log(comp)
@@ -146,7 +185,7 @@ espectrofotometro()
 		if((form1.comp[0].checked == false)&&(form1.comp[1].checked == true)&&(form1.comp[2].checked == false)){
 			comp = {
 				azulacido: false,
-				azulbásico: true,
+				azulbasico: true,
 				violetademetila: false
 			}
 		console.log(comp)
@@ -155,7 +194,7 @@ espectrofotometro()
 		if((form1.comp[0].checked == false)&&(form1.comp[1].checked == true)&&(form1.comp[2].checked == true)){
 			comp = {
 				azulacido: false,
-				azulbásico: true,
+				azulbasico: true,
 				violetademetila: true
 			}
 		console.log(comp)
@@ -164,7 +203,7 @@ espectrofotometro()
 		if((form1.comp[0].checked == false)&&(form1.comp[1].checked == false)&&(form1.comp[2].checked == true)){
 			comp = {
 				azulacido: false,
-				azulbásico: false,
+				azulbasico: false,
 				violetademetila: true
 			}
 		console.log(comp)
@@ -173,7 +212,7 @@ espectrofotometro()
 		if((form1.comp[0].checked == true)&&(form1.comp[1].checked == false)&&(form1.comp[2].checked == true)){
 			comp = {
 				azulacido: true,
-				azulbásico: false,
+				azulbasico: false,
 				violetademetila: true
 			}
 		console.log(comp)
@@ -207,15 +246,14 @@ espectrofotometro()
 
 	}
 
-	function medir(){
+	function medirBranco(){
 
-		console.log('Comp', comp);
+		console.log('branco', branco);
 
 		var dados = [];
 
-		if (comp.azulacido) dados.push({ id: 'azulacido', volume: 1 });
-		if (comp.azulbasico) dados.push({ id: 'azulbasico', volume: 1 });
-		if (comp.violetademetila) dados.push({ id: 'violetademetila', volume: 1 });
+		if (branco.branco) dados.push({ id: 'branco', volume: 1 });
+		if (branco.azulbasico) dados.push({ id: 'azulbasico', volume: 1 });
 
 		solucao(dados).done(function (sol) {
 			console.log(config);
@@ -228,26 +266,72 @@ espectrofotometro()
 				.cubeta(config.cubeta)
 				.medir(sol).done(function (data) {
 					
-					var transmitancia = data.Tmed
-					var absorbancia = data.Amed
-					console.log(transmitancia, absorbancia);
+					branco.soma = data;
+					console.log('somabranco', branco.soma)
 
-					var mc = LabPhmetro.mc
-
-					for (var t = 0; t < 100; t++){
-					 	
-					 	console.log(t)// tempo em minutos apos o fechamento da tampa
-						var ruido = mc(0.0005) + 0.05*Math.exp(-1*t) + 0.4*Math.exp(-0.5*t) + 0.02*Math.exp(-0.33*t)
-						//console.log(ruido)
-
-						var Adisplay = absorbancia + ruido;
-						var Tdisplay = transmitancia + Math.pow(10,-ruido);
-						console.log(Adisplay, Tdisplay)
-
-					}
 				})
 		});
 	}
+
+
+	function medir(){
+
+		console.log('Comp', comp);
+
+		var dados = [];
+
+		if (comp.azulacido) dados.push({ id: 'azulacido', volume: 1 });
+		if (comp.azulbasico) dados.push({ id: 'azulbasico', volume: 1 });
+		if (comp.violetademetila) dados.push({ id: 'violetademetila', volume: 1 });
+
+
+		solucao(dados).done(function (sol) {
+			console.log(config);
+
+			espectrofotometro()
+				.lampada('deuterio', config.lampada.deuterio)
+				.lampada('tungstenio', config.lampada.tungstenio)
+				.status(config.status)
+				.comprimentoMedio(config.Lmed)
+				.cubeta(config.cubeta)
+				.medir(sol).done(function (data) {
+					
+					comp.soma = data
+					console.log('somasolucao', comp.soma)
+
+					var Tmed = 100 * comp.soma/ branco.soma; 
+        			var Amed = 2 - Math.log10(Tmed);
+					console.log(Amed, Tmed);
+					
+
+					//FUNCAO DISPLAY
+					var mc = LabPhmetro.mc
+					for (var t = 0; t < 200; t++){
+					 	
+					 // CALCULO TDISPLAY
+					console.log(t)// tempo em minutos apos o fechamento da tampa
+					var ruido = mc(0.0005) + 0.05*Math.exp(-1*t) + 0.4*Math.exp(-0.5*t) + 0.02*Math.exp(-0.33*t)
+					var Tdisplay = Tmed + Math.pow(10,-ruido);
+
+					// CALCULO ADISPLAY
+					if(Amed >= 1.9){
+						ruido = mc(0.3) + 0.05*Math.exp(-1*t) + 0.4*Math.exp(-0.5*t) + 0.02*Math.exp(-0.33*t)
+						var Adisplay = 1.9 + ruido;
+					} else {
+						ruido = mc(0.0005) + 0.05*Math.exp(-1*t) + 0.4*Math.exp(-0.5*t) + 0.02*Math.exp(-0.33*t)
+						var Adisplay = Amed + ruido;
+					}
+												
+						console.log(Adisplay, Tdisplay)
+
+					}
+
+
+
+				})
+		});
+	}
+
 
 	</script>
 	
