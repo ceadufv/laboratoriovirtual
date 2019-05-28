@@ -62,6 +62,7 @@ function logoff() {
    window.location.href = '../banco/logoff.php';
    
 };
+
 function atualizarPerfil(){
     var nome = $('#nome_novo').val();
     var senha = $('#senha1').val();
@@ -96,6 +97,7 @@ function atualizarPerfil(){
       });
     }
   }
+
   function aba(tela) {
     $('.opcoes').removeClass('ativo');    
     $('.tab-'+tela).addClass('ativo');

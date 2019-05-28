@@ -110,6 +110,7 @@ LabUtils.objetoCriar = function (sprite, origem) {
 //            sprite.add(TextopH)
 
         break;
+
     }
 
     //var handler = sprite.data.get('handler');

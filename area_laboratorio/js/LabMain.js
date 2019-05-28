@@ -27,30 +27,35 @@ function exibirMenu(interacao) {
 
 // Executa a acao de um botao clicado dentro do modal que
 // lista as interacoes possiveis
-$('.modal-body').on('click', '.btn-action', function () {
-    // Executa uma acao envolvendo dois objetos
+$('.modal-body')
+    ///.not('modal-espectrofotometro')
+    .on('click', '.btn-action', function () {
+        console.log($(this).attr('name'));
 
-    var idAction = $(this).attr('data-action-id');
-    var idSource = parseInt($(this).attr('data-source-id'));
-    var idTarget = parseInt($(this).attr('data-target-id'));
+        // Executa uma acao envolvendo dois objetos
 
-    var action = LabAction.get(idAction);
+        var idAction = $(this).attr('data-action-id');
 
-    var interaction = action.interaction(idSource, idTarget);
+        var idSource = parseInt($(this).attr('data-source-id'));
+        var idTarget = parseInt($(this).attr('data-target-id'));
 
-    var error = interaction.errors();
+        var action = LabAction.get(idAction);
 
-    // Se nao ocorreu nenhum erro, executa a acao
-    if (!error) {
-        interaction.execute();
-        $('#interacao').modal('hide');
-    }
-    // Se houver erro, nao executa a acao e exibe o erro para o usuario
-    else {
-        $('#interacao .modal-body .alert-danger').remove();
-        $('#interacao .modal-body').append('<div class="alert alert-danger" role="danger">'+error+'</div>');
-    }
-})
+        var interaction = action.interaction(idSource, idTarget);
+
+        var error = interaction.errors();
+
+        // Se nao ocorreu nenhum erro, executa a acao
+        if (!error) {
+            interaction.execute();
+            $('#interacao').modal('hide');
+        }
+        // Se houver erro, nao executa a acao e exibe o erro para o usuario
+        else {
+            $('#interacao .modal-body .alert-danger').remove();
+            $('#interacao .modal-body').append('<div class="alert alert-danger" role="danger">'+error+'</div>');
+        }
+    });
 
 $.ajax({url:'data.php?action=pratica&id_pratica='+id_pratica}).done(function (data) {
 
