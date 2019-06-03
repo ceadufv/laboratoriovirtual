@@ -164,7 +164,7 @@ LabEspectrofotometro.prototype.medir = function medirabs(solucao) {
         var comprimentos = separarComprimentos(intensidadefonte)
         var intensfonte = separarAbsortividade(intensidadefonte)
 
-        console.log(comprimentos);
+        //console.log(comprimentos);
         //console.log('comprimentos',comprimentos)
         //console.log('INTEN',intensfonte)
 

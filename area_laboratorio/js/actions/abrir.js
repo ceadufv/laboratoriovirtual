@@ -8,6 +8,9 @@ function abrir(interacao) {
 	var target = interacao.target();
 	target.data().alpha = 1;
 
-	var esp = LabUtils.buscarPorConceito("espectrofotometro")[0];
-	esp.data('aberto', true);
+	config.status = 1;
+	console.log(config.status)
+
+	//var esp = LabUtils.buscarPorConceito("espectrofotometro")[0];
+	//esp.data('aberto', true);
 }

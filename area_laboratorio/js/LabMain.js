@@ -30,7 +30,7 @@ function exibirMenu(interacao) {
 $('.modal-body')
     ///.not('modal-espectrofotometro')
     .on('click', '.btn-action', function () {
-        console.log($(this).attr('name'));
+        //console.log($(this).attr('name'));
 
         // Executa uma acao envolvendo dois objetos
 
