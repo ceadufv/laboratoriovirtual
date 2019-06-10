@@ -1,5 +1,5 @@
-<?php include('funcoes/cabecalho.php'); 
-      include_once('../banco/conexao.php');
+<?php include(dirname(__FILE__).'/funcoes/cabecalho.php'); 
+      include_once(dirname(__FILE__).'/../banco/conexao.php');
       if($_REQUEST['acao']=="editaraula") print_r('a');
 
       $aba = (empty(@$_REQUEST['aba']))?"inicio":@$_REQUEST['aba'];

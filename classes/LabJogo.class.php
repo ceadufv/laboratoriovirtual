@@ -337,7 +337,10 @@ class LabJogo {
     }
 
     function getDisciplinasProfessor($id_professor) {
-        $sql = $this->_dbh->prepare('SELECT * FROM disciplinas WHERE id_professor = ?');
+        $sql = 'SELECT * FROM disciplinas WHERE id_professor = ?';
+        echo $sql;
+
+        $sql = $this->_dbh->prepare($sql);
         $sql->bindValue(1,$id_professor);
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $sql->execute();    

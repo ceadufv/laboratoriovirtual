@@ -1,5 +1,5 @@
 <?php
-    @include("../lab-config.php");
+    @include_once( dirname(__FILE__) . "/../lab-config.php");
 
     try {
         $banco = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASSWORD);
