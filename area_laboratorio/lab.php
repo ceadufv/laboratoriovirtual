@@ -43,6 +43,42 @@
     <script>
       var id_pratica = parseInt('<?php echo @$_REQUEST['id_pratica']; ?>');
       var tipo_acesso = '<?php echo @$_REQUEST['tipo_acesso']; ?>';
+
+      function exibirPagina(n) {
+        //
+        $('.botoes').show();
+
+        var alvo = $('#animacao .modal-body .conteudo .page-'+n);
+
+        if ($(alvo).length == 0) return false;
+
+        if (alvo.hasClass('sem-botoes')) {
+          $('.botoes').hide();
+        }
+
+        //if ($(alvo).attr('data-extra')) {
+        //  exibirPagina();
+        //}
+
+        $('#animacao .modal-body').attr('data-pagina',n);
+        $('#animacao .modal-body .conteudo .page').hide();
+        $('#animacao .modal-body .conteudo .page-'+n).show();
+      }
+
+      function proximaPagina() {
+        var atual = parseInt($('#animacao .modal-body').attr('data-pagina'));
+        exibirPagina(atual+1);
+      }
+
+      function paginaAnterior() {
+        var atual = parseInt($('#animacao .modal-body').attr('data-pagina'));
+        if (atual > 1) exibirPagina(atual-1); 
+      }
+
+      function limparTela() {
+        // Criacao do conteudo
+        $("#animacao .modal-body .conteudo .page:not('.page-0')").remove();
+      }
     </script>
     <style>
       .on { background-color: #0f0;  }
@@ -75,8 +111,12 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class=""><img src="assets/actions/transferirFrasco_bequer.gif" /></div>
+              <div class="conteudo">
+                
+              </div>
               <div class="botoes">
+                <a href="#" class="btn btn-success" data-dismiss="" onclick="paginaAnterior()"><i class="fa fa-step-backward"></i> Anterior</a>
+                <a href="#" class="btn btn-success" data-dismiss="" onclick="proximaPagina()"><i class="fa fa-step-forward"></i> Próximo</a>
                 <a href="#" class="btn btn-success" data-dismiss="modal">Concluir</a>
               </div>
             </div>
@@ -237,15 +277,21 @@ label:hover{
   <input type="number" name="Lmed" min="190" max="1100" value="190">
   <br /><br />
     <input type="radio" name="rdtipo" id="tipo" value="vidro" /> Cubeta de Vidro
-    <input type="radio" name="rdtipo" id="tipo" value="quartzo"/> Cubeta de Quartzo <br />    
+    <input type="radio" name="rdtipo" id="tipo" value="quartzo"/> Cubeta de Quartzo <br /> 
+    <h2>Modo</h2>
+    <input type="radio" name="modo" id="modo" value="abs" /> Absorbância
+    <input type="radio" name="modo" id="modo" value="trans"/> Transmitância <br /> 
+
 </form>
 
-    <h2>Lampadas</h2>
-  <span class="deuterio off"></span> Deuterio <span class="tungstenio off"></span> Tungstenio
+  <h2>Lampadas</h2>
+  <span class="deuterio off"></span> Deutério <span class="tungstenio off"></span> Tungstênio
   <br /><br />
-  <button onclick="ligar('deuterio')">Deutério</button>
-  <button onclick="ligar('tungstenio')"> Tungstênio </button>
-  <input type="button" onclick="validarConfig()" value="OK" data-dismiss="modal" aria-label="Close" />
+  <button onclick="ligar('deuterio')" class="btn">Deutério</button>
+  <button onclick="ligar('tungstenio')" class="btn"> Tungstênio </button>
+  
+  <input type="button" class="btn" onclick="validarConfig()" value="Ligar" data-dismiss="modal" aria-label="Close" />
+
 
 <script>
 //
@@ -255,7 +301,8 @@ var config = {
   },
   status: 0,
   Lmed: 400,
-  cubeta: 370
+  cubeta: 370,
+  modo: 0
 };
 
 
@@ -290,7 +337,20 @@ function validarConfig (){
       config.cubeta = 160
   }
 
+  if((form0.modo[0].checked == true)&&(form0.modo[1].checked == false)){
+      config.modo = 0
+  }
+
+  if((form0.modo[0].checked == false)&&(form0.modo[1].checked == true)){
+      config.modo = 1
+  }
+
   console.log(config)
+
+  //Roda a função de loop como um sinal de que o aparelho ligou
+  setInterval(function () {
+    LabEspectrofotometro._loop();
+  }, 1000);
 }
 
 function status(v) { config.status = v; }
@@ -325,258 +385,9 @@ function ligar (objeto){
     </div>
 
 
-
-<div class="modal fade" id="teste2" tabindex="-1" role="dialog" aria-labelledby="LabelModal" aria-hidden="true" >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-dark">
-            <h5 class="modal-title">Interação</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-
-<form method="post" action="#" name="form1" >
-  <h2>Branco</h2>
-    <input type="checkbox" name="comp" id="branco" value="on" />Branco
-    <input type="checkbox" name="comp" id="azulbasico" value="on">Azul básico
-    <input type="button" onclick="validarBranco()" value="OK" />
-</form>
-<input type="button" onclick="medirBranco()" value="Medir Branco" data-dismiss="modal" aria-label="Close"/>
-
-<script>
-
-var branco = {
-  branco: false,
-  azulbasico: false,
-  soma: 0
-};
-
-function validarBranco (){
-
-  if((form1.comp[0].checked == true)&&(form1.comp[1].checked == false)){
-    branco = {
-      branco: true,
-      azulbasico: false
-    }
-  console.log(branco)
-  }
-
-  if((form1.comp[0].checked == true)&&(form1.comp[1].checked == true)){
-    branco = {
-      branco: true,
-      azulbasico: true
-    }
-  console.log(branco)
-  }
-
-  if((form1.comp[0].checked == false)&&(form1.comp[1].checked == true)){
-    branco = {
-      branco: false,
-      azulbasico: true
-    }
-  console.log(branco)
-  }
-}
-
-function medirBranco(){
-
-  console.log('config', config)
-
-  console.log('branco', branco);
-
-  var dados = [];
-
-  if (branco.branco) dados.push({ id: 'branco', volume: 1 });
-  if (branco.azulbasico) dados.push({ id: 'azulbasico', volume: 1 });
-
-  solucao(dados).done(function (sol) {
-    console.log(config);
-
-    espectrofotometro()
-      .lampada('deuterio', config.lampada.deuterio)
-      .lampada('tungstenio', config.lampada.tungstenio)
-      .status(config.status)
-      .comprimentoMedio(config.Lmed)
-      .cubeta(config.cubeta)
-      .medir(sol).done(function (data) {
-        
-        branco.soma = data;
-        console.log('somabranco', branco.soma)
-
-      })
-  });
-}
-
-</script>
-  
-
-          </div>
-        </div>
-      </div>
-    </div>
-
 <div class="modal fade" id="teste3" tabindex="-1" role="dialog" aria-labelledby="LabelModal" aria-hidden="true" >
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-dark">
-            <h5 class="modal-title">Interação</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-<form method="post" action="#" name="form2">
-    <h2>Soluções</h2>
-      <input type="checkbox" name="comp" id="azulacido" value="on">Azul ácido
-      <input type="checkbox" name="comp" id="azulbasico" value="on">Azul básico
-      <input type="checkbox" name="comp" id="violeta" value="on">Violeta de Metila
-      <br />
-    <input type="button" onclick="validarSolucao()" value="OK"></button>
-    <input type="button" onclick="medir()" value="Medir" data-dismiss="modal" aria-label="Close"/>
-</form>
-
-<script>
-
-var comp = {
-  azulacido: false,
-  azulbasico: false,
-  violetademetila: false,
-  soma: 0
-};
-
-function validarSolucao (){
-  //return;
-
-  if((form2.comp[0].checked == true)&&(form2.comp[1].checked == false)&&(form2.comp[2].checked == false)){
-    comp = {
-      azulacido: true,
-      azulbasico: false,
-      violetademetila: false
-    }
-    console.log(comp)
-  }
-
-  if((form2.comp[0].checked == true)&&(form2.comp[1].checked == true)&&(form2.comp[2].checked == false)){
-    comp = {
-      azulacido: true,
-      azulbasico: true,
-      violetademetila: false
-    }
-    console.log(comp)
-  } 
-
-  if((form2.comp[0].checked == true)&&(form2.comp[1].checked == true)&&(form2.comp[2].checked == true)){
-    comp = {
-      azulacido: true,
-      azulbasico: true,
-      violetademetila: true
-    }
-    console.log(comp)
-  } 
-
-  if((form2.comp[0].checked == false)&&(form2.comp[1].checked == true)&&(form2.comp[2].checked == false)){
-    comp = {
-      azulacido: false,
-      azulbasico: true,
-      violetademetila: false
-    }
-    console.log(comp)
-  } 
-
-  if((form2.comp[0].checked == false)&&(form2.comp[1].checked == true)&&(form2.comp[2].checked == true)){
-    comp = {
-      azulacido: false,
-      azulbasico: true,
-      violetademetila: true
-    }
-    console.log(comp)
-  }
-
-  if((form2.comp[0].checked == false)&&(form2.comp[1].checked == false)&&(form2.comp[2].checked == true)){
-    comp = {
-      azulacido: false,
-      azulbasico: false,
-      violetademetila: true
-    }
-    console.log(comp)
-  }
-
-  if((form2.comp[0].checked == true)&&(form2.comp[1].checked == false)&&(form2.comp[2].checked == true)){
-    comp = {
-      azulacido: true,
-      azulbasico: false,
-      violetademetila: true
-    }
-    console.log(comp)
-  }
-
-}
-
-function medir(){
-
-  console.log('Comp', comp);
-
-  var dados = [];
-
-  if (comp.azulacido) dados.push({ id: 'azulacido', volume: 1 });
-  if (comp.azulbasico) dados.push({ id: 'azulbasico', volume: 1 });
-  if (comp.violetademetila) dados.push({ id: 'violetademetila', volume: 1 });
-
-  solucao(dados).done(function (sol) {
-    console.log(config);
-
-    espectrofotometro()
-      .lampada('deuterio', config.lampada.deuterio)
-      .lampada('tungstenio', config.lampada.tungstenio)
-      .status(config.status)
-      .comprimentoMedio(config.Lmed)
-      .cubeta(config.cubeta)
-      .medir(sol).done(function (data) {
         
-        console.log('somabranco', branco.soma)
-        comp.soma = data
-        console.log('somasolucao', comp.soma)
-        
-
-        var Tmed = 100 * comp.soma/ branco.soma; 
-        var Amed = 2 - Math.log10(Tmed);
-
-        //console.log(Amed, Tmed);
-        
-        //FUNCAO DISPLAY
-        var mc = LabPhmetro.mc
-        for (var t = 0; t < 200; t++){
-          
-           // CALCULO TDISPLAY
-          //console.log(t)// tempo em minutos apos o fechamento da tampa
-          var ruido = mc(0.0005) + 0.05*Math.exp(-1*t) + 0.4*Math.exp(-0.5*t) + 0.02*Math.exp(-0.33*t)
-          var Tdisplay = Tmed + Math.pow(10,-ruido);
-
-          // CALCULO ADISPLAY
-          if(Amed >= 1.9){
-            ruido = mc(0.3) + 0.05*Math.exp(-1*t) + 0.4*Math.exp(-0.5*t) + 0.02*Math.exp(-0.33*t)
-            var Adisplay = 1.9 + ruido;
-          } else {
-            ruido = mc(0.0005) + 0.05*Math.exp(-1*t) + 0.4*Math.exp(-0.5*t) + 0.02*Math.exp(-0.33*t)
-            var Adisplay = Amed + ruido;
-          }
-                        
-          //console.log(Adisplay, Tdisplay)
-
-        }
-        
-        console.log(Adisplay, Tdisplay)
-
-      })
-  });
-}
-
-</script>
-
-          </div>
-        </div>
       </div>
     </div>
 

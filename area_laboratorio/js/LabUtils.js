@@ -45,6 +45,29 @@ LabUtils.objetoCriar = function (sprite, origem) {
             //console.log(scene.add.text)
             //handler.lab().scene()//.scene().add.sprite(0, 0, 'background')
             //s.add.sprite(0,0,'tampa_aberta_espectrofotometro');
+            var fonte = 'Open Sans Condensed';
+            var valor = "";
+            var absorbancia = valor.toString().replace(".",",") // Alterar ponto por vírgula
+            
+            var TextoAbs = scene.add.text(0, 0, absorbancia , { fontFamily: fonte, fontSize: 32, color: '#ffffff' });
+            var Modo = scene.add.text(0, 0, "" , { fontFamily: fonte, fontSize: 15, color: '#ffffff' });
+
+            // TODO:
+            handler.data('espectroVisor', TextoAbs);
+            handler.data('modo', Modo);
+
+            TextoAbs.x = 80; TextoAbs.y = -175 - 150; 
+            Modo.x = 45; Modo.y = -190 - 150; 
+        
+            var group = scene.add.group();
+            group.add(TextoAbs);
+            group.add(Modo);
+                                                        
+            Phaser.Actions.Call(group.getChildren(), function(child) {
+                child.x += sprite.x;
+                child.y += sprite.y;
+            });
+
         break;
 
         case "eletrodo":
@@ -530,6 +553,12 @@ LabUtils.objetoFromArmario = function (json, s) {
 
     // Define se o objeto se move ou nao (ex: a pia nao se move, nao pode ser arrastada)
     var handler = obj.data.get('handler');
+
+    var dataJson = (json.data)?json.data:{};
+    for (var i in json.data) {
+        obj.data.set(i, json.data[i]);
+    }
+
     //
     handler.static(
         (json.static)

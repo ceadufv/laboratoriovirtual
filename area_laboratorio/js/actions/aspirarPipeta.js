@@ -14,5 +14,11 @@ function aspirarPipeta(interacao) {
 	// Realiza a transferencia para o objeto destino
 	target.transferir(source, source.volumeDisponivel());
 
-	$('#animacao').modal('show')
+	// Inserir animação
+  	$('#animacao').modal('show');
+
+  	// Criacao do conteudo
+  	$('#animacao .modal-body .conteudo').html('');
+  	$('#animacao .modal-body .conteudo')
+    	.append('<div class="page page-1"><img src="assets/actions/aspirar.gif" /></a>');
 }
