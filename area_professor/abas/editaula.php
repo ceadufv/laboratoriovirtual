@@ -579,6 +579,16 @@
 		function campos() {
 			var data = {};
 			var fields = $('input');
+
+
+			data.solucoes = [];
+			$('.id_solucoes_pratica').each(function () {
+				data.solucoes.push($(this).attr('data-id'));
+			});
+
+			console.log(data.solucoes)
+
+
 			for (var i = 0 ; i < fields.length ; i++) {
 			  //
 			  var type = $(fields[i]).attr('type');
