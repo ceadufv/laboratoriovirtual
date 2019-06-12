@@ -35,4 +35,8 @@ LabState.calibrado = function (o) { return o.data('calibrado')?true:false; }
 
 LabState.naoCalibrado = function (o) { return !LabState.calibrado(o); }
 
+LabState.aberto = function (o) { return o.data('aberto')?true:false; }
+
+LabState.fechado = function (o) { return !LabState.aberto(o); }
+
 

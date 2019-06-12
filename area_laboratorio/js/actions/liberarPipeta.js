@@ -11,7 +11,13 @@ function liberarPipeta(interacao) {
 	// Realiza a transferencia para o objeto destino
 	source.transferir(target, target.volumeDisponivel());
 
-	$('#animacao').modal('show')
-
 	target.setConcept('bequer_cheio');
+
+	// Inserir animação
+  	$('#animacao').modal('show');
+
+  	// Criacao do conteudo
+  	$('#animacao .modal-body .conteudo').html('');
+  	$('#animacao .modal-body .conteudo')
+    	.append('<div class="page page-1"><img src="assets/actions/liberarpipeta.gif" /></a>');
 }

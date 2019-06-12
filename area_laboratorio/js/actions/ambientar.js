@@ -14,11 +14,17 @@ function ambientar(interacao) {
 	var source = interacao.source();
 	var target = interacao.target();
 
-	if (target.concept() == 'bequer') {
-		$('#animacao img').attr('src','assets/actions/ambientar_bequer.gif');
-		$('#animacao').modal('show');
-	}
 
+	// Mostra o modal da animação
+	$('#animacao').modal('show');
+
+	limparTela();
+	$('#animacao .modal-body .conteudo')
+		.append('<div class="page page-1"><img src="assets/actions/ambientar_bequer.gif" /></a>');
+
+    exibirPagina(1);
+
+    // Muda o estado das vidrarias
 	target.data('ambientado',true);
 	source.data('ambientado', true);
 

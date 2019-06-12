@@ -9,6 +9,28 @@ LabEspectrofotometro = function () {
     this._callback = function () {};
 }
 
+LabEspectrofotometro._loop = function () { 
+
+    var busca = LabUtils.buscarPorConceito('espectrofotometro');
+
+    if (!busca.length) return false;
+
+    var handlerEspectrofotometro = busca[0];
+
+    var variacao = 0.1;
+    var variacao2 = 10;
+    var d = (Math.random() * variacao);
+
+    if (config.modo == 0){
+        handlerEspectrofotometro.data('espectroVisor').text = (0.010 + d-variacao/10).toFixed(3).toString().replace(".",",");
+        handlerEspectrofotometro.data('modo').text = "Absorbância";
+    } else {
+        handlerEspectrofotometro.data('espectroVisor').text = (100 + d-variacao2/10).toFixed(2).toString().replace(".",",") + '%';
+        handlerEspectrofotometro.data('modo').text = "Transmitância";
+    }
+
+};
+
 LabEspectrofotometro.prototype.status = function () {
     var args = arguments;
     if (args.length > 0) {

@@ -9,9 +9,15 @@ function limparEletrodo(interacao) {
 	var source = interacao.source();
 	var target = interacao.target();
 
-	// Inserir animação de lavagem e secagem do eletrodo
-	// com botão para indicar o "play" na secagem
+	// Inserir animação de trasnferência do líquido para cubeta e secagem com papel (semelhante à lavagem do eletrodo)
 	$('#animacao').modal('show');
+
+	limparTela();
+	$('#animacao .modal-body .conteudo')
+		.append('<div class="page page-1"><img src="assets/actions/lavareletrodo.gif" /></a>')
+		.append('<div class="page page-2"><img src="assets/actions/secareletrodo.gif" /></a>');
+
+    exibirPagina(1);
 
 	target.data('limpo',true);
 
