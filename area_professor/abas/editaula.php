@@ -164,14 +164,14 @@
     <div class="col-auto">
 
         <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-        <select class="custom-select bequer-ambientacao bequer-<?php echo($valor) ?> " >
+         <select name="bequer_ambientacao" class="custom-select bequer-ambientacao bequer-<?php echo($valor) ?> " data-name="bequer_ambientacao">
             <option value="auto">Automática</option>
             <option value="manual">Manual</option>
         </select>
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-        <select class="custom-select bequer-qtd_ambientes bequer-<?php echo($valor) ?> ">
+        <select data-name="bequer_quantidade" name="bequer_quantidade" class="custom-select bequer-qtd_ambientes">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -179,14 +179,14 @@
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-        <select class="custom-select bequer-agitacao bequer-<?php echo($valor) ?> ">
+        <select data-name="bequer_agitacao" name="bequer_agitacao" class="custom-select bequer-agitacao">
             <option value="auto">Automático</option>
             <option value="manual">Manual</option>
         </select>
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-        <select class="custom-select bequer-mistura bequer-<?php echo($valor) ?> ">
+        <select data-name="bequer_mistura" name="bequer_mistura" class="custom-select bequer-mistura bequer-<?php echo($valor) ?> ">
             <option value="false">Não permite</option>
             <option value="true">Permite</option>
         </select>
@@ -212,7 +212,7 @@
                 <tr class="linha-bequer" data-id="<?php echo $valor; ?>">
                     <td style="text-align: left;">  
                         <input value="<?php echo $valor; ?>" data-name="id" name="bequer-<?php echo($valor); ?>" class="bequer-disponivel bequer-<?php echo($valor); ?>" type="checkbox" 
-                        onclick="ativacao_itens(this,<?php echo $valor;?>)" /> <span><?php echo $valor;?> mL</span>
+                        onclick="toggle(this)" /> <span><?php echo $valor;?> mL</span>
                     </td>
                     <td>  
                         <input data-name="qtd_maxima" class="bequer-qtd_maxima bequer-<?php echo($valor) ?>" type="number" min="0" max="10" value="0">
@@ -250,23 +250,23 @@
 <section class="justify-content-center" style="margin: 10px">
 
     <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-    <select name="balaovolumetrico_ambientacao" class="custom-select balaovolumetrico-ambientacao balaovolumetrico-<?php echo($valor) ?> " >
+    <select data-name="balaovolumetrico_ambientacao" name="balaovolumetrico_ambientacao" class="custom-select balaovolumetrico-ambientacao balaovolumetrico-<?php echo($valor) ?> " >
         <option value="auto">Automática</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-    <select name="balaovolumetrico_qtd_ambientes" class="custom-select balaovolumetrico-qtd_ambientes balaovolumetrico-<?php echo($valor) ?> ">
+    <select data-name="balaovolumetrico_qtd_ambientes"  name="balaovolumetrico_qtd_ambientes" class="custom-select balaovolumetrico-qtd_ambientes balaovolumetrico-<?php echo($valor) ?> ">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-    <select name="balaovolumetrico_agitacao" class="custom-select balaovolumetrico-agitacao balaovolumetrico-<?php echo($valor) ?> ">
+    <select data-name="balaovolumetrico_agitacao" name="balaovolumetrico_agitacao" class="custom-select balaovolumetrico-agitacao balaovolumetrico-<?php echo($valor) ?> ">
         <option value="auto">Automático</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-    <select name="balaovolumetrico_mistura" class="custom-select balaovolumetrico-mistura balaovolumetrico-<?php echo($valor) ?> ">
+    <select data-name="balaovolumetrico_mistura" name="balaovolumetrico_mistura" class="custom-select balaovolumetrico-mistura balaovolumetrico-<?php echo($valor) ?> ">
         <option value="false">Não permite</option>
         <option value="true">Permite</option>
     </select>
@@ -290,7 +290,7 @@
             <tr class="linha-balaovolumetrico" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
                 <input data-name="id" class="balaovolumetrico-disponivel balaovolumetrico-<?php echo($valor) ?>" type="checkbox" 
-                    onclick="ativacao_itens(this,<?php echo $valor;?>)" name="balao-<?php echo($valor) ?>" value="<?php echo($valor) ?>"> <span><?php echo $valor;?> mL</span>
+                    onclick="toggle(this)" name="balao-<?php echo($valor) ?>" value="<?php echo($valor) ?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
                 <input data-name="qtd_maxima" class="balaovolumetrico-qtd_maxima balaovolumetrico-<?php echo($valor) ?>" type="number" min="0" max="10" value="0">
@@ -369,7 +369,7 @@
             <tr class="linha-pipetavolumetrica" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
                 <input data-name="id" name="pipeta-<?php echo($valor) ?>" class="pipetavolumetrica-disponivel pipetavolumetrica-<?php echo($valor) ?>" type="checkbox" 
-                    onclick="ativacao_itens(this,<?php echo $valor;?>)" value="<?php echo $valor;?>"> <span><?php echo $valor;?> mL</span>
+                    onclick="toggle(this)" value="<?php echo $valor;?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
                 <input data-name="qtd_maxima" class="pipetavolumetrica-qtd_maxima pipetavolumetrica-<?php echo($valor) ?>" type="number" min="0" max="10" value="0">
@@ -422,20 +422,25 @@
 	      </tr>
 	      <?php
 	      $valores = array(
-	          "Pera", "Pi-pump2" , "Pi-pump5" , "Pi-pump10", "Macropipetador", "Automático"
+              "pera" => "Pipetador de três vias",
+              "pi-pump2" => "Pi-pump de até 2 ml ",
+              "pi-pump5" => "Pi-pump de até 5 ml",
+              "pi-pump10" => "Pi-pump de até 10 ml",
+              "macropipetador" => "Macropipetador",
+              "automatico" => "Pipetador automático"
 	        );
-	        foreach ($valores as $valor):
+	        foreach ($valores as $key => $valor):
 	      ?>
 	      <tr class="linha-pipetador" data-id="<?php echo $valor; ?>">
 	        <td style="text-align: left;">  
-	          <input data-name="id" name="pipetador-<?php echo($valor) ?>" class="pipetador-disponivel pipetador-<?php echo($valor) ?>" type="checkbox" 
-	                onclick="ativacao_itens(this,'<?php echo $valor;?>')" value="<?php echo $valor;?>" /> <span class="nomepipetador"><?php echo $valor;?></span>
+	          <input data-name="id" name="pipetador-<?php echo($key); ?>" class="pipetador-disponivel pipetador-<?php echo($valor) ?>" type="checkbox" 
+	                onclick="toggle(this)" value="<?php echo $key;?>" /> <span class="nomepipetador"><?php echo $valor;?></span>
 	        </td>
 	        <td>
-	        <img src="accordion/pipetadores/<?php echo($valor) ?>.jpg"  width="100">
+	        <img data-name="imagem" src="accordion/pipetadores/<?php echo($key) ?>.jpg" width="100">
 	        </td>
 	        <td>
-	          <select data-name="tamanho" disabled class="custom-select pipetador-tamanho pipetador-<?php echo($valor) ?> ">
+	          <select data-name="tamanho-<?php echo $key; ?>" disabled class="custom-select pipetador-tamanho pipetador-<?php echo($valor) ?> ">
 	            <option value="unico">Único</option>
 	          </select>
 	        </td>
@@ -489,7 +494,7 @@
         <tr class="linha-micropipeta" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
             <input class="micropipeta-disponivel micropipeta-<?php echo($valor) ?>" type="checkbox" 
-                   onclick="ativacao_itens(this,'<?php echo $valor;?>')" value="<?php echo $valor;?>"> <span><?php echo $valor;?> µL</span>
+                   onclick="toggle(this)" value="<?php echo $valor;?>"> <span><?php echo $valor;?> µL</span>
             </td>
             <td>  
                 <input class="micropipeta-qtd_maxima micropipeta-<?php echo($valor) ?>" type="number" min="0" max="10" value="0">
@@ -578,24 +583,27 @@
 
 		function campos() {
 			var data = {};
-			var fields = $('input');
+			var fields = $('input,select:not([data-id])');
 
-
+            data.config = [];
 			data.solucoes = [];
+
 			$('.id_solucoes_pratica').each(function () {
 				data.solucoes.push($(this).attr('data-id'));
 			});
 
-			console.log(data.solucoes)
-
-
 			for (var i = 0 ; i < fields.length ; i++) {
 			  //
-			  var type = $(fields[i]).attr('type');
+			  var type = ($(fields[i]).attr('type')||$(fields[i]).prop('tagName')).toLowerCase();
 			  var name = $(fields[i]).attr('name');
 
 			  // 
 			  switch (type) {
+                case "select":
+                    //var dname = $(fields[i]).attr('data-name');
+                    data[name] = $(fields[i]).val();
+                    //console.log(fields[i])
+                break;
 			    case "radio":
 			      if (data[name] == undefined) {
 			        var value = $('input[name="'+name+'"]:checked').val();
@@ -603,7 +611,6 @@
 			      }
 			    break;
 			    case "checkbox":
-
 			    	var node = fields[i];
 
 			    	if (name && $(node).prop('checked')) {
@@ -617,7 +624,7 @@
                         var vol = name.split('-').pop();
                         dvol = {};
                         
-	    				$(parent).find('input').each(function () {
+	    				$(parent).find('input,select').each(function () {
 	    					var n = $(this).attr('data-name');
 
                             if ($(this).val() == 'on') console.log(node, $(this).val())
@@ -634,7 +641,7 @@
 			console.log(data);
 		}
 
-		campos();
+		//campos();
 
 	</script>
 </div>

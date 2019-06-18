@@ -29,5 +29,7 @@
 
     <script type="text/javascript" src="scripts/tela_professor.js"></script>	
     <script type="text/javascript" src="scripts/scripts.js"></script>
-
+    <style>
+        .disabled { opacity: 0.3; }
+    </style>
 </head>

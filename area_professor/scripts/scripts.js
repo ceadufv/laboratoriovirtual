@@ -234,6 +234,7 @@ function pipetavolumetrica()
 
 function pipetador()
 {
+  /*
   //Pipetador 
   //Habilitar pipetador de três vias
   $(".pipetador-disponivel:checkbox").each(function(){
@@ -245,6 +246,7 @@ function pipetador()
   $(".nomepipetador")[2].textContent = "Pi-pump de até 5 ml";
   $(".nomepipetador")[3].textContent = "Pi-pump de até 10 ml";
   $(".nomepipetador")[5].textContent = "Pipetador automático";
+  */
 }
 
 function micropipeta()
