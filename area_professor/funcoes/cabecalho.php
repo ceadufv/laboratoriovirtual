@@ -1,7 +1,7 @@
 <?php 
   include('../banco/sessao.php');
   include('../banco/conexao.php');
-  ?>
+?>
 
 <!DOCTYPE html>
 <html>

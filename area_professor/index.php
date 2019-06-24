@@ -105,28 +105,6 @@ $(function () {
     load_pratica(bd.id_pratica);
   }
 });
-
-function toggle(o) {
-	// 
-	var tr = $(o).parents('tr');
-	var itens = tr.find('*[data-name]');
-	var checked = $(o).prop('checked');
-
-	// Desabilita os objetos irmaos do atual, pertencentes a mesma tr
-	for (var i =  0 ; i < itens.length ; i++) {
-		if ($(itens[i]).attr('name') == $(o).attr('name'))
-			continue;
-
-		if ($(itens[i]).prop('tagName') == 'IMG') {
-			//
-			//$(itens[i]).removeClass('disabled');
-
-			//
-			//if (!checked) $(itens[i]).addClass('disabled');			
-		} else
-			$(itens[i]).prop('disabled', !checked);
-	}
-}
 </script>
 
  <?php include('funcoes/rodape.php'); ?>

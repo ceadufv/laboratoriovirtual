@@ -94,7 +94,8 @@
 
       <div>
         <select id="select_solucoes" class="custom-select">
-          <?php 
+<?php 
+/*
           global $banco;
           try {
             $solucoes = $banco -> prepare('SELECT * FROM solucoes');
@@ -107,13 +108,14 @@
           } catch(PDOException $e) {
             echo json_encode(array('sucesso' => false, 'log' => $e -> getMessage()));
           }
-          ?>
+*/          
+?>
         </select>
         <div class="composicao_solucao_option"><h4>COMPOSIÇÃO: <?php echo $o[0]['descricao'] ?></h4></div>
       </div>
       <div>
-        <button class="botao_adicionar btn verde" onclick="adicionar_solucao_armario()">Adicionar ao Armário de Soluções</button>
-        <button class="botao_editar_solucao btn verde" onclick="editar_solucao()" class="btn btn-primary" data-toggle="modal" data-target=".modal-edit-solucao">EDITAR SOLUÇÃO</button>
+        <button class="botao_editar_solucao btn verde" onclick="editar_solucao()" class="btn btn-primary" data-toggle="modal" data-target=".modal-edit-solucao"><i class="fa fa-pen"></i> EDITAR SOLUÇÃO</button>      	
+        <button class="botao_adicionar btn verde" onclick="adicionar_solucao_armario()"><i class="fas fa-plus-circle"></i> Adicionar ao Armário</button>
       </div>
 
     </div>
@@ -164,7 +166,7 @@
     <div class="col-auto">
 
         <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-         <select name="bequer_ambientacao" class="custom-select bequer-ambientacao bequer-<?php echo($valor) ?> " data-name="bequer_ambientacao">
+         <select name="bequer_ambientacao" class="custom-select bequer-ambientacao bequer" data-name="bequer_ambientacao">
             <option value="auto">Automática</option>
             <option value="manual">Manual</option>
         </select>
@@ -186,7 +188,7 @@
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-        <select data-name="bequer_mistura" name="bequer_mistura" class="custom-select bequer-mistura bequer-<?php echo($valor) ?> ">
+        <select data-name="bequer_mistura" name="bequer_mistura" class="custom-select bequer-mistura bequer">
             <option value="false">Não permite</option>
             <option value="true">Permite</option>
         </select>
@@ -211,17 +213,17 @@
                 ?>
                 <tr class="linha-bequer" data-id="<?php echo $valor; ?>">
                     <td style="text-align: left;">  
-                        <input value="<?php echo $valor; ?>" data-name="id" name="bequer" class="bequer-disponivel bequer-<?php echo($valor); ?>" type="checkbox" 
+                        <input value="<?php echo $valor; ?>" data-name="id" name="bequer" class="bequer-disponivel bequer" type="checkbox" 
                         onclick="toggle(this)" /> <span><?php echo $valor;?> mL</span>
                     </td>
                     <td>  
-                        <input data-name="qtd_maxima" class="bequer-qtd_maxima bequer-<?php echo($valor) ?>" type="number" min="0" max="10" value="0">
+                        <input data-name="qtd_maxima" class="bequer-qtd_maxima bequer" type="number" min="0" max="10" value="0">
                     </td>
                     <td> 
-                        <input data-name="volume_maximo" class="bequer-volume_maximo bequer-<?php echo($valor) ?>" type="number" min="80" max="95" value="80">
+                        <input data-name="volume_maximo" class="bequer-volume_maximo bequer" type="number" min="80" max="95" value="80">
                     </td>
                     <td> 
-                        <input data-name="desvio_padrao" class="bequer-desvio_padrao bequer-<?php echo($valor) ?>" type="number" min="5" max="20" value="10">
+                        <input data-name="desvio_padrao" class="bequer-desvio_padrao bequer" type="number" min="5" max="20" value="10">
                     </td>
                 </tr>
                 <?php
@@ -250,23 +252,23 @@
 <section class="justify-content-center" style="margin: 10px">
 
     <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-    <select data-name="balaovolumetrico_ambientacao" name="balaovolumetrico_ambientacao" class="custom-select balaovolumetrico-ambientacao balaovolumetrico-<?php echo($valor) ?> " >
+    <select data-name="balaovolumetrico_ambientacao" name="balaovolumetrico_ambientacao" class="custom-select balaovolumetrico-ambientacao balaovolumetrico" >
         <option value="auto">Automática</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-    <select data-name="balaovolumetrico_qtd_ambientes"  name="balaovolumetrico_qtd_ambientes" class="custom-select balaovolumetrico-qtd_ambientes balaovolumetrico-<?php echo($valor) ?> ">
+    <select data-name="balaovolumetrico_qtd_ambientes"  name="balaovolumetrico_qtd_ambientes" class="custom-select balaovolumetrico-qtd_ambientes balaovolumetrico">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-    <select data-name="balaovolumetrico_agitacao" name="balaovolumetrico_agitacao" class="custom-select balaovolumetrico-agitacao balaovolumetrico-<?php echo($valor) ?> ">
+    <select data-name="balaovolumetrico_agitacao" name="balaovolumetrico_agitacao" class="custom-select balaovolumetrico-agitacao balaovolumetrico">
         <option value="auto">Automático</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-    <select data-name="balaovolumetrico_mistura" name="balaovolumetrico_mistura" class="custom-select balaovolumetrico-mistura balaovolumetrico-<?php echo($valor) ?> ">
+    <select data-name="balaovolumetrico_mistura" name="balaovolumetrico_mistura" class="custom-select balaovolumetrico-mistura balaovolumetrico">
         <option value="false">Não permite</option>
         <option value="true">Permite</option>
     </select>
@@ -289,17 +291,17 @@
             ?>
             <tr class="linha-balaovolumetrico" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-                <input data-name="id" class="balaovolumetrico-disponivel balaovolumetrico-<?php echo($valor) ?>" type="checkbox" 
-                    onclick="toggle(this)" name="balao-<?php echo($valor) ?>" value="<?php echo($valor) ?>"> <span><?php echo $valor;?> mL</span>
+                <input data-name="id" class="balaovolumetrico-disponivel balaovolumetrico" type="checkbox" 
+                    onclick="toggle(this)" name="balao" value="<?php echo($valor) ?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
-                <input data-name="qtd_maxima" class="balaovolumetrico-qtd_maxima balaovolumetrico-<?php echo($valor) ?>" type="number" min="0" max="10" value="0">
+                <input data-name="qtd_maxima" class="balaovolumetrico-qtd_maxima balaovolumetrico" type="number" min="0" max="10" value="0">
             </td>
             <td> 
-                <input data-name="faixa_aceitavel" class="balaovolumetrico-faixa_aceitavel balaovolumetrico-<?php echo($valor) ?>" type="number" min="90" max="110" value="110">
+                <input data-name="faixa_aceitavel" class="balaovolumetrico-faixa_aceitavel balaovolumetrico" type="number" min="90" max="110" value="110">
             </td>
             <td> 
-                <input data-name="desvio_padrao" class="balaovolumetrico-desvio_padrao balaovolumetrico-<?php echo($valor) ?>" type="number" min="0.0" max="1.0" step="0.01"  value="0.01">
+                <input data-name="desvio_padrao" class="balaovolumetrico-desvio_padrao balaovolumetrico" type="number" min="0.0" max="1.0" step="0.01"  value="0.01">
             </td>
             </tr>
             <?php
@@ -367,17 +369,17 @@
             ?>
             <tr class="linha-pipetavolumetrica" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-                <input data-name="id" name="pipeta-<?php echo($valor) ?>" class="pipetavolumetrica-disponivel pipetavolumetrica-<?php echo($valor) ?>" type="checkbox" 
+                <input data-name="id" name="pipeta" class="pipetavolumetrica-disponivel pipetavolumetrica" type="checkbox" 
                     onclick="toggle(this)" value="<?php echo $valor;?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
-                <input data-name="qtd_maxima" class="pipetavolumetrica-qtd_maxima pipetavolumetrica-<?php echo($valor) ?>" type="number" min="0" max="10" value="0">
+                <input data-name="qtd_maxima" class="pipetavolumetrica-qtd_maxima pipetavolumetrica" type="number" min="0" max="10" value="0">
             </td>
             <td> 
-                <input data-name="faixa_aceitavel" class="pipetavolumetrica-faixa_aceitavel pipetavolumetrica-<?php echo($valor) ?>" type="number" min="90" max="110" value="110">
+                <input data-name="faixa_aceitavel" class="pipetavolumetrica-faixa_aceitavel pipetavolumetrica" type="number" min="90" max="110" value="110">
             </td>
             <td> 
-                <input data-name="desvio_padrao" class="pipetavolumetrica-desvio_padrao pipetavolumetrica-<?php echo($valor) ?>" type="number" min="0.0" max="1.0" step="0.01"  value="0.01">
+                <input data-name="desvio_padrao" class="pipetavolumetrica-desvio_padrao pipetavolumetrica" type="number" min="0.0" max="1.0" step="0.01"  value="0.01">
             </td>
             </tr>
             <?php
@@ -432,7 +434,7 @@
 	      ?>
 	      <tr class="linha-pipetador" data-id="<?php echo $valor; ?>">
 	        <td style="text-align: left;">  
-	          <input data-name="id" name="pipetador-<?php echo($key); ?>" class="pipetador-disponivel pipetador-<?php echo($valor) ?>" type="checkbox" 
+	          <input data-name="id" name="pipetador" class="pipetador-disponivel pipetador" type="checkbox" 
 	                onclick="toggle(this)" value="<?php echo $key;?>" /> <span class="nomepipetador"><?php echo $valor;?></span>
 	        </td>
 	        <td>
@@ -492,11 +494,11 @@
         ?>
         <tr class="linha-micropipeta" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-            <input class="micropipeta-disponivel micropipeta-<?php echo($valor) ?>" type="checkbox" 
+            <input class="micropipeta-disponivel micropipeta" type="checkbox" 
                    onclick="toggle(this)" value="<?php echo $valor;?>"> <span><?php echo $valor;?> µL</span>
             </td>
             <td>  
-                <input class="micropipeta-qtd_maxima micropipeta-<?php echo($valor) ?>" type="number" min="0" max="10" value="0">
+                <input class="micropipeta-qtd_maxima micropipeta" type="number" min="0" max="10" value="0">
             </td>
         </tr>
         <?php
@@ -580,10 +582,58 @@
 			$('[data-toggle="tooltip"]').tooltip()
 		})
 
+		function toggle(o) {
+			// 
+			var tr = $(o).parents('tr');
+			var itens = tr.find('*[data-name]');
+			var checked = $(o).prop('checked');
+
+			// Desabilita os objetos irmaos do atual, pertencentes a mesma tr
+			for (var i =  0 ; i < itens.length ; i++) {
+				if ($(itens[i]).attr('name') == $(o).attr('name'))
+					continue;
+
+				if ($(itens[i]).prop('tagName') == 'IMG') {
+					//
+					//$(itens[i]).removeClass('disabled');
+
+					//
+					//if (!checked) $(itens[i]).addClass('disabled');			
+				} else
+					$(itens[i]).prop('disabled', !checked);
+			}
+		}
+/*
+TODO:
+- Conferir se tudo esta carregando OK
+- Implementar a area de upload das apostilas
+- 
+*/
         function carregar() {
             var data = {
                "solucoes":[
-
+					{
+						nome: 'Solução 1',
+						descricao: 'Descricao 1',
+						tecnico: 'Tecnico 1',
+						criacao: 1,
+						especies: [
+							{ id: 1, concentracao:0.1 },
+							{ id: 2, concentracao:0.2 },
+							{ id: 3, concentracao:0.3 }
+						]
+					},
+					{
+						nome: 'Solução 2',
+						descricao: 'Descricao 2',
+						tecnico: 'Tecnico 3',
+						criacao: 2,
+						especies: [
+							{ id: 4, concentracao:0.4 },
+							{ id: 5, concentracao:0.5 },
+							{ id: 6, concentracao:0.6 }
+						]
+					},					
                ],
                "bancada":"2",
                "bequer_ambientacao":"manual",
@@ -660,35 +710,6 @@
             for (var i in data) {
                 carregaCampo(i, data[i]);
             }
-/*
-            //
-            carregaCampo("bancada", data.bancada);
-
-            //BEQUER
-            carregaCampo("bequer_ambientacao", data.bequer_ambientacao)
-            carregaCampo("bequer_quantidade", data.bequer_quantidade)
-            carregaCampo("bequer_agitacao", data.bequer_agitacao)
-            carregaCampo("bequer_mistura", data.bequer_mistura)
-
-            //BALAO
-            carregaCampo("balaovolumetrico_ambientacao", data.balaovolumetrico_ambientacao)
-            carregaCampo("balaovolumetrico_qtd_ambientes", data.balaovolumetrico_qtd_ambientes)
-            carregaCampo("balaovolumetrico_agitacao", data.balaovolumetrico_agitacao)
-            carregaCampo("balaovolumetrico_mistura", data.balaovolumetrico_ambientacao)
-
-            //PIPETA
-            carregaCampo("pipetavolumetrica_ambientacao", data.pipetavolumetrica_ambientacao)
-            carregaCampo("pipetavolumetrica_qtd_ambientes", data.pipetavolumetrica_qtd_ambientes)
-            carregaCampo("pipetavolumetrica_agitacao", data.pipetavolumetrica_agitacao)
-            carregaCampo("pipetavolumetrica_mistura", data.pipetavolumetrica_ambientacao)
-
-            //PIPETADOR E MICROPIPETA
-            carregaCampo("pipetador_animacao", data.pipetador_animacao)
-            carregaCampo("pipetador_tamanho", data.pipetador_tamanho)
-            carregaCampo("micropipeta_animacao", data.micropipeta_animacao)
-*/
-
-            //$('*[name="pipetavolumetrica_ambientacao"]').val(data.pipetavolumetrica_ambientacao);
         } 
 
         function carregaCampo(campo, valor) {
@@ -715,12 +736,12 @@
                         }
                     }
 
-                    console.log($(this).prop('checked'));
-
-                    //if ($(this).prop('checked') != existe) {
-                    toggle($(this));
-                    //}
-                    //$(this).prop('checked',existe);
+                    //
+                    $(this).click();
+                    //
+                    if ($(this).prop('checked') != existe) {
+                    	$(this).click();
+                    }
                 })
             }
 

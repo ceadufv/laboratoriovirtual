@@ -25,16 +25,18 @@ function salvaOuAtualiza()
 }
 
 function cadastraAula(){
-  configuracao_inicial();
+  //configuracao_inicial();
   $('.cadastra_edita').text('Cadastrar nova aula');
   aba('editaula'); 
   editar = -1;
+  carregar();
 }
 
 function edit_pratica(id_pratica){
   window.location = 'index.php?aba=editaula&id_disciplina='+disciplina_acessada+'&id_pratica='+id_pratica; 
 }
 
+/*
 function load_pratica(id_pratica) {  
   editar = id_pratica;
   configuracao_inicial();
@@ -141,7 +143,7 @@ function load_pratica(id_pratica) {
         novalinha+= "</td></tr>";
         $("#lista_solucoes_pratica").append(novalinha); 
         //$("#select_solucoes option:contains("+nome+")")[0].disabled = true;
-        */     
+
       }
       
       aba('editaula');
@@ -166,6 +168,7 @@ function configuracao_inicial()
 
 function bequer()
 {
+  
   //Béquer
   //Itens selecionados e preenchidos
   var bequer_preenchidos = [50,100,250];
@@ -188,10 +191,12 @@ function bequer()
   bequer_desabilitados.forEach(id => {
     $(".bequer-"+id).each(function(){this.disabled=true});
   });
+  
 }
 
 function balaovolumetrico()
 {
+  /*
   //Balão volumétrico
   //Itens selecionados e preenchidos
   var balao_preenchidos = [25, 50, 100];
@@ -246,11 +251,11 @@ function pipetador()
   $(".nomepipetador")[2].textContent = "Pi-pump de até 5 ml";
   $(".nomepipetador")[3].textContent = "Pi-pump de até 10 ml";
   $(".nomepipetador")[5].textContent = "Pipetador automático";
-  */
 }
 
 function micropipeta()
 {
+  /*
   $(".micropipeta-100-1000")[1].value = 1;
   $(".micropipeta-100-1000")[0].checked = true;
 
@@ -258,7 +263,7 @@ function micropipeta()
   var micropipeta_desabilitados = ["10-100", "50-200", "1000-5000"];
   micropipeta_desabilitados.forEach(id => {
     $(".micropipeta-"+id).each(function(){this.disabled=true});
-  });    
+  }); 
   
 }
 
@@ -477,13 +482,13 @@ function post(funcao){
     alert('Por favor, verifique os dados inseridos');
   }   
 }
-
+*/
 function selecionar_disciplina(){
 //  var nomedisciplina = $('#listaDisciplinas').find("option:selected").text();
   disciplina_acessada = $('#listaDisciplinas').val();
   window.location = 'index.php?aba=aulas&id_disciplina='+disciplina_acessada; 
 };
-
+/*
 function remover_disciplina(){
   disciplina_acessada = $('#listaDisciplinas').val();
     $.ajax({
@@ -923,6 +928,4 @@ function deletar_pratica(id)
       }
   });
 }
-
-
-
+*/
