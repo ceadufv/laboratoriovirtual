@@ -211,7 +211,7 @@
                 ?>
                 <tr class="linha-bequer" data-id="<?php echo $valor; ?>">
                     <td style="text-align: left;">  
-                        <input value="<?php echo $valor; ?>" data-name="id" name="bequer-<?php echo($valor); ?>" class="bequer-disponivel bequer-<?php echo($valor); ?>" type="checkbox" 
+                        <input value="<?php echo $valor; ?>" data-name="id" name="bequer" class="bequer-disponivel bequer-<?php echo($valor); ?>" type="checkbox" 
                         onclick="toggle(this)" /> <span><?php echo $valor;?> mL</span>
                     </td>
                     <td>  
@@ -329,27 +329,26 @@
 <section class="justify-content-center" style="margin: 10px">
 
     <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-    <select class="custom-select pipetavolumetrica-ambientacao pipetavolumetrica-<?php echo($valor) ?> " >
+    <select class="custom-select" name="pipetavolumetrica_ambientacao">
         <option value="auto">Automática</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-    <select class="custom-select pipetavolumetrica-qtd_ambientes pipetavolumetrica-<?php echo($valor) ?> ">
+    <select class="custom-select" name="pipetavolumetrica_qtd_ambientes">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-    <select class="custom-select pipetavolumetrica-agitacao pipetavolumetrica-<?php echo($valor) ?> ">
+    <select class="custom-select" name="pipetavolumetrica_agitacao">
         <option value="auto">Automático</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-    <select class="custom-select pipetavolumetrica-mistura pipetavolumetrica-<?php echo($valor) ?> ">
+    <select class="custom-select pipetavolumetrica-mistura" name="pipetavolumetrica_mistura">
         <option value="false">Não permite</option>
         <option value="true">Permite</option>
     </select>
-    
 </section>
 <section class="d-flex justify-content-center" style="margin: 10px">
     <table class="table">
@@ -405,7 +404,7 @@
 <!-- pipetador -->
 	<section class="justify-content-center" style="margin: 10px">
 	  <h3 title="Animação automática: o volume é preenchido automaticamente até o menisco; Animação manual: deve-se clicar com o cursor em posição do pipetador para ocorrer a pipetagem">Animação do uso</h3>
-	  <select disabled class="custom-select pipetador-animacao pipetador-<?php echo($valor) ?> " >
+	  <select disabled class="custom-select" name="pipetador_animacao">
 	    <option value="auto">Automática</option>
 	    <option value="manual">Manual</option>
 	  </select>
@@ -440,13 +439,13 @@
 	        <img data-name="imagem" src="accordion/pipetadores/<?php echo($key) ?>.jpg" width="100">
 	        </td>
 	        <td>
-	          <select data-name="tamanho-<?php echo $key; ?>" disabled class="custom-select pipetador-tamanho pipetador-<?php echo($valor) ?> ">
+	          <select name="pipetador_tamanho" disabled>
 	            <option value="unico">Único</option>
 	          </select>
 	        </td>
 	        
 	        <td>  
-	            <input data-name="qtd_maxima" disabled class="pipetador-qtd_maxima pipetador-<?php echo($valor) ?>" type="number" min="0" max="2" value="1">
+	            <input name="qtd_maxima" data-name="qtd_maxima" disabled type="number" min="0" max="2" value="1">
 	        </td>
 	      </tr>
 	      <?php
@@ -473,7 +472,7 @@
 <!-- micropipeta -->
 <section class="justify-content-center" style="margin: 10px">
   <h3 title="Animação automática: o volume é preenchido automaticamente; Animação manual: deve-se clicar com o cursor nas posições corretas da micropipeta para ocorrer a pipetagem">Animação do uso</h3>
-  <select disabled class="custom-select micropipeta-animacao micropipeta-<?php echo($valor) ?> " >
+  <select disabled name="micropipeta_animacao">
     <option value="auto">Automática</option>
     <option value="manual">Manual</option>
   </select>
@@ -581,11 +580,170 @@
 			$('[data-toggle="tooltip"]').tooltip()
 		})
 
+        function carregar() {
+            var data = {
+               "solucoes":[
+
+               ],
+               "bancada":"2",
+               "bequer_ambientacao":"manual",
+               "bequer_quantidade":"3",
+               "bequer_agitacao":"manual",
+               "bequer_mistura":"false",
+               "bequer":[
+                  {
+                     "id":"50",
+                     "qtd_maxima":"3",
+                     "volume_maximo":"80",
+                     "desvio_padrao":"10"
+                  },
+                  {
+                     "id":"100",
+                     "qtd_maxima":"3",
+                     "volume_maximo":"80",
+                     "desvio_padrao":"10"
+                  },
+                  {
+                     "id":"250",
+                     "qtd_maxima":"2",
+                     "volume_maximo":"80",
+                     "desvio_padrao":"10"
+                  }
+               ],
+               "balaovolumetrico_ambientacao":"auto",
+               "balaovolumetrico_qtd_ambientes":"1",
+               "balaovolumetrico_agitacao":"auto",
+               "balaovolumetrico_mistura":"false",
+               "balao":[
+                  {
+                     "id":"25",
+                     "qtd_maxima":"3",
+                     "faixa_aceitavel":"110",
+                     "desvio_padrao":"0.01"
+                  },
+                  {
+                     "id":"50",
+                     "qtd_maxima":"3",
+                     "faixa_aceitavel":"110",
+                     "desvio_padrao":"0.01"
+                  },
+                  {
+                     "id":"100",
+                     "qtd_maxima":"3",
+                     "faixa_aceitavel":"110",
+                     "desvio_padrao":"0.01"
+                  }
+               ],
+               "pipetavolumetrica_ambientacao":"manual",
+               "pipetavolumetrica_qtd_ambientes":"1",
+               "pipetavolumetrica_agitacao":"auto",
+               "pipetavolumetrica_mistura":"false",
+               "pipeta":[
+                  {
+                     "id":"5",
+                     "qtd_maxima":"3",
+                     "faixa_aceitavel":"110",
+                     "desvio_padrao":"0.01"
+                  },
+                  {
+                     "id":"10",
+                     "qtd_maxima":"3",
+                     "faixa_aceitavel":"110",
+                     "desvio_padrao":"0.01"
+                  }
+               ],
+               "pipetador_animacao":"auto",
+               "pipetador_tamanho":"unico",
+               "micropipeta_animacao":"auto"
+            };
+
+            for (var i in data) {
+                carregaCampo(i, data[i]);
+            }
+/*
+            //
+            carregaCampo("bancada", data.bancada);
+
+            //BEQUER
+            carregaCampo("bequer_ambientacao", data.bequer_ambientacao)
+            carregaCampo("bequer_quantidade", data.bequer_quantidade)
+            carregaCampo("bequer_agitacao", data.bequer_agitacao)
+            carregaCampo("bequer_mistura", data.bequer_mistura)
+
+            //BALAO
+            carregaCampo("balaovolumetrico_ambientacao", data.balaovolumetrico_ambientacao)
+            carregaCampo("balaovolumetrico_qtd_ambientes", data.balaovolumetrico_qtd_ambientes)
+            carregaCampo("balaovolumetrico_agitacao", data.balaovolumetrico_agitacao)
+            carregaCampo("balaovolumetrico_mistura", data.balaovolumetrico_ambientacao)
+
+            //PIPETA
+            carregaCampo("pipetavolumetrica_ambientacao", data.pipetavolumetrica_ambientacao)
+            carregaCampo("pipetavolumetrica_qtd_ambientes", data.pipetavolumetrica_qtd_ambientes)
+            carregaCampo("pipetavolumetrica_agitacao", data.pipetavolumetrica_agitacao)
+            carregaCampo("pipetavolumetrica_mistura", data.pipetavolumetrica_ambientacao)
+
+            //PIPETADOR E MICROPIPETA
+            carregaCampo("pipetador_animacao", data.pipetador_animacao)
+            carregaCampo("pipetador_tamanho", data.pipetador_tamanho)
+            carregaCampo("micropipeta_animacao", data.micropipeta_animacao)
+*/
+
+            //$('*[name="pipetavolumetrica_ambientacao"]').val(data.pipetavolumetrica_ambientacao);
+        } 
+
+        function carregaCampo(campo, valor) {
+            var obj = $('*[name="'+campo+'"]');
+
+            //
+            if ($(obj).attr('type') == 'radio') {
+                $(obj).each(function () {
+                    var check = ($(this).val() == valor);
+                    $(this).prop('checked',check);
+                });
+            }
+
+            //
+            if ($(obj).attr('type') == 'checkbox') {
+
+
+                $(obj).each(function () {
+                    var existe = false;
+                    for (var i = 0 ; i < valor.length ; i++) {
+                        if (valor[i].id == $(this).val()) {
+                            existe = true;
+                            break;
+                        }
+                    }
+
+                    console.log($(this).prop('checked'));
+
+                    //if ($(this).prop('checked') != existe) {
+                    toggle($(this));
+                    //}
+                    //$(this).prop('checked',existe);
+                })
+            }
+
+            // 
+            else {
+                obj.val(valor);
+            }
+        }
+        /*
+
+            // Limpa os campos atuais
+            $('*[type=checkbox]').each(function () {
+                $(this).prop('checked',false);
+            })
+
+
+        */
+
 		function campos() {
 			var data = {};
 			var fields = $('input,select:not([data-id])');
 
-            data.config = [];
+            //data.config = [];
 			data.solucoes = [];
 
 			$('.id_solucoes_pratica').each(function () {
@@ -600,15 +758,21 @@
 			  // 
 			  switch (type) {
                 case "select":
-                    //var dname = $(fields[i]).attr('data-name');
-                    data[name] = $(fields[i]).val();
-                    //console.log(fields[i])
+                    //data[name] = $(fields[i]).val();
+                    if (name) {
+                        data[name] = $(fields[i]).val();
+                        //console.log(fields[i], ':: ', $(fields[i]).val())
+                    }
+                    /* else {
+                        console.log(fields[i])
+                    }*/
                 break;
 			    case "radio":
-			      if (data[name] == undefined) {
-			        var value = $('input[name="'+name+'"]:checked').val();
-			        data[name] = value;
-			      }
+                    console.log(data[name], name);
+                    if (data[name] == undefined) {
+                        var value = $('input[name="'+name+'"]:checked').val();
+                        data[name] = value;
+                    }
 			    break;
 			    case "checkbox":
 			    	var node = fields[i];
@@ -626,7 +790,6 @@
                         
 	    				$(parent).find('input,select').each(function () {
 	    					var n = $(this).attr('data-name');
-
                             if ($(this).val() == 'on') console.log(node, $(this).val())
                             dvol[n] = $(this).val();
 	    				});
@@ -638,7 +801,8 @@
 			    break;
 			  }
 			}
-			console.log(data);
+            console.log(data)
+			// console.log(JSON.stringify(data));
 		}
 
 		//campos();

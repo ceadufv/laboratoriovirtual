@@ -19,7 +19,6 @@ if (!file_exists("lab-config.php")) header("location:install.php");
   <!-- Arquivos próprios -->
   <link rel="stylesheet" href="estilos/basicos.css">
   <link rel="stylesheet" href="estilos/style.css">
-  <style>
 </head>
 
 <body>
