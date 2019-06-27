@@ -19,6 +19,54 @@ class LabJogo {
 
     function error() { return $this->_error; }
 
+    function salvarPratica($dados) {
+        if (!empty($dados['id'])) {
+            // Atualizar
+
+            $sql = "UPDATE modelo_pratica ".
+                "SET ".
+                "id_cenario=:id_cenario, ".
+                "nome_pratica=:nome_pratica, ".
+                "resumo=:resumo, ".
+                "data=:data ".
+                "WHERE ".
+                "id_modelo_pratica=:id_modelo_pratica";
+
+            $stmt = $this->_dbh->prepare( $sql );
+
+            $stmt->execute(array(
+                ':id_cenario' => $dados['id_cenario'],
+                ':nome_pratica' => $dados['nome'],
+                ':resumo' => $dados['resumo'],
+                ':data' => $dados['data'],
+                ':id_modelo_pratica' => $dados['id']
+            ));
+
+            return ($stmt->rowCount())?TRUE:FALSE;
+
+        } else {
+/*
+            $sql = sprintf(
+                "INSERT INTO modelo_pratica(id_cenario, nome_pratica, resumo, data) ".
+                "id_cenario=:id_cenario, ".
+                "nome_pratica=:nome_pratica, ".
+                "resumo=:resumo, ".
+                "data=:data ".
+                "WHERE ".
+                "id_modelo_pratica=:id_modelo_pratica"
+                ,
+                $dados['id_cenario'],
+                addslashes($dados['nome']),
+                addslashes($dados['resumo']),
+                $dados['data']
+            );
+
+            $stmt = $this->_dbh->prepare( $sql );
+            $stmt->execute();
+*/
+        }
+    }
+
     function getPratica($id_pratica) {
         $sql = $this->_dbh->prepare( "SELECT id_modelo_pratica as id, nome_pratica as nome, resumo, id_cenario from modelo_pratica where id_modelo_pratica=?" );
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -200,6 +248,25 @@ class LabJogo {
 
         $dbh = $this->_dbh;
 
+        //echo $id_pratica;exit;
+
+        $sq = sprintf('select id_modelo_pratica as id, id_cenario, nome_pratica as nome, id_usuario, resumo, id_disciplina, disponivel, data from modelo_pratica where id_modelo_pratica=%d', $id_pratica);
+
+        $sql = $dbh->prepare($sq);
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute();
+
+        if($sql->rowCount() != 0) {
+            while($row=$sql->fetch()) {
+                $result = $row;
+            }
+
+            $result['data'] = json_decode($result['data']);
+            
+            echo json_encode($result);
+        }
+
+        /*
         $data = $this->getSubstancias();
 
         $result = array();
@@ -263,7 +330,7 @@ class LabJogo {
                 "armario" => array_merge($solucoes, $vidrarias),
                 "cenario" => $cenario
             ), JSON_PRETTY_PRINT);
-
+        */
     }
 
     //Pega os alunos cadastrados no banco de dados

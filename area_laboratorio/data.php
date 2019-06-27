@@ -8,8 +8,14 @@
         $lab->jsonPratica( @$_REQUEST['id_pratica'] );
     break;
 
+    case "salvar_pratica":
+      header("Conten-type: application/json; charset=utf-8"); 
+      $lab->salvarPratica( $_REQUEST );
+      echo "{\"sucesso\":true}";
+    break;
+
     //case "armario":
-    //   header("Content-type: application/json; charset=utf-8"); 
+    //   header("Conten-type: application/json; charset=utf-8"); 
         
     //    exit;
     //    break;

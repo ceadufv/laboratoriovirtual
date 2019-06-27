@@ -87,7 +87,7 @@
   <div class="solucoespreparadas">
     <h3>
       <span>Soluções já preparadas:</span>
-      <button class="botao_criar_solucao btn azul" onclick="criar_solucao()" class="btn btn-primary" data-toggle="modal" data-target=".modal-edit-solucao"><i class="fas fa-plus-circle"></i> CRIAR NOVA SOLUÇÃO</button>
+      <button class="botao_criar_solucao btn azul" onclick="editar_solucao(true)" class="btn btn-primary" data-toggle="modal" data-target=".modal-edit-solucao"><i class="fas fa-plus-circle"></i> CRIAR NOVA SOLUÇÃO</button>
     </h3>
 
     <div class="composicao">
@@ -114,7 +114,7 @@
         <div class="composicao_solucao_option"><h4>COMPOSIÇÃO: <?php echo $o[0]['descricao'] ?></h4></div>
       </div>
       <div>
-        <button class="botao_editar_solucao btn verde" onclick="editar_solucao()" class="btn btn-primary" data-toggle="modal" data-target=".modal-edit-solucao"><i class="fa fa-pen"></i> EDITAR SOLUÇÃO</button>      	
+        <button class="botao_editar_solucao btn verde" onclick="editar_solucao(false)" class="btn btn-primary"><i class="fa fa-pen"></i> EDITAR SOLUÇÃO</button>      	
         <button class="botao_adicionar btn verde" onclick="adicionar_solucao_armario()"><i class="fas fa-plus-circle"></i> Adicionar ao Armário</button>
       </div>
 
@@ -138,10 +138,85 @@
   </table>
   </div>
 
-  <div class="modal fade bd-example-modal-lg modal-edit-solucao" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal fade bd-example-modal-lg modal-edit-solucao" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal_solucao">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <?php include('funcoes/edit_solucao.php') ?>
+
+
+
+<section class="criarnovasolucao">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Criar nova solução</h3>
+      </div>
+    </div>
+    <div class="row row-eq-height">
+      <div class="col-4">
+        <div class="box">
+          <h4>Rótulo</h4>
+          <h5>Nome:</h5>
+          <textarea id="nome_solucao" rows="1" cols="20" placeholder="Insira o nome da solução"></textarea>
+          <h5>Descrição:</h5>
+          <textarea id="descricao_solucao" rows="3" cols="20" placeholder="Insira a descrição da solução"></textarea>
+          <h5>Responsável pelo preparo:</h5>
+          <input id="nome_tecnico" type="text" value="Técnico do NeoAlice">
+          <h5>Data de criação:</h5>
+          <select id="data_de_criacao" class="custom-select">
+            <option value=1>Dia da aula </option>
+            <option value=2>Dia anterior à aulas </option>
+            <option value=3>Cerca de uma semana antes da aula </option>
+            <option value=4>Cerca de um mês antes da aula </option>
+            <option value=5>Cerca de dois meses antes da aula </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="box">
+          <h4>Composição</h4>
+          <select id="especies_disponiveis" class="custom-select">
+            <?php
+            global $banco;
+            $solucoes_selecionadas = $banco -> prepare('SELECT * FROM substancias');
+            $solucoes_selecionadas -> execute();
+            $item = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+            foreach ($item as $res) { 
+              ?>
+              <option value="<?php echo $res['id_substancia']?>"><?php echo $res['nome']?></option>
+            <?php };
+            ?>
+          </select>
+        </div>
+      </div>
+      <div class="col-4 concentracao">
+        <div class="box">
+          <h4>Concentração (mol/L)</h4>
+          <input autofocus min="0" value="0.1" type="number" step="0.1" id="especies_concentracao" />
+          <button onclick="adicionar_especie()" class="btn verde">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="especienasolucao">
+          <h5>Espécies na Solução</h5>
+          <table>
+            <tbody id="especies_na_solucao">
+              <tr>
+                <td class="align-self-center" width=350 colspan=4 ></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="btn btn-primary btn-criar" onclick="concluir_criar_solucao()"> Salvar  </button>
+        <button class="btn btn-primary btn-criar" onclick="$('#modal_solucao').modal('hide')"> Cancelar  </button>
+      </div>
+    </div>
+
+</section>
+
+
       </div>
     </div>
   </div>
@@ -559,7 +634,7 @@
 				<label class="form-check-label" for="pratica-disponivel"><b>Deixar aula disponivel aos alunos</b></label>
 			</div>
 			<div style="padding-top:10px;">
-				<button id = "salvar" type="button" class="btn btn-outline-primary" onclick="salvaOuAtualiza()">Salvar</button>
+				<button id = "salvar" type="button" class="btn btn-outline-primary" onclick="salvar_pratica()">Salvar</button>
 				<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirmarsaida">Cancelar</button>
 			</div>
 		</div>
@@ -606,116 +681,42 @@
 /*
 TODO:
 - Conferir se tudo esta carregando OK
+- Incluir no mecanismo de "salvar" a lista de solucoes
 - Implementar a area de upload das apostilas
-- 
 */
-        function carregar() {
-            var data = {
-               "solucoes":[
-					{
-						nome: 'Solução 1',
-						descricao: 'Descricao 1',
-						tecnico: 'Tecnico 1',
-						criacao: 1,
-						especies: [
-							{ id: 1, concentracao:0.1 },
-							{ id: 2, concentracao:0.2 },
-							{ id: 3, concentracao:0.3 }
-						]
-					},
-					{
-						nome: 'Solução 2',
-						descricao: 'Descricao 2',
-						tecnico: 'Tecnico 3',
-						criacao: 2,
-						especies: [
-							{ id: 4, concentracao:0.4 },
-							{ id: 5, concentracao:0.5 },
-							{ id: 6, concentracao:0.6 }
-						]
-					},					
-               ],
-               "bancada":"2",
-               "bequer_ambientacao":"manual",
-               "bequer_quantidade":"3",
-               "bequer_agitacao":"manual",
-               "bequer_mistura":"false",
-               "bequer":[
-                  {
-                     "id":"50",
-                     "qtd_maxima":"3",
-                     "volume_maximo":"80",
-                     "desvio_padrao":"10"
-                  },
-                  {
-                     "id":"100",
-                     "qtd_maxima":"3",
-                     "volume_maximo":"80",
-                     "desvio_padrao":"10"
-                  },
-                  {
-                     "id":"250",
-                     "qtd_maxima":"2",
-                     "volume_maximo":"80",
-                     "desvio_padrao":"10"
-                  }
-               ],
-               "balaovolumetrico_ambientacao":"auto",
-               "balaovolumetrico_qtd_ambientes":"1",
-               "balaovolumetrico_agitacao":"auto",
-               "balaovolumetrico_mistura":"false",
-               "balao":[
-                  {
-                     "id":"25",
-                     "qtd_maxima":"3",
-                     "faixa_aceitavel":"110",
-                     "desvio_padrao":"0.01"
-                  },
-                  {
-                     "id":"50",
-                     "qtd_maxima":"3",
-                     "faixa_aceitavel":"110",
-                     "desvio_padrao":"0.01"
-                  },
-                  {
-                     "id":"100",
-                     "qtd_maxima":"3",
-                     "faixa_aceitavel":"110",
-                     "desvio_padrao":"0.01"
-                  }
-               ],
-               "pipetavolumetrica_ambientacao":"manual",
-               "pipetavolumetrica_qtd_ambientes":"1",
-               "pipetavolumetrica_agitacao":"auto",
-               "pipetavolumetrica_mistura":"false",
-               "pipeta":[
-                  {
-                     "id":"5",
-                     "qtd_maxima":"3",
-                     "faixa_aceitavel":"110",
-                     "desvio_padrao":"0.01"
-                  },
-                  {
-                     "id":"10",
-                     "qtd_maxima":"3",
-                     "faixa_aceitavel":"110",
-                     "desvio_padrao":"0.01"
-                  }
-               ],
-               "pipetador_animacao":"auto",
-               "pipetador_tamanho":"unico",
-               "micropipeta_animacao":"auto"
-            };
+    var dados_pratica = {};
 
-            for (var i in data) {
-                carregaCampo(i, data[i]);
-            }
+        function load_pratica() {
+            //
+
+            $.ajax({url:'../area_laboratorio/data.php?action=pratica&id_pratica=3'}).done(function (data) {
+
+              $('.dadospratica').attr('data-id',data.id);
+              $('#nome_aula').val(data.nome);
+              $('#resumo_aula').val(data.resumo);
+
+              dados_pratica = data.data;
+              for (var i in dados_pratica) {
+                  carregaCampo(i, dados_pratica[i]);
+              }
+            });
         } 
 
         function carregaCampo(campo, valor) {
             var obj = $('*[name="'+campo+'"]');
 
+            if (campo == 'solucoes')  {
+                for (var i = 0 ; i < valor.length ; i++) {
+                    $('#select_solucoes').append(
+                        '<option value="'+i+'">'+
+                            valor[i].nome+
+                        '</option>'
+                    );
+                }
+            }
+
             //
+            else
             if ($(obj).attr('type') == 'radio') {
                 $(obj).each(function () {
                     var check = ($(this).val() == valor);
@@ -724,8 +725,8 @@ TODO:
             }
 
             //
+            else
             if ($(obj).attr('type') == 'checkbox') {
-
 
                 $(obj).each(function () {
                     var existe = false;
@@ -750,17 +751,218 @@ TODO:
                 obj.val(valor);
             }
         }
-        /*
 
-            // Limpa os campos atuais
-            $('*[type=checkbox]').each(function () {
-                $(this).prop('checked',false);
-            })
+        function adicionar_solucao_armario(){
+            var nome = $("#select_solucoes option:selected").text();
+            var id_solucao = $("#select_solucoes option:selected").val();
+
+            if (!id_solucao) return false;
+
+            // Nao permite que uma mesm solucao
+            // seja adicionada ao armario mais de uma vez
+            if ($('.id_solucoes_pratica[data-id="'+id_solucao+'"]').length) return;
+
+            //
+            var novalinha = "<tr class="+id_solucao;
+            novalinha+= "><td class='id_solucoes_pratica' data-id="+id_solucao;
+            novalinha+= ">"+nome+"</td><td>";
+            novalinha+= "<button onclick='deletar_linha(this, atualizar_armario)' class='btn vermelho'>Excluir </button>";
+            novalinha+= "</td></tr>";
+
+            $("#lista_solucoes_pratica").append(novalinha); 
+
+            atualizar_armario();
+        };
 
 
-        */
+        function atualizar_armario() {
+            dados_pratica.armario = [];
+            
+            $('.id_solucoes_pratica').each(function () {
+                var nome = $(this).text();
+                var id_solucao = $(this).attr('data-id');
+                dados_pratica.armario.push({ id:id_solucao, nome:nome });
+            });
 
-		function campos() {
+        }       
+
+        function listar_composicao() {
+            var composicao = [];
+            $('.linha_composicao').each(function () {
+                composicao.push({
+                    id: $(this).attr('data-id'),
+                    nome: $(this).attr('data-nome'),
+                    concentracao: $(this).attr('data-value')
+                })
+            });
+            return composicao;
+        }
+
+        function proximo_id_solucao() {
+          var result = 0;
+          for (var i = 0 ; i < dados_pratica.solucoes.length ; i++) {
+            if (!dados_pratica.solucoes[i]) continue;
+
+            console.log(i, dados_pratica.solucoes[i])
+
+            if (dados_pratica.solucoes[i]) result = dados_pratica.solucoes[i].id;
+          }
+
+          return result+1;
+        }
+
+
+        function concluir_criar_solucao() {
+
+            var composicao = listar_composicao();
+
+            $('#modal_solucao').modal('hide');
+
+            var id_solucao = parseInt($('#modal_solucao').attr('data-id'));
+
+            var form_nome_solucao = $('#nome_solucao').val();
+            var form_descricao = $('#descricao_solucao').val();
+            var form_tecnico = $('#nome_tecnico').val();
+            var form_intervalo = $('#data_de_criacao').val();
+
+            if (id_solucao == -1) {
+              id_solucao = proximo_id_solucao();
+
+              dados_pratica.solucoes[id_solucao] = {
+                id: id_solucao,
+                nome: form_nome_solucao,
+                descricao: form_descricao,
+                tecnico: form_tecnico,
+                intervalo: form_intervalo,
+                composicao: composicao
+              };
+
+              $('#select_solucoes').append('<option value="'+id_solucao+'">' + dados_pratica.solucoes[id_solucao].nome + '</option>')
+            } else {
+              dados_pratica.solucoes[id_solucao] = {
+                id: id_solucao,
+                nome: form_nome_solucao,
+                descricao: form_descricao,
+                tecnico: form_tecnico,
+                intervalo: form_intervalo,
+                composicao: composicao
+              };
+
+              $('#select_solucoes option[value="'+id_solucao+'"]').text(form_nome_solucao);
+
+            }            
+
+        }
+
+
+        function deletar_linha(obj) {
+            var args = arguments;
+            $(obj).parents('tr').remove();
+
+            console.log(args)
+
+            if (args.length > 1) args[1](obj);
+        }
+
+        function adicionar_especie(){
+            var composicao = listar_composicao();
+
+            var atual = {
+                id: $('#especies_disponiveis').val(),
+                nome: $('#especies_disponiveis option:selected').text(),
+                concentracao: $('#especies_concentracao').val(),
+            };
+
+            for (var i = 0 ; i < composicao.length ; i++) {
+                if (composicao[i].id == atual.id) return false;
+            }
+
+            adicionar_especie_lista(atual);
+        };
+
+        function adicionar_especie_lista(dado) {
+            var novalinha = "<tr class=\"linha_composicao\" data-id=\""+dado.id+"\" data-nome=\""+dado.nome+"\" data-value=\""+dado.concentracao+"\"><td class='nomes_composicao'>"+dado.nome+"</td><td class='conc_lista_solucao'>"+dado.concentracao+"</td><td> mol/L</td><td><button class='btn vermelho' onclick='deletar_linha(this)'>Excluir </button></td></tr>";
+
+            $("#especies_na_solucao").append(novalinha);
+        }
+
+        function criar_solucao(){
+
+          // Limpar a tela
+          $('#nome_solucao').val('')
+          $('#descricao_solucao').val('')
+          $('#nome_tecnico').val('') 
+          $('#data_de_criacao').val('')
+
+          $('.linha_composicao').remove(); 
+
+        }
+
+
+
+/*
+            var composicao = listar_composicao();
+
+            dados_pratica.solucoes[id_solucao] = {
+                nome: $('#nome_solucao').val(),
+                descricao: $('#descricao_solucao').val(),
+                tecnico: $('#nome_tecnico').val(),
+                intervalo: $('#data_de_criacao').val(),
+                composicao: composicao
+            };  
+            //var id_solucao = parseInt($('#modal_solucao').attr('data-id'));
+            // id_solucao = (dados_pratica.solucoes.length)?dados_pratica.solucoes[dados_pratica.solucoes.length-1].id + 1:1;
+            //$('#select_solucoes').append('<option value="'+id_solucao+'">' + dados_pratica.solucoes[id_solucao].nome + '</option>')
+
+
+            //console.log (dados_pratica.solucoes[id_solucao].nome)
+
+            // $('#modal_solucao').attr('data-id', id_solucao);
+
+            // Retira modal
+            $('#modal_solucao').modal('hide');
+*/
+
+    function editar_solucao(novo)
+    {
+
+      var id_solucao = parseInt($('#select_solucoes').val());
+
+      if (!novo && !id_solucao) return false;
+
+      // Criar
+      if (novo){ 
+
+        //
+        $('#modal_solucao').attr('data-id', -1);
+        criar_solucao();
+
+      }
+      // Editar
+      else {
+
+        $('#modal_solucao').attr('data-id', id_solucao);
+
+        //var id_solucao = $('#select_solucoes').val();
+        var dados = dados_pratica.solucoes[id_solucao];
+
+        $('#nome_solucao').val(dados.nome)
+        $('#descricao_solucao').val(dados.descricao)
+        $('#nome_tecnico').val(dados.tecnico) 
+        $('#data_de_criacao').val(dados.intervalo)
+
+        $('.linha_composicao').remove();
+
+        for (var i = 0 ; i < dados.composicao.length ; i++) {
+          adicionar_especie_lista(dados.composicao[i]);
+        }
+
+      }
+
+      $('#modal_solucao').modal('show');
+    }
+
+		function salvar_pratica() {
 			var data = {};
 			var fields = $('input,select:not([data-id])');
 
@@ -789,11 +991,10 @@ TODO:
                     }*/
                 break;
 			    case "radio":
-                    console.log(data[name], name);
-                    if (data[name] == undefined) {
-                        var value = $('input[name="'+name+'"]:checked').val();
-                        data[name] = value;
-                    }
+            if (data[name] == undefined) {
+                var value = $('input[name="'+name+'"]:checked').val();
+                data[name] = value;
+            }
 			    break;
 			    case "checkbox":
 			    	var node = fields[i];
@@ -822,8 +1023,23 @@ TODO:
 			    break;
 			  }
 			}
-            console.log(data)
-			// console.log(JSON.stringify(data));
+
+      var id_pratica = $('.dadospratica').attr('data-id');
+      $.ajax({
+        url:'../area_laboratorio/data.php?action=salvar_pratica',
+        method:'post',
+        data: {
+          disponivel:$('#pratica-disponivel').prop('checked')?1:0,          
+          id: id_pratica,
+          id_cenario: $('input[name="bancada"]:checked').val(),                    
+          nome: $('#nome_aula').val(),
+          resumo: $('#resumo_aula').val(),
+          data: JSON.stringify(data, null, "\t")
+        }
+      }).done(function (data) {
+        console.log(data);
+      })
+
 		}
 
 		//campos();

@@ -25,11 +25,13 @@ function salvaOuAtualiza()
 }
 
 function cadastraAula(){
+  /*
   //configuracao_inicial();
   $('.cadastra_edita').text('Cadastrar nova aula');
   aba('editaula'); 
   editar = -1;
-  carregar();
+  */
+  //carregar();
 }
 
 function edit_pratica(id_pratica){
@@ -488,6 +490,30 @@ function selecionar_disciplina(){
   disciplina_acessada = $('#listaDisciplinas').val();
   window.location = 'index.php?aba=aulas&id_disciplina='+disciplina_acessada; 
 };
+
+
+function salvarDisciplina()
+{
+  var nome = $('#nome_disciplina_nova').val();  
+  //$sql = $lab->insertDisciplina();
+  $.ajax({
+    url:"funcoes/insert_disciplina.php",
+    type: 'POST',
+    data: {
+      nome: nome
+    },
+  }).done(function (data) {
+    console.log(data);
+      if(data.status == true) {
+        //Se for positivo, mostra ao utilizador uma janela de sucesso.
+      alert('Informações salvas com sucesso!');
+      location.href="index.php"
+    } else {
+        //Caso contrário dizemos que aconteceu algum erro.
+        alert('Erro com banco de dados. Tente novamente mais tarde. Se persistir o erro, contate o administrador.');
+    }
+  });
+}
 /*
 function remover_disciplina(){
   disciplina_acessada = $('#listaDisciplinas').val();
@@ -521,28 +547,6 @@ function toggle_visibility(id) {
      e.style.display = 'block';
 }
 
-function salvarDisciplina()
-{
-  var nome = $('#nome_disciplina_nova').val();  
-  //$sql = $lab->insertDisciplina();
-  $.ajax({
-    url:"funcoes/insert_disciplina.php",
-    type: 'POST',
-    data: {
-      nome: nome
-    },
-  }).done(function (data) {
-    console.log(data);
-      if(data.status == true) {
-        //Se for positivo, mostra ao utilizador uma janela de sucesso.
-      alert('Informações salvas com sucesso!');
-      location.href="index.php"
-    } else {
-        //Caso contrário dizemos que aconteceu algum erro.
-        alert('Erro com banco de dados. Tente novamente mais tarde. Se persistir o erro, contate o administrador.');
-    }
-  });
-}
 
 function formularioAcessarLaboratorio(){
   location.href="../area_laboratorio/lab.php"
@@ -676,17 +680,6 @@ $("#select_solucoes").change(function(){
 });  
 
 // Script de criar_solucao.php
-function adicionar_especie(){
-    if (Number($(".concentracao input")[0].value)>0){
-    var nome = $("#especies_disponiveis option:selected")[0].text;
-    var id_solucao = $("#especies_disponiveis option:selected")[0].value;
-    var conc = Number($(".concentracao input")[0].value); 
-    var novalinha = "<tr class="+id_solucao+"><td class='nomes_composicao'>"+nome+"</td><td class='conc_lista_solucao'>"+conc+"</td><td> mol/L</td><td><button class='btn vermelho' onclick='deletar_linha(this)'>Excluir </button></td></tr>";
-    $("#especies_na_solucao").append(novalinha); 
-    $("#especies_disponiveis option:selected")[0].disabled = true
-    $("#especies_disponiveis option:not(:selected) + option:not(:disabled)")[0].selected = true
-    } else {alert("Valores inválidos")}
-};
 
 function deletar_linha(a){
     $("#especies_disponiveis option:contains("+a.parentNode.parentNode.children[0].textContent+")")[0].disabled = false
