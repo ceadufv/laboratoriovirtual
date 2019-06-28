@@ -708,11 +708,31 @@ TODO:
             if (campo == 'solucoes')  {
                 for (var i = 0 ; i < valor.length ; i++) {
                     $('#select_solucoes').append(
-                        '<option value="'+i+'">'+
+                        '<option value="'+valor[i].id+'">'+
                             valor[i].nome+
                         '</option>'
                     );
                 }
+            }
+            else if (campo == 'armario'){
+            	console.log(valor)
+            	var conjunto = [];
+            	for (var i = 0 ; i < valor.length ; i++){
+            		console.log(valor[i].id,valor[i].nome)
+
+            		var novalinha = "<tr class="+valor[i].id;
+           			novalinha+= "><td class='id_solucoes_pratica' data-id="+valor[i].id;
+            		novalinha+= ">"+valor[i].nome+"</td><td>";
+            		novalinha+= "<button onclick='deletar_linha(this, atualizar_armario)' class='btn vermelho'>Excluir </button>";
+            		novalinha+= "</td></tr>";
+
+            		var linha = novalinha;
+            		conjunto.push(linha)    		     		
+	           	}
+
+	           	console.log(conjunto)
+	           	$("#lista_solucoes_pratica").append(conjunto)
+            	
             }
 
             //
@@ -811,6 +831,15 @@ TODO:
           return result+1;
         }
 
+        function indice_idsolucao (n){
+
+        	for (var i = 0 ; i < dados_pratica.solucoes.length ; i++) {
+            	if (dados_pratica.solucoes[i].id == n) return i; 
+            }
+            return -1;
+
+        }
+
 
         function concluir_criar_solucao() {
 
@@ -828,18 +857,18 @@ TODO:
             if (id_solucao == -1) {
               id_solucao = proximo_id_solucao();
 
-              dados_pratica.solucoes[id_solucao] = {
+              dados_pratica.solucoes.push({
                 id: id_solucao,
                 nome: form_nome_solucao,
                 descricao: form_descricao,
                 tecnico: form_tecnico,
                 intervalo: form_intervalo,
                 composicao: composicao
-              };
+              });
 
-              $('#select_solucoes').append('<option value="'+id_solucao+'">' + dados_pratica.solucoes[id_solucao].nome + '</option>')
+              $('#select_solucoes').append('<option value="'+id_solucao+'">' + dados_pratica.solucoes[indice_idsolucao(id_solucao)].nome + '</option>')
             } else {
-              dados_pratica.solucoes[id_solucao] = {
+              dados_pratica.solucoes[indice_idsolucao(id_solucao)] = {
                 id: id_solucao,
                 nome: form_nome_solucao,
                 descricao: form_descricao,
@@ -943,8 +972,10 @@ TODO:
 
         $('#modal_solucao').attr('data-id', id_solucao);
 
+        console.log('oi')
+
         //var id_solucao = $('#select_solucoes').val();
-        var dados = dados_pratica.solucoes[id_solucao];
+        var dados = dados_pratica.solucoes[indice_idsolucao(id_solucao)];
 
         $('#nome_solucao').val(dados.nome)
         $('#descricao_solucao').val(dados.descricao)
@@ -967,11 +998,13 @@ TODO:
 			var fields = $('input,select:not([data-id])');
 
             //data.config = [];
-			data.solucoes = [];
+			data.solucoes = dados_pratica.solucoes;
+			data.armario = dados_pratica.armario;
 
-			$('.id_solucoes_pratica').each(function () {
+			/*$('.id_solucoes_pratica').each(function () {
 				data.solucoes.push($(this).attr('data-id'));
-			});
+			});*/
+
 
 			for (var i = 0 ; i < fields.length ; i++) {
 			  //
@@ -1035,6 +1068,7 @@ TODO:
           nome: $('#nome_aula').val(),
           resumo: $('#resumo_aula').val(),
           data: JSON.stringify(data, null, "\t")
+          //data: JSON.stringify(data, null, "\t")
         }
       }).done(function (data) {
         console.log(data);
