@@ -5,17 +5,16 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
   editar = -1;
   disciplina_acessada = -1;
 
   if (bd) {
     if (bd.id_disciplina) disciplina_acessada = bd.id_disciplina;
   }
-}); 
+});
 
-function salvaOuAtualiza()
-{
+function salvaOuAtualiza() {
   // 
   post("funcoes/save_pratica.php");
   /*
@@ -24,17 +23,19 @@ function salvaOuAtualiza()
   */
 }
 
-function cadastraAula(){
+function cadastraAula() {
 
-//configuracao_inicial();
-//  $('.cadastra_edita').text('Cadastrar nova aula');
-aba('editaula'); 
-//  editar = -1;
-//carregar();
+  //configuracao_inicial();
+  //  $('.cadastra_edita').text('Cadastrar nova aula');
+  $('.dadospratica').attr('data-id',0);
+  aba('editaula');
+
+  //  editar = -1;
+  //carregar();
 }
 
-function edit_pratica(id_pratica){
-  window.location = 'index.php?aba=editaula&id_disciplina='+disciplina_acessada+'&id_pratica='+id_pratica; 
+function edit_pratica(id_pratica) {
+  window.location = 'index.php?aba=editaula&id_disciplina=' + disciplina_acessada + '&id_pratica=' + id_pratica;
 }
 
 /*
@@ -484,36 +485,35 @@ function post(funcao){
   }   
 }
 */
-function selecionar_disciplina(){
-//  var nomedisciplina = $('#listaDisciplinas').find("option:selected").text();
+function selecionar_disciplina() {
+  //  var nomedisciplina = $('#listaDisciplinas').find("option:selected").text();
   disciplina_acessada = $('#listaDisciplinas').val();
-  window.location = 'index.php?aba=aulas&id_disciplina='+disciplina_acessada; 
+  window.location = 'index.php?aba=aulas&id_disciplina=' + disciplina_acessada;
 };
 
 
-function salvarDisciplina()
-{
-  var nome = $('#nome_disciplina_nova').val();  
+function salvarDisciplina() {
+  var nome = $('#nome_disciplina_nova').val();
   //$sql = $lab->insertDisciplina();
   $.ajax({
-    url:"funcoes/insert_disciplina.php",
+    url: "funcoes/insert_disciplina.php",
     type: 'POST',
     data: {
       nome: nome
     },
   }).done(function (data) {
     console.log(data);
-      if(data.status == true) {
-        //Se for positivo, mostra ao utilizador uma janela de sucesso.
+    if (data.status == true) {
+      //Se for positivo, mostra ao utilizador uma janela de sucesso.
       alert('Informações salvas com sucesso!');
-      location.href="index.php"
+      location.href = "index.php"
     } else {
-        //Caso contrário dizemos que aconteceu algum erro.
-        alert('Erro com banco de dados. Tente novamente mais tarde. Se persistir o erro, contate o administrador.');
+      //Caso contrário dizemos que aconteceu algum erro.
+      alert('Erro com banco de dados. Tente novamente mais tarde. Se persistir o erro, contate o administrador.');
     }
   });
 }
-/*
+
 function remover_disciplina(){
   disciplina_acessada = $('#listaDisciplinas').val();
     $.ajax({
@@ -537,7 +537,7 @@ function remover_disciplina(){
         }
     });
 }
-
+/*
 function toggle_visibility(id) {
   var e = document.getElementById(id);
   if(e.style.display == 'block')

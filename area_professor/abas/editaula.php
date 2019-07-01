@@ -684,20 +684,34 @@ TODO:
 - Incluir no mecanismo de "salvar" a lista de solucoes
 - Implementar a area de upload das apostilas
 */
-    var dados_pratica = {};
+    var dados_pratica = {
+      id: parseInt('<?php echo $_REQUEST['id_pratica']; ?>'),
+      id_disciplina: parseInt('<?php echo $_REQUEST['id_disciplina']; ?>')
+    };
 
         function load_pratica() {
             //
 
-            $.ajax({url:'../area_laboratorio/data.php?action=pratica&id_pratica=3'}).done(function (data) {
+            $.ajax({
+              url:'../area_laboratorio/data.php?action=pratica',
+              data: {
+                id_pratica:dados_pratica.id,
+                id_disciplina:dados_pratica.id_disciplina
+              }
+            }).done(function (data) {
 
               $('.dadospratica').attr('data-id',data.id);
               $('#nome_aula').val(data.nome);
               $('#resumo_aula').val(data.resumo);
 
-              dados_pratica = data.data;
-              for (var i in dados_pratica) {
-                  carregaCampo(i, dados_pratica[i]);
+              dados_pratica = data;
+
+              $('input[name="bancada"]').each(function() {
+                $(this).prop('checked', $(this).val() == dados_pratica.id_cenario);
+              });
+
+              for (var i in dados_pratica.data) {
+                carregaCampo(i, dados_pratica.data[i]);
               }
             });
         } 
@@ -796,12 +810,12 @@ TODO:
 
 
         function atualizar_armario() {
-            dados_pratica.armario = [];
+            dados_pratica.data.armario = [];
             
             $('.id_solucoes_pratica').each(function () {
                 var nome = $(this).text();
                 var id_solucao = $(this).attr('data-id');
-                dados_pratica.armario.push({ id:id_solucao, nome:nome });
+                dados_pratica.data.armario.push({ id:id_solucao, nome:nome });
             });
 
         }       
@@ -820,12 +834,12 @@ TODO:
 
         function proximo_id_solucao() {
           var result = 0;
-          for (var i = 0 ; i < dados_pratica.solucoes.length ; i++) {
-            if (!dados_pratica.solucoes[i]) continue;
+          for (var i = 0 ; i < dados_pratica.data.solucoes.length ; i++) {
+            if (!dados_pratica.data.solucoes[i]) continue;
 
-            console.log(i, dados_pratica.solucoes[i])
+            console.log(i, dados_pratica.data.solucoes[i])
 
-            if (dados_pratica.solucoes[i]) result = dados_pratica.solucoes[i].id;
+            if (dados_pratica.data.solucoes[i]) result = dados_pratica.data.solucoes[i].id;
           }
 
           return result+1;
@@ -833,8 +847,8 @@ TODO:
 
         function indice_idsolucao (n){
 
-        	for (var i = 0 ; i < dados_pratica.solucoes.length ; i++) {
-            	if (dados_pratica.solucoes[i].id == n) return i; 
+        	for (var i = 0 ; i < dados_pratica.data.solucoes.length ; i++) {
+            	if (dados_pratica.data.solucoes[i].id == n) return i; 
             }
             return -1;
 
@@ -857,7 +871,7 @@ TODO:
             if (id_solucao == -1) {
               id_solucao = proximo_id_solucao();
 
-              dados_pratica.solucoes.push({
+              dados_pratica.data.solucoes.push({
                 id: id_solucao,
                 nome: form_nome_solucao,
                 descricao: form_descricao,
@@ -866,9 +880,9 @@ TODO:
                 composicao: composicao
               });
 
-              $('#select_solucoes').append('<option value="'+id_solucao+'">' + dados_pratica.solucoes[indice_idsolucao(id_solucao)].nome + '</option>')
+              $('#select_solucoes').append('<option value="'+id_solucao+'">' + dados_pratica.data.solucoes[indice_idsolucao(id_solucao)].nome + '</option>')
             } else {
-              dados_pratica.solucoes[indice_idsolucao(id_solucao)] = {
+              dados_pratica.data.solucoes[indice_idsolucao(id_solucao)] = {
                 id: id_solucao,
                 nome: form_nome_solucao,
                 descricao: form_descricao,
@@ -927,31 +941,6 @@ TODO:
 
         }
 
-
-
-/*
-            var composicao = listar_composicao();
-
-            dados_pratica.solucoes[id_solucao] = {
-                nome: $('#nome_solucao').val(),
-                descricao: $('#descricao_solucao').val(),
-                tecnico: $('#nome_tecnico').val(),
-                intervalo: $('#data_de_criacao').val(),
-                composicao: composicao
-            };  
-            //var id_solucao = parseInt($('#modal_solucao').attr('data-id'));
-            // id_solucao = (dados_pratica.solucoes.length)?dados_pratica.solucoes[dados_pratica.solucoes.length-1].id + 1:1;
-            //$('#select_solucoes').append('<option value="'+id_solucao+'">' + dados_pratica.solucoes[id_solucao].nome + '</option>')
-
-
-            //console.log (dados_pratica.solucoes[id_solucao].nome)
-
-            // $('#modal_solucao').attr('data-id', id_solucao);
-
-            // Retira modal
-            $('#modal_solucao').modal('hide');
-*/
-
     function editar_solucao(novo)
     {
 
@@ -975,7 +964,7 @@ TODO:
         console.log('oi')
 
         //var id_solucao = $('#select_solucoes').val();
-        var dados = dados_pratica.solucoes[indice_idsolucao(id_solucao)];
+        var dados = dados_pratica.data.solucoes[indice_idsolucao(id_solucao)];
 
         $('#nome_solucao').val(dados.nome)
         $('#descricao_solucao').val(dados.descricao)
@@ -996,15 +985,12 @@ TODO:
 		function salvar_pratica() {
 			var data = {};
 			var fields = $('input,select:not([data-id])');
+      var id = parseInt($('.dadospratica').attr('data-id',data.id));
 
-            //data.config = [];
-			data.solucoes = dados_pratica.solucoes;
-			data.armario = dados_pratica.armario;
+      if (!dados_pratica.data) dados_pratica.data = {};
 
-			/*$('.id_solucoes_pratica').each(function () {
-				data.solucoes.push($(this).attr('data-id'));
-			});*/
-
+			data.solucoes = dados_pratica.data.solucoes;
+			data.armario = dados_pratica.data.armario;
 
 			for (var i = 0 ; i < fields.length ; i++) {
 			  //
@@ -1014,14 +1000,8 @@ TODO:
 			  // 
 			  switch (type) {
                 case "select":
-                    //data[name] = $(fields[i]).val();
-                    if (name) {
+                    if (name)
                         data[name] = $(fields[i]).val();
-                        //console.log(fields[i], ':: ', $(fields[i]).val())
-                    }
-                    /* else {
-                        console.log(fields[i])
-                    }*/
                 break;
 			    case "radio":
             if (data[name] == undefined) {
@@ -1047,8 +1027,8 @@ TODO:
 	    					var n = $(this).attr('data-name');
                             if ($(this).val() == 'on') console.log(node, $(this).val())
                             dvol[n] = $(this).val();
-	    				});
-                        data[inicio].push(dvol);
+              });
+              data[inicio].push(dvol);
 			    	}
 			    break;
 			    default:
@@ -1061,17 +1041,21 @@ TODO:
       $.ajax({
         url:'../area_laboratorio/data.php?action=salvar_pratica',
         method:'post',
+        dataType: 'json',
         data: {
           disponivel:$('#pratica-disponivel').prop('checked')?1:0,          
           id: id_pratica,
           id_cenario: $('input[name="bancada"]:checked').val(),                    
+          id_disciplina: dados_pratica.id_disciplina,
           nome: $('#nome_aula').val(),
           resumo: $('#resumo_aula').val(),
           data: JSON.stringify(data, null, "\t")
           //data: JSON.stringify(data, null, "\t")
         }
       }).done(function (data) {
-        console.log(data);
+        $('.dadospratica').attr('data-id',data.id)
+        //console.log($('.dadospratica').attr('data-id'), data.id)        
+        dados_pratica.id = data.id;
       })
 
 		}

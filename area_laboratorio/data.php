@@ -9,9 +9,9 @@
     break;
 
     case "salvar_pratica":
-      header("Conten-type: application/json; charset=utf-8"); 
-      $lab->salvarPratica( $_REQUEST );
-      echo "{\"sucesso\":true}";
+      header("Conten-type: application/json; charset=utf-8");
+      $id = $lab->salvarPratica( $_REQUEST );
+      echo "{\"sucesso\":true, \"id\":$id}";
     break;
 
     //case "armario":

@@ -1,38 +1,43 @@
 <?php
 
-class LabJogo {
-	private $_dbh;
+class LabJogo
+{
+    private $_dbh;
     private $_error;
 
-	function __construct(){
+    function __construct()
+    {
 
-      //include "../lab-config.php";
+        //include "../lab-config.php";
 
-      try {
-          $this->_dbh = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASSWORD);
-      } catch (PDOException $e) {
-          $this->_error = $e->getMessage();
-          //exit;
-      }               
-
+        try {
+            $this->_dbh = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASSWORD);
+        } catch (PDOException $e) {
+            $this->_error = $e->getMessage();
+            //exit;
+        }
     }
 
-    function error() { return $this->_error; }
+    function error()
+    {
+        return $this->_error;
+    }
 
-    function salvarPratica($dados) {
+    function salvarPratica($dados)
+    {
         if (!empty($dados['id'])) {
             // Atualizar
 
-            $sql = "UPDATE modelo_pratica ".
-                "SET ".
-                "id_cenario=:id_cenario, ".
-                "nome_pratica=:nome_pratica, ".
-                "resumo=:resumo, ".
-                "data=:data ".
-                "WHERE ".
+            $sql = "UPDATE modelo_pratica " .
+                "SET " .
+                "id_cenario=:id_cenario, " .
+                "nome_pratica=:nome_pratica, " .
+                "resumo=:resumo, " .
+                "data=:data " .
+                "WHERE " .
                 "id_modelo_pratica=:id_modelo_pratica";
 
-            $stmt = $this->_dbh->prepare( $sql );
+            $stmt = $this->_dbh->prepare($sql);
 
             $stmt->execute(array(
                 ':id_cenario' => $dados['id_cenario'],
@@ -42,45 +47,44 @@ class LabJogo {
                 ':id_modelo_pratica' => $dados['id']
             ));
 
-            return ($stmt->rowCount())?TRUE:FALSE;
-
+            return ($stmt->rowCount()) ? $dados['id'] : 0;
         } else {
-/*
-            $sql = sprintf(
-                "INSERT INTO modelo_pratica(id_cenario, nome_pratica, resumo, data) ".
-                "id_cenario=:id_cenario, ".
-                "nome_pratica=:nome_pratica, ".
-                "resumo=:resumo, ".
-                "data=:data ".
-                "WHERE ".
-                "id_modelo_pratica=:id_modelo_pratica"
-                ,
-                $dados['id_cenario'],
-                addslashes($dados['nome']),
-                addslashes($dados['resumo']),
-                $dados['data']
-            );
+
+            $sql = "INSERT INTO modelo_pratica(id_cenario, id_disciplina, nome_pratica, resumo, data) ".
+                "VALUES(:id_cenario, :id_disciplina, :nome_pratica, :resumo, :data)";
 
             $stmt = $this->_dbh->prepare( $sql );
-            $stmt->execute();
-*/
+            
+            //echo $sql;
+
+            $stmt->execute(array(
+                ':id_cenario' => $dados['id_cenario'],
+                ':id_disciplina' => $dados['id_disciplina'],
+                ':nome_pratica' => $dados['nome'],
+                ':resumo' => $dados['resumo'],
+                ':data' => $dados['data']
+            ));
+
+            return $this->_dbh->lastInsertId();
         }
     }
 
-    function getPratica($id_pratica) {
-        $sql = $this->_dbh->prepare( "SELECT id_modelo_pratica as id, nome_pratica as nome, resumo, id_cenario from modelo_pratica where id_modelo_pratica=?" );
+    function getPratica($id_pratica)
+    {
+        $sql = $this->_dbh->prepare("SELECT id_modelo_pratica as id, nome_pratica as nome, resumo, id_cenario from modelo_pratica where id_modelo_pratica=?");
         $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute(array($id_pratica));    
+        $sql->execute(array($id_pratica));
         $result = $sql->fetchAll();
 
         return $result[0];
     }
 
     // TODO: Filtrar apenas as praticas que podem ser exibidas para o aluno
-    function getPraticasAluno($id_aluno) {
+    function getPraticasAluno($id_aluno)
+    {
         $sql = $this->_dbh->prepare('SELECT id_modelo_pratica as id, nome_pratica from modelo_pratica order by nome_pratica');
         $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();    
+        $sql->execute();
 
         return $sql->fetchAll();
     }
@@ -88,7 +92,8 @@ class LabJogo {
 
     // Lista as vidrarias disponiveis no armario da pratica atual
     // TODO: Usar lista de vidrarias de fato buscadas no banco
-    function getVidrariasPratica($id_pratica) {
+    function getVidrariasPratica($id_pratica)
+    {
         $result = array();
 
         $sql = $this->_dbh->prepare('SELECT max(id_solucao) as zero from solucoes');
@@ -97,7 +102,7 @@ class LabJogo {
         $data = $sql->fetchAll(PDO::FETCH_ASSOC);
         $zero = $data[0]['zero'];
 
-        $result[] = array (
+        $result[] = array(
             "id" => ++$zero,
             "nome" => "Cubeta",
             "conceito" => "cubeta",
@@ -110,7 +115,7 @@ class LabJogo {
             )
         );
 
-        $result[] = array (
+        $result[] = array(
             "id" => ++$zero,
             "nome" => "Béquer 5ml",
             "conceito" => "bequer",
@@ -124,7 +129,7 @@ class LabJogo {
         );
 
 
-        $result[] = array (
+        $result[] = array(
             "id" => ++$zero,
             "nome" => "Béquer 10ml",
             "conceito" => "bequer",
@@ -138,7 +143,7 @@ class LabJogo {
         );
 
 
-        $result[] = array (
+        $result[] = array(
             "id" => ++$zero,
             "nome" => "Béquer 50ml",
             "conceito" => "bequer",
@@ -149,9 +154,9 @@ class LabJogo {
                 "limpo" => true,
                 "volumeMaximo" => 50
             )
-        );        
+        );
 
-        $result[] = array (
+        $result[] = array(
             "id" => ++$zero,
             "nome" => "Béquer 100ml",
             "conceito" => "bequer",
@@ -162,9 +167,9 @@ class LabJogo {
                 "limpo" => true,
                 "volumeMaximo" => 100
             )
-        );        
+        );
 
-        $result[] = array (
+        $result[] = array(
             "id" => ++$zero,
             "nome" => "Béquer 250ml",
             "conceito" => "bequer",
@@ -175,10 +180,10 @@ class LabJogo {
                 "limpo" => true,
                 "volumeMaximo" => 250
             )
-        );        
+        );
 
 
-        $result[] = array (
+        $result[] = array(
             "id" => ++$zero,
             "nome" => "Pipeta Volumétrica",
             "conceito" => "pipeta",
@@ -191,7 +196,7 @@ class LabJogo {
             )
         );
 
-        $result[] = array (
+        $result[] = array(
             "id" => ++$zero,
             "nome" => "Pipetador",
             "conceito" => "pipetador",
@@ -204,7 +209,8 @@ class LabJogo {
     }
 
     // Lista as solucoes disponiveis no armario da pratica atual
-    function getSolucoesPratica($id_pratica) {
+    function getSolucoesPratica($id_pratica)
+    {
         $solucoes = array();
 
         $sql = $this->_dbh->prepare('select id_solucao as id, nome from solucoes order by id_solucao desc');
@@ -219,22 +225,24 @@ class LabJogo {
         return $result;
     }
 
-    function getSubstancias() {
+    function getSubstancias()
+    {
         $dbh = $this->_dbh;
         $data = array();
         $sql = $dbh->prepare("SELECT id_substancia as id, nome, dados FROM substancias order by id_substancia asc");
         $sql->execute();
-        $data = $sql->fetchAll( PDO::FETCH_ASSOC );
+        $data = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
 
-    function getCenario($id_cenario) {
+    function getCenario($id_cenario)
+    {
         $sql = "SELECT * from cenario where id_cenario=?";
 
         $stmt = $this->_dbh->prepare($sql);
-        $stmt->bindValue(1,$id_cenario);
+        $stmt->bindValue(1, $id_cenario);
         $stmt->execute();
-        $data = $stmt->fetchAll( PDO::FETCH_ASSOC );
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $result = $data[0];
         $result['data'] = json_decode($result['data']);
 
@@ -242,7 +250,8 @@ class LabJogo {
     }
 
     // Retorna um JSON com todo o conteudo necessario para a pratica ser exibida
-    function jsonPratica( $id_pratica ) {
+    function jsonPratica($id_pratica)
+    {
 
         header("Content-type: application/json; charset=utf-8");
 
@@ -256,13 +265,13 @@ class LabJogo {
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $sql->execute();
 
-        if($sql->rowCount() != 0) {
-            while($row=$sql->fetch()) {
+        if ($sql->rowCount() != 0) {
+            while ($row = $sql->fetch()) {
                 $result = $row;
             }
 
             $result['data'] = json_decode($result['data']);
-            
+
             echo json_encode($result);
         }
 
@@ -335,10 +344,11 @@ class LabJogo {
 
     //Pega os alunos cadastrados no banco de dados
     //TODO: relacionar alunos e professores
-    function getAlunos($id_professor) {
+    function getAlunos($id_professor)
+    {
         $sql = $this->_dbh->prepare('SELECT nome, email, usuario FROM usuarios_cadastrados WHERE id_tipo_usuario = 1');
         $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();    
+        $sql->execute();
 
         return $sql->fetchAll();
     }
@@ -351,23 +361,23 @@ class LabJogo {
         $sql = "INSERT INTO usuarios_cadastrados (nome, email, usuario, senha, id_tipo_usuario) 
                         VALUES (?,?,?,?, 1)";
         $stmt1 = $this->_dbh->prepare($sql);
-        $stmt1->bindValue(1,$nome);
-        $stmt1->bindValue(2,$email);
-        $stmt1->bindValue(3,$usuario);
-        $stmt1->bindValue(4,$senha);
+        $stmt1->bindValue(1, $nome);
+        $stmt1->bindValue(2, $email);
+        $stmt1->bindValue(3, $usuario);
+        $stmt1->bindValue(4, $senha);
 
-        if($stmt1->execute()){  
+        if ($stmt1->execute()) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
     //Pega aulas cadastradas dentro de cada disciplina
     //TODO: linkar disciplina
-    function getAulas($id_disciplina) {
-        $sql = sprintf('select id_modelo_pratica as id, nome_pratica, disponivel from modelo_pratica where id_disciplina=%d order by nome_pratica',$id_disciplina);
+    function getAulas($id_disciplina)
+    {
+        $sql = sprintf('select id_modelo_pratica as id, nome_pratica, disponivel from modelo_pratica where id_disciplina=%d order by nome_pratica', $id_disciplina);
         //$sql = sprintf('select id_modelo_pratica as id, nome_pratica, disponivel from modelo_pratica order by nome_pratica where id_disciplina=1',$id_disciplina);
         //exit $sql;
         $sql = $this->_dbh->prepare(
@@ -375,42 +385,42 @@ class LabJogo {
         );
         //$sql->bindValue(1,$id_disciplina);
         $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();    
+        $sql->execute();
 
         return $sql->fetchAll();
     }
 
-    function apagarAula($id_pratica){
-        
-    }
+    function apagarAula($id_pratica)
+    { }
 
-    function apagarDisciplina($id_disciplina){
+    function apagarDisciplina($id_disciplina)
+    {
         global $banco;
-        $apagar_disciplina = $banco -> prepare("DELETE FROM disciplinas WHERE id_disciplina=?");
-      
-        $apagar_disciplina->bindValue(1,$id_disciplina);
-        $apagar_disciplina -> execute();
-        $apagar = $apagar_disciplina -> fetchAll(PDO::FETCH_ASSOC);
+        $apagar_disciplina = $banco->prepare("DELETE FROM disciplinas WHERE id_disciplina=?");
+
+        $apagar_disciplina->bindValue(1, $id_disciplina);
+        $apagar_disciplina->execute();
+        $apagar = $apagar_disciplina->fetchAll(PDO::FETCH_ASSOC);
         return true;
     }
 
-    function getResumo($id_pratica){
+    function getResumo($id_pratica)
+    {
         $sql = $this->_dbh->prepare('SELECT resumo FROM modelo_pratica WHERE id_modelo_pratica = ?');
-        $sql->bindValue(1,$id_pratica);
+        $sql->bindValue(1, $id_pratica);
         $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();    
+        $sql->execute();
 
         return $sql->fetchAll();
     }
 
-    function getDisciplinasProfessor($id_professor) {
+    function getDisciplinasProfessor($id_professor)
+    {
         $sql = 'SELECT * FROM disciplinas WHERE id_professor = ?';
-        echo $sql;
-
         $sql = $this->_dbh->prepare($sql);
-        $sql->bindValue(1,$id_professor);
+        $sql->bindValue(1, $id_professor);
         $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();    
+        $sql->execute();
 
         return $sql->fetchAll();
     }
@@ -420,13 +430,12 @@ class LabJogo {
 
         $sql_pratica = "INSERT INTO disciplinas (nome, id_professor) VALUES (?,?)";
         $stmt1 = $this->_dbh->prepare($sql_pratica);
-        $stmt1->bindValue(1,$nome);
-        $stmt1->bindValue(2,$id_professor);
+        $stmt1->bindValue(1, $nome);
+        $stmt1->bindValue(2, $id_professor);
 
-        if($stmt1->execute()){  
+        if ($stmt1->execute()) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -437,18 +446,18 @@ class LabJogo {
                 SET nome = ?
                 WHERE id_disciplina = ?;";
         $stmt1 = $this->_dbh->prepare($sql);
-        $stmt1->bindValue(1,$nome);
-        $stmt1->bindValue(2,$id_disciplina);
+        $stmt1->bindValue(1, $nome);
+        $stmt1->bindValue(2, $id_disciplina);
 
-        if($stmt1->execute()){  
+        if ($stmt1->execute()) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    function codificarSenha($senha) {
+    function codificarSenha($senha)
+    {
         return sha1($senha);
     }
 
@@ -456,78 +465,71 @@ class LabJogo {
     {
         $senha_codificada = $this->codificarSenha($senha);
 
-        if(!empty($nome) && !empty($senha) && !empty($email)) // nenhum vazio
+        if (!empty($nome) && !empty($senha) && !empty($email)) // nenhum vazio
         {
             $sql = "UPDATE usuarios_cadastrados
                     SET nome = ?, senha = ?, email = ?
                     WHERE id_usuario = ?;";
             $stmt1 = $this->_dbh->prepare($sql);
-            $stmt1->bindValue(1,$nome);
-            $stmt1->bindValue(2,$senha_codificada);
-            $stmt1->bindValue(3,$email);
-            $stmt1->bindValue(4,$id_usuario);
-        }
-        else if(!empty($senha) && !empty($email)) // nome vazio
+            $stmt1->bindValue(1, $nome);
+            $stmt1->bindValue(2, $senha_codificada);
+            $stmt1->bindValue(3, $email);
+            $stmt1->bindValue(4, $id_usuario);
+        } else if (!empty($senha) && !empty($email)) // nome vazio
         {
             $sql = "UPDATE usuarios_cadastrados
                     SET senha = ?, email = ?
                     WHERE id_usuario = ?;";
             $stmt1 = $this->_dbh->prepare($sql);
-            $stmt1->bindValue(1,$senha_codificada);
-            $stmt1->bindValue(2,$email);
-            $stmt1->bindValue(3,$id_usuario);
-        }
-        else if(!empty($nome) && !empty($email)) // senha vazia
+            $stmt1->bindValue(1, $senha_codificada);
+            $stmt1->bindValue(2, $email);
+            $stmt1->bindValue(3, $id_usuario);
+        } else if (!empty($nome) && !empty($email)) // senha vazia
         {
             $sql = "UPDATE usuarios_cadastrados
                     SET nome = ?, email = ?
                     WHERE id_usuario = ?;";
             $stmt1 = $this->_dbh->prepare($sql);
-            $stmt1->bindValue(1,$nome);
-            $stmt1->bindValue(2,$email);
-            $stmt1->bindValue(3,$id_usuario);
-        }
-        else if(!empty($nome) && !empty($senha)) // email vazio
+            $stmt1->bindValue(1, $nome);
+            $stmt1->bindValue(2, $email);
+            $stmt1->bindValue(3, $id_usuario);
+        } else if (!empty($nome) && !empty($senha)) // email vazio
         {
             $sql = "UPDATE usuarios_cadastrados
                     SET nome = ?, senha = ?
                     WHERE id_usuario = ?;";
             $stmt1 = $this->_dbh->prepare($sql);
-            $stmt1->bindValue(1,$nome);
-            $stmt1->bindValue(2,$senha_codificada);
-            $stmt1->bindValue(3,$id_usuario);
-        }
-        else if(!empty($email)) // nome e senha vazios
+            $stmt1->bindValue(1, $nome);
+            $stmt1->bindValue(2, $senha_codificada);
+            $stmt1->bindValue(3, $id_usuario);
+        } else if (!empty($email)) // nome e senha vazios
         {
             $sql = "UPDATE usuarios_cadastrados
                     SET email = ?
                     WHERE id_usuario = ?;";
             $stmt1 = $this->_dbh->prepare($sql);
-            $stmt1->bindValue(1,$email);
-            $stmt1->bindValue(2,$id_usuario);
-        }
-        else if(!empty($senha)) // nome e email vazios
+            $stmt1->bindValue(1, $email);
+            $stmt1->bindValue(2, $id_usuario);
+        } else if (!empty($senha)) // nome e email vazios
         {
             $sql = "UPDATE usuarios_cadastrados
                     SET senha = ?
                     WHERE id_usuario = ?;";
             $stmt1 = $this->_dbh->prepare($sql);
-            $stmt1->bindValue(1,$senha_codificada);
-            $stmt1->bindValue(2,$id_usuario);
-        }
-        else if(!empty($nome)) // senha e email vazios
+            $stmt1->bindValue(1, $senha_codificada);
+            $stmt1->bindValue(2, $id_usuario);
+        } else if (!empty($nome)) // senha e email vazios
         {
             $sql = "UPDATE usuarios_cadastrados
             SET nome = ?
             WHERE id_usuario = ?;";
             $stmt1 = $this->_dbh->prepare($sql);
-            $stmt1->bindValue(1,$nome);
-            $stmt1->bindValue(2,$id_usuario);
+            $stmt1->bindValue(1, $nome);
+            $stmt1->bindValue(2, $id_usuario);
         }
-        if($stmt1->execute()){  
+        if ($stmt1->execute()) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -537,7 +539,7 @@ class LabJogo {
         $sql = $this->_dbh->prepare('SELECT nome_pratica, u.nome, data_acao, descricao FROM acao_pratica, usuarios_cadastrados AS u, modelo_pratica 
                                         WHERE u.id_usuario = id_aluno AND id_pratica = id_modelo_pratica ORDER BY u.nome, data_acao');
         $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();    
+        $sql->execute();
 
         return $sql->fetchAll();
     }
@@ -546,9 +548,9 @@ class LabJogo {
     {
         $sql = $this->_dbh->prepare('SELECT nome_pratica, data_acao, descricao FROM acao_pratica, usuarios_cadastrados AS u, modelo_pratica 
                                         WHERE u.id_usuario = id_aluno AND id_pratica = id_modelo_pratica AND id_aluno = ? ORDER BY data_acao');
-        $sql->bindValue(1,$id_aluno);
+        $sql->bindValue(1, $id_aluno);
         $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();    
+        $sql->execute();
 
         return $sql->fetchAll();
     }
@@ -564,43 +566,43 @@ class LabJogo {
         $id_micropipeta = 8;
 
         $id_categoria = $id_solucao;
-        $solucoes_selecionadas = $this->_dbh -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $solucao = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $this->_dbh->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $solucao = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
-        $lista_solucao=array();
+        $lista_solucao = array();
         $p = json_decode($solucao[0]['json_dados']);
 
-        foreach ($p as $value){
-            $nome_solucao = $this->_dbh -> prepare("SELECT * FROM solucoes WHERE id_solucao=$value");
-            $nome_solucao -> execute();
-            $lista_solucao[] = $nome_solucao -> fetchAll(PDO::FETCH_ASSOC)[0];
+        foreach ($p as $value) {
+            $nome_solucao = $this->_dbh->prepare("SELECT * FROM solucoes WHERE id_solucao=$value");
+            $nome_solucao->execute();
+            $lista_solucao[] = $nome_solucao->fetchAll(PDO::FETCH_ASSOC)[0];
         }
 
         $id_categoria = $id_bequer;
-        $solucoes_selecionadas = $this->_dbh -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $bequer = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $this->_dbh->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $bequer = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
         $id_categoria = $id_balaovolumetrico;
-        $solucoes_selecionadas = $this->_dbh -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $balaovolumetrico = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $this->_dbh->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $balaovolumetrico = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
         $id_categoria = $id_pipetavolumetrica;
-        $solucoes_selecionadas = $this->_dbh -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $pipetavolumetrica = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $this->_dbh->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $pipetavolumetrica = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
         $id_categoria = $id_pipetador;
-        $solucoes_selecionadas = $this->_dbh -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $pipetador = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $this->_dbh->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $pipetador = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
         $id_categoria = $id_micropipeta;
-        $solucoes_selecionadas = $this->_dbh -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $micropipeta = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $this->_dbh->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $micropipeta = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
 
         $resultado['solucao'] = $solucao;
@@ -621,10 +623,10 @@ class LabJogo {
     {
         $resultado = array();
 
-        $solucoes_selecionadas = $this->_dbh -> prepare("SELECT * FROM solucoes WHERE id_solucao = $id_solucao");
-        $solucoes_selecionadas -> execute();
-        $item = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
-        
+        $solucoes_selecionadas = $this->_dbh->prepare("SELECT * FROM solucoes WHERE id_solucao = $id_solucao");
+        $solucoes_selecionadas->execute();
+        $item = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
+
         $nome_tecnico = $item[0]['tecnico'];
         $descricao_solucao  = $item[0]['descricao'];
         $nome_solucao  = $item[0]['nome'];
@@ -632,7 +634,7 @@ class LabJogo {
         $conc_lista_solucao = $item[0]['concentracao'];
         $nomes_composicao = $item[0]['nomes_composicao'];
         $ids_composicao = $item[0]['ids_composicao'];
-        
+
 
         $resultado['status'] = true;
         $resultado['id_solucao'] = $id_solucao;
@@ -640,9 +642,9 @@ class LabJogo {
         $resultado['descricao_solucao'] = $descricao_solucao;
         $resultado['nome_solucao'] = $nome_solucao;
         $resultado['data_de_criacao'] = $data_de_criacao;
-        $resultado['conc_lista_solucao'] = explode(",",$conc_lista_solucao);
-        $resultado['nomes_composicao'] =  explode(",",$nomes_composicao);
-        $resultado['ids_composicao'] =  explode(",",$ids_composicao);
+        $resultado['conc_lista_solucao'] = explode(",", $conc_lista_solucao);
+        $resultado['nomes_composicao'] =  explode(",", $nomes_composicao);
+        $resultado['ids_composicao'] =  explode(",", $ids_composicao);
 
         return $resultado;
     }
@@ -651,7 +653,7 @@ class LabJogo {
     {
         $sql = $this->_dbh->prepare('SELECT * FROM substancias');
         $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();    
+        $sql->execute();
 
         return $sql->fetchAll();
     }
@@ -668,48 +670,48 @@ class LabJogo {
 
         $id_categoria = $id_solucao;
         $banco =  $this->_dbh;
-        $solucoes_selecionadas = $banco -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $solucao = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $banco->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $solucao = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
-        $lista_solucao=array();
+        $lista_solucao = array();
         $p = json_decode($solucao[0]['json_dados']);
 
-        foreach ($p as $value){
-            $nome_solucao = $banco -> prepare("SELECT * FROM solucoes WHERE id_solucao=$value");
-            $nome_solucao -> execute();
-            $lista_solucao[] = $nome_solucao -> fetchAll(PDO::FETCH_ASSOC)[0];
+        foreach ($p as $value) {
+            $nome_solucao = $banco->prepare("SELECT * FROM solucoes WHERE id_solucao=$value");
+            $nome_solucao->execute();
+            $lista_solucao[] = $nome_solucao->fetchAll(PDO::FETCH_ASSOC)[0];
         }
 
         $id_categoria = $id_bequer;
-        $solucoes_selecionadas = $banco -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $bequer = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $banco->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $bequer = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
         $id_categoria = $id_balaovolumetrico;
-        $solucoes_selecionadas = $banco -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $balaovolumetrico = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $banco->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $balaovolumetrico = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
         $id_categoria = $id_pipetavolumetrica;
-        $solucoes_selecionadas = $banco -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $pipetavolumetrica = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $banco->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $pipetavolumetrica = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
         $id_categoria = $id_pipetador;
-        $solucoes_selecionadas = $banco -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $pipetador = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $banco->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $pipetador = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
         $id_categoria = $id_micropipeta;
-        $solucoes_selecionadas = $banco -> prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
-        $solucoes_selecionadas -> execute();
-        $micropipeta = $solucoes_selecionadas -> fetchAll(PDO::FETCH_ASSOC);
+        $solucoes_selecionadas = $banco->prepare("SELECT * FROM objeto WHERE id_pratica=$id_pratica and id_categoria=$id_categoria");
+        $solucoes_selecionadas->execute();
+        $micropipeta = $solucoes_selecionadas->fetchAll(PDO::FETCH_ASSOC);
 
         //Nome Prática
-        $g = $banco -> prepare("SELECT nome_pratica, resumo, id_disciplina FROM modelo_pratica WHERE id_modelo_pratica=$id_pratica");
-        $g -> execute();
-        $pratica = $g -> fetchAll(PDO::FETCH_ASSOC);
+        $g = $banco->prepare("SELECT nome_pratica, resumo, id_disciplina FROM modelo_pratica WHERE id_modelo_pratica=$id_pratica");
+        $g->execute();
+        $pratica = $g->fetchAll(PDO::FETCH_ASSOC);
 
 
         $resultado['solucao'] = $solucao;
