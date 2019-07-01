@@ -25,13 +25,12 @@ function salvaOuAtualiza()
 }
 
 function cadastraAula(){
-  /*
-  //configuracao_inicial();
-  $('.cadastra_edita').text('Cadastrar nova aula');
-  aba('editaula'); 
-  editar = -1;
-  */
-  //carregar();
+
+//configuracao_inicial();
+//  $('.cadastra_edita').text('Cadastrar nova aula');
+aba('editaula'); 
+//  editar = -1;
+//carregar();
 }
 
 function edit_pratica(id_pratica){
