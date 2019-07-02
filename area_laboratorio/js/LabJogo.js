@@ -13,6 +13,7 @@ LabJogo = function (data) {
     this._armario = new LabArmario();
 }
 
+
 LabJogo.prototype.scene = function () {
 	return this._phaser.scene;
 }
@@ -309,6 +310,9 @@ LabJogo.prototype.init = function (f) {
 
         //
 	    var json = o._data.cenario;
+	    //console.log(json)
+	    //var json = o.id_cenario;
+
 
 	    // Cria os buracos na tela (lugares onde podem ser posicionados objetos)
 	    LabUtils.lugaresCriar(this, json);

@@ -5,7 +5,27 @@
 
   switch ($action) {
     case "pratica":
-        $lab->jsonPratica( @$_REQUEST['id_pratica'] );
+        $resultado = $lab->jsonPratica( @$_REQUEST['id_pratica'] );
+
+        echo json_encode($resultado);
+    break;
+
+    case "pratica_jogo":
+        $resultado = $lab->jsonPratica( @$_REQUEST['id_pratica'] );
+        $resultado['cenario'] = $lab->getCenario($resultado['id_cenario'])['data'];
+
+        $data = $lab->getSubstancias();
+        $result = array();
+        foreach ($data as $key => $value) {
+            $result[] = array(
+            "id" => (int) $value['id'],
+            "nome" => $value['nome'],
+            "dados" => json_decode($value['dados'])
+            );
+        }
+        $resultado['elementos'] = $result;
+
+        echo json_encode($resultado);
     break;
 
     case "salvar_pratica":

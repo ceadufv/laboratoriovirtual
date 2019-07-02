@@ -241,14 +241,14 @@
     <div class="col-auto">
 
         <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-         <select name="bequer_ambientacao" class="custom-select bequer-ambientacao bequer" data-name="bequer_ambientacao">
+         <select data-armario="vidrarias" name="bequer_ambientacao" class="custom-select bequer-ambientacao bequer" data-name="bequer_ambientacao">
             <option value="auto">Automática</option>
             <option value="manual">Manual</option>
         </select>
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-        <select data-name="bequer_quantidade" name="bequer_quantidade" class="custom-select bequer-qtd_ambientes">
+        <select data-armario="vidrarias" data-name="bequer_quantidade" name="bequer_quantidade" class="custom-select bequer-qtd_ambientes">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -256,14 +256,14 @@
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-        <select data-name="bequer_agitacao" name="bequer_agitacao" class="custom-select bequer-agitacao">
+        <select data-armario="vidrarias" data-name="bequer_agitacao" name="bequer_agitacao" class="custom-select bequer-agitacao">
             <option value="auto">Automático</option>
             <option value="manual">Manual</option>
         </select>
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-        <select data-name="bequer_mistura" name="bequer_mistura" class="custom-select bequer-mistura bequer">
+        <select data-armario="vidrarias" data-name="bequer_mistura" name="bequer_mistura" class="custom-select bequer-mistura bequer">
             <option value="false">Não permite</option>
             <option value="true">Permite</option>
         </select>
@@ -288,7 +288,7 @@
                 ?>
                 <tr class="linha-bequer" data-id="<?php echo $valor; ?>">
                     <td style="text-align: left;">  
-                        <input value="<?php echo $valor; ?>" data-name="id" name="bequer" class="bequer-disponivel bequer" type="checkbox" 
+                        <input value="<?php echo $valor; ?>" data-armario="vidrarias" data-name="id" name="bequer" class="bequer-disponivel bequer" type="checkbox" 
                         onclick="toggle(this)" /> <span><?php echo $valor;?> mL</span>
                     </td>
                     <td>  
@@ -327,23 +327,23 @@
 <section class="justify-content-center" style="margin: 10px">
 
     <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-    <select data-name="balaovolumetrico_ambientacao" name="balaovolumetrico_ambientacao" class="custom-select balaovolumetrico-ambientacao balaovolumetrico" >
+    <select data-armario="vidrarias" data-name="balaovolumetrico_ambientacao" name="balaovolumetrico_ambientacao" class="custom-select balaovolumetrico-ambientacao balaovolumetrico" >
         <option value="auto">Automática</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-    <select data-name="balaovolumetrico_qtd_ambientes"  name="balaovolumetrico_qtd_ambientes" class="custom-select balaovolumetrico-qtd_ambientes balaovolumetrico">
+    <select data-armario="vidrarias" data-name="balaovolumetrico_qtd_ambientes"  name="balaovolumetrico_qtd_ambientes" class="custom-select balaovolumetrico-qtd_ambientes balaovolumetrico">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-    <select data-name="balaovolumetrico_agitacao" name="balaovolumetrico_agitacao" class="custom-select balaovolumetrico-agitacao balaovolumetrico">
+    <select data-armario="vidrarias" data-name="balaovolumetrico_agitacao" name="balaovolumetrico_agitacao" class="custom-select balaovolumetrico-agitacao balaovolumetrico">
         <option value="auto">Automático</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-    <select data-name="balaovolumetrico_mistura" name="balaovolumetrico_mistura" class="custom-select balaovolumetrico-mistura balaovolumetrico">
+    <select data-armario="vidrarias" data-name="balaovolumetrico_mistura" name="balaovolumetrico_mistura" class="custom-select balaovolumetrico-mistura balaovolumetrico">
         <option value="false">Não permite</option>
         <option value="true">Permite</option>
     </select>
@@ -366,7 +366,7 @@
             ?>
             <tr class="linha-balaovolumetrico" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-                <input data-name="id" class="balaovolumetrico-disponivel balaovolumetrico" type="checkbox" 
+                <input data-armario="vidrarias" data-name="id" class="balaovolumetrico-disponivel balaovolumetrico" type="checkbox" 
                     onclick="toggle(this)" name="balao" value="<?php echo($valor) ?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
@@ -406,23 +406,23 @@
 <section class="justify-content-center" style="margin: 10px">
 
     <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-    <select class="custom-select" name="pipetavolumetrica_ambientacao">
+    <select data-armario="vidrarias" class="custom-select" name="pipetavolumetrica_ambientacao">
         <option value="auto">Automática</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-    <select class="custom-select" name="pipetavolumetrica_qtd_ambientes">
+    <select data-armario="vidrarias" class="custom-select" name="pipetavolumetrica_qtd_ambientes">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-    <select class="custom-select" name="pipetavolumetrica_agitacao">
+    <select data-armario="vidrarias" class="custom-select" name="pipetavolumetrica_agitacao">
         <option value="auto">Automático</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-    <select class="custom-select pipetavolumetrica-mistura" name="pipetavolumetrica_mistura">
+    <select data-armario="vidrarias" class="custom-select pipetavolumetrica-mistura" name="pipetavolumetrica_mistura">
         <option value="false">Não permite</option>
         <option value="true">Permite</option>
     </select>
@@ -444,7 +444,7 @@
             ?>
             <tr class="linha-pipetavolumetrica" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-                <input data-name="id" name="pipeta" class="pipetavolumetrica-disponivel pipetavolumetrica" type="checkbox" 
+                <input data-armario="vidrarias" data-name="id" name="pipeta" class="pipetavolumetrica-disponivel pipetavolumetrica" type="checkbox" 
                     onclick="toggle(this)" value="<?php echo $valor;?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
@@ -481,7 +481,7 @@
 <!-- pipetador -->
 	<section class="justify-content-center" style="margin: 10px">
 	  <h3 title="Animação automática: o volume é preenchido automaticamente até o menisco; Animação manual: deve-se clicar com o cursor em posição do pipetador para ocorrer a pipetagem">Animação do uso</h3>
-	  <select disabled class="custom-select" name="pipetador_animacao">
+	  <select data-armario="vidrarias" disabled class="custom-select" name="pipetador_animacao">
 	    <option value="auto">Automática</option>
 	    <option value="manual">Manual</option>
 	  </select>
@@ -509,14 +509,14 @@
 	      ?>
 	      <tr class="linha-pipetador" data-id="<?php echo $valor; ?>">
 	        <td style="text-align: left;">  
-	          <input data-name="id" name="pipetador" class="pipetador-disponivel pipetador" type="checkbox" 
+	          <input data-armario="vidrarias" data-name="id" name="pipetador" class="pipetador-disponivel pipetador" type="checkbox" 
 	                onclick="toggle(this)" value="<?php echo $key;?>" /> <span class="nomepipetador"><?php echo $valor;?></span>
 	        </td>
 	        <td>
 	        <img data-name="imagem" src="accordion/pipetadores/<?php echo($key) ?>.jpg" width="100">
 	        </td>
 	        <td>
-	          <select name="pipetador_tamanho" disabled>
+	          <select data-armario="vidrarias" name="pipetador_tamanho" disabled>
 	            <option value="unico">Único</option>
 	          </select>
 	        </td>
@@ -549,7 +549,7 @@
 <!-- micropipeta -->
 <section class="justify-content-center" style="margin: 10px">
   <h3 title="Animação automática: o volume é preenchido automaticamente; Animação manual: deve-se clicar com o cursor nas posições corretas da micropipeta para ocorrer a pipetagem">Animação do uso</h3>
-  <select disabled name="micropipeta_animacao">
+  <select data-armario="vidrarias" disabled name="micropipeta_animacao">
     <option value="auto">Automática</option>
     <option value="manual">Manual</option>
   </select>
@@ -728,8 +728,8 @@ TODO:
                     );
                 }
             }
-            else if (campo == 'armario'){
-            	console.log(valor)
+            else if (campo == 'armario_solucoes'){
+            	//console.log(valor)
             	var conjunto = [];
             	for (var i = 0 ; i < valor.length ; i++){
             		console.log(valor[i].id,valor[i].nome)
@@ -744,47 +744,57 @@ TODO:
             		conjunto.push(linha)    		     		
 	           	}
 
-	           	console.log(conjunto)
+	           	//console.log(conjunto)
 	           	$("#lista_solucoes_pratica").append(conjunto)
             	
             }
-
+			else if (campo == 'armario_vidrarias'){
+				for (var i in valor) {
+	            	campos_teste(i, valor[i]);
+				}
+			}
             //
             else
-            if ($(obj).attr('type') == 'radio') {
-                $(obj).each(function () {
-                    var check = ($(this).val() == valor);
-                    $(this).prop('checked',check);
-                });
-            }
-
-            //
-            else
-            if ($(obj).attr('type') == 'checkbox') {
-
-                $(obj).each(function () {
-                    var existe = false;
-                    for (var i = 0 ; i < valor.length ; i++) {
-                        if (valor[i].id == $(this).val()) {
-                            existe = true;
-                            break;
-                        }
-                    }
-
-                    //
-                    $(this).click();
-                    //
-                    if ($(this).prop('checked') != existe) {
-                    	$(this).click();
-                    }
-                })
-            }
-
-            // 
-            else {
-                obj.val(valor);
-            }
+            	campos_teste(campo, valor);
+            
         }
+
+    function campos_teste(campo, valor) {
+    	var obj = $('*[name="'+campo+'"]');
+    	if ($(obj).attr('type') == 'radio') {
+            $(obj).each(function () {
+                var check = ($(this).val() == valor);
+                $(this).prop('checked',check);
+            });
+        }
+
+        //
+        else
+        if ($(obj).attr('type') == 'checkbox') {
+
+            $(obj).each(function () {
+                var existe = false;
+                for (var i = 0 ; i < valor.length ; i++) {
+                    if (valor[i].id == $(this).val()) {
+                        existe = true;
+                        break;
+                    }
+                }
+
+                //
+                $(this).click();
+                //
+                if ($(this).prop('checked') != existe) {
+                	$(this).click();
+                }
+            })
+        }
+
+        // 
+        else {
+            obj.val(valor);
+        }
+    }
 
         function adicionar_solucao_armario(){
             var nome = $("#select_solucoes option:selected").text();
@@ -985,23 +995,30 @@ TODO:
 		function salvar_pratica() {
 			var data = {};
 			var fields = $('input,select:not([data-id])');
-      var id = parseInt($('.dadospratica').attr('data-id',data.id));
+			var id = parseInt($('.dadospratica').attr('data-id',data.id));
 
       if (!dados_pratica.data) dados_pratica.data = {};
 
 			data.solucoes = dados_pratica.data.solucoes;
-			data.armario = dados_pratica.data.armario;
+			data.armario_solucoes = dados_pratica.data.armario;
+			data.armario_vidrarias = {};
+			//data.armario_vidrarias.balao = [];
 
 			for (var i = 0 ; i < fields.length ; i++) {
 			  //
 			  var type = ($(fields[i]).attr('type')||$(fields[i]).prop('tagName')).toLowerCase();
 			  var name = $(fields[i]).attr('name');
+			  var armario_vidrarias = ($(fields[i]).attr('data-armario') == 'vidrarias');
 
 			  // 
 			  switch (type) {
                 case "select":
-                    if (name)
-                        data[name] = $(fields[i]).val();
+                    if (name) {
+                    	if (armario_vidrarias)
+                    		data.armario_vidrarias[name] = $(fields[i]).val();
+                    	else
+                        	data[name] = $(fields[i]).val();
+                    }
                 break;
 			    case "radio":
             if (data[name] == undefined) {
@@ -1018,8 +1035,15 @@ TODO:
 
 	    				var parent = $(node).parents('tr');
 
-                        if (!data[inicio]) data[inicio] = [];
-                        var d = data[inicio];
+	    				var d;
+	    				if (!armario_vidrarias) {
+	                        if (!data[inicio]) data[inicio] = [];
+                            d = data[inicio];
+	                    } else {
+	                    	if (!data.armario_vidrarias[inicio]) data.armario_vidrarias[inicio] = [];
+                            d = data.armario_vidrarias[inicio];
+	                    }
+
                         var vol = name.split('-').pop();
                         dvol = {};
                         
@@ -1027,8 +1051,16 @@ TODO:
 	    					var n = $(this).attr('data-name');
                             if ($(this).val() == 'on') console.log(node, $(this).val())
                             dvol[n] = $(this).val();
-              });
-              data[inicio].push(dvol);
+						});
+
+    					if (armario_vidrarias) {
+    						if (!data.armario_vidrarias[inicio])
+    							data.armario_vidrarias[inicio] = [];
+
+    						data.armario_vidrarias[inicio].push(dvol);
+    					}
+    					else
+							data[inicio].push(dvol);
 			    	}
 			    break;
 			    default:
@@ -1038,6 +1070,10 @@ TODO:
 			}
 
       var id_pratica = $('.dadospratica').attr('data-id');
+
+      //console.log(data)
+
+      //return false;
       $.ajax({
         url:'../area_laboratorio/data.php?action=salvar_pratica',
         method:'post',

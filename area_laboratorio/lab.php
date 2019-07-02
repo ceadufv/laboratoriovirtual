@@ -85,6 +85,12 @@
       .on::after { content: "ON"; }
       .off { background-color: #f00; }
       .off::after { content: "OFF"; }
+
+      label:hover{
+        /* text-shadow: #ea1f74 0px 0px 5px; */
+        border: 1px solid #000;
+      }
+
     </style>
   </head>
     <body>
@@ -172,9 +178,10 @@
                     </li>
                   </ul>
                   <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="solucoes-tab">
+                    <div class="tab-pane fade show active" id="tab_solucoes" role="tabpanel" aria-labelledby="solucoes-tab">
                       <div class="caixas">
 <?php
+/*
 
   // TODO: Informar a priori para a instancia da classe
   // qual o id da pratica atual
@@ -189,9 +196,10 @@
     <button data-id="<?php echo $solucao['id'];?>" type="button" class="btn btn-dark m-3 botao btn-armario-pegar" >Selecionar</button>
   </label>
   
-<?php endforeach;?>
-
-                     
+<?php
+endforeach;
+*/
+?>                    
                     </div>
                   </div>
                   <!--
@@ -201,9 +209,10 @@
                     <button type="button" class="botaocircular2">3</button>
                   </div>
                   -->
-                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">      
+                  <div class="tab-pane fade" id="tab_vidrarias" role="tabpanel" aria-labelledby="profile-tab">      
                     <div class="caixas">
 <?php
+/*
 $lista = $lab->getVidrariasPratica(@$_REQUEST['id_pratica']);
 foreach ($lista as $val):
 ?>
@@ -217,16 +226,9 @@ foreach ($lista as $val):
                       </label>
 <?php
 endforeach;
+*/
 ?>                        
-<style>
-label:hover{
-  /* text-shadow: #ea1f74 0px 0px 5px; */
-  border: 1px solid #000;
-}
 
-</style>
-<script>
-</script>
                     </div>
                   </div>
                 </div>

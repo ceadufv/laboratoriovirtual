@@ -272,7 +272,7 @@ class LabJogo
 
             $result['data'] = json_decode($result['data']);
 
-            echo json_encode($result);
+            return $result; //echo json_encode($result);
         }
 
         /*
