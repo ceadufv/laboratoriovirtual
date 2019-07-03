@@ -716,10 +716,57 @@ TODO:
             });
         } 
 
+        function indice_idsolucao_estoque (n){
+
+        	for (var i = 0 ; i < solucoes_estoque.length ; i++) {
+            	if (solucoes_estoque[i].id == n) return i; 
+            }
+            return -1;
+
+        }
+
+
+        var solucoes_estoque = [
+			{
+				"id": 1,
+				"nome": "Estoque 1",
+				"descricao": "asas",
+				"tecnico": "asa",
+				"intervalo": "3",
+				"composicao": [
+					{
+						"id": "1",
+						"nome": "Ácido Forte",
+						"concentracao": "0.1"
+					}
+				],
+				"estoque": "true"
+			},
+			{
+				"id": 2,
+				"nome": "Estoque 2",
+				"descricao": "fgfd",
+				"tecnico": "fhd",
+				"intervalo": "4",
+				"composicao": [
+					{
+						"id": "14",
+						"nome": "Bário 2+",
+						"concentracao": "0.1"
+					}
+				],
+				"estoque": "true"
+			}
+
+		];
+
         function carregaCampo(campo, valor) {
             var obj = $('*[name="'+campo+'"]');
 
             if (campo == 'solucoes')  {
+				
+				valor = solucoes_estoque.concat(valor);
+
                 for (var i = 0 ; i < valor.length ; i++) {
                     $('#select_solucoes').append(
                         '<option value="'+valor[i].id+'">'+
@@ -798,7 +845,9 @@ TODO:
 
         function adicionar_solucao_armario(){
             var nome = $("#select_solucoes option:selected").text();
+            console.log('nome add', nome)
             var id_solucao = $("#select_solucoes option:selected").val();
+            console.log('id add', id_solucao)
 
             if (!id_solucao) return false;
 
@@ -824,8 +873,34 @@ TODO:
             
             $('.id_solucoes_pratica').each(function () {
                 var nome = $(this).text();
-                var id_solucao = $(this).attr('data-id');
-                dados_pratica.data.armario.push({ id:id_solucao, nome:nome });
+                var id_solucao = parseInt($(this).attr('data-id'));
+
+                console.log('id', id_solucao)
+
+                var dados = [];
+
+				if(id_solucao > 100){
+                	dados.push(dados_pratica.data.solucoes[indice_idsolucao(id_solucao)]);
+                } else {
+                	dados.push(solucoes_estoque[indice_idsolucao_estoque(id_solucao)]);
+                }
+
+                console.log ('dados', dados)
+
+                var descricao_solucao = dados[0].descricao;
+                var tecnico_solucao = dados[0].tecnico;
+                var intervalo_solucao = dados[0].intervalo;
+                var composicao_solucao = dados[0].composicao;
+
+                dados_pratica.data.armario.push({ 
+                	id:id_solucao, 
+                	nome:nome,
+                	descricao: descricao_solucao,
+                	tecnico: tecnico_solucao,
+                	intervalo: intervalo_solucao,
+                	composicao: composicao_solucao
+                });
+                //dados_pratica.data.armario.push({ id:id_solucao, nome:nome });
             });
 
         }       
@@ -843,7 +918,7 @@ TODO:
         }
 
         function proximo_id_solucao() {
-          var result = 0;
+          var result = 100;
           for (var i = 0 ; i < dados_pratica.data.solucoes.length ; i++) {
             if (!dados_pratica.data.solucoes[i]) continue;
 
@@ -969,9 +1044,9 @@ TODO:
       // Editar
       else {
 
-        $('#modal_solucao').attr('data-id', id_solucao);
+      	if (id_solucao <100) return false
 
-        console.log('oi')
+        $('#modal_solucao').attr('data-id', id_solucao);
 
         //var id_solucao = $('#select_solucoes').val();
         var dados = dados_pratica.data.solucoes[indice_idsolucao(id_solucao)];

@@ -72,8 +72,9 @@ $.ajax({url:'data.php?action=pratica_jogo&id_pratica='+id_pratica}).done(functio
     jogo.init(function (o) {
 
         var armario = o.armario();
+        console.log(data.data.armario_solucoes)
 
-        var dados_armario = data.data.armario;
+        var dados_armario = data.data.armario_solucoes;
 
         //dados_armario = dados_armario_old.armario;
 
