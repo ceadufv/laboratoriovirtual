@@ -1,4 +1,5 @@
 LabArmario = function (data) {
+
 	this._data = data;
 	this._scene;
 }
@@ -27,6 +28,7 @@ LabArmario.prototype.scene = function () {
 	return this;	
 }
 
+
 LabArmario.prototype.buscar = function (s) {
 
 	for (var i = 0 ; i < this._data.length ; i++) {
@@ -38,9 +40,15 @@ LabArmario.prototype.buscar = function (s) {
 	return false;
 }
 
+
 LabArmario.prototype.pegar = function (s) {
 
+	//var o_novo = this.buscar_novo(s);
+	//console.log(o_novo)
+
 	var o = this.buscar(s);
+
+	console.log('>>>', this);
 
 	// Item nao encontrado
 	if (!o) return false;
@@ -51,7 +59,7 @@ LabArmario.prototype.pegar = function (s) {
 	} else {
 		return false;
 	}
-	
+
 	var sol = [];
 	for (var i = 0 ; i < o.data.length ; i++) {
 		sol[i] = new LabSolution();
@@ -67,6 +75,8 @@ LabArmario.prototype.pegar = function (s) {
 		concept: o.conceito,
 		region: 'bancada',
 	}, this.scene());
+
+
 
 	if (sObjeto) {
 

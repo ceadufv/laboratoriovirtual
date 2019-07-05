@@ -285,20 +285,21 @@
                 5, 10, 50, 100, 250, 400, 500, 600, 1000, 2000
             );
             foreach ($valores as $valor):
+            	$disabled = ($valor != 50 && $valor != 100 && $valor != 250)?" disabled":"";
                 ?>
                 <tr class="linha-bequer" data-id="<?php echo $valor; ?>">
                     <td style="text-align: left;">  
-                        <input value="<?php echo $valor; ?>" data-armario="vidrarias" data-name="id" name="bequer" class="bequer-disponivel bequer" type="checkbox" 
+                        <input<?php echo $disabled; ?> value="<?php echo $valor; ?>" data-armario="vidrarias" data-name="volume" name="bequer" class="bequer-disponivel bequer" type="checkbox" 
                         onclick="toggle(this)" /> <span><?php echo $valor;?> mL</span>
                     </td>
                     <td>  
-                        <input data-name="qtd_maxima" class="bequer-qtd_maxima bequer" type="number" min="0" max="10" value="0">
+                        <input<?php echo $disabled; ?> data-name="disponiveis" name="disponiveis" class="bequer-qtd_maxima bequer" type="number" min="0" max="10" value="0">
                     </td>
                     <td> 
-                        <input data-name="volume_maximo" class="bequer-volume_maximo bequer" type="number" min="80" max="95" value="80">
+                        <input<?php echo $disabled; ?> data-name="volume_maximo" name="disponiveis" class="bequer-volume_maximo bequer" type="number" min="80" max="95" value="80">
                     </td>
                     <td> 
-                        <input data-name="desvio_padrao" class="bequer-desvio_padrao bequer" type="number" min="5" max="20" value="10">
+                        <input<?php echo $disabled; ?> data-name="desvio_padrao" name="disponiveis" class="bequer-desvio_padrao bequer" type="number" min="5" max="20" value="10">
                     </td>
                 </tr>
                 <?php
@@ -366,11 +367,11 @@
             ?>
             <tr class="linha-balaovolumetrico" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-                <input data-armario="vidrarias" data-name="id" class="balaovolumetrico-disponivel balaovolumetrico" type="checkbox" 
+                <input data-armario="vidrarias" data-name="volume" class="balaovolumetrico-disponivel balaovolumetrico" type="checkbox" 
                     onclick="toggle(this)" name="balao" value="<?php echo($valor) ?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
-                <input data-name="qtd_maxima" class="balaovolumetrico-qtd_maxima balaovolumetrico" type="number" min="0" max="10" value="0">
+                <input data-name="disponiveis" name="disponiveis" class="balaovolumetrico-qtd_maxima balaovolumetrico" type="number" min="0" max="10" value="0">
             </td>
             <td> 
                 <input data-name="faixa_aceitavel" class="balaovolumetrico-faixa_aceitavel balaovolumetrico" type="number" min="90" max="110" value="110">
@@ -444,11 +445,11 @@
             ?>
             <tr class="linha-pipetavolumetrica" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-                <input data-armario="vidrarias" data-name="id" name="pipeta" class="pipetavolumetrica-disponivel pipetavolumetrica" type="checkbox" 
+                <input data-armario="vidrarias" data-name="volume" name="pipeta" class="pipetavolumetrica-disponivel pipetavolumetrica" type="checkbox" 
                     onclick="toggle(this)" value="<?php echo $valor;?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
-                <input data-name="qtd_maxima" class="pipetavolumetrica-qtd_maxima pipetavolumetrica" type="number" min="0" max="10" value="0">
+                <input data-name="disponiveis" name="disponiveis" class="pipetavolumetrica-qtd_maxima pipetavolumetrica" type="number" min="0" max="10" value="0">
             </td>
             <td> 
                 <input data-name="faixa_aceitavel" class="pipetavolumetrica-faixa_aceitavel pipetavolumetrica" type="number" min="90" max="110" value="110">
@@ -509,20 +510,20 @@
 	      ?>
 	      <tr class="linha-pipetador" data-id="<?php echo $valor; ?>">
 	        <td style="text-align: left;">  
-	          <input data-armario="vidrarias" data-name="id" name="pipetador" class="pipetador-disponivel pipetador" type="checkbox" 
+	          <input <?php echo ($key != "pera")?" disabled":""; ?> data-armario="vidrarias" data-name="volume" name="pipetador" class="pipetador-disponivel pipetador" type="checkbox" 
 	                onclick="toggle(this)" value="<?php echo $key;?>" /> <span class="nomepipetador"><?php echo $valor;?></span>
 	        </td>
 	        <td>
 	        <img data-name="imagem" src="accordion/pipetadores/<?php echo($key) ?>.jpg" width="100">
 	        </td>
 	        <td>
-	          <select data-armario="vidrarias" name="pipetador_tamanho" disabled>
+	          <select data-name="tamanho" data-armario="vidrarias" name="pipetador_tamanho" disabled>
 	            <option value="unico">Único</option>
 	          </select>
 	        </td>
 	        
 	        <td>  
-	            <input name="qtd_maxima" data-name="qtd_maxima" disabled type="number" min="0" max="2" value="1">
+	            <input name="disponiveis" data-name="disponiveis" disabled type="number" min="0" max="2" value="1">
 	        </td>
 	      </tr>
 	      <?php
@@ -603,14 +604,43 @@
 				<div class="card">
 					<div class="card-header">
 						<h5 class="mb-0">
-							<button disabled class="btn btn-link collapsed" data-toggle="collapse" data-target="#cubeta" aria-expanded="false" aria-controls="collapseThree">
-								<strong><i class="fas fa-check-circle"></i> Cubeta</strong>
+							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#cubeta" aria-expanded="false" aria-controls="collapseThree">
+								<strong><i class="fas fa-check-circle ativo"></i> Cubeta</strong>
 								<i class="fa" aria-hidden="true"></i>
 							</button>
 						</h5>
 					</div>
 					<div id="cubeta" class="collapse" aria-labelledby="headingThree">
 						<div class="card-body">
+
+
+<table class="table">
+    <tbody>
+        <tr>
+        <td data-toggle="tooltip" data-placement="bottom" title="Tamanhos disponíveis no laboratório"><h3>Tipos disponíveis</h3></td>
+        <td data-toggle="tooltip" data-placement="bottom" title="Quantidade máxima disponível"><h3>Quantidade máxima</h3></td>
+        </tr>
+        <?php
+        $valores = array(
+        	"Cubeta de vidro",
+        	"Cubeta de quartzo"
+        );
+        foreach ($valores as $valor):
+        ?>
+        <tr class="linha-cubeta" data-id="<?php echo $valor; ?>">
+	        <td style="text-align: left;">  
+	            <input data-armario="vidrarias" data-name="volume" class="cubeta-disponivel cubeta" type="checkbox" 
+	                onclick="toggle(this)" name="cubeta" value="<?php echo($valor) ?>"> <span><?php echo $valor;?></span>
+	        </td>
+	        <td>  
+	            <input name="disponiveis" data-name="disponiveis" class="cubeta-qtd_maxima cubeta" type="number" min="0" max="10" value="0">
+	        </td>
+        </tr>
+        <?php
+        endforeach;
+        ?>
+    </tbody>
+</table>
 						</div>
 					</div>
 				</div>
@@ -740,7 +770,8 @@ TODO:
 						"concentracao": "0.1"
 					}
 				],
-				"estoque": "true"
+				"estoque": true,
+				"disponiveis": 5
 			},
 			{
 				"id": 2,
@@ -755,7 +786,8 @@ TODO:
 						"concentracao": "0.1"
 					}
 				],
-				"estoque": "true"
+				"estoque": true,
+				"disponiveis": 5
 			}
 
 		];
@@ -797,16 +829,17 @@ TODO:
             }
 			else if (campo == 'armario_vidrarias'){
 				for (var i in valor) {
-	            	campos_teste(i, valor[i]);
+	            	campos_armario(i, valor[i]);
 				}
 			}
             //
             else
-            	campos_teste(campo, valor);
+            	campos_armario(campo, valor);
             
         }
 
-    function campos_teste(campo, valor) {
+    function campos_armario(campo, valor) {
+
     	var obj = $('*[name="'+campo+'"]');
     	if ($(obj).attr('type') == 'radio') {
             $(obj).each(function () {
@@ -822,7 +855,17 @@ TODO:
             $(obj).each(function () {
                 var existe = false;
                 for (var i = 0 ; i < valor.length ; i++) {
-                    if (valor[i].id == $(this).val()) {
+                    if (valor[i].volume == $(this).val()) {
+                		var tr = $(this).parents('tr');
+
+                		for (var j in valor[i]) {
+
+                			if (j == 'id') continue;
+                			if (j == 'volume') continue;
+
+                			tr.find('*[data-name="'+j+'"]').val(valor[i][j]);
+                		}
+
                         existe = true;
                         break;
                     }
@@ -1026,6 +1069,8 @@ TODO:
 
         }
 
+    var counter = 0;
+
     function editar_solucao(novo)
     {
 
@@ -1084,7 +1129,7 @@ TODO:
 			  var type = ($(fields[i]).attr('type')||$(fields[i]).prop('tagName')).toLowerCase();
 			  var name = $(fields[i]).attr('name');
 			  var armario_vidrarias = ($(fields[i]).attr('data-armario') == 'vidrarias');
-
+		  
 			  // 
 			  switch (type) {
                 case "select":
@@ -1096,10 +1141,10 @@ TODO:
                     }
                 break;
 			    case "radio":
-            if (data[name] == undefined) {
-                var value = $('input[name="'+name+'"]:checked').val();
-                data[name] = value;
-            }
+		            if (data[name] == undefined) {
+		                var value = $('input[name="'+name+'"]:checked').val();
+		                data[name] = value;
+		            }
 			    break;
 			    case "checkbox":
 			    	var node = fields[i];
@@ -1124,9 +1169,17 @@ TODO:
                         
 	    				$(parent).find('input,select').each(function () {
 	    					var n = $(this).attr('data-name');
-                            if ($(this).val() == 'on') console.log(node, $(this).val())
-                            dvol[n] = $(this).val();
+                            //if ($(this).val() == 'on') console.log(node, $(this).val())
+
+                            if (n != 'disponiveis') 
+	                            dvol[n] = $(this).val();                    
+	                        else
+	                        	dvol[n] = parseInt($(this).val());
 						});
+
+						dvol['id'] = counter+200;			
+						counter++;
+						//console.log(dvol)
 
     					if (armario_vidrarias) {
     						if (!data.armario_vidrarias[inicio])
@@ -1144,11 +1197,14 @@ TODO:
 			  }
 			}
 
+			console.log(data);
+
       var id_pratica = $('.dadospratica').attr('data-id');
 
       //console.log(data)
-
+      //console.log(data)
       //return false;
+
       $.ajax({
         url:'../area_laboratorio/data.php?action=salvar_pratica',
         method:'post',
@@ -1164,12 +1220,13 @@ TODO:
           //data: JSON.stringify(data, null, "\t")
         }
       }).done(function (data) {
+      	alert('A aula foi salva com sucesso')
         $('.dadospratica').attr('data-id',data.id)
         //console.log($('.dadospratica').attr('data-id'), data.id)        
         dados_pratica.id = data.id;
       })
 
-		}
+	}
 
 		//campos();
 

@@ -171,10 +171,10 @@
                 <div class="col-md-10">
                   <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" id="solucoes-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Soluções</a>
+                      <a class="nav-link active" id="solucoes-tab" data-toggle="tab" href="#tab_solucoes" role="tab" aria-controls="home" aria-selected="true">Soluções</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="vidrarias-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Vidrarias</a>
+                      <a class="nav-link" id="vidrarias-tab" data-toggle="tab" href="#tab_vidrarias" role="tab" aria-controls="profile" aria-selected="false">Vidrarias</a>
                     </li>
                   </ul>
                   <div class="tab-content" id="myTabContent">
@@ -182,7 +182,6 @@
                       <div class="caixas">
 <?php
 /*
-
   // TODO: Informar a priori para a instancia da classe
   // qual o id da pratica atual
   $solucoes = $lab->getSolucoesPratica( $_REQUEST['id_pratica'] );
@@ -209,7 +208,7 @@ endforeach;
                     <button type="button" class="botaocircular2">3</button>
                   </div>
                   -->
-                  <div class="tab-pane fade" id="tab_vidrarias" role="tabpanel" aria-labelledby="profile-tab">      
+                  <div class="tab-pane fade" id="tab_vidrarias" role="tabpanel" aria-labelledby="vidrarias-tab">      
                     <div class="caixas">
 <?php
 /*

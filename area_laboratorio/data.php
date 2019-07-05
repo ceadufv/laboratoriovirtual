@@ -48,6 +48,8 @@
 
 function armario() {}
 
+function data() {}
+
 function quebra($texto) {
     $campos = explode(',', $texto);
     $array = [];

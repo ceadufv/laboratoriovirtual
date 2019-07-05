@@ -57,6 +57,53 @@ $('.modal-body')
         }
     });
 
+function construir_tab(tab, s) {
+    $('#tab_'+tab+' .caixas')
+    .append(
+        '<label class="opcao" data-id="'+s.id+'">'+
+        '<input type="checkbox" style="display:none" value="'+s.id+'" />'+
+        '<p>'+s.nome+'</p>'+   
+        '<img src="assets/'+s.conceito+'.png" height="120px">'+
+        '<button data-id="'+s.id+'" type="button" class="btn btn-dark m-3 botao btn-armario-pegar">'+
+        'Selecionar</button>'+
+        '</label>'
+        );
+}
+
+function construir_vidraria(conceito, nome, s) {
+
+    //console.log(']]]', conceito, nome, s)
+
+    if (!s.id) s.id = 0;
+    if (!s.conceito) s.conceito = conceito
+
+    if (s.conceito == 'cubeta') {
+        s.nome = s.volume;
+    }
+    else if (s.conceito == 'pipetador'){
+        s.nome = nome;
+    }
+    else {
+        s.nome = nome + ' ' + s.volume + ' '+ 'mL';
+    }
+
+    construir_tab('vidrarias', s);
+
+    return s;
+}
+
+function construir_solucao(conceito, s) {
+
+    if (!s.id) s.id = 0;
+    if (!s.nome) s.nome = '';
+    if (!s.conceito) s.conceito = conceito;
+
+    construir_tab('solucoes', s);
+
+    return s;
+}
+
+
 $.ajax({url:'data.php?action=pratica_jogo&id_pratica='+id_pratica}).done(function (data) {
 
     var titulo = data.nome;
@@ -72,34 +119,45 @@ $.ajax({url:'data.php?action=pratica_jogo&id_pratica='+id_pratica}).done(functio
     jogo.init(function (o) {
 
         var armario = o.armario();
-        console.log(data.data.armario_solucoes)
 
-        var dados_armario = data.data.armario_solucoes;
+        console.log('data', data.data)
 
-        //dados_armario = dados_armario_old.armario;
+        var dataArmario = [];
 
-        //
-        armario.data(dados_armario);
-        //
-        for (var i = 0 ; i < dados_armario.length ; i++) {
-            // HACK
-            var s = dados_armario[i];
-            s.conceito = 'frasco_estoque';
-            s.disponiveis = 5;
-            s.data = construir_data(s.composicao);
-            s._data = { volumeMaximo:1000 };            
+        var dados_armario_solucoes = data.data.armario_solucoes;       
+        var dados_armario_vidrarias = data.data.armario_vidrarias;
 
-            $('#tab_solucoes .caixas')
-                .append(
-                    '<label class="opcao" data-id="'+s.id+'" data-descricao="'+s.descricao+'">'+
-                    '<input type="checkbox" style="display:none" value="'+s.id+'" />'+
-                    '<p>'+s.nome+'</p>'+   
-                    '<img src="assets/frasco_estoque.png" height="120px">'+
-                    '<button data-id="'+s.id+'" type="button" class="btn btn-dark m-3 botao btn-armario-pegar">'+
-                    'Selecionar</button>'+
-                    '</label>'
-                );
+        var dados_balao = data.data.armario_vidrarias.balao;
+        var dados_bequer = data.data.armario_vidrarias.bequer;
+        var dados_pipeta = data.data.armario_vidrarias.pipeta;
+        var dados_cubeta = data.data.armario_vidrarias.cubeta;
+        var dados_pipetador = data.data.armario_vidrarias.pipetador;
+
+        for (var i = 0 ; i < dados_balao.length ; i++)
+            dataArmario.push(construir_vidraria('balao','Balão', dados_balao[i]));
+
+        for (var i = 0 ; i < dados_bequer.length ; i++)
+            dataArmario.push(construir_vidraria('bequer', 'Béquer', dados_bequer[i]));
+
+        for (var i = 0 ; i < dados_pipeta.length ; i++)
+            dataArmario.push(construir_vidraria('pipeta', 'Pipeta', dados_pipeta[i]));
+
+        for (var i = 0 ; i < dados_cubeta.length ; i++)
+            dataArmario.push(construir_vidraria('cubeta', 'Cubeta', dados_cubeta[i]));
+
+        for (var i = 0 ; i < dados_pipetador.length ; i++)
+            dataArmario.push(construir_vidraria('pipetador', 'Pipetador', dados_pipetador[i]));
+
+        for (var i = 0 ; i < dados_armario_solucoes.length ; i++)
+            dataArmario.push(construir_solucao('frasco_estoque', dados_armario_solucoes[i]));
+
+        for (var i = 0 ; i < dataArmario.length ; i++) {
+            //dataArmario[i].disponiveis = 5;
+            if (!dataArmario[i].data) dataArmario[i].data = {};
         }
+
+        //
+        armario.data(dataArmario);
     });
 });
 
@@ -255,10 +313,13 @@ $('#armario').on('click', '.btn-armario-pegar', function () {
 $('.btn-armario-adicionar').click(function () {
     var selecionados = armarioSelecionados();
 
-    //console.log(selecionados)
-
     for (var i = 0 ; i < selecionados.length ; i++) {
+
+        console.log(selecionados[i])
+        console.log(jogo)
         jogo.armario().pegar(selecionados[i]);
+        //jogo._data.data().pegar(selecionados[i]);
+        
     }
 
     $('#armario').modal('hide');

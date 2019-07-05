@@ -7,12 +7,13 @@ var scene;
 
 LabJogo = function (data) {
     this._data = data;
+    console.log(data.data)
     this._phaser;
     this._showPopup = false;
     this._popupAlpha = 0;
     this._armario = new LabArmario();
-}
 
+}
 
 LabJogo.prototype.scene = function () {
 	return this._phaser.scene;
@@ -25,7 +26,7 @@ LabJogo.prototype.lugarLivre = function (regiao) {
 	return LabUtils.lugarLivre( regiao );
 }
 
-LabJogo.prototype.armario = function () { return this._armario; }
+LabJogo.prototype.armario = function () { return this._armario;}
 
 LabJogo.prototype.popup = function () { return this._popup; }
 
