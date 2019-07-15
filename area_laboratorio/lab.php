@@ -40,6 +40,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+
+
     <script>
       var id_pratica = parseInt('<?php echo @$_REQUEST['id_pratica']; ?>');
       var tipo_acesso = '<?php echo @$_REQUEST['tipo_acesso']; ?>';
@@ -80,6 +82,7 @@
         $("#animacao .modal-body .conteudo .page:not('.page-0')").remove();
       }
     </script>
+
     <style>
       .on { background-color: #0f0;  }
       .on::after { content: "ON"; }
@@ -92,6 +95,7 @@
       }
 
     </style>
+
   </head>
     <body>
       <header>
@@ -274,24 +278,26 @@ endforeach;
           <div class="modal-body">
 
 <form method="post" action="#" name="form0" >
+  <h3> Configurar espectrofotômetro </h3>
   <label for="Lmed">Comprimento de onda médio:</label>    
   <input type="number" name="Lmed" min="190" max="1100" value="190">
-  <br /><br />
-    <input type="radio" name="rdtipo" id="tipo" value="vidro" /> Cubeta de Vidro
+    <br />
+    <!--<input type="radio" name="rdtipo" id="tipo" value="vidro" /> Cubeta de Vidro
     <input type="radio" name="rdtipo" id="tipo" value="quartzo"/> Cubeta de Quartzo <br /> 
-    <h2>Modo</h2>
+    <br /><br />-->
+    <h3>Escolha o modo de medição: </h3>
     <input type="radio" name="modo" id="modo" value="abs" /> Absorbância
     <input type="radio" name="modo" id="modo" value="trans"/> Transmitância <br /> 
 
 </form>
-
-  <h2>Lampadas</h2>
+  <br />
+  <h3>Escolha quais lâmpadas deseja ligar: </h3>
   <span class="deuterio off"></span> Deutério <span class="tungstenio off"></span> Tungstênio
-  <br /><br />
+  <br />
   <button onclick="ligar('deuterio')" class="btn">Deutério</button>
   <button onclick="ligar('tungstenio')" class="btn"> Tungstênio </button>
-  
-  <input type="button" class="btn" onclick="validarConfig()" value="Ligar" data-dismiss="modal" aria-label="Close" />
+  <br /><br />
+  <input type="button" class="btn-success" onclick="validarConfig()" value="Ligar Equipamento" data-dismiss="modal" aria-label="Close" />
 
 
 <script>
@@ -323,7 +329,7 @@ function validarConfig (){
   
   config.Lmed = Lmed*1
 
-
+/*
   if((form0.rdtipo[0].checked == false)&&(form0.rdtipo[1].checked == false)){
     alert('Informe o tipo de cubeta');
       form1.rdtipo[0].focus();
@@ -345,6 +351,7 @@ function validarConfig (){
   if((form0.modo[0].checked == false)&&(form0.modo[1].checked == true)){
       config.modo = 1
   }
+*/
 
   console.log(config)
 
@@ -370,7 +377,6 @@ function ligar (objeto){
   $('.deuterio')
     .removeClass('off').removeClass('on')
       .addClass((config.lampada.deuterio)?'on':'off');
-
   //        
   $('.tungstenio')
     .removeClass('off').removeClass('on')
@@ -385,7 +391,6 @@ function ligar (objeto){
       </div>
     </div>
 
-
 <div class="modal fade" id="teste3" tabindex="-1" role="dialog" aria-labelledby="LabelModal" aria-hidden="true" >
       <div class="modal-dialog" role="document">
         
@@ -393,7 +398,7 @@ function ligar (objeto){
     </div>
 
     
-    <div id="AreaJogo">    
+    <div id="AreaJogo">  
       <script type="text/javascript" src="js/LabMain.js"></script>         
     </div>
 </body>

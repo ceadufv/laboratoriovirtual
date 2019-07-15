@@ -7,7 +7,6 @@ var scene;
 
 LabJogo = function (data) {
     this._data = data;
-    console.log(data.data)
     this._phaser;
     this._showPopup = false;
     this._popupAlpha = 0;
@@ -48,10 +47,14 @@ LabJogo.prototype.movePopup = function (x,y) {
 	return this._popup;
 }
 
+
 LabJogo._validPopup = [
 	'frasco_estoque',
 	'bequer',
-	'pipeta_pipetador'
+	'bequer_cheio',
+	'pipeta_pipetador',
+	'cubeta',
+	'cubeta_cheia'
 ];
 
 LabJogo.prototype.popupShow = function (handler) {
@@ -74,6 +77,7 @@ LabJogo.prototype.popupShow = function (handler) {
 
 	var graphics = this._popup.getData('graphics');
 	graphics.visible = false;
+
 
 	switch (handler.concept()) {
 		case "frasco_estoque":
@@ -120,7 +124,62 @@ LabJogo.prototype.popupShow = function (handler) {
 			var v = handler.volume()/handler.data('volumeMaximo');
 			this.popupPorcentagem(v * 100);
 		break;
+		case "bequer_cheio":
+			texto[0].text = handler.data('json').nome;	
+			texto[0].setFontSize(40);
+			texto[1].text = '';
+			texto[2].text = '';
+
+			// Alinhamentos
+			texto[3].text = '';
+			/*
+			texto[3].text = Math.round(handler.volume())+'/'+Math.round(handler.data('volumeMaximo'))+' ml'
+			texto[3].x = x0 - texto[3].width/2;
+			texto[3].y = y0 + 30;
+			*/
+
+			// 
+			var v = handler.volume()/handler.data('volumeMaximo');
+			this.popupPorcentagem(v * 100);
+		break;
+		case "cubeta":
+			texto[0].text = handler.data('json').nome;	
+			texto[0].setFontSize(40);
+			texto[1].text = '';
+			texto[2].text = '';
+
+			// Alinhamentos
+			texto[3].text = '';
+			/*
+			texto[3].text = Math.round(handler.volume())+'/'+Math.round(handler.data('volumeMaximo'))+' ml'
+			texto[3].x = x0 - texto[3].width/2;
+			texto[3].y = y0 + 30;
+			*/
+
+			// 
+			var v = handler.volume()/handler.data('volumeMaximo');
+			this.popupPorcentagem(v * 100);
+		break;
+		case "cubeta_cheia":
+			texto[0].text = handler.data('json').volume;	
+			texto[0].setFontSize(40);
+			texto[1].text = '';
+			texto[2].text = '';
+
+			// Alinhamentos
+			texto[3].text = '';
+			/*
+			texto[3].text = Math.round(handler.volume())+'/'+Math.round(handler.data('volumeMaximo'))+' ml'
+			texto[3].x = x0 - texto[3].width/2;
+			texto[3].y = y0 + 30;
+			*/
+
+			// 
+			var v = handler.volume()/handler.data('volumeMaximo');
+			this.popupPorcentagem(v * 100);
+		break;
 		}
+
 
 	// Centraliza o titulo
 	texto[0].x = x0 - texto[0].width/2;
@@ -251,7 +310,9 @@ LabJogo.prototype.init = function (f) {
 	    this.load.image('bequer_repouso', 'assets/bequer-repouso.png');
 	    this.load.image('bequer_vazio', 'assets/bequer-descarte.png');
 	    this.load.image('bequer_cheio', 'assets/bequer.png');
-	    this.load.image('cubeta', 'assets/cubeta.png');	    
+	   	this.load.image('bequer_cheio2', 'assets/bequer.png');
+	    this.load.image('cubeta', 'assets/cubeta.png');	 
+	   	this.load.image('cubeta_cheia', 'assets/cubeta-cheia.png');	   
 	    this.load.image('eletrodo', 'assets/eletrodo.png');    
 	    this.load.image('frasco', 'assets/frasco.png');
 	    this.load.image('frasco_estoque', 'assets/frasco_estoque.png');
@@ -261,8 +322,10 @@ LabJogo.prototype.init = function (f) {
 	    this.load.image('lenco', 'assets/lenco.png');
 	    this.load.image('objeto', 'assets/frasco.png');
 	    this.load.image('pipeta', 'assets/pipeta.png');
-	    this.load.image('pipeta_pipetador', 'assets/pipeta-pipetador.png');
-	    this.load.image('pipetador', 'assets/pipetador.png');    	    
+		this.load.image('micropipeta', 'assets/micropipeta.png');
+		this.load.image('pipeta_pipetador', 'assets/pipeta-pipetador.png');
+	    this.load.image('pipetador', 'assets/pipetador.png');
+	   	this.load.image('balao', 'assets/balao.png');     	    
 	    this.load.image('phmetro', 'assets/phmetro.png');
 	    this.load.image('phmetro_braco', 'assets/phmetro-braco.png');
 	    this.load.image('phmetro_frente', 'assets/phmetro-frente.png');

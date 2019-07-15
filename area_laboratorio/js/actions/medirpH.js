@@ -13,7 +13,7 @@ function medirpH(interacao) {
 	var target = interacao.target();
 	var phmetro = interacao.source();
 
-	console.log(target)
+	console.log(target.data('json').conceito)
 
 	var pHmetro = new LabPhmetro({ desvioPadrao:0.02 });
 	pHmetro.solucao(target);
@@ -38,5 +38,9 @@ function medirpH(interacao) {
 
 	//Muda o estado do eletrodo para sujo
 	phmetro.data('limpo',false);
+
+	//Muda o estado do béquer para indicar que ele foi medido (muda o conceito, mas permanece a mesma imagem)
+	// Isso evita que ao medir um segundo bequer, ele leia informações do primeiro
+	target.setConcept('bequer_cheio2')
 
 }

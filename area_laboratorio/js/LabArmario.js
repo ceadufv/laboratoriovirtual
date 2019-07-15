@@ -43,9 +43,6 @@ LabArmario.prototype.buscar = function (s) {
 
 LabArmario.prototype.pegar = function (s) {
 
-	//var o_novo = this.buscar_novo(s);
-	//console.log(o_novo)
-
 	var o = this.buscar(s);
 
 	console.log('>>>', this);
@@ -53,12 +50,19 @@ LabArmario.prototype.pegar = function (s) {
 	// Item nao encontrado
 	if (!o) return false;
 
+	// Se acabaram os itens emite um alerta
+	if(o.disponiveis == 0){
+		alert ('Não há mais '+o.nome+' disponível')
+		$('#armario button[data-marcado="true"]').removeClass('.btn verde').prop('disabled', true);
+	}
+
 	// Item existe, mas acabou
 	if (o.disponiveis >= 1) {
 		o.disponiveis--;
 	} else {
 		return false;
 	}
+
 
 	var sol = [];
 	for (var i = 0 ; i < o.data.length ; i++) {

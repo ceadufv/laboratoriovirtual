@@ -27,7 +27,7 @@ function cadastraAula() {
 
   //configuracao_inicial();
   //  $('.cadastra_edita').text('Cadastrar nova aula');
-  $('.dadospratica').attr('data-id',0);
+  $('.dadospratica').attr('data-id',-1);
   aba('editaula');
 
   //  editar = -1;

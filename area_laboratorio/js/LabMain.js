@@ -57,17 +57,57 @@ $('.modal-body')
         }
     });
 
+function construir_data(composicao) {
+    var data = [];
+
+    for (var i = 0 ; i < composicao.length ; i++) {
+        data.push({
+            "data": [
+                {
+                    "substancias": [
+                        {
+                            "id": parseInt(composicao[i].id),
+                            "concentracao": parseInt(composicao[i].concentracao),
+                            "volume": 1000
+                        }
+                    ]
+                }
+            ]
+        });
+    }
+
+    return data;
+}
+
 function construir_tab(tab, s) {
-    $('#tab_'+tab+' .caixas')
-    .append(
-        '<label class="opcao" data-id="'+s.id+'">'+
-        '<input type="checkbox" style="display:none" value="'+s.id+'" />'+
-        '<p>'+s.nome+'</p>'+   
-        '<img src="assets/'+s.conceito+'.png" height="120px">'+
-        '<button data-id="'+s.id+'" type="button" class="btn btn-dark m-3 botao btn-armario-pegar">'+
-        'Selecionar</button>'+
-        '</label>'
+
+    // Se alguma vidraria não estiver disponível, nao aparece na tela
+    if (s.disponiveis == 0) return;
+
+    // Se for cubeta, no armário ela aparece maior (exceção)
+    if (s.conceito == 'cubeta'){
+        $('#tab_'+tab+' .caixas')
+        .append(
+            '<label class="opcao" data-id="'+s.id+'">'+
+            '<input type="checkbox" style="display:none" value="'+s.id+'" />'+
+            '<p>'+s.nome+'</p>'+   
+            '<img src="assets/cubeta-armario.png" height="120px">'+
+            '<button data-id="'+s.id+'" type="button" class="btn btn-dark m-3 botao btn-armario-pegar" >'+
+            'Selecionar</button>'+
+            '</label>'
         );
+    } else {
+        $('#tab_'+tab+' .caixas')
+        .append(
+            '<label class="opcao" data-id="'+s.id+'">'+
+            '<input type="checkbox" style="display:none" value="'+s.id+'" />'+
+            '<p>'+s.nome+'</p>'+   
+            '<img src="assets/'+s.conceito+'.png" height="120px">'+
+            '<button data-id="'+s.id+'" type="button" class="btn btn-dark m-3 botao btn-armario-pegar" >'+
+            'Selecionar</button>'+
+            '</label>'
+        );
+    }
 }
 
 function construir_vidraria(conceito, nome, s) {
@@ -77,28 +117,46 @@ function construir_vidraria(conceito, nome, s) {
     if (!s.id) s.id = 0;
     if (!s.conceito) s.conceito = conceito
 
+    // Ajusta o nome que aparece no armario
     if (s.conceito == 'cubeta') {
         s.nome = s.volume;
+        s._data = {limpo: true , volumeMaximo: 3 };
     }
     else if (s.conceito == 'pipetador'){
         s.nome = nome;
     }
+    else if (s.conceito == 'micropipeta'){
+        s.nome = nome + ' ' + s.volume;
+        //Diz se a vidraria nasce limpa ou suja
+        s._data = {limpo: true , volumeMaximo: parseInt(s.volume) };
+    }
     else {
         s.nome = nome + ' ' + s.volume + ' '+ 'mL';
+        //Diz se a vidraria nasce limpa ou suja
+        s._data = {limpo: true , volumeMaximo: parseInt(s.volume) };
     }
 
-    construir_tab('vidrarias', s);
+    //Adicionar sprite na tela
+    construir_tab('vidrarias', s)
 
     return s;
 }
 
 function construir_solucao(conceito, s) {
 
+
     if (!s.id) s.id = 0;
     if (!s.nome) s.nome = '';
     if (!s.conceito) s.conceito = conceito;
 
+    //Adicionar sprite na tela
     construir_tab('solucoes', s);
+
+    // Ajusta a composicao de acordo leitura do laboratorio
+    s.data = construir_data(s.composicao)
+
+    //Adiciona volume máximo
+    s._data = { volumeMaximo: 1000 };
 
     return s;
 }
@@ -132,6 +190,7 @@ $.ajax({url:'data.php?action=pratica_jogo&id_pratica='+id_pratica}).done(functio
         var dados_pipeta = data.data.armario_vidrarias.pipeta;
         var dados_cubeta = data.data.armario_vidrarias.cubeta;
         var dados_pipetador = data.data.armario_vidrarias.pipetador;
+        var dados_micropipeta = data.data.armario_vidrarias.micropipeta;
 
         for (var i = 0 ; i < dados_balao.length ; i++)
             dataArmario.push(construir_vidraria('balao','Balão', dados_balao[i]));
@@ -144,6 +203,9 @@ $.ajax({url:'data.php?action=pratica_jogo&id_pratica='+id_pratica}).done(functio
 
         for (var i = 0 ; i < dados_cubeta.length ; i++)
             dataArmario.push(construir_vidraria('cubeta', 'Cubeta', dados_cubeta[i]));
+
+        for (var i = 0 ; i < dados_micropipeta.length ; i++)
+            dataArmario.push(construir_vidraria('micropipeta', 'Micropipeta', dados_micropipeta[i]));
 
         for (var i = 0 ; i < dados_pipetador.length ; i++)
             dataArmario.push(construir_vidraria('pipetador', 'Pipetador', dados_pipetador[i]));
@@ -161,27 +223,7 @@ $.ajax({url:'data.php?action=pratica_jogo&id_pratica='+id_pratica}).done(functio
     });
 });
 
-function construir_data(composicao) {
-    var data = [];
 
-    for (var i = 0 ; i < composicao.length ; i++) {
-        data.push({
-            "data": [
-                {
-                    "substancias": [
-                        {
-                            "id": composicao[i].id,
-                            "concentracao": composicao[i].concentracao,
-                            "volume": 1000
-                        }
-                    ]
-                }
-            ]
-        });
-    }
-
-    return data;
-}
 
 // // Cria a acao do botao do armario
 // $('#armario').on('click', '.btn-armario-pegar', function () {
@@ -311,15 +353,11 @@ $('#armario').on('click', '.btn-armario-pegar', function () {
 
 // Adiciona a bancada os objetos selecionados
 $('.btn-armario-adicionar').click(function () {
+
     var selecionados = armarioSelecionados();
 
     for (var i = 0 ; i < selecionados.length ; i++) {
-
-        console.log(selecionados[i])
-        console.log(jogo)
-        jogo.armario().pegar(selecionados[i]);
-        //jogo._data.data().pegar(selecionados[i]);
-        
+        jogo.armario().pegar(selecionados[i]);      
     }
 
     $('#armario').modal('hide');

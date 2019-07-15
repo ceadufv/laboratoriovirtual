@@ -241,14 +241,14 @@
     <div class="col-auto">
 
         <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-         <select data-armario="vidrarias" name="bequer_ambientacao" class="custom-select bequer-ambientacao bequer" data-name="bequer_ambientacao">
+         <select disabled data-armario="vidrarias" name="bequer_ambientacao" class="custom-select bequer-ambientacao bequer" data-name="bequer_ambientacao">
             <option value="auto">Automática</option>
             <option value="manual">Manual</option>
         </select>
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-        <select data-armario="vidrarias" data-name="bequer_quantidade" name="bequer_quantidade" class="custom-select bequer-qtd_ambientes">
+        <select disabled data-armario="vidrarias" data-name="bequer_quantidade" name="bequer_quantidade" class="custom-select bequer-qtd_ambientes">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -256,14 +256,14 @@
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-        <select data-armario="vidrarias" data-name="bequer_agitacao" name="bequer_agitacao" class="custom-select bequer-agitacao">
+        <select disabled data-armario="vidrarias" data-name="bequer_agitacao" name="bequer_agitacao" class="custom-select bequer-agitacao">
             <option value="auto">Automático</option>
             <option value="manual">Manual</option>
         </select>
     </div>
     <div class="col-auto">
         <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-        <select data-armario="vidrarias" data-name="bequer_mistura" name="bequer_mistura" class="custom-select bequer-mistura bequer">
+        <select disabled data-armario="vidrarias" data-name="bequer_mistura" name="bequer_mistura" class="custom-select bequer-mistura bequer">
             <option value="false">Não permite</option>
             <option value="true">Permite</option>
         </select>
@@ -285,7 +285,7 @@
                 5, 10, 50, 100, 250, 400, 500, 600, 1000, 2000
             );
             foreach ($valores as $valor):
-            	$disabled = ($valor != 50 && $valor != 100 && $valor != 250)?" disabled":"";
+            	$disabled = ($valor != 5 && $valor != 10 && $valor != 50 && $valor != 100 && $valor != 250)?" disabled":"";
                 ?>
                 <tr class="linha-bequer" data-id="<?php echo $valor; ?>">
                     <td style="text-align: left;">  
@@ -328,23 +328,23 @@
 <section class="justify-content-center" style="margin: 10px">
 
     <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-    <select data-armario="vidrarias" data-name="balaovolumetrico_ambientacao" name="balaovolumetrico_ambientacao" class="custom-select balaovolumetrico-ambientacao balaovolumetrico" >
+    <select disabled data-armario="vidrarias" data-name="balaovolumetrico_ambientacao" name="balaovolumetrico_ambientacao" class="custom-select balaovolumetrico-ambientacao balaovolumetrico" >
         <option value="auto">Automática</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-    <select data-armario="vidrarias" data-name="balaovolumetrico_qtd_ambientes"  name="balaovolumetrico_qtd_ambientes" class="custom-select balaovolumetrico-qtd_ambientes balaovolumetrico">
+    <select disabled data-armario="vidrarias" data-name="balaovolumetrico_qtd_ambientes"  name="balaovolumetrico_qtd_ambientes" class="custom-select balaovolumetrico-qtd_ambientes balaovolumetrico">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-    <select data-armario="vidrarias" data-name="balaovolumetrico_agitacao" name="balaovolumetrico_agitacao" class="custom-select balaovolumetrico-agitacao balaovolumetrico">
+    <select disabled data-armario="vidrarias" data-name="balaovolumetrico_agitacao" name="balaovolumetrico_agitacao" class="custom-select balaovolumetrico-agitacao balaovolumetrico">
         <option value="auto">Automático</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-    <select data-armario="vidrarias" data-name="balaovolumetrico_mistura" name="balaovolumetrico_mistura" class="custom-select balaovolumetrico-mistura balaovolumetrico">
+    <select disabled data-armario="vidrarias" data-name="balaovolumetrico_mistura" name="balaovolumetrico_mistura" class="custom-select balaovolumetrico-mistura balaovolumetrico">
         <option value="false">Não permite</option>
         <option value="true">Permite</option>
     </select>
@@ -364,20 +364,21 @@
                 5, 10, 25, 50, 100, 200, 250, 500, 1000, 2000
             );
             foreach ($valores as $valor):
+            	$disabled = ($valor != 5 && $valor != 10 && $valor != 25 && $valor != 50 && $valor != 100 && $valor != 200 && $valor != 250)?" disabled":"";
             ?>
             <tr class="linha-balaovolumetrico" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-                <input data-armario="vidrarias" data-name="volume" class="balaovolumetrico-disponivel balaovolumetrico" type="checkbox" 
+                <input <?php echo $disabled; ?> data-armario="vidrarias" data-name="volume" class="balaovolumetrico-disponivel balaovolumetrico" type="checkbox" 
                     onclick="toggle(this)" name="balao" value="<?php echo($valor) ?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
-                <input data-name="disponiveis" name="disponiveis" class="balaovolumetrico-qtd_maxima balaovolumetrico" type="number" min="0" max="10" value="0">
+                <input <?php echo $disabled; ?> data-name="disponiveis" name="disponiveis" class="balaovolumetrico-qtd_maxima balaovolumetrico" type="number" min="0" max="10" value="0">
             </td>
             <td> 
-                <input data-name="faixa_aceitavel" class="balaovolumetrico-faixa_aceitavel balaovolumetrico" type="number" min="90" max="110" value="110">
+                <input <?php echo $disabled; ?> data-name="faixa_aceitavel" class="balaovolumetrico-faixa_aceitavel balaovolumetrico" type="number" min="90" max="110" value="110">
             </td>
             <td> 
-                <input data-name="desvio_padrao" class="balaovolumetrico-desvio_padrao balaovolumetrico" type="number" min="0.0" max="1.0" step="0.01"  value="0.01">
+                <input <?php echo $disabled; ?> data-name="desvio_padrao" class="balaovolumetrico-desvio_padrao balaovolumetrico" type="number" min="0.0" max="1.0" step="0.01"  value="0.01">
             </td>
             </tr>
             <?php
@@ -407,23 +408,23 @@
 <section class="justify-content-center" style="margin: 10px">
 
     <h3 data-toggle="tooltip" data-placement="bottom" title="Como a lavagem da vidraria com a solução deve ser realizada. Em todo caso, o usuário terá que solicitar essa etapa">Animação da Ambientação</h3>
-    <select data-armario="vidrarias" class="custom-select" name="pipetavolumetrica_ambientacao">
+    <select disabled data-armario="vidrarias" class="custom-select" name="pipetavolumetrica_ambientacao">
         <option value="auto">Automática</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade de ambientações necessárias">Número de vezes a ambientar</h3>
-    <select data-armario="vidrarias" class="custom-select" name="pipetavolumetrica_qtd_ambientes">
+    <select disabled data-armario="vidrarias" class="custom-select" name="pipetavolumetrica_qtd_ambientes">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Método de agitação">Agitação</h3>
-    <select data-armario="vidrarias" class="custom-select" name="pipetavolumetrica_agitacao">
+    <select disabled data-armario="vidrarias" class="custom-select" name="pipetavolumetrica_agitacao">
         <option value="auto">Automático</option>
         <option value="manual">Manual</option>
     </select>
     <h3 data-toggle="tooltip" data-placement="bottom" title="Permite a mistura de outra solução ao béquer ambientado e sem volume definido">Mistura</h3>
-    <select data-armario="vidrarias" class="custom-select pipetavolumetrica-mistura" name="pipetavolumetrica_mistura">
+    <select disabled data-armario="vidrarias" class="custom-select pipetavolumetrica-mistura" name="pipetavolumetrica_mistura">
         <option value="false">Não permite</option>
         <option value="true">Permite</option>
     </select>
@@ -442,20 +443,21 @@
                 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10, 15, 20, 25, 50, 100
             );
             foreach ($valores as $valor):
+            	$disabled = ($valor != 5.0 && $valor != 10.0)?" disabled":"";
             ?>
             <tr class="linha-pipetavolumetrica" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-                <input data-armario="vidrarias" data-name="volume" name="pipeta" class="pipetavolumetrica-disponivel pipetavolumetrica" type="checkbox" 
+                <input <?php echo $disabled; ?> data-armario="vidrarias" data-name="volume" name="pipeta" class="pipetavolumetrica-disponivel pipetavolumetrica" type="checkbox" 
                     onclick="toggle(this)" value="<?php echo $valor;?>"> <span><?php echo $valor;?> mL</span>
             </td>
             <td>  
-                <input data-name="disponiveis" name="disponiveis" class="pipetavolumetrica-qtd_maxima pipetavolumetrica" type="number" min="0" max="10" value="0">
+                <input <?php echo $disabled; ?> data-name="disponiveis" name="disponiveis" class="pipetavolumetrica-qtd_maxima pipetavolumetrica" type="number" min="0" max="10" value="0">
             </td>
             <td> 
-                <input data-name="faixa_aceitavel" class="pipetavolumetrica-faixa_aceitavel pipetavolumetrica" type="number" min="90" max="110" value="110">
+                <input <?php echo $disabled; ?> data-name="faixa_aceitavel" class="pipetavolumetrica-faixa_aceitavel pipetavolumetrica" type="number" min="90" max="110" value="110">
             </td>
             <td> 
-                <input data-name="desvio_padrao" class="pipetavolumetrica-desvio_padrao pipetavolumetrica" type="number" min="0.0" max="1.0" step="0.01"  value="0.01">
+                <input <?php echo $disabled; ?> data-name="desvio_padrao" class="pipetavolumetrica-desvio_padrao pipetavolumetrica" type="number" min="0.0" max="1.0" step="0.01"  value="0.01">
             </td>
             </tr>
             <?php
@@ -563,18 +565,19 @@
             <td><h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade máxima disponível">Quantidade máxima</h3></td>
         </tr>
         <?php
-            $valores = array(
-            "10-100","50-200","100-1000","1000-5000"
-            );
-            foreach ($valores as $valor):
+        $valores = array(
+        "10-100","50-200","100-1000","1000-5000"
+        );
+        foreach ($valores as $valor):
+        	$disabled = ($valor != "100-1000" )?" disabled":"";
         ?>
         <tr class="linha-micropipeta" data-id="<?php echo $valor; ?>">
             <td style="text-align: left;">  
-            <input class="micropipeta-disponivel micropipeta" type="checkbox" 
+            <input <?php echo $disabled; ?> class="micropipeta-disponivel micropipeta" data-armario="vidrarias" data-name="volume" name="micropipeta" type="checkbox" 
                    onclick="toggle(this)" value="<?php echo $valor;?>"> <span><?php echo $valor;?> µL</span>
             </td>
             <td>  
-                <input class="micropipeta-qtd_maxima micropipeta" type="number" min="0" max="10" value="0">
+                <input <?php echo $disabled; ?> name="disponiveis" data-name="disponiveis" class="micropipeta-qtd_maxima micropipeta" type="number" min="0" max="10" value="0">
             </td>
         </tr>
         <?php
@@ -934,6 +937,7 @@ TODO:
                 var tecnico_solucao = dados[0].tecnico;
                 var intervalo_solucao = dados[0].intervalo;
                 var composicao_solucao = dados[0].composicao;
+                var disponiveis_solucao = 5;
 
                 dados_pratica.data.armario.push({ 
                 	id:id_solucao, 
@@ -941,6 +945,7 @@ TODO:
                 	descricao: descricao_solucao,
                 	tecnico: tecnico_solucao,
                 	intervalo: intervalo_solucao,
+                	disponiveis: disponiveis_solucao,
                 	composicao: composicao_solucao
                 });
                 //dados_pratica.data.armario.push({ id:id_solucao, nome:nome });

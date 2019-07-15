@@ -9,8 +9,8 @@ function encherCubeta(interacao) {
 	var source = interacao.source();
 	var target = interacao.target();
 
-	var volume = source.transferir(target, target.volumeDisponivel());
-
+	//Realiza a transferencia do volume
+	source.transferir(target, target.volumeDisponivel());
 
 	// Inserir animação de trasnferência do líquido para cubeta e secagem com papel (semelhante à lavagem do eletrodo)
 	$('#animacao').modal('show');
@@ -21,10 +21,20 @@ function encherCubeta(interacao) {
 
     exibirPagina(1);
 
+
 	var vidraria = 'cubeta';
 	// Muda o nome da vidraria para identificar qual a solução presente
 	var solucao = source.data('json').nome.toLowerCase();
 	target.data('json').nome = vidraria+solucao
 
+	console.log('novo nome', target.data('json').nome)
+
+	// Muda o status para cheia
+	target.data('cheio',true);
+
+
+	// Muda a imagem da cubeta, refletindo seu novo estado
+	// (cheia)
+	target.setConcept('cubeta_cheia');
 	
 }
