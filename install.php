@@ -2,9 +2,7 @@
 /**
  * Arquivo de configuração
  * @version 1.0.0
- * 2
 */
-
 $action = @$_REQUEST['action'];
 $error = @$_REQUEST['error'];
 $path = pathinfo(__FILE__);
