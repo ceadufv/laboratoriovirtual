@@ -1,4 +1,9 @@
 <?php
+/**
+ * Arquivo de configuração
+ * @version 1.0.0
+*/
+
 $action = @$_REQUEST['action'];
 $error = @$_REQUEST['error'];
 $path = pathinfo(__FILE__);
