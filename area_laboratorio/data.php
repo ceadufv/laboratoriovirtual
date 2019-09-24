@@ -6,7 +6,6 @@
   switch ($action) {
     case "pratica":
         $resultado = $lab->jsonPratica( @$_REQUEST['id_pratica'] );
-
         echo json_encode($resultado);
     break;
 
@@ -30,15 +29,21 @@
 
     case "salvar_pratica":
       header("Conten-type: application/json; charset=utf-8");
+      $dados = $_REQUEST;
+      if(empty($dados['nome'])){
+        echo json_encode(array('success'=>false,'msg'=>'Título da pratica é inválido','id'=>0));
+        exit();
+      }
+      
       $id = $lab->salvarPratica( $_REQUEST );
-      echo "{\"sucesso\":true, \"id\":$id}";
+      if(empty($id)){
+        echo json_encode(array('success'=>false,'msg'=>'Dados inválidos','id'=>$id));
+      }else{
+        echo json_encode(array('success'=>true,'msg'=>'A aula foi salva com sucesso','id'=>$id));
+      }
+      exit();
     break;
 
-    //case "armario":
-    //   header("Conten-type: application/json; charset=utf-8"); 
-        
-    //    exit;
-    //    break;
     default:
       $sql = $dbh->prepare('select id_modelo_pratica as id, nome_pratica from modelo_pratica order by nome_pratica');
       $sql->execute();

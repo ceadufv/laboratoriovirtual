@@ -1,5 +1,4 @@
 <?php
-
 class LabJogo
 {
     private $_dbh;
@@ -23,40 +22,35 @@ class LabJogo
         return $this->_error;
     }
 
-    function salvarPratica($dados)
+    public function salvarPratica($dados)
     {
-        if (!empty($dados['id'])) {
-            // Atualizar
-
-            $sql = "UPDATE modelo_pratica " .
-                "SET " .
-                "id_cenario=:id_cenario, " .
-                "nome_pratica=:nome_pratica, " .
-                "resumo=:resumo, " .
-                "data=:data " .
-                "WHERE " .
-                "id_modelo_pratica=:id_modelo_pratica";
-
+        if (!empty($dados['id']) && $dados['id'] != -1) { // Atualizar
+            try{
+                $sql = "UPDATE modelo_pratica 
+                        SET
+                            id_cenario=:id_cenario,
+                            nome_pratica=:nome_pratica,
+                            resumo=:resumo,
+                            data=:data
+                        WHERE id_modelo_pratica=:id_modelo_pratica";
+                $stmt = $this->_dbh->prepare($sql);
+                $stmt->execute(array(
+                    ':id_cenario' => $dados['id_cenario'],
+                    ':nome_pratica' => $dados['nome'],
+                    ':resumo' => $dados['resumo'],
+                    ':data' => $dados['data'],
+                    ':id_modelo_pratica' => $dados['id']
+                ));
+                return $dados['id'];
+            }catch(Exception $e){
+                return false;
+            }
+        } else { //insert
+            $sql = "INSERT INTO modelo_pratica
+                    (id_cenario, id_disciplina, nome_pratica, resumo, data)
+                    VALUES
+                    (:id_cenario, :id_disciplina, :nome_pratica, :resumo, :data)";
             $stmt = $this->_dbh->prepare($sql);
-
-            $stmt->execute(array(
-                ':id_cenario' => $dados['id_cenario'],
-                ':nome_pratica' => $dados['nome'],
-                ':resumo' => $dados['resumo'],
-                ':data' => $dados['data'],
-                ':id_modelo_pratica' => $dados['id']
-            ));
-
-            return ($stmt->rowCount()) ? $dados['id'] : 0;
-        } else {
-
-            $sql = "INSERT INTO modelo_pratica(id_cenario, id_disciplina, nome_pratica, resumo, data) ".
-                "VALUES(:id_cenario, :id_disciplina, :nome_pratica, :resumo, :data)";
-
-            $stmt = $this->_dbh->prepare( $sql );
-            
-            //echo $sql;
-
             $stmt->execute(array(
                 ':id_cenario' => $dados['id_cenario'],
                 ':id_disciplina' => $dados['id_disciplina'],
@@ -64,7 +58,6 @@ class LabJogo
                 ':resumo' => $dados['resumo'],
                 ':data' => $dados['data']
             ));
-
             return $this->_dbh->lastInsertId();
         }
     }

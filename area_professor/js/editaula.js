@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
@@ -32,7 +32,7 @@ function load_pratica() {
             id_pratica: dados_pratica.id,
             id_disciplina: dados_pratica.id_disciplina
         }
-    }).done(function(data) {
+    }).done(function (data) {
 
         $('.dadospratica').attr('data-id', data.id);
         $('#nome_aula').val(data.nome);
@@ -40,7 +40,7 @@ function load_pratica() {
 
         dados_pratica = data;
 
-        $('input[name="bancada"]').each(function() {
+        $('input[name="bancada"]').each(function () {
             $(this).prop('checked', $(this).val() == dados_pratica.id_cenario);
         });
 
@@ -61,47 +61,47 @@ function indice_idsolucao_estoque(n) {
 
 
 var solucoes_estoque = [{
-        "id": 1,
-        "nome": "Sol. Estoque Ácida",
-        "descricao": "Solução ácida utilizada como um modelo de solução",
-        "tecnico": "Técnico CEAD",
-        "intervalo": "3",
-        "composicao": [{
-            "id": "1",
-            "nome": "Ácido Forte",
-            "concentracao": "1"
-        }],
-        "estoque": true,
-        "disponiveis": 5
-    },
-    {
-        "id": 2,
-        "nome": "Sol. Estoque Básica",
-        "descricao": "Solução básica utilizada como um modelo de solução",
-        "tecnico": "Técnico CEAD",
-        "intervalo": "4",
-        "composicao": [{
-            "id": "2",
-            "nome": "Base Forte",
-            "concentracao": "1"
-        }],
-        "estoque": true,
-        "disponiveis": 5
-    },
-    {
-        "id": 3,
-        "nome": "Sol. Branco p/ Espectrofotômetro",
-        "descricao": "Solução utilizada como branco para medição no espectrofotômetro",
-        "tecnico": "Técnico CEAD",
-        "intervalo": "1",
-        "composicao": [{
-            "id": "102",
-            "nome": "Branco",
-            "concentracao": "0.0005"
-        }],
-        "estoque": true,
-        "disponiveis": 5
-    }
+    "id": 1,
+    "nome": "Sol. Estoque Ácida",
+    "descricao": "Solução ácida utilizada como um modelo de solução",
+    "tecnico": "Técnico CEAD",
+    "intervalo": "3",
+    "composicao": [{
+        "id": "1",
+        "nome": "Ácido Forte",
+        "concentracao": "1"
+    }],
+    "estoque": true,
+    "disponiveis": 5
+},
+{
+    "id": 2,
+    "nome": "Sol. Estoque Básica",
+    "descricao": "Solução básica utilizada como um modelo de solução",
+    "tecnico": "Técnico CEAD",
+    "intervalo": "4",
+    "composicao": [{
+        "id": "2",
+        "nome": "Base Forte",
+        "concentracao": "1"
+    }],
+    "estoque": true,
+    "disponiveis": 5
+},
+{
+    "id": 3,
+    "nome": "Sol. Branco p/ Espectrofotômetro",
+    "descricao": "Solução utilizada como branco para medição no espectrofotômetro",
+    "tecnico": "Técnico CEAD",
+    "intervalo": "1",
+    "composicao": [{
+        "id": "102",
+        "nome": "Branco",
+        "concentracao": "0.0005"
+    }],
+    "estoque": true,
+    "disponiveis": 5
+}
 
 ];
 
@@ -153,7 +153,7 @@ function campos_armario(campo, valor) {
 
     var obj = $('*[name="' + campo + '"]');
     if ($(obj).attr('type') == 'radio') {
-        $(obj).each(function() {
+        $(obj).each(function () {
             var check = ($(this).val() == valor);
             $(this).prop('checked', check);
         });
@@ -161,40 +161,40 @@ function campos_armario(campo, valor) {
 
     //
     else
-    if ($(obj).attr('type') == 'checkbox') {
+        if ($(obj).attr('type') == 'checkbox') {
 
-        $(obj).each(function() {
-            var existe = false;
-            for (var i = 0; i < valor.length; i++) {
-                if (valor[i].volume == $(this).val()) {
-                    var tr = $(this).parents('tr');
+            $(obj).each(function () {
+                var existe = false;
+                for (var i = 0; i < valor.length; i++) {
+                    if (valor[i].volume == $(this).val()) {
+                        var tr = $(this).parents('tr');
 
-                    for (var j in valor[i]) {
+                        for (var j in valor[i]) {
 
-                        if (j == 'id') continue;
-                        if (j == 'volume') continue;
+                            if (j == 'id') continue;
+                            if (j == 'volume') continue;
 
-                        tr.find('*[data-name="' + j + '"]').val(valor[i][j]);
+                            tr.find('*[data-name="' + j + '"]').val(valor[i][j]);
+                        }
+
+                        existe = true;
+                        break;
                     }
-
-                    existe = true;
-                    break;
                 }
-            }
 
-            //
-            $(this).click();
-            //
-            if ($(this).prop('checked') != existe) {
+                //
                 $(this).click();
-            }
-        })
-    }
+                //
+                if ($(this).prop('checked') != existe) {
+                    $(this).click();
+                }
+            })
+        }
 
-    // 
-    else {
-        obj.val(valor);
-    }
+        // 
+        else {
+            obj.val(valor);
+        }
 }
 
 function adicionar_solucao_armario() {
@@ -225,7 +225,7 @@ function adicionar_solucao_armario() {
 function atualizar_armario() {
     dados_pratica.data.armario = [];
 
-    $('.id_solucoes_pratica').each(function() {
+    $('.id_solucoes_pratica').each(function () {
         var nome = $(this).text();
         var id_solucao = parseInt($(this).attr('data-id'));
 
@@ -263,7 +263,7 @@ function atualizar_armario() {
 
 function listar_composicao() {
     var composicao = [];
-    $('.linha_composicao').each(function() {
+    $('.linha_composicao').each(function () {
         composicao.push({
             id: $(this).attr('data-id'),
             nome: $(this).attr('data-nome'),
@@ -392,11 +392,9 @@ function editar_solucao(novo) {
 
     // Criar
     if (novo) {
-
         //
         $('#modal_solucao').attr('data-id', -1);
         criar_solucao();
-
     }
     // Editar
     else {
@@ -425,6 +423,36 @@ function editar_solucao(novo) {
 }
 
 function salvar_pratica() {
+    var data = generateDataForm();
+    var id_pratica = $('.dadospratica').attr('data-id');
+    var dataForm = {
+        disponivel: $('#pratica-disponivel').prop('checked') ? 1 : 0,
+        id: id_pratica,
+        id_cenario: $('input[name="bancada"]:checked').val(),
+        id_disciplina: dados_pratica.id_disciplina,
+        nome: $('#nome_aula').val(),
+        resumo: $('#resumo_aula').val(),
+        data: JSON.stringify(data, null, "\t")
+    };
+
+    //debugs
+    console.log(data);
+    console.warn(dataForm);
+
+    $.ajax({
+        url: '../area_laboratorio/data.php?action=salvar_pratica',
+        method: 'post',
+        dataType: 'json',
+        data: dataForm
+    }).done(function (data) {
+        if (data.success) {
+            $('#fechar').click();
+        }
+        alert(data.msg);
+    })
+}
+
+function generateDataForm() {
     var data = {};
     var fields = $('input,select:not([data-id])');
     var id = parseInt($('.dadospratica').attr('data-id', data.id));
@@ -434,7 +462,6 @@ function salvar_pratica() {
     data.solucoes = dados_pratica.data.solucoes;
     data.armario_solucoes = dados_pratica.data.armario;
     data.armario_vidrarias = {};
-    //data.armario_vidrarias.balao = [];
 
     for (var i = 0; i < fields.length; i++) {
         //
@@ -479,10 +506,8 @@ function salvar_pratica() {
                     var vol = name.split('-').pop();
                     dvol = {};
 
-                    $(parent).find('input,select').each(function() {
+                    $(parent).find('input,select').each(function () {
                         var n = $(this).attr('data-name');
-                        //if ($(this).val() == 'on') console.log(node, $(this).val())
-
                         if (n != 'disponiveis')
                             dvol[n] = $(this).val();
                         else
@@ -491,7 +516,6 @@ function salvar_pratica() {
 
                     dvol['id'] = counter + 200;
                     counter++;
-                    //console.log(dvol)
 
                     if (armario_vidrarias) {
                         if (!data.armario_vidrarias[inicio])
@@ -507,42 +531,8 @@ function salvar_pratica() {
                 break;
         }
     }
-
-    data = validarDados(data);
-
-    console.log(data);
-    console.error(data);
-
-    var id_pratica = $('.dadospratica').attr('data-id');
-
-    //console.log(data)
-    //console.log(data)
-    //return false;
-
-    $.ajax({
-        url: '../area_laboratorio/data.php?action=salvar_pratica',
-        method: 'post',
-        dataType: 'json',
-        data: {
-            disponivel: $('#pratica-disponivel').prop('checked') ? 1 : 0,
-            id: id_pratica,
-            id_cenario: $('input[name="bancada"]:checked').val(),
-            id_disciplina: dados_pratica.id_disciplina,
-            nome: $('#nome_aula').val(),
-            resumo: $('#resumo_aula').val(),
-            data: JSON.stringify(data, null, "\t")
-                //data: JSON.stringify(data, null, "\t")
-        }
-    }).done(function(data) {
-        alert('A aula foi salva com sucesso')
-        $('.dadospratica').attr('data-id', data.id)
-            //console.log($('.dadospratica').attr('data-id'), data.id)        
-        dados_pratica.id = data.id;
-    })
-
+    return validarDados(data);
 }
-
-//campos();
 
 function validarDados(data) {
     if (is_empty(data.armario_solucoes))
@@ -573,6 +563,10 @@ function validarDados(data) {
         data.armario_vidrarias.micropipeta = [];
 
     return data;
+}
+
+function deletar_pratica(id_pratica) {
+    console.error('Ainda não implementado!!!');
 }
 
 function is_empty(data) {

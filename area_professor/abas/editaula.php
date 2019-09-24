@@ -12,7 +12,7 @@
 			<h3>
 				<span>Cadastrar nova prática</span>
 				<div class="form">
-					<button id="fechar" onclick='aba("aulas")' class="voltar"><i class="fas fa-angle-left"></i> VOLTAR</button>
+					<button id="fechar" onclick="window.location = 'index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>'" class="voltar"><i class="fas fa-angle-left"></i> VOLTAR</button>
 				</div>
 			</h3>
 
@@ -20,7 +20,6 @@
 				<div>
 					TÍTULO: <input id="nome_aula" class="input-pratica" type="text" name="aula" placeholder="Digite aqui..." required>
 					RESUMO: <input id="resumo_aula" class="resumoaula" class="input-pratica" type="text" name="aula" placeholder="Digite aqui..." required>
-
 				</div>
 			</div>
 
@@ -289,17 +288,17 @@
                 ?>
                 <tr class="linha-bequer" data-id="<?php echo $valor; ?>">
                     <td style="text-align: left;">  
-                        <input<?php echo $disabled; ?> value="<?php echo $valor; ?>" data-armario="vidrarias" data-name="volume" name="bequer" class="bequer-disponivel bequer" type="checkbox" 
+                        <input <?php echo $disabled; ?> value="<?php echo $valor; ?>" data-armario="vidrarias" data-name="volume" name="bequer" class="bequer-disponivel bequer" type="checkbox" 
                         onclick="toggle(this)" /> <span><?php echo $valor;?> mL</span>
                     </td>
                     <td>  
-                        <input<?php echo $disabled; ?> data-name="disponiveis" name="disponiveis" class="bequer-qtd_maxima bequer" type="number" min="0" max="10" value="0">
+                        <input <?php echo $disabled; ?> data-name="disponiveis" name="disponiveis" class="bequer-qtd_maxima bequer" type="number" min="0" max="10" value="0">
                     </td>
                     <td> 
-                        <input<?php echo $disabled; ?> data-name="volume_maximo" name="disponiveis" class="bequer-volume_maximo bequer" type="number" min="80" max="95" value="80">
+                        <input <?php echo $disabled; ?> data-name="volume_maximo" name="disponiveis" class="bequer-volume_maximo bequer" type="number" min="80" max="95" value="80">
                     </td>
                     <td> 
-                        <input<?php echo $disabled; ?> data-name="desvio_padrao" name="disponiveis" class="bequer-desvio_padrao bequer" type="number" min="5" max="20" value="10">
+                        <input <?php echo $disabled; ?> data-name="desvio_padrao" name="disponiveis" class="bequer-desvio_padrao bequer" type="number" min="5" max="20" value="10">
                     </td>
                 </tr>
                 <?php
