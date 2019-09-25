@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">    
+    <div class="col-md-12">
 
       <h3>
         <span>Meus Alunos</span>
@@ -17,26 +17,25 @@
           </tr>
         </thead>
         <tbody>
-          <?php 
+          <?php
           $sql = $lab->getAlunos(@$_SESSION['id_usuario']);
 
-          if(count($sql)) {
+          if (count($sql)) {
 
-            foreach($sql as $row) 
-            { 
+            foreach ($sql as $row) {
               echo "<tr>" .
-              "<td>" . $row["usuario"] . "</td>" .
-              "<td>" . $row["nome"] . "</td>" .
-              "<td>" . $row["email"] . "</td>" .
-              "</tr>";
+                "<td>" . $row["usuario"] . "</td>" .
+                "<td>" . $row["nome"] . "</td>" .
+                "<td>" . $row["email"] . "</td>" .
+                "</tr>";
             }
-          }else{
+          } else {
             echo "Não há práticas disponíveis";
-          } 
+          }
           ?>
         </tbody>
       </table>
-
+      <!--
       <div class="adicionaraluno">
 
         <button class="btn azul" type=button data-toggle="collapse" href="#adicionarAluno"><i class="fas fa-plus-circle" ></i> Cadastrar novo aluno</button>
@@ -65,6 +64,7 @@
         </div>
 
       </div>
+        -->
 
     </div>
   </div>
