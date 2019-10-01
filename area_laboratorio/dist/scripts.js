@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     $('#praticas').modal({backdrop: 'static', keyboard: false})  
     $('#praticas').modal('show');
@@ -64,21 +63,23 @@ function logoff() {
 };
 
 function atualizarPerfil(){
-    var nome = $('#nome_novo').val();
-    var senha = $('#senha1').val();
-    var confsenha = $('#senha2').val();
-    var email = $('#email_novo').val();
-    if(senha != confsenha)
-    {
+  
+  var nome = $('#nome_novo').val();
+  var senha = $('#senha1').val();
+  var confsenha = $('#senha2').val();
+  var email = $('#email_novo').val();
+  
+  if(nome === "" || senha === "" || email === "") {
+    //alert('Por favor, insira os dados que deseja alterar');
+    alert("Por favor, preencha todos os campos.");
+
+  } else {
+
+    if(senha != confsenha) {
       alert('As senhas digitadas devem ser idênticas. Tente novamente');
-    }
-    else if(nome === "" && senha === "" && email === "")
-    {
-      alert('Por favor, insira os dados que deseja alterar');
-    }
-    else{
+    } else {
       $.ajax({
-        url:"atualiza_perfil.php",
+        url:"funcoes/atualiza_perfil.php",
         type: 'POST',
         data: {
           nome: nome,
@@ -87,16 +88,17 @@ function atualizarPerfil(){
         },
       }).done(function (data) {
         console.log(data);
-          if(data.status == true) {
-            //Se for positivo, mostra ao utilizador uma janela de sucesso.
+        if(data.status == true) {
+          //Se for positivo, mostra ao utilizador uma janela de sucesso.
           alert('Informações salvas com sucesso!');
         } else {
-            //Caso contrário dizemos que aconteceu algum erro.
-            alert('Erro com banco de dados. Tente novamente mais tarde. Se persistir o erro, contate o administrador.');
+          //Caso contrário dizemos que aconteceu algum erro.
+          alert('Erro com banco de dados. Tente novamente mais tarde. Se persistir o erro, contate o administrador.');
         }
       });
     }
   }
+}
 
   function aba(tela) {
     $('.opcoes').removeClass('ativo');    

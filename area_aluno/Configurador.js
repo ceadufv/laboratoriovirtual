@@ -1,5 +1,5 @@
 class Configurador {
-
+//
     constructor() {
         this.nomeInterno = [];
         this.nomeFormatado = [];

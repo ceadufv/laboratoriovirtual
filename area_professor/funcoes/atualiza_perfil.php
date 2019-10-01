@@ -11,7 +11,7 @@
   $_SESSION['nome'] = $nome;
   $resultado = array();
   $resultado['status'] = $lab->setPerfil($nome, $senha, $email, $id_usuario);
-  
+
   echo json_encode($resultado);
 
 ?>
