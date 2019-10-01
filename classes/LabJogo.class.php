@@ -6,9 +6,7 @@ class LabJogo
 
     function __construct()
     {
-
         //include "../lab-config.php";
-
         try {
             $this->_dbh = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASSWORD);
         } catch (PDOException $e) {
@@ -25,7 +23,7 @@ class LabJogo
     public function salvarPratica($dados)
     {
         if (!empty($dados['id']) && $dados['id'] != -1) { // Atualizar
-            try{
+            try {
                 $sql = "UPDATE modelo_pratica 
                         SET
                             id_cenario=:id_cenario,
@@ -42,7 +40,7 @@ class LabJogo
                     ':id_modelo_pratica' => $dados['id']
                 ));
                 return $dados['id'];
-            }catch(Exception $e){
+            } catch (Exception $e) {
                 return false;
             }
         } else { //insert
