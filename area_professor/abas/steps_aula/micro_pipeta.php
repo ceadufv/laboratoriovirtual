@@ -31,7 +31,7 @@
                             </td>
                         </tr>
                         <?php
-                        $objMicropipeta = new Micropipeta();
+                        $objMicropipeta = new MicroPipeta();
                         if (empty($pratica_sel['dados']['micropipetas']))
                             $micropipetas = $objMicropipeta->getDefaultItens();
                         else
