@@ -60,10 +60,10 @@ function login() {
                 $('.log-login').text('Sucesso, você será redirecionado para a sua página.');
                 if (res.tipo === 1) {
                     // Sessão de aluno
-                    window.location.href = 'area_laboratorio/';
+                    window.location.href = 'area_laboratorio/index.php?aba=inicio';
                 } else if (res.tipo === 2) {
                     // Sessão de professor, criação e administração
-                    window.location.href = 'area_professor/';
+                    window.location.href = 'area_professor/index.php?aba=inicio';
                 }
                 $('#usuarioLogin').val('');
                 $('#senhaLogin').val('');

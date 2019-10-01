@@ -31,21 +31,30 @@ switch ($action) {
     $db_host = @$_REQUEST['db_host'];
 
     $file = sprintf("<?php
-/**
-* As configurações básicas do Laboratorio Virtual de Quimica
-*/
+    /**
+    * As configurações básicas do Laboratorio Virtual de Quimica
+    */
 
-define('DB_NAME', '%s');
-define('DB_USER', '%s');
-define('DB_PASSWORD', '%s');
-define('DB_HOST', '%s');
-define('LAB_DEBUG', false);
+    define('DB_NAME', '%s');
+    define('DB_USER', '%s');
+    define('DB_PASSWORD', '%s');
+    define('DB_HOST', '%s');
+    define('LAB_DEBUG', false);
 
-/** Caminho absoluto para o diretório raiz */
-if ( !defined('ABSPATH') ) define('ABSPATH', dirname(__FILE__) . '/');
-?>
-", addslashes($db_name), addslashes($db_user), addslashes($db_password), addslashes($db_host));
+    /** Caminho absoluto para o diretório raiz */
+    if ( !defined('ABSPATH') ) define('ABSPATH', dirname(__FILE__) . '/');
 
+    define('URL_SITE', '%s');
+    define('URL_SYSTEM', '%s');
+    ?>
+    ",
+    addslashes($db_name),
+    addslashes($db_user),
+    addslashes($db_password),
+    addslashes($db_host),
+    (str_replace('install.php','',$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'])),
+    (dirname(__FILE__).'/')
+    );
     break;
   case "instalar":
     $estado = "erro-criar-config";

@@ -22,8 +22,11 @@
       <section class="conteudoabas"> 
 
         <div class="section div-secoes div-inicio opcoeslogin">
-          <?php include("abas/aulas.php") ?>            
+          <?php include("abas/".$_REQUEST['aba'].".php") ?>            
         </div>
+        
+        <?php
+        /*
         <div class="section div-secoes div-perfil oculta">
           <?php include("abas/perfil.php") ?>       
         </div>
@@ -33,6 +36,9 @@
         <div class="section div-secoes div-sobre oculta">
           <?php include("abas/sobre.php") ?>       
         </div>
+        */
+        ?>
+        
       </section>
     </div>
   </div>

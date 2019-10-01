@@ -1,8 +1,15 @@
-<?php include(dirname(__FILE__).'/funcoes/cabecalho.php'); 
-      include_once(dirname(__FILE__).'/../banco/conexao.php');
-      if($_REQUEST['acao']=="editaraula") print_r('a');
+<?php
+include('../lab-config.php'); 
+error_reporting(0);
+spl_autoload_register(function ($class_name) {
+  require URL_SYSTEM.'classes/'.$class_name . '.class.php';
+});
+$aba_s = $_REQUEST['aba'];
+$aba_s = (empty($aba_s))?"inicio":$aba_s;
 
-      $aba = (empty(@$_REQUEST['aba']))?"inicio":@$_REQUEST['aba'];
+include(URL_SYSTEM.'area_professor/funcoes/cabecalho.php'); 
+include_once(URL_SYSTEM.'banco/conexao.php');
+
 ?>
 <body>
   <div class="interno criacaopraticas">
@@ -23,46 +30,23 @@
           <button class="opcoes tab-sair" onclick="logoff()">Sair</button>
         </div>
       </section>
-
+      
+      <!-- retirando gambiarras -->
       <section class="conteudoabas"> 
-
-        <div class="section div-secoes div-inicio opcoeslogin">
-          <?php include("abas/inicio.php") ?>            
-        </div>
-
-        <div class="section div-secoes div-aulas oculta">
-          <?php include("abas/aulas.php") ?>    
-        </div>
-
-        <div class="section div-secoes div-alunos oculta">
-          <?php include("abas/alunos.php") ?>            
-        </div>
-
-        <div class="section div-secoes div-registros oculta">
-          <?php include("abas/registros.php") ?>       
-        </div>
-
-        <div class="section div-secoes div-perfil oculta">
-          <?php include("abas/perfil.php") ?>       
-        </div>
-
-        <div class="section div-secoes div-sobre oculta">
-          <?php include("abas/sobre.php") ?>       
-        </div>
-
-        <div class="section div-secoes div-editaula oculta">
-          <?php include("abas/editaula.php") ?>            
-        </div>
-
+          <div class="section">
+            <?php include("abas/".$aba_s.".php") ?>            
+          </div>
       </section>
+      <!-- /retirando gambiarras -->
     </div>
   </div>            
-
 <script>
+const URL_SITE = "<?php echo URL_SITE;?>";
+
 var bd = {
   id_disciplina: parseInt('<?php echo @$_REQUEST['id_disciplina']; ?>'),
   id_pratica: parseInt('<?php echo @$_REQUEST['id_pratica']; ?>'||0),
-  aba: '<?php echo $aba; ?>'
+  aba: '<?php echo $aba_s; ?>'
 };
 
 <?php

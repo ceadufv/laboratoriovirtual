@@ -9,15 +9,10 @@
 * @error {"cheio(balao)" : "O balão está cheio, faça o descarte primeiro"}
 */
 function lavar(interacao) {
-
 	var source = interacao.source();
 	var target = interacao.target();
-
 	//$('#animacao').modal('show');
-
 	//$('#interacao .modal-title').text('Lavando...');
-	console.log('Volume Maximo', target.data('volumeMaximo'))
-
+	console.log('Volume Maximo', target.data('volumeMaximo'));
 	target.data('limpo',true);
-	
 }
