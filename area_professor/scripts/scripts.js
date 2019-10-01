@@ -46,7 +46,7 @@ function salvarDisciplina() {
     if (data.status == true) {
       //Se for positivo, mostra ao utilizador uma janela de sucesso.
       alert('Informações salvas com sucesso!');
-      location.href = URL_SITE+"area_professor/index.php?aba=inicio";
+      location.href = URL_SITE + "area_professor/index.php?aba=inicio";
     } else {
       //Caso contrário dizemos que aconteceu algum erro.
       alert('Erro com banco de dados. Tente novamente mais tarde. Se persistir o erro, contate o administrador.');
@@ -65,7 +65,6 @@ function remover_disciplina() {
     success: function (data) {
       console.log(data);
       if (data.status == true) {
-        //  $('#listaDisciplinas').find("option:selected").remove()  
         window.location = "index.php?aba=inicio";
       }
       else {
