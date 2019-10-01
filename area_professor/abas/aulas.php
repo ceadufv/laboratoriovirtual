@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-
       <div class="navegacao">
-        <a onclick="aba('inicio')" href="#">Administração</a> >
+        <a href="<?php echo URL_SITE;?>area_professor/index.php?aba=inicio">Administração</a> >
         <span class="disciplina_caminho"></span>
       </div>
 
@@ -37,10 +36,9 @@
                 </span>
                 <span>
                   <button type="button" class="btn azul" onclick="edit_pratica(<?php echo $row['id'] ?>)"><i class="fas fa-edit" aria-hidden="true"></i> EDITAR</button>
-                  <!-- location.href='../area_professor/index.php?id_pratica=&acao=editaraula' -->
-                  <button type="button" class="btn azul" onclick="location.href='../area_laboratorio/lab.php?id_pratica='+<?php echo $row['id'] ?>+'&tipo_acesso=treino'">
+                  <a type="button" class="btn azul" href="<?php echo URL_SITE;?>area_laboratorio/lab.php?id_pratica=<?php echo $row['id'] ?>&tipo_acesso=treino">
                     <i class="far fa-eye"></i> Visualizar
-                  </button>
+                  </a>
                   <button type="button" class="btn azul" onclick="aba('registros')">
                     <i class="far fa-file-alt"></i> Registro/Alunos
                   </button>
@@ -53,7 +51,7 @@
                       rootSelector: '[data-toggle=confirmation]',
                       container: 'body',
                       onConfirm: function() {
-                        deletar_pratica(<?php echo $row["id"] ?>);
+                        deletarPratica(<?php echo $row["id"] ?>);
                       },
                       onCancel: function() {},
                     });
@@ -82,3 +80,5 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" src="<?php echo URL_SITE;?>area_professor/js/abas/aulas.js"></script>
