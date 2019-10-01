@@ -5,10 +5,11 @@ spl_autoload_register(function ($class_name) {
   require URL_SYSTEM.'classes/'.$class_name . '.class.php';
 });
 $aba_s = $_REQUEST['aba'];
+$aba_s = (empty($aba_s))?"inicio":$aba_s;
 
 include(URL_SYSTEM.'area_professor/funcoes/cabecalho.php'); 
 include_once(URL_SYSTEM.'banco/conexao.php');
-$aba = (empty($aba_s))?"inicio":$aba_s;
+
 ?>
 <body>
   <div class="interno criacaopraticas">
@@ -45,7 +46,7 @@ const URL_SITE = "<?php echo URL_SITE;?>";
 var bd = {
   id_disciplina: parseInt('<?php echo @$_REQUEST['id_disciplina']; ?>'),
   id_pratica: parseInt('<?php echo @$_REQUEST['id_pratica']; ?>'||0),
-  aba: '<?php echo $aba; ?>'
+  aba: '<?php echo $aba_s; ?>'
 };
 
 <?php
