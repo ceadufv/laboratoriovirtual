@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19-Set-2019 às 19:48
+-- Generation Time: 02-Out-2019 às 21:14
 -- Versão do servidor: 10.1.37-MariaDB
 -- versão do PHP: 5.6.40
 
@@ -109,13 +109,6 @@ CREATE TABLE `disciplinas` (
   `id_professor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Extraindo dados da tabela `disciplinas`
---
-
-INSERT INTO `disciplinas` (`id_disciplina`, `nome`, `id_professor`) VALUES
-(1, 'teste', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -133,13 +126,22 @@ CREATE TABLE `modelo_pratica` (
   `data` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Extraindo dados da tabela `modelo_pratica`
+-- Estrutura da tabela `modelo_pratica_solucao`
 --
 
-INSERT INTO `modelo_pratica` (`id_modelo_pratica`, `id_cenario`, `nome_pratica`, `id_usuario`, `resumo`, `id_disciplina`, `disponivel`, `data`) VALUES
-(1, 1, 'Determinação de pH com pHmetro', 1, 'Resumo', 1, 0, '{\r\n    \"armario_solucoes\": [],\r\n    \"armario_vidrarias\": {\r\n        \"bequer_ambientacao\": \"auto\",\r\n        \"bequer_quantidade\": \"1\",\r\n        \"bequer_agitacao\": \"auto\",\r\n        \"bequer_mistura\": \"false\",\r\n        \"balao\": [],\r\n        \"pipeta\": [],\r\n        \"cubeta\": [],\r\n        \"pipetador\": [],\r\n        \"micropipeta\": [],\r\n        \"bequer\": [{\r\n                \"volume\": \"50\",\r\n                \"disponiveis\": 90,\r\n                \"volume_maximo\": \"80\",\r\n                \"desvio_padrao\": \"10\",\r\n                \"id\": 206\r\n            },\r\n            {\r\n                \"volume\": \"100\",\r\n                \"disponiveis\": 900,\r\n                \"volume_maximo\": \"80\",\r\n                \"desvio_padrao\": \"10\",\r\n                \"id\": 207\r\n            },\r\n            {\r\n                \"volume\": \"250\",\r\n                \"disponiveis\": 89,\r\n                \"volume_maximo\": \"80\",\r\n                \"desvio_padrao\": \"10\",\r\n                \"id\": 208\r\n            }\r\n        ],\r\n        \"balaovolumetrico_ambientacao\": \"auto\",\r\n        \"balaovolumetrico_qtd_ambientes\": \"1\",\r\n        \"balaovolumetrico_agitacao\": \"auto\",\r\n        \"balaovolumetrico_mistura\": \"false\",\r\n        \"pipetavolumetrica_ambientacao\": \"auto\",\r\n        \"pipetavolumetrica_qtd_ambientes\": \"1\",\r\n        \"pipetavolumetrica_agitacao\": \"auto\",\r\n        \"pipetavolumetrica_mistura\": \"false\",\r\n        \"pipetador_animacao\": \"auto\",\r\n        \"pipetador_tamanho\": \"unico\",\r\n        \"micropipeta_animacao\": \"auto\"\r\n    },\r\n    \"bancada\": \"1\"\r\n}'),
-(2, 2, 'Espectrofotômetro', 1, 'Resumo da Prática', 1, 0, '{\r\n    \"armario_solucoes\": [],\r\n    \"armario_vidrarias\": {\r\n        \"bequer_ambientacao\": \"auto\",\r\n        \"bequer_quantidade\": \"1\",\r\n        \"bequer_agitacao\": \"auto\",\r\n        \"bequer_mistura\": \"false\",\r\n        \"balao\": [],\r\n        \"pipeta\": [],\r\n        \"cubeta\": [],\r\n        \"pipetador\": [],\r\n        \"micropipeta\": [],\r\n        \"bequer\": [{\r\n                \"volume\": \"50\",\r\n                \"disponiveis\": 90,\r\n                \"volume_maximo\": \"80\",\r\n                \"desvio_padrao\": \"10\",\r\n                \"id\": 206\r\n            },\r\n            {\r\n                \"volume\": \"100\",\r\n                \"disponiveis\": 900,\r\n                \"volume_maximo\": \"80\",\r\n                \"desvio_padrao\": \"10\",\r\n                \"id\": 207\r\n            },\r\n            {\r\n                \"volume\": \"250\",\r\n                \"disponiveis\": 89,\r\n                \"volume_maximo\": \"80\",\r\n                \"desvio_padrao\": \"10\",\r\n                \"id\": 208\r\n            }\r\n        ],\r\n        \"balaovolumetrico_ambientacao\": \"auto\",\r\n        \"balaovolumetrico_qtd_ambientes\": \"1\",\r\n        \"balaovolumetrico_agitacao\": \"auto\",\r\n        \"balaovolumetrico_mistura\": \"false\",\r\n        \"pipetavolumetrica_ambientacao\": \"auto\",\r\n        \"pipetavolumetrica_qtd_ambientes\": \"1\",\r\n        \"pipetavolumetrica_agitacao\": \"auto\",\r\n        \"pipetavolumetrica_mistura\": \"false\",\r\n        \"pipetador_animacao\": \"auto\",\r\n        \"pipetador_tamanho\": \"unico\",\r\n        \"micropipeta_animacao\": \"auto\"\r\n    },\r\n    \"bancada\": \"1\"\r\n}');
+CREATE TABLE `modelo_pratica_solucao` (
+  `cod_moprsi` int(11) NOT NULL,
+  `nome_moprsi` varchar(300) DEFAULT NULL,
+  `desc_moprsi` varchar(300) DEFAULT NULL,
+  `resp_moprsi` varchar(300) DEFAULT NULL,
+  `data_criacao_moprsi` varchar(300) DEFAULT NULL,
+  `composicoes` text,
+  `fk_cod_mopr` int(11) DEFAULT NULL,
+  `armario_moprsi` char(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -380,6 +382,12 @@ ALTER TABLE `modelo_pratica`
   ADD PRIMARY KEY (`id_modelo_pratica`);
 
 --
+-- Indexes for table `modelo_pratica_solucao`
+--
+ALTER TABLE `modelo_pratica_solucao`
+  ADD PRIMARY KEY (`cod_moprsi`);
+
+--
 -- Indexes for table `solucoes`
 --
 ALTER TABLE `solucoes`
@@ -430,13 +438,19 @@ ALTER TABLE `cenario`
 -- AUTO_INCREMENT for table `disciplinas`
 --
 ALTER TABLE `disciplinas`
-  MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `modelo_pratica`
 --
 ALTER TABLE `modelo_pratica`
-  MODIFY `id_modelo_pratica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_modelo_pratica` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `modelo_pratica_solucao`
+--
+ALTER TABLE `modelo_pratica_solucao`
+  MODIFY `cod_moprsi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `solucoes`
@@ -454,7 +468,7 @@ ALTER TABLE `substancias`
 -- AUTO_INCREMENT for table `usuarios_cadastrados`
 --
 ALTER TABLE `usuarios_cadastrados`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
