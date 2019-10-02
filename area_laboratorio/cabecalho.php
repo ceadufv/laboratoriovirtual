@@ -28,5 +28,7 @@
 
     <script type="text/javascript" src="dist/scripts.js"></script>
 
-
+    <script>
+        const URL_SITE = '<?php echo URL_SITE;?>';
+    </script>
 </head>

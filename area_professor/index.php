@@ -1,9 +1,5 @@
 <?php
-include('../lab-config.php'); 
-error_reporting(0);
-spl_autoload_register(function ($class_name) {
-  require URL_SYSTEM.'classes/'.$class_name . '.class.php';
-});
+include('../lab-config.php');
 $aba_s = $_REQUEST['aba'];
 $aba_s = (empty($aba_s))?"inicio":$aba_s;
 

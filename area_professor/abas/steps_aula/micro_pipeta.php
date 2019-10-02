@@ -48,7 +48,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input disabled type="text" name="micropipeta_name[]" value="<?php echo $micropipeta['name']; ?>" />
+                                    <input disabled type="text" name="micropipeta_name[]" value="<?php echo $micropipeta['nome']; ?>" />
                                 </td>
                                 <td>
                                     <input <?php echo $disabled; ?> name="micropipeta_qtd_maxima" type="number" min="0" max="10" value="0">

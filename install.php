@@ -46,6 +46,7 @@ switch ($action) {
 
     define('URL_SITE', '%s');
     define('URL_SYSTEM', '%s');
+    include('register.php');
     ?>
     ",
     addslashes($db_name),

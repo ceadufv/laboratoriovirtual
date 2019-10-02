@@ -39,6 +39,7 @@ class PipetaVolumetrica{
             'faixa_aceitavel' => $dados['pipeta_faixa_aceitavel'][$key],
             'desvio_padrao' => $dados['pipeta_desvio_padrao'][$key],
             'tamanho' => $dados['pipeta_tamanho'][$key],
+            'volume' => $dados['pipeta_tamanho'][$key],
             'mistura' => $dados['pipeta_mistura']
           );
         }

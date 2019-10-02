@@ -229,14 +229,12 @@ class LabJogo
     function getCenario($id_cenario)
     {
         $sql = "SELECT * from cenario where id_cenario=?";
-
         $stmt = $this->_dbh->prepare($sql);
         $stmt->bindValue(1, $id_cenario);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $result = $data[0];
         $result['data'] = json_decode($result['data']);
-
         return $result;
     }
 

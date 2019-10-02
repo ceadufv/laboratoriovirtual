@@ -17,7 +17,7 @@ class MicroPipeta{
             $bequers[] = array(
                 'disabled'=> $disabled,
                 'disponivel'=> false,
-                'name'=> $valor,
+                'nome'=> $valor,
                 'qtd_maxima'=> 0,
                 'volume_maximo'=> 80,
                 'desvio_padrao'=> 10
@@ -33,7 +33,7 @@ class MicroPipeta{
           $bequers[] = array(
             'id' => $key+1,
             'disponivel' => $dados['micropipeta_disponivel'][$key],
-            'name' => $dados['micropipeta_name'][$key],
+            'nome' => $dados['micropipeta_name'][$key],
             'qtd_maxima' => $dados['micropipeta_qtd_maxima'][$key],
             'animacao' => $dados['micropipeta_animacao'],
           );

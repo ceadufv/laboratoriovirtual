@@ -39,7 +39,8 @@ class Bequer{
             'volume_maximo' => $dados['bequer_volume_maximo'][$key],
             'desvio_padrao' => $dados['bequer_desvio_padrao'][$key],
             'tamanho' => $dados['bequer_tamanho'][$key],
-            'mistura' => $dados['bequer_mistura']
+            'mistura' => $dados['bequer_mistura'],
+            'volume' => $dados['bequer_tamanho'][$key],
           );
         }
         return $bequers;

@@ -39,6 +39,7 @@ class BalaoVolumetrico{
             'faixa_aceitavel' => $dados['balao_faixa_aceitavel'][$key],
             'desvio_padrao' => $dados['balao_desvio_padrao'][$key],
             'tamanho' => $dados['balao_tamanho'][$key],
+            'volume' => $dados['balao_tamanho'][$key],
             'mistura' => $dados['balao_mistura']
           );
         }
