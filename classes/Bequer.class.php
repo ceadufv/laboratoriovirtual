@@ -6,15 +6,15 @@ class Bequer{
     public function getDefaultItens(){
         $bequers = array();
         $valores = array(5, 10, 50, 100, 250, 400, 500, 600, 1000, 2000);
-        $disableds = array(5,10,100,250);
+        $disableds = array(400, 500, 600, 1000, 2000);
         foreach($valores as $valor){
-            $disabled = false;
+            $disabled = 'N';
             if(in_array($valor, $disableds))
-                $disabled = true;
+                $disabled = 'S';
 
             $bequers[] = array(
                 'disabled'=> $disabled,
-                'disponivel'=> $disabled,
+                'disponivel'=> 'N',
                 'tamanho'=> $valor,
                 'qtd_maxima'=> 0,
                 'volume_maximo'=> 80,
@@ -30,6 +30,7 @@ class Bequer{
         foreach ($dados['bequer_desvio_padrao'] as $key => $value) {
           $bequers[] = array(
             'id' => $key+1,
+            'disabled' => $dados['bequer_disabled'][$key],
             'disponivel' => $dados['bequer_disponivel'][$key],
             'qtd_maxima' => $dados['bequer_qtd_maxima'][$key],
             'ambientacao' =>  $dados['bequer_ambientacao'],

@@ -76,15 +76,20 @@ if(!empty($_GET['id_pratica'])){
       <div class="col-md-12">
 
         <div class="navegacao">
-          <a onclick="aba('inicio')" href="#">Administração</a> >
-          <a value="" onclick="aba('aulas')" href="#" class="disciplina_caminho"></a> >
+          <a href="<?php echo URL_SITE;?>area_professor/index.php?aba=inicio">Administração</a> >
+          <a href="<?php echo URL_SITE;?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_GET['id_disciplina'];?>" class="disciplina_caminho">Disciplina</a> >
           <a class="cadastra_edita"> Cadastrar nova prática</a> >
         </div>
 
         <h3>
-          <span>Cadastrar nova prática</span>
+          <?php if(!$pratica_sel){?>
+            <span>Cadastrar nova prática</span>
+          <?php }else{?>
+            <span>Atualizar prática</span>
+          <?php }?>
+          
           <div class="form">
-            <button id="fechar" onclick="window.location = 'index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>'" class="voltar"><i class="fas fa-angle-left"></i> VOLTAR</button>
+            <button onclick="window.location = '<?php echo URL_SITE;?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>'" class="voltar"><i class="fas fa-angle-left"></i> VOLTAR</button>
           </div>
         </h3>
 

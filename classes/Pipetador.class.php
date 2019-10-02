@@ -32,7 +32,7 @@ class Pipetador{
     //parce form to array
     public function getJsonForm($dados){
         $pipetas = array();
-        foreach ($dados['pipeta_desvio_padrao'] as $key => $value) {
+        foreach ($dados['pipetador_nome'] as $key => $value) {
           $pipetas[] = array(
             'id' => $key+1,
             'disponivel' => $dados['pipetador_disponivel'][$key],

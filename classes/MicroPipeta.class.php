@@ -8,7 +8,7 @@ class MicroPipeta{
     public function getDefaultItens(){
         $bequers = array();
         $valores = array("10-100", "50-200", "100-1000", "1000-5000");
-        $disableds = array("100-1000");
+        $disableds = array("10-100", "50-200", "1000-5000");
         foreach($valores as $valor){
             $disabled = false;
             if(in_array($valor, $disableds))
@@ -16,7 +16,7 @@ class MicroPipeta{
 
             $bequers[] = array(
                 'disabled'=> $disabled,
-                'disponivel'=> $disabled,
+                'disponivel'=> false,
                 'name'=> $valor,
                 'qtd_maxima'=> 0,
                 'volume_maximo'=> 80,

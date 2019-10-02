@@ -73,13 +73,14 @@
                             $bequers = $pratica_sel['dados']['bequers'];
 
                         foreach ($bequers as $key => $bequer) {
-                            $disabled = ($bequer['disponivel']) ? 'disabled' : '';
+                            $disabled = ($bequer['disabled'] == 'S') ? 'disabled' : '';
                         ?>
+                            <input type="hidden" value="<?php echo $bequer['disabled'];?>" name="bequer_disabled[]" />
                             <tr>
                                 <td>
                                     <select <?php echo ($disabled);?> name="bequer_disponivel[]">
-                                        <option value="true">SIM</option>
-                                        <option value="false" selected>NÂO</option>
+                                        <option value="N" selected>NÂO</option>
+                                        <option value="S" <?php ($bequer['disponivel'] == 'S') ? 'selected' : '' ?>>SIM</option>
                                     </select>
                                     <input type="hidden" name="bequer_tamanho[]" value="<?php echo $bequer['tamanho']; ?>" />
                                 </td>
