@@ -100,7 +100,8 @@ if(!empty($_GET['id_pratica'])){
 
         <div class="form-group">
           <label>RESUMO</label>
-          <input name="resumo_pratica" value="<?php echo $pratica_sel['resumo'];?>" class="form-control" type="text" placeholder="Digite aqui..." required />
+          <textarea name="resumo_pratica" class="form-control" 
+          placeholder="Digite aqui..." required cols="12" rows="4"><?php echo $pratica_sel['resumo'];?></textarea>
         </div>
 
         <input type="hidden" name="id_cenario" value="1" />

@@ -6,7 +6,7 @@ class Bequer{
     public function getDefaultItens(){
         $bequers = array();
         $valores = array(5, 10, 50, 100, 250, 400, 500, 600, 1000, 2000);
-        $disableds = array(400, 500, 600, 1000, 2000);
+        $disableds = array(50,100);
         foreach($valores as $valor){
             $disabled = 'N';
             if(in_array($valor, $disableds))

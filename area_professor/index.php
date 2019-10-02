@@ -82,7 +82,7 @@ $(function () {
   $('.navegacao').append(breadcrumb.join(' &gt; '));
 
   if (bd.id_pratica) {
-    load_pratica(bd.id_pratica);
+    //load_pratica(bd.id_pratica);
   }
 });
 </script>

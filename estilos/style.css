@@ -1572,3 +1572,10 @@ footer .copyright .creative p {
   }
 */
 }
+
+.form-group .form-control{
+  font-weight: inherit;
+}
+.form-group label{
+  font-weight: bold;
+}

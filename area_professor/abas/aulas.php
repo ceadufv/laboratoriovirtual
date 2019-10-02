@@ -7,7 +7,7 @@
       </div>
 
       <h3>
-        <span>Selecionar aula prática</span>
+        <span>Selecionar ambientes para práticas</span>
         <div class="form">
           <a href="../area_professor/index.php?aba=editaula&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>" class="btn btn-outline-primary">
             <span>Cadastrar nova prática</span>
@@ -39,9 +39,11 @@
                   <a type="button" class="btn azul" href="<?php echo URL_SITE;?>area_laboratorio/lab.php?id_pratica=<?php echo $row['id'] ?>&tipo_acesso=treino">
                     <i class="far fa-eye"></i> Visualizar
                   </a>
+                  <!--
                   <button type="button" class="btn azul" onclick="aba('registros')">
                     <i class="far fa-file-alt"></i> Registro/Alunos
                   </button>
+                  -->
 
                   <button id="excluir-<?php echo $row["id"] ?>" class="btn vermelho" data-toggle="confirmation" data-title="Tem certeza que deseja excluir a prática?" data-placement="right" data-singleton="true" data-btn-ok-label="SIM " data-btn-ok-class="verde" data-btn-cancel-label="NÃO" data-btn-cancel-class="vermelho" data-title="Confirma exclusão?">
                     <i class="fas fa-trash-alt"></i>
