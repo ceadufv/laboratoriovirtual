@@ -8,14 +8,14 @@ class Cubeta{
         $valores =  array("Cubeta de vidro","Cubeta de quartzo");
         foreach($valores as $valor){
             $cubetas[] = array(
-                'disponivel'=> true,
+                'disponivel'=> 'N',
                 'nome'=> $valor,
                 'qtd_maxima'=> 0,
             );
         }
         return $cubetas;
     }
-
+    
     //parce form to array
     public function getJsonForm($dados){
         $bequers = array();

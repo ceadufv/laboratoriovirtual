@@ -9,13 +9,13 @@ class BalaoVolumetrico{
         $disableds = array(5,10,25,50,100,200);
 
         foreach($valores as $valor){
-            $disabled = false;
+            $disabled = 'S';
             if(in_array($valor, $disableds))
-                $disabled = true;
+                $disabled = 'N';
 
             $baloes[] = array(
                 'disabled'=> $disabled,
-                'disponivel'=> $disabled,
+                'disponivel'=> 'N',
                 'tamanho'=> $valor,
                 'qtd_maxima'=> 0,
                 'volume_maximo'=> 80,

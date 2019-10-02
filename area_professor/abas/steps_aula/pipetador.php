@@ -49,8 +49,8 @@
                             <tr>
                                 <td>
                                     <select name="pipetador_disponivel[]">
-                                        <option value="true">SIM</option>
-                                        <option value="false" <?php echo ($pipetador['disponivel'] == 'false' ? 'selected' : '')?>>NÂO</option>
+                                        <option value="S" <?php echo ($pipetador['disponivel'] == 'S' ? 'selected' : '');?>>SIM</option>
+                                        <option value="N" <?php echo ($pipetador['disponivel'] == 'N' ? 'selected' : '');?>>NÂO</option>
                                     </select>
                                     <input type="hidden" name="pipetador_nome[]" value="<?php echo $pipetador['nome']; ?>" />
                                     <input type="hidden" name="pipetador_img[]" value="<?php echo ($pipetador['img']) ?>" />

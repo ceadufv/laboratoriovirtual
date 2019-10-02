@@ -16,7 +16,7 @@ class MicroPipeta{
 
             $bequers[] = array(
                 'disabled'=> $disabled,
-                'disponivel'=> false,
+                'disponivel'=> 'N',
                 'nome'=> $valor,
                 'qtd_maxima'=> 0,
                 'volume_maximo'=> 80,

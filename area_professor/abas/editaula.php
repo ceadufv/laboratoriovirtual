@@ -49,7 +49,7 @@ if ($_POST['acao'] == 'salvar-dados') {
   $args = array();
   $args['nome'] = $dados['nome_pratica'];
   $args['resumo'] = $dados['resumo_pratica'];
-  $args['id_cenario'] = $dados['id_cenario'];
+  $args['id_cenario'] = $dados['bancada_tipo'];
   $args['id_disciplina'] = $dados['id_disciplina'];
   $args['id_modelo_pratica'] = $dados['id_modelo_pratica'];
   $args['data'] = json_encode($new_data);

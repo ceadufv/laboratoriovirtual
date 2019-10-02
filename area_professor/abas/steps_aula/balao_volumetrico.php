@@ -64,13 +64,13 @@
                             $balao_volumetrico = $pratica_sel['dados']['baloes'];
                             
                         foreach ($balao_volumetrico as $balao) {
-                            $disabled = ($balao['disabled'] ? 'disabled' : '');
+                            $disabled = ($balao['disabled'] == 'S' ? 'disabled' : '');
                             ?>
                             <tr>
                                 <td>
                                     <select <?php echo ($disabled); ?> name="balao_disponivel[]">
-                                        <option value="true">SIM</option>
-                                        <option value="false" selected>NÂO</option>
+                                        <option value="S" <?php echo ($balao['disponivel'] == 'S' ? 'selected' : '');?>>SIM</option>
+                                        <option value="N" <?php echo ($balao['disponivel'] == 'N' ? 'selected' : '');?>>NÂO</option>
                                     </select>
                                 </td>
                                 <td>

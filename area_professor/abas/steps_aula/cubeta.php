@@ -34,8 +34,8 @@
                         <tr>
                             <td>
                                 <select name="cubeta_disponivel[]">
-                                    <option value="true">SIM</option>
-                                    <option value="false" <?php echo ($cubeta['disponivel'] == 'false' ? 'selected' : '');?>>NÂO</option>
+                                    <option value="S" <?php echo ($cubeta['disponivel'] == 'S' ? 'selected' : '');?>>SIM</option>
+                                    <option value="N" <?php echo ($cubeta['disponivel'] == 'N' ? 'selected' : '');?>>NÂO</option>
                                 </select>
                             </td>
                             <td>

@@ -38,13 +38,13 @@
                             $micropipetas = $pratica_sel['dados']['micropipetas'];
 
                         foreach ($micropipetas as $micropipeta){
-                            $disabled = ($micropipeta['disabled']) ? 'disabled' : '';
+                            $disabled = ($micropipeta['disabled'] == 'S') ? 'disabled' : '';
                             ?>
                             <tr class="linha-micropipeta" data-id="<?php echo $valor; ?>">
                                 <td style="text-align: left;">
                                     <select <?php echo ($disabled);?> name="micropipeta_disponivel[]">
-                                        <option value="true">SIM</option>
-                                        <option value="false" <?php echo ($micropipeta['disponivel'] == 'false' ? 'selected' : '');?>>NÂO</option>
+                                        <option value="S" <?php echo ($micropipeta['disponivel'] == 'S' ? 'selected' : '');?>>SIM</option>
+                                        <option value="N" <?php echo ($micropipeta['disponivel'] == 'N' ? 'selected' : '');?>>NÃO</option>
                                     </select>
                                 </td>
                                 <td>

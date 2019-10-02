@@ -80,33 +80,38 @@ function construir_data(composicao) {
 }
 
 function construir_tab(tab, s) {
-
     //console.warn(s);
-
     // Se alguma vidraria não estiver disponível, nao aparece na tela
-    if (s.disponiveis == 0) return;
+    //if (s.disponiveis == 0) return;
+
+    var botao, class_opcao;
+    if(s.disponivel == 'S'){
+        botao = '<button data-id="' + s.id + '" type="button" class="btn btn-dark m-3 botao btn-armario-pegar">Selecionar</button>';
+        class_opcao = '';
+    }else{
+        botao = '';
+        class_opcao = 'opcao-disabled';
+    }
 
     // Se for cubeta, no armário ela aparece maior (exceção)
     if (s.conceito == 'cubeta') {
         $('#tab_' + tab + ' .caixas')
             .append(
-                '<label class="opcao" data-id="' + s.id + '">' +
+                '<label class="opcao '+class_opcao+'" data-id="' + s.id + '">' +
                 '<input type="checkbox" style="display:none" value="' + s.id + '" />' +
                 '<p>' + s.nome + '</p>' +
                 '<img src="assets/cubeta-armario.png" height="120px">' +
-                '<button data-id="' + s.id + '" type="button" class="btn btn-dark m-3 botao btn-armario-pegar" >' +
-                'Selecionar</button>' +
+                botao+
                 '</label>'
             );
     } else {
         $('#tab_' + tab + ' .caixas')
             .append(
-                '<label class="opcao" data-id="' + s.id + '">' +
+                '<label disabled class="opcao '+class_opcao+'" data-id="' + s.id + '">' +
                 '<input type="checkbox" style="display:none" value="' + s.id + '" />' +
                 '<p>' + s.nome + '</p>' +
                 '<img src="assets/' + s.conceito + '.png" height="120px">' +
-                '<button data-id="' + s.id + '" type="button" class="btn btn-dark m-3 botao btn-armario-pegar" >' +
-                'Selecionar</button>' +
+                botao +
                 '</label>'
             );
     }
@@ -179,8 +184,7 @@ $.ajax({ url: URL_SITE + 'area_laboratorio/data.php?action=pratica_jogo&id_prati
     jogo.init(function (o) {
 
         var armario = o.armario();
-        console.error(data.data);
-        console.log('data', data.data)
+        console.warn('data', data.data);
 
         var dataArmario = [];
 
