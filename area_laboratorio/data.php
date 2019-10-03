@@ -9,19 +9,7 @@ switch ($action) {
     break;
 
   case "pratica_jogo":
-    header("Content-type: application/json; charset=utf-8");
-    $objCenario = new Cenario();
-    $objSubstancias = new Substancias();
-    $objModeloPratica = new ModeloPratica();
-    $objModeloPraticaSolucao = new ModeloPraticaSolucao();
-    $objLaboratorioVirtual = new LaboratorioVirtual();
-    $id_pratica = $_REQUEST['id_pratica'];
-    $resultado = $objModeloPratica->getJsonLabPratica($id_pratica);
-    $resultado['cenario'] = $objCenario->getCenario($resultado['id_cenario'])['data'];
-    $resultado['substancias'] = $objSubstancias->getAllSubstancias();
-    $resultado['solucoes'] = $objModeloPraticaSolucao->getSolucoesPratica($id_pratica);
-    $resultado = $objLaboratorioVirtual->formatTolab($resultado);
-    echo json_encode($resultado);
+   
     break;
 
   case "salvar_pratica":
