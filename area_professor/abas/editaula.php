@@ -64,8 +64,15 @@ if ($_POST['acao'] == 'salvar-dados') {
 
 //get pratica
 $objModeloPratica = new ModeloPratica();
+$objModeloPraticaArquivo = new ModeloPraticaArquivo();
 if(!empty($_GET['id_pratica'])){
   $pratica_sel = $objModeloPratica->getPraticaPorCod($_GET['id_pratica']);
+  //arquivos caderno
+  $arquivos = $objModeloPraticaArquivo->getArquivosPratica($pratica_sel['id_modelo_pratica'], 'CADERNO');
+  $html_arquivos_caderno = $objModeloPraticaArquivo->getItensHtml($arquivos);
+  //arquivos roteiro
+  $arquivos = $objModeloPraticaArquivo->getArquivosPratica($pratica_sel['id_modelo_pratica'], 'ROTEIRO');
+  $html_arquivos_roteiro = $objModeloPraticaArquivo->getItensHtml($arquivos);
 }else{
   $pratica_sel = NULL;
 }
@@ -89,7 +96,7 @@ if(!empty($_GET['id_pratica'])){
           <?php }?>
           
           <div class="form">
-            <button onclick="window.location = '<?php echo URL_SITE;?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>'" class="voltar"><i class="fas fa-angle-left"></i> VOLTAR</button>
+            <a href='<?php echo URL_SITE;?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>' class="btn btn-primary"><i class="fas fa-angle-left"></i> VOLTAR</a>
           </div>
         </h3>
 
@@ -130,7 +137,7 @@ if(!empty($_GET['id_pratica'])){
           </div>
 
           <div style="padding-top:10px;">
-            <button id="salvar" type="submit" class="btn btn-success btn-outline-success">Salvar</button>
+            <button id="salvar" type="submit" class="btn btn-success">Salvar</button>
           </div>
         </div><!-- /acordion -->
       </div> <!-- /col -->

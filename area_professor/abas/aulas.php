@@ -9,7 +9,7 @@
       <h3>
         <span>Selecionar ambientes para práticas</span>
         <div class="form">
-          <a href="../area_professor/index.php?aba=editaula&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>" class="btn btn-outline-primary">
+          <a href="../area_professor/index.php?aba=editaula&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>" class="btn btn-primary">
             <span>Cadastrar nova prática</span>
             <i class="fas fa-angle-right"></i>
           </a>
@@ -35,8 +35,8 @@
                   <?php echo $row["nome_pratica"] ?>
                 </span>
                 <span>
-                  <button type="button" class="btn azul" onclick="edit_pratica(<?php echo $row['id'] ?>)"><i class="fas fa-edit" aria-hidden="true"></i> EDITAR</button>
-                  <a type="button" class="btn azul" href="<?php echo URL_SITE;?>area_laboratorio/lab.php?id_pratica=<?php echo $row['id'] ?>&tipo_acesso=treino">
+                  <button type="button" class="btn btn-primary" onclick="edit_pratica(<?php echo $row['id'] ?>)"><i class="fas fa-edit" aria-hidden="true"></i> EDITAR</button>
+                  <a type="button" class="btn btn-primary" href="<?php echo URL_SITE;?>area_laboratorio/lab.php?id_pratica=<?php echo $row['id'] ?>&tipo_acesso=treino">
                     <i class="far fa-eye"></i> Visualizar
                   </a>
                   <!--

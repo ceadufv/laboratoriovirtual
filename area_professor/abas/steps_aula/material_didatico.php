@@ -12,6 +12,10 @@
             <h3>Caderno:</h3>
             <input type="file" name="caderno_file_caderno" /> <br />
             <button type="button" class="btn btn-success" id="enviar-caderno">Enviar caderno</button>
+
+            <div id="caderno-arquivos">
+                <?php echo $html_arquivos_caderno;?>
+            </div>
         </div>
     </div>
     <div id="material" class="collapse" aria-labelledby="headingOne">
@@ -19,29 +23,10 @@
             <h3>Roteiro:</h3>
             <input type="file" name="material_file_roteiro" /><br />
             <button type="button" class="btn btn-success" id="enviar-roteiro">Enviar roteiro</button>
+
+            <div id="roteiro-arquivos">
+                <?php echo $html_arquivos_roteiro;?>
+            </div>
         </div>
     </div>
 </div>
-
-<script>
-$('#enviar-caderno').click(function(){
-    var formData = new FormData(); // Corrente vazio
-    formData.append('imagem', $('[name="caderno_file_caderno"]')[0].files[0]);
-    formData.append('tipo', 'caderno');
-    formData.append('id_pratica', $('[name="id_modelo_pratica"]').val());
-    
-    console.error($('[name="caderno_file_caderno"]')[0].files[0]);
-    $.ajax({
-        type: "post",
-        url: URL_SITE+'area_professor/index_new.php?aba=xhr-arquivos-pratica',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            alert('ok');
-        }
-    });
-
-    //alert('OK');
-});
-</script>

@@ -262,9 +262,10 @@ hr {
   border-top: 2px solid rgba(255, 255, 255, 0.5);
 }
 
+
 .btn {
-  color: #fff;
-  background-color: #0c6196;
+  /*color: #fff;
+  background-color: #0c6196;*/
   text-transform: uppercase;
   font-weight: bold;
   font-size: 11px;
@@ -277,17 +278,29 @@ hr {
 
 .btn:hover {
   color: #fff;
+  /*background: #207eb9;*/
+}
+
+.btn.btn-primary {
+  border-radius: 3px !important;
+  background: #207eb9;
+  color: #fff;
+}
+
+.btn.btn-primary {
   background: #207eb9;
 }
 
+
 .btn.focus,
-.btn:focus:focus {
+.btn:focus {
   box-shadow: 0px;
 }
 
 .btn.verde {
   border-radius: 3px !important;
   background: #20A191;
+  color: #fff;
 }
 
 .btn.verde:hover {
@@ -297,6 +310,7 @@ hr {
 .btn.vermelho {
   border-radius: 3px !important;
   background: #BD2030;
+  color: #fff;
 }
 
 .btn.vermelho:hover {
@@ -306,6 +320,7 @@ hr {
 .btn.azul {
   border-radius: 3px !important;
   background: #0c6196;
+  color: #fff;
 }
 
 .btn.azul:hover {
