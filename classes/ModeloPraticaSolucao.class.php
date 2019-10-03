@@ -4,11 +4,21 @@ class ModeloPraticaSolucao{
     public function getItensHtml($solucoes)
     {
         $html = '<table class="table">
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Ir Armário</td>
+                            <td>Ação</td>
+                        </tr>
+                    </thead>
                     <tbody>';
         foreach ($solucoes as $solucao) { 
             $html .= "<tr id='sol-{$solucao['nome_moprsi']}'>";
                 $html .= '<td>';
                     $html .= "<span>".$solucao['nome_moprsi']."</span>";
+                $html .= '</td>';
+                $html .= '<td>';
+                    $html .= "<span>".($solucao['armario_moprsi'] == 'S' ? 'SIM' : 'NÃO')."</span>";
                 $html .= '</td>';
                 $html .= '<td>';
                     $html .= '<button onclick="novaSolucao(this);" data-toggle="modal" data-target=".modal-edit-solucao" cod_moprsi="'.$solucao['cod_moprsi'].'" id_pratica="'.$solucao['fk_cod_mopr'].'"  type="button" class="btn verde btn btn-primary btn-sm">

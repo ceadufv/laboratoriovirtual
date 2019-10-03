@@ -47,7 +47,7 @@ LabHandler.onPointerUp = function (o) {
 
 	// Se o mouse subiu, porem de alguma forma
 	// o computador nao tem a informacao de quando desceu,
-	// candela a acao (ex.: a pessoa veio com o mouse clicado de fora da janela)
+	// cancela a acao (ex.: a pessoa veio com o mouse clicado de fora da janela)
 	if (!pointerStart) return;
 
 	// Se o objeto foi arrastado na tela, nao exibe o menu.
@@ -108,6 +108,7 @@ LabHandler.onDrag = function (pointer, dragX, dragY){
 };
 
 LabHandler.onDragStart = function () {
+	console.warn('LabHandler.onDragStart');
     // Evita o drag de objetos estaticos
     var h = this.data.get('handler'); if (h.static()) return false;
 
@@ -129,6 +130,8 @@ LabHandler.onDragEnd = function (pointer) {
     f.forEach(function (a) { LabUtils.destaqueLugar(a, false); });
 
     var interacts = LabUtils.interaction(this.data.get('handler'));
+
+	console.warn('LabHandler.onDragEnd', interacts);
 
     // 
     if (interacts) {

@@ -109,9 +109,9 @@ if(!empty($_GET['id_pratica'])){
         <input type="hidden" name="id_disciplina" value="<?php echo $_GET['id_disciplina']; ?>" />
 
         <div id="accordion" class="accordion">
+          <!-- solucoes --><?php include_once "abas/steps_aula/solucoes.php";  ?><!-- /solucoes -->
           <!-- material --><?php include_once "abas/steps_aula/material_didatico.php"; ?><!-- /material -->
           <!-- bancadas --><?php include_once "abas/steps_aula/bancadas.php"; ?><!-- /bancadas -->
-          <!-- solucoes --><?php include_once "abas/steps_aula/solucoes.php";  ?><!-- /solucoes -->
           <!-- bequer --><?php include_once "abas/steps_aula/bequers.php"; ?><!-- /bequer -->
           <!-- balao_volumetrico --><?php include_once "abas/steps_aula/balao_volumetrico.php"; ?><!-- /balao_volumetrico -->
           <!-- pipeta_volumetrica --><?php include_once "abas/steps_aula/pipeta_volumetrica.php"; ?><!-- /pipeta_volumetrica -->
