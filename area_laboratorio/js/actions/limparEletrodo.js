@@ -17,8 +17,7 @@ function limparEletrodo(interacao) {
 		.append('<div class="page page-2"><img src="assets/actions/secareletrodo.gif" /></a>');
 		
 	exibirPagina(1);
-	
-	target.data('limpo',true);
+	target.data('limpo', true);
 
 	// Muda o béquer de repouso de lugar
 	LabHandler.procurar('bequer_repouso')[0].moveTo('bancada2')

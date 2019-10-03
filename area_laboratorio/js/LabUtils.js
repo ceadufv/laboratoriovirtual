@@ -26,6 +26,7 @@ LabUtils.getAction = function (data) {
 }
 
 LabUtils.objetoCriar = function (sprite, origem) {
+
     // Eh importante que o uid seja identico ao indice do objeto no array de sprites,
     // pois esse pressuposto sera considerado em outras funcoes como 'LabUtils.objetoSpriteById'
     sprite.setData('uid',uid);
@@ -37,8 +38,7 @@ LabUtils.objetoCriar = function (sprite, origem) {
     var handler = new LabHandler(sprite);
     sprite.setData('handler', handler);
     var scene = sprite.scene;    
-    //console.log(handler.concept())
-
+    
     switch (handler.concept()) {
         case "espectrofotometro":
             //var s = handler.lab().scene();
@@ -513,7 +513,6 @@ LabUtils.alvoInteracao = function (o) {
     utilizado quando algo eh retirado do armario
 */
 LabUtils.objetoFromArmario = function (json, s) {
-
     var alvo = null;
     var x = null;
     var y = null;
@@ -572,16 +571,11 @@ LabUtils.objetoFromArmario = function (json, s) {
 }
 
 LabUtils.objetosCriar = function (s, json) {
-
-    //
+    console.warn('LabUtils.objetosCriar', json);
     var objetos = json.objetos;
-
     for (var i = 0 ; i < objetos.length ; i++) {
-
         LabUtils.objetoFromArmario(objetos[i], s);
-  
     }
-
 }
 
 LabUtils.destaqueOn = function (objeto) {
