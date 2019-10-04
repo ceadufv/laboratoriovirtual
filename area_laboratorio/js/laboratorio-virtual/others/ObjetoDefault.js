@@ -18,6 +18,14 @@ class ObjetoDefault {
         gameObject.destroy();
         this.gameobject = null;
     }
+
+    limparGameObject(obj, dropZone){
+        this.dropped = false;
+        this.dropZone = null;
+        obj.clearTint();
+        dropZone.zone_sprite.clearTint();
+    }
+
     insertDrag(obj1) {
         obj1.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
         GAME_SCENE.input.setDraggable([obj1]);
@@ -40,16 +48,11 @@ class ObjetoDefault {
         });
 
         obj1.on('dragend', function (pointer) {
-            obj1.clearTint();
             if (!this.dropped) {
                 obj1.x = obj1.input.dragStartX;
                 obj1.y = obj1.input.dragStartY;
-            } else {
-                obj1.x = this.dropZone.zone_sprite.x;
-                obj1.y = this.dropZone.zone_sprite.y - (obj1.height / 4);
             }
-            this.dropped = false;
-            this.dropZone = null;
+            this.limparGameObject(obj1, null);
         });
 
         obj1.on('gameobjectover', function (pointer) {
@@ -67,13 +70,23 @@ class ObjetoDefault {
 
         obj1.on('dragleave', function (pointer, dropZone) {
             console.log('dragleave');
-            dropZone.zone_sprite.clearTint();
+            this.limparGameObject(obj1, dropZone);
         });
 
         obj1.on('drop', function (pointer, dropZone) {
+
+            dropZone.ocupado = true;
             console.log('drop');
-            this.dropZone = dropZone;
-            this.dropped = true;
+            obj1.x = dropZone.zone_sprite.x;
+            obj1.y = dropZone.zone_sprite.y - (obj1.height / 4);
+            if(dropZone.ocupado){
+                console.log('Local Ocupado');
+                this.limparGameObject(obj1, dropZone);
+            }else{
+                this.dropZone = dropZone;
+                this.dropped = true;
+                this.dropZone.ocupado = true;
+            }
         });
     }
 
