@@ -5,7 +5,7 @@ include_once('../lab-config.php');
 <html lang="pt">
 <head>
   <title>NeoAlice</title>
-
+  <link rel="shortcut icon" type="image/png" href="<?php echo URL_SITE; ?>imagens/icons/favicon.png" />
   <!--vendors-->
   <script src="<?php echo URL_SITE;?>plugins/vendor/jquery/jquery.js"></script>
   <script src="<?php echo URL_SITE;?>plugins/vendor/phaser/3.12.0/phaser.min.js"></script>

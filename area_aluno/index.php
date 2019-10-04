@@ -1,6 +1,6 @@
 <?php 
 include('../lab-config.php');
-include('cabecalho.php');
+include('header.php');
 include('../banco/conexao.php');
 Login::checkUser();
 ?>
@@ -49,4 +49,4 @@ Login::checkUser();
     </div>
   </div>
                       
- <?php include('rodape.php'); ?>
+ <?php include('footer.php'); ?>

@@ -389,7 +389,7 @@ LabJogo.prototype.init = function (f) {
 
 		//
 		var json = o._data.cenario;
-		//console.log(json)
+		console.warn('json',json)
 		//var json = o.id_cenario;
 
 
