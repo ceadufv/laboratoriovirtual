@@ -150,9 +150,7 @@ LabUtils.objetoCriar = function (sprite, origem) {
 */    
 
     sprites[uid] = sprite;
-
     uid++;
-
     return sprite;
 }
 
@@ -513,6 +511,7 @@ LabUtils.alvoInteracao = function (o) {
     utilizado quando algo eh retirado do armario
 */
 LabUtils.objetoFromArmario = function (json, s) {
+
     var alvo = null;
     var x = null;
     var y = null;
@@ -531,6 +530,8 @@ LabUtils.objetoFromArmario = function (json, s) {
             .setInteractive({ pixelPerfect: true, draggable:true, cursor: 'pointer' }),
         sss
     );
+
+    console.log('LabUtils.objetoFromArmario : Set Eventos para os objetos');
 
     obj.on('pointerdown', LabHandler.onPointerDown);
     obj.on('pointerover', LabHandler.onPointerOver)

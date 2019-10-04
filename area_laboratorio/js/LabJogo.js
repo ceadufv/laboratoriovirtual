@@ -5,6 +5,13 @@ var bg;
 var buraco = [];
 var scene;
 
+/**
+ * scena principal do game onde contem o Phaser
+ * @author Wellerson
+ * */
+var GAME_SCENE;
+
+
 LabJogo = function (data) {
 	this._data = data;
 	this._phaser;
@@ -219,6 +226,7 @@ LabJogo.prototype.popupPorcentagem = function (porcentagem) {
 }
 
 LabJogo.prototype.init = function (f) {
+	console.log('LabJogo.prototype.init -> INIT phaser');
 	var o = this;
 	var game;
 	var earth, logo;
@@ -339,6 +347,11 @@ LabJogo.prototype.init = function (f) {
 	}
 
 	function create() {
+		GAME_SCENE = this;
+		GAME_SCENE.input.setDefaultCursor('url('+URL_SITE+'area_laboratorio/assets/cursors/arrow.cur), pointer');
+		console.log('GAME_SCENE - create -Phaser', GAME_SCENE);
+
+		console.log('create -> itens');
 		scene = this;
 
 		// Cria na cena um ponteiro para o objeto que
@@ -455,6 +468,8 @@ LabJogo.prototype.init = function (f) {
 		group.add(graphics);
 
 
+		DropZone.add();
+
 		// Linha que conecta o pHmetro ao eletrodo
 
 		//o.popupPorcentagem(50);
@@ -481,4 +496,5 @@ LabJogo.prototype.init = function (f) {
 	//
 	this._phaser = new Phaser.Game(config);
 	game = this._phaser;
+
 }

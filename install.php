@@ -106,13 +106,21 @@ switch ($estado) {
       exit;
     }
 
-    $new_password = str_pad(rand(0, 99999), 5, "0", STR_PAD_LEFT);
+    //$new_password = str_pad(rand(0, 99999), 5, "0", STR_PAD_LEFT);
+    $new_password = '123456';
     $sql = file_get_contents("quimica.sql");
-    $sql = str_replace("__MYSENHA__", sha1($new_password), $sql);
+    //$sql = str_replace("__MYSENHA__", sha1($new_password), $sql);
 
     if ($dbh) {
       try {
         $database_created = $dbh->exec($sql);
+        $dbh->exec("
+          TRUNCATE TABLE acao_pratica;
+          TRUNCATE TABLE modelo_pratica;
+          TRUNCATE TABLE modelo_pratica_arquivo;
+          TRUNCATE TABLE modelo_pratica_solucao;
+          TRUNCATE TABLE disciplinas;
+        ");
       } catch (PDOException $e) {
         $error_message = $e->getMessage();
         header("location:install.php?action=error&error_title=" . urlencode("Erro ao tentar escrever no banco de dados") . "&error_message=" . urlencode($error_message));
