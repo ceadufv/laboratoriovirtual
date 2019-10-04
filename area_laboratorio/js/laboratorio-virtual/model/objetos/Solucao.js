@@ -1,4 +1,4 @@
-class Pisseta extends ObjetoDefault {
+class Solucao extends ObjetoDefault {
     constructor(data) {
         super(data);
         this.offset = -100;
@@ -9,7 +9,7 @@ class Pisseta extends ObjetoDefault {
         //var sprite = GAME_SCENE.add.sprite(0, 0, 'pisseta');
         //this.gameobject = sprite;
         var config = {
-            key: 'pisseta',
+            key: 'balao',
             x: data.x,
             y: data.y-this.offset
         };
