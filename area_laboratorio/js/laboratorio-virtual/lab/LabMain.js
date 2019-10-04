@@ -80,14 +80,14 @@ function construir_data(composicao) {
 
 function construir_tab(tab, s) {
 
-    //console.log(s);
-
+    console.log('construir_tab',s);
+    
     var botao, class_opcao;
     if (s.disponivel == 'N') {
         botao = '';
         class_opcao = 'opcao-disabled';
     } else {
-        botao = '<button data-id="' + s.id + '" type="button" class="btn btn-dark m-3 botao btn-armario-pegar">Selecionar</button>';
+        botao = '<button data-type="' + s.conceito + '" data-id="' + s.id + '" type="button" class="btn btn-dark m-3 botao btn-armario-pegar">Selecionar</button>';
         class_opcao = '';
     }
 
@@ -287,16 +287,6 @@ function armarioContarSelecionados() {
     return $('#armario button[data-marcado="true"]').length;
 }
 
-function armarioSelecionados() {
-    var result = [];
-
-    $('#armario button[data-marcado="true"]').each(function () {
-        result.push($(this).attr('data-id'));
-    });
-
-    return result;
-}
-
 function armarioAtualizarSelecionados(counter) {
     var livres = LabUtils.lugaresLivres('bancada');
 
@@ -341,7 +331,6 @@ $('#armario').on('click', '.btn-armario-pegar', function () {
     } else {
         $('.armario-lotado').hide();
     }
-
     //
     $(this).attr('data-marcado', adicionando);
 
@@ -360,17 +349,49 @@ $('#armario').on('click', '.btn-armario-pegar', function () {
     armarioAtualizarSelecionados(selecionados.length);
 });
 
+function armarioSelecionados() {
+    var result = [];
+    $('#armario button[data-marcado="true"]').each(function () {
+        result.push($(this).attr('data-id'));
+    });
+    return result;
+}
+
+/** pega os itens selecionados no armario */
+function getItensSelecionadosArmario() {
+    var result = [];
+    $('#armario button[data-marcado="true"]').each(function () {
+        result.push({
+            id: $(this).attr('data-id'),
+            conceito: $(this).attr('data-type'),
+        });
+    });
+    return result;
+}
+
 // Adiciona a bancada os objetos selecionados
 $('.btn-armario-adicionar').click(function () {
-    console.log("LabMain .btn-armario-adicionar");
-    var selecionados = armarioSelecionados();
+    console.log('Adicionando no lab...',"LabMain .btn-armario-adicionar");
+    var selecionados = getItensSelecionadosArmario();
     for (var i = 0; i < selecionados.length; i++) {
-        jogo.armario().pegar(selecionados[i]);
+        //jogo.armario().pegar(selecionados[i]);
+
+        if(selecionados[i].conceito == 'frasco_estoque'){
+            var arg = {
+                x: DropZones.DROPZONES[0].zone.zone_sprite.x,
+                y: DropZones.DROPZONES[0].zone.zone_sprite.y
+            };
+            var opp = new Solucao(arg);
+            console.error('Solucao', opp);
+        }else{
+            var arg = {
+                x: DropZones.DROPZONES[i].zone.zone_sprite.x,
+                y: DropZones.DROPZONES[i].zone.zone_sprite.y
+            };
+            var opp = new Pisseta(arg);
+            console.error('Pipeta', opp);
+        }
+
     }
-    console.log('LabMain .btn-armario-adicionar > selecionados', selecionados);
-
-    var opp = new Pisseta({});
-    console.error('ok', opp);
-
     $('#armario').modal('hide');
 });

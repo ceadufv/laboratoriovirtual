@@ -212,6 +212,7 @@ include_once('../lab-config.php');
   <!--OBJETOS -->
   <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/others/ObjetoDefault.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/model/objetos/Pisseta.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/model/objetos/Solucao.js"></script>
 
 
   <!-- OUTROS -->
