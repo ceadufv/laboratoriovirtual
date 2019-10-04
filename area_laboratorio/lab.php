@@ -1,6 +1,5 @@
 <?php
-include_once('data.php');
-include_once('../banco/sessao.php');
+include_once('../lab-config.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -16,8 +15,8 @@ include_once('../banco/sessao.php');
 
   <script>
     const URL_SITE = '<?php echo URL_SITE; ?>';
-    var id_pratica = parseInt('<?php echo @$_REQUEST['id_pratica']; ?>');
-    var tipo_acesso = '<?php echo @$_REQUEST['tipo_acesso']; ?>';
+    var id_pratica = parseInt('<?php echo $_REQUEST['id_pratica']; ?>');
+    var tipo_acesso = '<?php echo $_REQUEST['tipo_acesso']; ?>';
   </script>
 
   <!-- estilos -->

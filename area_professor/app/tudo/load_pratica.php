@@ -1,6 +1,6 @@
 <?php 
-	include('../../banco/conexao.php');
-	header("Content-type: application/json; charset=utf-8");
+header("Content-type: application/json; charset=utf-8");
+include(URL_SYSTEM.'banco/conexao.php');
 
 	$id_pratica = !empty(@$_REQUEST['id_pratica'])?@$_REQUEST['id_pratica']:0;
 

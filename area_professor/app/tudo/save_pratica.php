@@ -1,10 +1,8 @@
 <?php
   // Insere ou altea uma pratica no banco.
   // Se receber ID, a acao sera de UPDATE. Senao, sera de criacao de novo registro
-  session_start();
   header("Content-type: application/json; charset=utf-8");
-
-  include('../../banco/conexao.php');
+  include(URL_SYSTEM.'banco/conexao.php');
 
   $id_pratica = !empty(@$_REQUEST['id_pratica'])?@$_REQUEST['id_pratica']:0;
   $bequer = @$_REQUEST['bequer'];

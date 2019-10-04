@@ -1,6 +1,6 @@
 <?php 
-include('../banco/conexao.php');
 header("Content-type: application/json; charset=utf-8");
+include(URL_SYSTEM.'banco/conexao.php');
 
     $resultado = array();
     $resultado['status'] = true;

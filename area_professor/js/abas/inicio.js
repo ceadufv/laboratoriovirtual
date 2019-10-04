@@ -10,7 +10,7 @@ function selecionar_disciplina() {
 function salvarDisciplina() {
     var nome = $('#nome_disciplina_nova').val();
     $.ajax({
-        url: URL_SITE + "area_professor/funcoes/insert_disciplina.php",
+        url: URL_SITE + "area_professor/index-app.php?app=tudo&file=insert_disciplina",
         type: 'POST',
         data: {
             nome: nome
@@ -31,7 +31,7 @@ function salvarDisciplina() {
 function remover_disciplina() {
     disciplina_acessada = $('#listaDisciplinas').val();
     $.ajax({
-        url: URL_SITE + "area_professor/funcoes/apagar_disciplina.php",
+        url: URL_SITE + "area_professor/index-app.php?app=tudo&file=apagar_disciplina",
         type: 'POST',
         data: {
             id_disciplina: disciplina_acessada,

@@ -87,4 +87,4 @@ $(function () {
 });
 </script>
 
- <?php include('funcoes/rodape.php'); ?>
+ <?php include('footer.php'); ?>

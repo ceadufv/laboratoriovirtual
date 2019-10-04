@@ -15,7 +15,7 @@ $(document).ready(function () {
 });
 
 function salvaOuAtualiza() {
-  post("funcoes/save_pratica.php");
+  post("area_professor/index-app.php?app=tudo&file=save_pratica");
 }
 
 function cadastraAula() {

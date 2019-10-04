@@ -17,10 +17,8 @@
         </thead>
         <tbody>
           <?php
-          $sql = $lab->getAlunos(@$_SESSION['id_usuario']);
-
+          $sql = $lab->getAlunos($_SESSION['id_usuario']);
           if (count($sql)) {
-
             foreach ($sql as $row) {
               echo "<tr>" .
                 "<td>" . $row["usuario"] . "</td>" .
@@ -46,7 +44,7 @@
         
         <div class="collapse" id="adicionarAluno">
 
-          <form id="aluno" method="post" action="funcoes/insert_aluno.php" enctype="multipart/form-data">
+          <form id="aluno" method="post" action="<?php echo URL_SITE;?>area_professor/index-app.php?app=usuario&file=insert-aluno" enctype="multipart/form-data">
             <table class="table">
               <thead>
                 <tr>
@@ -62,7 +60,7 @@
               </tbody>
             </table>
             <!-- <button id="salvarAluno" type="submit" class="btn btn-outline-primary" onclick="salvarAluno()">Salvar</button> -->
-            <button type="submit" class="btn btn-outline-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
             <input type="hidden" name="acao" value="salvar">
           </form>
         </div>

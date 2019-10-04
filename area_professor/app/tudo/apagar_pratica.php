@@ -1,7 +1,6 @@
 <?php
-  include('../../banco/conexao.php');
-  session_start();
-  header("Content-type: application/json; charset=utf-8");
+ header("Content-type: application/json; charset=utf-8");
+ include(URL_SYSTEM.'banco/conexao.php');
 
   $id_pratica = @$_REQUEST['id_pratica'];
   $resultado = array();

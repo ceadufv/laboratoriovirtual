@@ -1,8 +1,6 @@
 <?php 
-  include('../banco/conexao.php');
-  header("Content-type: application/json; charset=utf-8");
-
- 
+header("Content-type: application/json; charset=utf-8");
+include(URL_SYSTEM.'banco/conexao.php');
   $id = @$_REQUEST['id_pratica'];
   $resultado = $lab->getResumo($id);
   echo json_encode($resultado);

@@ -1,9 +1,6 @@
 <?php
-  session_start();
-
-  header("Content-type: application/json; charset=utf-8");
-
-  include( dirname(__FILE__) . '/../../banco/conexao.php');
+header("Content-type: application/json; charset=utf-8");
+include(URL_SYSTEM.'banco/conexao.php');
 
   $nome = @$_REQUEST['nome'];
   $id_usuario = $_SESSION['id_usuario'];

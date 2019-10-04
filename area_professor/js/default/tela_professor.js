@@ -147,8 +147,6 @@ function criar() {
     $('#modalCriacao').modal('show');
 }
 
-
-
 // Preenchimento da lista com tamanhos de vidrarias e personalização do modal
 function popularLista(idVidraria) {
     $('.opcoes-vidraria').remove();
