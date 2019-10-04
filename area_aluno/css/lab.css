@@ -1,0 +1,20 @@
+.on {
+    background-color: #0f0;
+}
+
+.on::after {
+    content: "ON";
+}
+
+.off {
+    background-color: #f00;
+}
+
+.off::after {
+    content: "OFF";
+}
+
+label:hover {
+    /* text-shadow: #ea1f74 0px 0px 5px; */
+    border: 1px solid #000;
+}

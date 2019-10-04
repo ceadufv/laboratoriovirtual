@@ -1,11 +1,11 @@
 <?php
 include('../lab-config.php');
+include_once(URL_SYSTEM.'banco/conexao.php');
+Login::checkUser();
+
 $aba_s = $_REQUEST['aba'];
 $aba_s = (empty($aba_s))?"inicio":$aba_s;
-
-include(URL_SYSTEM.'area_professor/funcoes/cabecalho.php'); 
-include_once(URL_SYSTEM.'banco/conexao.php');
-
+include(URL_SYSTEM.'area_professor/header.php'); 
 ?>
 <body>
   <div class="interno criacaopraticas">

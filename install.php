@@ -34,7 +34,7 @@ switch ($action) {
     /**
     * As configurações básicas do Laboratorio Virtual de Quimica
     */
-
+    session_start();
     define('DB_NAME', '%s');
     define('DB_USER', '%s');
     define('DB_PASSWORD', '%s');

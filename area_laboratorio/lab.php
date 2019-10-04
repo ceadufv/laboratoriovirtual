@@ -4,50 +4,31 @@ include_once('../banco/sessao.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
   <title>NeoAlice</title>
-  <script src="../js/phaser/3.12.0/phaser.min.js"></script>
-  <script src="../js/phaser/GameScalePlugin.js"></script>
 
-  <script src="js/vendor/jquery.js"></script>
-  <script src="../js/popper.js/1.14.3/popper.min.js"></script>
-  <script src="../js/bootstrap/4.1.3/bootstrap.min.js"></script>
-
-  <script type="text/javascript" src="dist/scripts.js"></script>
-  <script type="text/javascript" src="js/LabJogo.js"></script>
-  <script type="text/javascript" src="js/LabElemento.js"></script>
-  <script type="text/javascript" src="js/LabSubstancia.js"></script>
-  <script type="text/javascript" src="js/LabSolution.js"></script>
-  <script type="text/javascript" src="js/LabAction.js"></script>
-  <script type="text/javascript" src="js/LabInteraction.js"></script>
-  <script type="text/javascript" src="js/LabUtils.js"></script>
-  <script type="text/javascript" src="js/LabState.js"></script>
-  <script type="text/javascript" src="js/LabHandler.js"></script>
-  <script type="text/javascript" src="js/LabError.js"></script>
-  <script type="text/javascript" src="js/LabActions.php"></script>
-  <script type="text/javascript" src="js/LabPhmetro.js"></script>
-  <script type="text/javascript" src="js/LabArmario.js"></script>
-  <script type="text/javascript" src="js/LabEspectrofotometro.js"></script>
-  <script type="text/javascript" src="js/LabEspectrofotometro.class.js"></script>
-
-  <!-- <script type="text/javascript" src="js/rotinas/medirPotencial.js"></script> -->
-
-  <link rel="stylesheet" href="../estilos/bootstrap/4.1.3/bootstrap.min.css">
-  <link rel="stylesheet" href="../awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/lab.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
-
+  <!--vendors-->
+  <script src="<?php echo URL_SITE;?>plugins/vendor/jquery/jquery.js"></script>
+  <script src="<?php echo URL_SITE;?>plugins/vendor/phaser/3.12.0/phaser.min.js"></script>
+  <script src="<?php echo URL_SITE;?>plugins/vendor/phaser/GameScalePlugin.js"></script>
+  <script src="<?php echo URL_SITE;?>plugins/vendor/popper.js/1.14.3/popper.min.js"></script>
+  <script src="<?php echo URL_SITE;?>plugins/vendor/bootstrap/4.1.3/bootstrap.min.js"></script>
 
   <script>
     const URL_SITE = '<?php echo URL_SITE; ?>';
     var id_pratica = parseInt('<?php echo @$_REQUEST['id_pratica']; ?>');
     var tipo_acesso = '<?php echo @$_REQUEST['tipo_acesso']; ?>';
   </script>
-  <script type="text/javascript" src="js/lab.js"></script>
+
+  <!-- estilos -->
+  <link rel="stylesheet" href="<?php echo URL_SITE;?>plugins/vendor/bootstrap/4.1.3/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo URL_SITE;?>plugins/vendor/awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo URL_SITE;?>area_laboratorio/css/style.css">
+  <link rel="stylesheet" href="<?php echo URL_SITE;?>area_laboratorio/css/lab.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
 </head>
 
 <body>
@@ -74,9 +55,7 @@ include_once('../banco/sessao.php');
           </button>
         </div>
         <div class="modal-body">
-          <div class="conteudo">
-
-          </div>
+          <div class="conteudo"></div>
           <div class="botoes">
             <a href="#" class="btn btn-success" data-dismiss="" onclick="paginaAnterior()"><i class="fa fa-step-backward"></i> Anterior</a>
             <a href="#" class="btn btn-success" data-dismiss="" onclick="proximaPagina()"><i class="fa fa-step-forward"></i> Próximo</a>
@@ -199,9 +178,45 @@ include_once('../banco/sessao.php');
     </div>
   </div>
 
+  <div id="AreaJogo"></div>
 
-  <div id="AreaJogo">
-    <script type="text/javascript" src="js/LabMain.js"></script>
-  </div>
+  <!-- 
+    #########
+    SCRIPTS 
+    #########
+  -->
+
+  <!-- LABS -->
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabJogo.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabElemento.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabSubstancia.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabSolution.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabAction.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabInteraction.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabUtils.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabState.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabHandler.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabError.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabPhmetro.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabArmario.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabEspectrofotometro.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabEspectrofotometro.class.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/LabMain.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/LabActions.php"></script>
+
+  <!-- default -->
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/default/scripts.js"></script>
+
+  <!--DROP ZONES -->
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/others/DropZones.js"></script>
+  
+  <!--OBJETOS -->
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/others/ObjetoDefault.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/model/objetos/Pisseta.js"></script>
+
+
+  <!-- OUTROS -->
+  <script type="text/javascript" src="<?php echo URL_SITE;?>area_laboratorio/js/laboratorio-virtual/lab/lab.js"></script>
+
 </body>
 </html>

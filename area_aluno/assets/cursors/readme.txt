@@ -1,0 +1,1 @@
+https://convertio.co/pt/jpg-cur/

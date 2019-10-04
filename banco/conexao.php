@@ -1,12 +1,9 @@
 <?php
-@include_once(dirname(__FILE__) . "/../lab-config.php");
-
 try {
     $banco = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASSWORD);
     $dbh = $banco;
 } catch (PDOException $e) {
     $error_message = $e->getMessage();
-    //exit;
 }
 
 function labRootPath()
