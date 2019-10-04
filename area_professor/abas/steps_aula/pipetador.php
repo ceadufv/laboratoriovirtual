@@ -59,7 +59,7 @@
                                     <?php echo $pipetador['nome']; ?>
                                 </td>
                                 <td>
-                                    <img data-name="imagem" src="accordion/pipetadores/<?php echo ($pipetador['img']) ?>.jpg" width="100">
+                                    <img data-name="imagem" src="<?php echo URL_SITE;?>area_professor/images/pipetadores/<?php echo ($pipetador['img']) ?>.jpg" width="100">
                                 </td>
                                 <td>
                                     <select name="pipetador_tamanho[]" disabled>
