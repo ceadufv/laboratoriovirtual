@@ -1,8 +1,11 @@
 <?php 
 include('../lab-config.php');
-include('header.php');
-include('../banco/conexao.php');
+include_once(URL_SYSTEM.'banco/conexao.php');
 Login::checkUser();
+
+$aba_s = $_REQUEST['aba'];
+$aba_s = (empty($aba_s))?"inicio":$aba_s;
+include(URL_SYSTEM.'area_aluno/header.php'); 
 ?>
 
 <body>
@@ -17,36 +20,24 @@ Login::checkUser();
 
       <section class="menu">
         <div class="botoes">
-          <button class="opcoes ativo tab-inicio tab-disciplina" onclick="aba('inicio')">Início</button>
-          <button class="opcoes tab-registros" onclick="aba('registros')">Minhas ações</button>       
-          <button class="opcoes tab-perfil" onclick="aba('perfil')">Meu perfil</button>      
-          <button class="opcoes tab-sobre" onclick="aba('sobre')">Sobre o projeto</button>        
+          <button class="opcoes ativo tab-inicio tab-disciplina" onclick="window.location ='index.php?aba=aulas'">Início</button>
+          <button class="opcoes tab-registros" onclick="window.location='index.php?aba=registros'">Minhas ações</button>       
+          <button class="opcoes tab-perfil" onclick="window.location='index.php?aba=perfil'">Meu perfil</button>      
+          <button class="opcoes tab-sobre" onclick="window.location.href='index.php?aba=sobre'">Sobre o projeto</button>        
           <button class="opcoes tab-sair" onclick="logoff()">Sair</button>
         </div>
       </section>
 
       <section class="conteudoabas"> 
-
-        <div class="section div-secoes div-inicio opcoeslogin">
-          <?php include("abas/".$_REQUEST['aba'].".php") ?>            
-        </div>
-        
-        <?php
-        /*
-        <div class="section div-secoes div-perfil oculta">
-          <?php include("abas/perfil.php") ?>       
-        </div>
-        <div class="section div-secoes div-registros oculta">
-          <?php include("abas/registros.php") ?>       
-        </div>
-        <div class="section div-secoes div-sobre oculta">
-          <?php include("abas/sobre.php") ?>       
-        </div>
-        */
-        ?>
-        
+          <div class="section">
+            <?php include("abas/".$aba_s.".php") ?>            
+          </div>
       </section>
     </div>
   </div>
                       
+<script>
+  const URL_SITE = "<?php echo URL_SITE;?>";
+</script>
+
  <?php include('footer.php'); ?>

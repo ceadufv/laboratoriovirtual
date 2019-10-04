@@ -50,7 +50,7 @@
             </div>
 
           </div>
-          <button id = "salvar" type="button" class="btn btn-outline-primary" onclick="atualizarPerfil()">Salvar</button>
+          <button id = "salvar" type="button" class="btn btn-primary" onclick="atualizarPerfil()">Salvar</button>
         </form>
 
       </div>
