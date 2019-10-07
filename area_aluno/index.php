@@ -8,7 +8,7 @@ $aba_s = (empty($aba_s))?"inicio":$aba_s;
 include(URL_SYSTEM.'area_aluno/header.php'); 
 ?>
 <body>
-  <div class="interno">
+  <div class="interno criacaopraticas">
     <div class="container">
       <div class="row menu p-2">
         <div class="col">
@@ -19,7 +19,7 @@ include(URL_SYSTEM.'area_aluno/header.php');
 
       <section class="menu">
         <div class="botoes">
-          <button class="opcoes ativo tab-inicio tab-disciplina" onclick="window.location ='index.php?aba=aulas'">Início</button>
+          <button class="opcoes ativo tab-inicio tab-disciplina" onclick="window.location ='index.php?aba=inicio'">Início</button>
           <button class="opcoes tab-registros" onclick="window.location='index.php?aba=registros'">Minhas ações</button>       
           <button class="opcoes tab-perfil" onclick="window.location='index.php?aba=perfil'">Meu perfil</button>      
           <button class="opcoes tab-sobre" onclick="window.location.href='index.php?aba=sobre'">Sobre o projeto</button>        
@@ -36,7 +36,14 @@ include(URL_SYSTEM.'area_aluno/header.php');
   </div>
                       
 <script>
-  const URL_SITE = "<?php echo URL_SITE;?>";
+var bd = {
+  aba: '<?php echo $aba_s; ?>'
+};
+
+$(function () {
+  aba(bd.aba);
+});
+
 </script>
 
  <?php include('footer.php'); ?>
