@@ -7,7 +7,6 @@ $aba_s = $_REQUEST['aba'];
 $aba_s = (empty($aba_s))?"inicio":$aba_s;
 include(URL_SYSTEM.'area_aluno/header.php'); 
 ?>
-
 <body>
   <div class="interno">
     <div class="container">
