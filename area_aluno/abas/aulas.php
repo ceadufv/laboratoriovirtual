@@ -24,14 +24,14 @@
         ?>
         </select>
         <div class="input-group-append">
-            <button class="btn azul" onclick="acessar_laboratorio('salvar')"><i class="fa fa-check-circle"></i> Realizar prática</button>
-            <button class="btn verde" onclick="acessar_laboratorio('treino')"><i class="fa fa-check-circle"></i> Treinar</button>
+            <button class="btn btn-primary" onclick="acessar_laboratorio('salvar')"><i class="fa fa-check-circle"></i> Realizar prática</button>
+            <button class="btn btn-success" onclick="acessar_laboratorio('treino')"><i class="fa fa-check-circle"></i> Treinar</button>
         </div>
     
         <script>
         function acessar_laboratorio(tipo_acesso){
             var id = $('#select_acessar_laboratorio option:selected').val();
-            location.href="lab.php?id_pratica="+id+'&tipo_acesso='+tipo_acesso;
+            location.href="../area_laboratorio/lab.php?id_pratica="+id+'&tipo_acesso='+tipo_acesso;
         }
         </script>
         </div>

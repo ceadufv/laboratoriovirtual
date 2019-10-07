@@ -20,6 +20,7 @@ include(URL_SYSTEM.'area_aluno/header.php');
       <section class="menu">
         <div class="botoes">
           <button class="opcoes ativo tab-inicio tab-disciplina" onclick="window.location ='index.php?aba=inicio'">Início</button>
+          <button class="opcoes tab-aulas" onclick="window.location='index.php?aba=aulas'">Práticas</button>       
           <button class="opcoes tab-registros" onclick="window.location='index.php?aba=registros'">Minhas ações</button>       
           <button class="opcoes tab-perfil" onclick="window.location='index.php?aba=perfil'">Meu perfil</button>      
           <button class="opcoes tab-sobre" onclick="window.location.href='index.php?aba=sobre'">Sobre o projeto</button>        
