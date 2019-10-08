@@ -73,7 +73,7 @@ class LabJogo
     // TODO: Filtrar apenas as praticas que podem ser exibidas para o aluno
     function getPraticasAluno($id_aluno)
     {
-        $sql = $this->_dbh->prepare('SELECT id_modelo_pratica as id, nome_pratica from modelo_pratica order by nome_pratica');
+        $sql = $this->_dbh->prepare('SELECT id_modelo_pratica as id, nome_pratica, resumo from modelo_pratica order by nome_pratica');
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $sql->execute();
 

@@ -1,7 +1,9 @@
 <?php
 include('../lab-config.php');
 include_once(URL_SYSTEM.'banco/conexao.php');
+Login::$permissao_usuario = [1,2];
 Login::checkUser();
+
 
 $aba_s = $_REQUEST['aba'];
 $aba_s = (empty($aba_s))?"inicio":$aba_s;

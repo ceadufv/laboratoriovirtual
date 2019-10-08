@@ -9,7 +9,7 @@
         <span>Meus Alunos</span>
       </h3>
 
-      <p>Gerenciamento de alunos. Aqui é possível ver a lista de alunos que você acompanha, deletar do acompanhamento e adicionar novos.</p>
+      <p>Gerenciamento de alunos</p>
 
       <table class="table" id="tabela">
         <thead>
