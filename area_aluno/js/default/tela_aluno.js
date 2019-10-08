@@ -1,4 +1,4 @@
-// Função de troca de telas
+// Função de troca de abas
 function aba(tela) {
     $('.opcoes').removeClass('ativo');
     $('.tab-' + tela).addClass('ativo');

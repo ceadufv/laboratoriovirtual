@@ -385,7 +385,7 @@ class LabJogo
     //TODO: linkar disciplina
     function getAulas($id_disciplina)
     {
-        $sql = sprintf('select id_modelo_pratica as id, nome_pratica, disponivel from modelo_pratica where id_disciplina=%d order by nome_pratica', $id_disciplina);
+        $sql = sprintf('select id_modelo_pratica as id, nome_pratica, resumo, disponivel from modelo_pratica where id_disciplina=%d order by nome_pratica', $id_disciplina);
         //$sql = sprintf('select id_modelo_pratica as id, nome_pratica, disponivel from modelo_pratica order by nome_pratica where id_disciplina=1',$id_disciplina);
         //exit $sql;
         $sql = $this->_dbh->prepare(

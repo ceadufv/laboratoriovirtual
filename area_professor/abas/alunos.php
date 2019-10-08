@@ -76,7 +76,7 @@
   </div>
 </div>
 <?php
-  //se confirmado, reseta a senha do usuário para 123456
+  //se confirmado, reseta a senha do aluno para 123456
 		if($_POST['confirmado'] == 'S') {
       $lab->resetarSenhaAluno($_POST['cod_usuario']);
 			exit();
