@@ -14,7 +14,7 @@ class ObjetoDefault {
     addSpriteScene(config) {
         var image1 = GAME_SCENE.make.sprite(config);
         this.gameobject = image1;
-        image1.ref_class = this;
+        image1.A_REF_CLASS = this;
     }
 
     insertInteractive(objeto_s) {
@@ -88,18 +88,18 @@ class ObjetoDefault {
             objeto_s.x = objeto_s.input.dragStartX;
             objeto_s.y = objeto_s.input.dragStartY;
         }
-
-        Debug.error(dropZone.ref_class, 'ObjetoDefault');
-        Debug.error(objeto_s.ref_class, 'ObjetoDefault');
+        
+        Debug.error(dropZone.A_REF_CLASS, 'ObjetoDefault');
+        Debug.error(objeto_s.A_REF_CLASS, 'ObjetoDefault');
 
         if (dropZone.type != 'Zone') { //se tipo dropZone
             try {
                 Debug.warn('Interração', 'ObjetoDefault');
-                var class_str = 'new Interac_' + dropZone.ref_class.constructor.name + '_' + objeto_s.ref_class.constructor.name + '()';
+                var class_str = 'new Interac_' + dropZone.A_REF_CLASS.constructor.name + '_' + objeto_s.A_REF_CLASS.constructor.name + '()';
                 Debug.log('class_str', 'ObjetoDefault');
                 Debug.log(class_str, 'ObjetoDefault');
                 CLASS_INTERRACT_NOW = eval(class_str);
-                CLASS_INTERRACT_NOW.init(objeto_s.ref_class, dropZone.ref_class);
+                CLASS_INTERRACT_NOW.init(objeto_s.A_REF_CLASS, dropZone.A_REF_CLASS);
                 Debug.log('SET CLASS_INTERRACT_NOW', 'ObjetoDefault');
                 Debug.log(CLASS_INTERRACT_NOW, 'ObjetoDefault');
             } catch (e) {
@@ -142,9 +142,9 @@ class ObjetoDefault {
     clickObject(objeto){
         Debug.log('clickObject', 'ObjetoDefault');
         try {
-            var class_str = 'new Interac_' + objeto.ref_class.constructor.name + '_Self()';
+            var class_str = 'new Interac_' + objeto.A_REF_CLASS.constructor.name + '_Self()';
             CLASS_INTERRACT_NOW = eval(class_str);
-            CLASS_INTERRACT_NOW.init(objeto_s.ref_class, dropZone.ref_class);
+            CLASS_INTERRACT_NOW.init(objeto.A_REF_CLASS);
         } catch (e) {
             console.error('Error-ObjectDefault ', e);
             //Não encontrou interração
@@ -158,7 +158,7 @@ class ObjetoDefault {
         //se tiver na mesma posição
         //e click tiver ativado
         if (this.input.dragStartX == this.x && this.click) {
-            this.ref_class.clickObject(this);
+            this.A_REF_CLASS.clickObject(this);
         }
 
         if (!this.drop) { //se não dropou em nada

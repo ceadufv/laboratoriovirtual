@@ -1,8 +1,8 @@
 class PageAnimation {
     /*
     var data = [
-        {img: 'assets/actions/lavareletrodo.gif'},
-        {img: 'assets/actions/secareletrodo.gif'},
+        {img: 'assets/actions/lavareletrodo.gif', 'title': ''},
+        {img: 'assets/actions/secareletrodo.gif', 'title': ''},
     ];
     */
     static open(dados) {
@@ -11,7 +11,11 @@ class PageAnimation {
         PageAnimation.page = 0;
         PageAnimation.page_total = dados.length - 1;
         for (let i = 0; i < dados.length; i++) {
-            $('#animacao .modal-body .conteudo').append('<div id="a-page-' + i + '" class="page page-' + i + ' a-page"><img src="' + dados[i].img + '" /></a>');
+            if(!dados[i].title){
+                dados[i].title = '';
+            }
+            $('#animacao .modal-body .conteudo').append('<div id="a-page-' + i + '" class="page page-' + i + ' a-page"><h1>'+dados[i].title+'</h1><img src="' + dados[i].img + '" /></a>');
+            
         }
         $('#animacao').modal('show');
         PageAnimation.pageShow(0);

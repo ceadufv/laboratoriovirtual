@@ -17,10 +17,19 @@ class Phmetro extends ObjetoDefault {
         this.insertTextos();
 
         var eletrodo = this.container.list[3];
-        this.insertDragTeste(eletrodo);
+        //this.insertDragTeste(eletrodo);
+        this.insertDrag(eletrodo);
+
         this.gameobject = eletrodo;
-        eletrodo.ref_class = this;
+        eletrodo.A_REF_CLASS = this;
         this.insertInteractive(this.gameobject);
+    }
+
+    drop(pointer, dropZone){
+        console.log('Phmetro.drop()');
+        super.drop(pointer, dropZone);
+        this.x = 266.16;
+        this.y = 152.76;
     }
     
     /** depois deletar */
@@ -53,12 +62,16 @@ class Phmetro extends ObjetoDefault {
         this.graphics = GAME_SCENE.add.graphics({ lineStyle: { width: 5, color: 0x9e9e9e } });
         this.graphics.clear();
         container.add(this.graphics);
+
     }
     insertTextos(){
+        //get date now
+        var utc = new Date().toJSON().slice(0,10).split('-').reverse().join('/');
+
         var fonte = 'Open Sans Condensed';
         var TextopH = GAME_SCENE.add.text(-37.80, -102.37, '7.000' , { fontFamily: fonte, fontSize: 32, color: '#ffffff' });
         var TextoModo1 = GAME_SCENE.add.text(-122.84, -119.69, 'Modo: pH', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
-        var TextoModo2 = GAME_SCENE.add.text(-126, -67.72, '08/10/2019', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });  
+        var TextoModo2 = GAME_SCENE.add.text(-126, -67.72, utc, { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });  
         var TextoModo3 = GAME_SCENE.add.text(67.72, -119.69, '25º C', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });  
         var TextoModo4 = GAME_SCENE.add.text(-10, -66.14, 'CAL:', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });  
 

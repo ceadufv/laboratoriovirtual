@@ -8,8 +8,7 @@ class Pratica {
             Laboratorio.init();
         });
     }
-
-
+    
     //arquivos de roteiro/cadernos
     static setFilesAlunoRoteiro(dados) {
         var html_a = '';
@@ -31,12 +30,12 @@ class Pratica {
             e.stopPropagation();
         });
     }
-    
+
     static sairLaboratorio(tipo_usuario) {
-        if (tipo_usuario == 1) {
-            window.location = 'index.php';
-        } else {
+        if (tipo_usuario == 1 || tipo_usuario == 2) {
             window.location = URL_SITE + 'area_professor/index.php';
+        } else {
+            window.location = URL_SITE + 'area_aluno/index.php';
         }
     }
 }
