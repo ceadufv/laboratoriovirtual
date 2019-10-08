@@ -5,7 +5,8 @@ class DropZones {
             { x: 1550, y: 740 }
         ];
         */
-       console.error(zones);
+       Debug.error(zones, 'DropZones');
+
         for (var i = 0; i < zones.length; i++) {
             if(zones[i].hidden)
                 continue;
@@ -49,7 +50,7 @@ class DropZones {
             drops[i].gameobject.input.dropZone = true;
             for(var j=0;j<objetos.length;j++){
                 if(objetos[j].gameobject.x == drops[i].x && objetos[j].gameobject.y == drops[i].y){
-                    //console.warn('drop usado');
+                    Debug.warn('drop usado', 'DropZones');
                     drops[i].gameobject.input.dropZone = false;
                     drops[i].ocupado = true;
                 }

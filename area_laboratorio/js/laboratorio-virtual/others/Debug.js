@@ -1,6 +1,14 @@
 class Debug {
     static debug = true;
-    static offs_debug = ["ObjetoDefault", "MenuInteract", "PageAnimation"];
+    static offs_debug = [
+        "ObjetoDefault",
+        "MenuInteract",
+        "PageAnimation",
+        "Armario",
+        "ArmarioTabs",
+        "Laboratorio",
+        "DropZones"
+    ];
     
     static log(msg, tipo = '') {
         if (this.offs_debug.includes(tipo))
