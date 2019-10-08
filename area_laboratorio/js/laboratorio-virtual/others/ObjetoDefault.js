@@ -1,99 +1,172 @@
+/*
+     https://phaser.io/examples/v3/search?search=drag
+     preload 
+     https://phaser.io/examples/v3/view/input/dragging/drag-with-multiple-scenes
+     container
+     https://phaser.io/examples/v3/view/game-objects/container/draggable-container
+     //drop
+     https://phaser.io/examples/v3/view/input/zones/circular-drop-zone
+ */
 class ObjetoDefault {
-    /*
-        https://phaser.io/examples/v3/search?search=drag
-        preload 
-        https://phaser.io/examples/v3/view/input/dragging/drag-with-multiple-scenes
-        container
-        https://phaser.io/examples/v3/view/game-objects/container/draggable-container
-        //drop
-        https://phaser.io/examples/v3/view/input/zones/circular-drop-zone
-    */
     constructor(data) {
         this.dice = data;
-        this.tala = 'beleza'
         this.gameobject = null;
         this.dropped = false;
+        this.classe = this;
     }
 
-    destroy(gameObject) {
-        gameObject.destroy();
+    destroy() {
+        this.gameobject.destroy();
         this.gameobject = null;
-    }
-
-    clearGameObject(obj){
-        this.dropped = false;
-        this.dropZone = null;
-        obj.clearTint();
-    }
-
-    clearDropZone(dropZone){
-        dropZone.zone_sprite.clearTint();
-    }
-
-    insertDrag(obj1) {
-        var classe = this;
-        obj1.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
-        GAME_SCENE.input.setDraggable([obj1]);
-        obj1.setScrollFactor(1);
-
-        obj1.on('pointerover', function () {
-            obj1.setTint(0x44ff44);
-        });
-        obj1.on('pointerout', function () {
-            obj1.clearTint();
-        });
-
-        obj1.on('drag', function (pointer, dragX, dragY) {
-            obj1.x = dragX;
-            obj1.y = dragY;
-        });
-
-        obj1.on('dragstart', function (pointer) {
-            obj1.setTint(0xff0000);
-        });
-
-        obj1.on('dragend', function (pointer) {
-            console.log('dragend');
-            if (!this.dropped) {
-                obj1.x = obj1.input.dragStartX;
-                obj1.y = obj1.input.dragStartY;
-            }else{
-                obj1.x = this.dropZone.zone_sprite.x;
-                obj1.y = this.dropZone.zone_sprite.y -(-classe.offset);
-            }
-            classe.clearGameObject(obj1);
-        });
-
-        obj1.on('gameobjectover', function (pointer) {
-            obj1.setTint(0x00ff00);
-        });
-
-        obj1.on('gameobjectout', function (pointer) {
-            obj1.clearTint();
-        });
-
-        obj1.on('dragenter', function (pointer, dropZone) {
-            dropZone.zone_sprite.setTint(0x00ff00);
-            console.log('dragenter');
-        });
-
-        obj1.on('dragleave', function (pointer, dropZone) {
-            console.log('dragleave');
-            classe.clearGameObject(obj1);
-            classe.clearDropZone(dropZone);
-        });
-
-        obj1.on('drop', function (pointer, dropZone) {
-            console.log('drop');
-            classe.clearGameObject(obj1);
-            classe.clearDropZone(dropZone);
-            this.dropZone = dropZone;
-            this.dropped = true;
-        });
     }
 
     addSpriteScene(config) {
         var image1 = GAME_SCENE.make.sprite(config);
         this.gameobject = image1;
+        image1.ref_class = this;
+    }
+
+    insertInteractive(objeto_s){
+        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
+        //objeto_s.setScrollFactor(0);
+        //objeto_s.input.dropZone = false;
+    }
+
+    insertDrag(objeto_s) {
+        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
+        GAME_SCENE.input.setDraggable(objeto_s);
+        objeto_s.setScrollFactor(1);
+        objeto_s.input.dropZone = true;
+
+        //objeto_s._pd = true;
+        //objeto_s.on('pointerdown', LabHandler.onPointerOver);
+        //objeto_s.on('pointerover', LabHandler.onPointerOver);
+        //objeto_s.on('pointerout', LabHandler.onPointerOut);
+        
+        objeto_s.on('pointerover', this.pointerover);
+        objeto_s.on('pointerout', this.pointerout);
+
+        objeto_s.on('gameobjectover', this.gameobjectover);
+        objeto_s.on('gameobjectout', this.gameobjectout);
+
+        objeto_s.on('drag', this.drag);
+        objeto_s.on('dragstart', this.dragstart);
+        objeto_s.on('dragend', this.dragend);
+        objeto_s.on('dragenter', this.dragenter);
+        objeto_s.on('dragleave', this.dragleave);
+        objeto_s.on('drop', this.drop);
+    }
+
+    pointerover () {
+        var objeto_s = this;
+        objeto_s.setTint(0x44ff44);
+    }
+
+    pointerout () {
+        var objeto_s = this;
+        objeto_s.clearTint();
+    }
+
+    gameobjectover (pointer) {
+        var objeto_s = this;
+        objeto_s.setTint(0x00ff00);
+    }
+
+    gameobjectout (pointer) {
+        var objeto_s = this;
+        objeto_s.clearTint();
+    }
+
+    drop (pointer, dropZone) {
+        console.log('drop');
+        var objeto_s = this;
+        this.click = false;
+        this.drop = true;
+        console.log('drop');
+        console.error(dropZone);
+        console.error(objeto_s);
+
+        if(dropZone.type == 'Zone'){ //se tipo dropZone
+            dropZone.refClass.normal();
+            /*
+            if(dropZone.refClass.getOcupado()){
+                objeto_s.x = objeto_s.input.dragStartX;
+                objeto_s.y = objeto_s.input.dragStartY;
+            }else{
+                dropZone.refClass.setOcupado(true);
+                objeto_s.x = dropZone.refClass.x;
+                objeto_s.y = dropZone.refClass.y;
+            }*/
+            objeto_s.x = dropZone.refClass.x;
+            objeto_s.y = dropZone.refClass.y;
+        }else{ //se tipo outro objeto
+            dropZone.setTint(0x000000);
+            objeto_s.setTint(0x00ff00);
+            objeto_s.x = objeto_s.input.dragStartX;
+            objeto_s.y = objeto_s.input.dragStartY;
+        }
+
+        console.error(dropZone.ref_class, objeto_s.ref_class);
+
+        try {
+            console.log('Interração');
+            var class_str = 'new Interac_' + dropZone.ref_class.constructor.name + '_' + objeto_s.ref_class.constructor.name + '()';
+            console.log('class_str', class_str);
+            CLASS_INTERRACT_NOW = eval(class_str);
+            CLASS_INTERRACT_NOW.init(objeto_s.ref_class, dropZone.ref_class);
+            console.log('SET CLASS_INTERRACT_NOW', CLASS_INTERRACT_NOW);
+        } catch (e) {
+            console.error('Classe não definida!!!', class_str);
+            console.error('E', e);
+        }
+
+        DropZones.ckeckUsado();
+    }
+
+    dragleave (pointer, dropZone) {
+        console.log('dragleave', dropZone);
+        if(dropZone.type == 'Zone'){
+            dropZone.refClass.normal();
+        }else{
+            dropZone.clearTint();
+        }
+    }
+
+    drag(pointer, dragX, dragY){
+       this.x = dragX;
+       this.y = dragY;
+       //console.log('drag', this.x, this.y);
+    }
+
+    dragend (pointer) {
+        console.log('dragend');
+        //se tiver na mesma posição
+        //e click tiver ativado
+        if(this.input.dragStartX == this.x && this.click){
+            console.log('Click');
+        }
+
+        if(!this.drop){ //se não dropou em nada
+            this.x = this.input.dragStartX;
+            this.y = this.input.dragStartY;
+        }
+    }
+    dragenter (pointer, dropZone) {
+        console.log('dragenter', dropZone);
+        if(dropZone.type == 'Zone'){
+            dropZone.refClass.hover();
+        }else{
+            dropZone.setTint(0x000000);
+        }
+    }
+    dragstart(pointer, gameObject) {
+            console.log('dragstart', this);
+            this.click = true;
+            this.drop = false;
+            this.setTint(0xff0000);
+            for (var i = 0; i < OBJETOS_LAB.length; i++) {
+                OBJETOS_LAB[i].gameobject.input.dropZone = true;
+            }
+            this.input.dropZone = false;
     }
 }

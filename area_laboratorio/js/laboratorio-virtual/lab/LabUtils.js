@@ -157,7 +157,6 @@ LabUtils.objetoCriar = function (sprite, origem) {
 LabUtils.lugaresCriar = function (s, j) {
 
     var json = j.placeholder;
-
     // TODO: Ler a partir de um JSON
     var posicao = [];
     var i;
@@ -614,6 +613,7 @@ LabUtils.destaqueLugar = function (objeto) {
 }
 
 LabUtils.destaquePontoMaisProximo = function (p1, candidatos) {
+    console.log('destaquePontoMaisProximo');
     var distanciaMinima = Infinity;
     var resultado = new Phaser.Math.Vector2(0,0);
     var dx;

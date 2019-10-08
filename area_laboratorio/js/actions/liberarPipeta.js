@@ -5,6 +5,7 @@
 * @valid_target ["vazio(bequer)&&ambientado(bequer)","vazio(balao)&&ambientado(balao)", "bequer"]
 */
 function liberarPipeta(interacao) {
+	console.log('liberarPipeta');
 	var source = interacao.source();
 	var target = interacao.target();
 
