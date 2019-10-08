@@ -1,5 +1,5 @@
 <?php
-if (!file_exists("lab-config.php")) header("location:install.php");
+  if (!file_exists("lab-config.php")) header("location:install.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,23 +7,18 @@ if (!file_exists("lab-config.php")) header("location:install.php");
 <head>
   <meta charset="UTF-8">
   <title>NeoAlice</title>
-  <!-- Arquivos externos -->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-
-  <link rel="shortcut icon" type="image/png" href="imagens/favicon.png" />
-  <!-- <link rel="stylesheet" href="frameworks/fontawesome/web-fonts-with-css/css/fontawesome-all.css"> -->
-  <!-- Arquivos próprios -->
-  <link rel="stylesheet" href="estilos/basicos.css">
-  <link rel="stylesheet" href="estilos/style.css">
+    <script src="plugins/vendor/jquery/jquery.js"></script>
+    <script src="plugins/vendor/popper.js/1.14.3/popper.min.js"></script>
+    <script src="plugins/vendor/bootstrap/4.1.3/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="plugins/vendor/bootstrap/4.1.3/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/vendor/fontawesome/5.11.2/css/all.css">
+    <link rel="shortcut icon" type="image/png" href="imagens/favicon.png" />
+  
+    <!-- Arquivos próprios -->
+    <link rel="stylesheet" href="estilos/basicos.css">
+    <link rel="stylesheet" href="estilos/style.css">
 </head>
-
 <body>
-
   <div class="section login">
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
@@ -37,7 +32,6 @@ if (!file_exists("lab-config.php")) header("location:install.php");
           </svg>
           <div class="content">
 
-            <!--  -->
             <form class="opcoeslogin">
 
                 <h3>Insira suas credenciais de acesso ao laboratório</h3>
@@ -60,31 +54,18 @@ if (!file_exists("lab-config.php")) header("location:install.php");
                 <button type="button" class="btn" onclick="login()">CONFIRMAR</button>
 
                 <div class="loginsenha">
-                  <a href="#">Esqueci o login/senha </a>
+                  <!-- <a href="#">Esqueci o login/senha </a> -->
                   <a href="javascript:void();" class="botao-cadastrar" onclick="abrirCadastro()">Quero me cadastrar</a>
                 </div>
 
                 <div class="text-center texto-icone-p margem-superior-p1" id="logCadastrar"></div>
-
                 <div class="text-center texto-icone-p margem-superior-p1" id="logLogin">
                   <p class="log-login">
 
                   </p>
                 </div>
             </form>
-
-            <div class="logomarcas">
-              <!--
-              <h3>Realização:</h3>
-              <div>
-                <a href="http://www.cead.ufv.br" target="blank"><img src="imagens/cead.png"></a>
-                <a href="http://www.deq.ufv.br" target="blank"><img src="imagens/GPEQA.png"></a>
-              </div>
-            -->
-            </div>
-
           </div>
-
         </div>
 
         <!-- Seção de cadastro -->
@@ -138,51 +119,9 @@ if (!file_exists("lab-config.php")) header("location:install.php");
             <div class="text-center">
               <button type="button" class="btn btn-sm botao-confirmar" onclick="cadastrarUsuario()">Confirmar</button>
             </div>
-
           </div>
-
         </div>
-
-        <!-- Seção de login -->
-        <!-- <div class="section conteudo div-login oculta opcoeslogin">
-          <div class="content">
-            <h5 class="text-right">
-            <i class="fas fa-times-circle fechar-sessao" onclick="fecharJanelaSessao()"></i>
-            </h5>
-            
-            <i class="fas fa-2x fa-user-circle"></i>
-            <h2 class="titulo-sessao"></h2>
-            <label class="texto-sessao"></label>
-              <div class="input-group input-group-sm margem-inferior-p1">
-                <div class="input-group-prepend icone-formulario-principal">
-                  <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-tag"></i></div>
-                </div>
-                <input type="text" class="form-control texto-icone" placeholder="Nome de Usuario" id="usuarioLogin">
-              </div>
-              <div class="input-group input-group-sm margem-inferior-p1">
-                <div class="input-group-prepend icone-formulario-principal">
-                  <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-lock"></i></div>
-                </div>
-                <input type="password" class="form-control texto-icone" placeholder="Senha" id="senhaLogin">
-              </div>
-              <div class="text-center">
-                <button  type="button" class="btn btn-sm botao-confirmar" onclick="login()">Confirmar</button>
-                <button type="button" class="btn btn-sm botao-anonimo" onclick="passagem('laboratorio')">Acesso anônimo</button><br />
-
-                <a href="#" class="botao-cadastrar" onclick="abrirCadastro()">Quero me cadastrar</a>
-
-                <div class="text-center texto-icone-p margem-superior-p1" id="logCadastrar"></div>
-              </div>
-
-              <div class="text-center texto-icone-p margem-superior-p1" id="logLogin">
-                <p class="log-login"></p>                
-              </div>
-
-          </div>
-        </div> -->
-
       </div>
-
     </div>
   </div>
 

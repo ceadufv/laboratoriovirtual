@@ -335,7 +335,7 @@ class LabJogo
     //TODO: relacionar alunos e professores
     function getAlunos($id_professor)
     {
-        $sql = $this->_dbh->prepare('SELECT nome, email, usuario FROM usuarios_cadastrados WHERE id_tipo_usuario = 1');
+        $sql = $this->_dbh->prepare('SELECT id_usuario, nome, email, usuario FROM usuarios_cadastrados WHERE id_tipo_usuario = 1');
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $sql->execute();
 
@@ -361,6 +361,25 @@ class LabJogo
             return false;
         }
     }
+//resetar senha aluno
+    function resetarSenhaAluno($id_usuario)
+    {
+        $senha = sha1('123456');
+
+        $sql = "UPDATE usuarios_cadastrados
+                SET senha = ?
+                WHERE id_usuario = ?;";
+        $stmt1 = $this->_dbh->prepare($sql);
+        $stmt1->bindValue(1, $senha);
+        $stmt1->bindValue(2, $id_usuario);
+
+        if ($stmt1->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     //Pega aulas cadastradas dentro de cada disciplina
     //TODO: linkar disciplina

@@ -1,3 +1,7 @@
+<script type="text/javascript" src="../plugins/vendor/bootbox/bootbox.js"></script>
+<script type="text/javascript" src="js/abas/alunos.js"></script>
+
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -7,12 +11,13 @@
 
       <p>Gerenciamento de alunos. Aqui é possível ver a lista de alunos que você acompanha, deletar do acompanhamento e adicionar novos.</p>
 
-      <table class="table">
+      <table class="table" id="tabela">
         <thead>
           <tr>
             <th scope="col">Usuário</th>
             <th scope="col">Nome</th>
             <th scope="col">Email</th>
+            <th scope="col">Resetar Senha</th>
           </tr>
         </thead>
         <tbody>
@@ -24,7 +29,10 @@
                 "<td>" . $row["usuario"] . "</td>" .
                 "<td>" . $row["nome"] . "</td>" .
                 "<td>" . $row["email"] . "</td>" .
-                "</tr>";
+                "<td>
+                  <button id='reset' class='btn btn-danger reset_senha' nome-usuario=".$row["nome"]." cod-usuario=".$row["id_usuario"].">Resetar</button>
+                </td>
+                </tr>";
             }
           } else {
             echo "Nenhum aluno cadastrado";
@@ -59,7 +67,6 @@
                 <td><input type="email" id="email_aluno" name="email_aluno" class="form-control input-disciplina" type="email" placeholder="Digite o email" required></td>
               </tbody>
             </table>
-            <!-- <button id="salvarAluno" type="submit" class="btn btn-outline-primary" onclick="salvarAluno()">Salvar</button> -->
             <button type="submit" class="btn btn-primary">Salvar</button>
             <input type="hidden" name="acao" value="salvar">
           </form>
@@ -68,3 +75,10 @@
     </div>
   </div>
 </div>
+<?php
+  //se confirmado, reseta a senha do usuário para 123456
+		if($_POST['confirmado'] == 'S') {
+      $lab->resetarSenhaAluno($_POST['cod_usuario']);
+			exit();
+		}
+?>

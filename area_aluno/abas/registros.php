@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 meuperfil">
-
       <h3>Minhas ações</h3>
-
       <h4>Nesta aba é possível ver o que você já realizou nas práticas disṕoniveis.</h4>
 
       <table class="table">
@@ -30,17 +28,13 @@
                 "<td>" . date('d/m/Y H:i:s', strtotime($row["data_acao"])) . "</td>" .
                 "</tr>";
               }
-            }else{
+
+            } else {
               echo "<p><i class='fas fa-info-circle'></i> Você ainda não realizou nenhuma ação</p>";
             } 
           ?>
         </tbody>
       </table>
-      <?php 
-
-
-      ?>
-
     </div>
   </div>
 </div>
