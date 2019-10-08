@@ -79,23 +79,6 @@ function carregarAlunos()
 	} catch (PDOException $e) {
 		echo json_encode(array('sucesso' => false, 'log' => $e->getMessage()));
 	}
-
-	/*
-		header("Content-Type: application/json");
-		?>{
-		"data": [
-		    [
-		        "Tiger Nixon",
-		        "System Architect",
-		        "Edinburgh",
-		        "5421",
-		        "2011\/04\/25",
-		        "$320,800"
-		    ]
-		]
-		}
-		<?php
-		*/
 }
 
 // Busca nomes de práticas disponíveis para serem realizadas

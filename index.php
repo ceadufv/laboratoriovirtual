@@ -40,37 +40,37 @@ if (!file_exists("lab-config.php")) header("location:install.php");
             <!--  -->
             <form class="opcoeslogin">
 
-              <h3>Insira suas credenciais de acesso ao laboratório</h3>
+                <h3>Insira suas credenciais de acesso ao laboratório</h3>
 
-              <div class="usuariosenha">
+                <div class="usuariosenha">
 
-                <div class="input-group input-group-sm margem-inferior-p1">
-                  <div class="input-group-prepend icone-formulario-principal">
-                    <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-tag"></i></div>
+                  <div class="input-group input-group-sm margem-inferior-p1">
+                    <div class="input-group-prepend icone-formulario-principal">
+                      <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-tag"></i></div>
+                    </div>
+                    <input type="text" class="form-control texto-icone" placeholder="NOME DE USUÁRIO" id="usuarioLogin">
                   </div>
-                  <input type="text" class="form-control texto-icone" placeholder="NOME DE USUÁRIO" id="usuarioLogin">
-                </div>
-                <div class="input-group input-group-sm margem-inferior-p1">
-                  <div class="input-group-prepend icone-formulario-principal">
-                    <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-lock"></i></div>
+                  <div class="input-group input-group-sm margem-inferior-p1">
+                    <div class="input-group-prepend icone-formulario-principal">
+                      <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-lock"></i></div>
+                    </div>
+                    <input type="password" class="form-control texto-icone" placeholder="SENHA" id="senhaLogin">
                   </div>
-                  <input type="password" class="form-control texto-icone" placeholder="SENHA" id="senhaLogin">
                 </div>
-              </div>
-              <button type="button" class="btn" onclick="login()">CONFIRMAR</button>
+                <button type="button" class="btn" onclick="login()">CONFIRMAR</button>
 
-              <div class="loginsenha">
-                <a href="#">Esqueci o login/senha </a>
-                <a href="javascript:void();" class="botao-cadastrar" onclick="abrirCadastro()">Quero me cadastrar</a>
-              </div>
+                <div class="loginsenha">
+                  <a href="#">Esqueci o login/senha </a>
+                  <a href="javascript:void();" class="botao-cadastrar" onclick="abrirCadastro()">Quero me cadastrar</a>
+                </div>
 
-              <div class="text-center texto-icone-p margem-superior-p1" id="logCadastrar"></div>
+                <div class="text-center texto-icone-p margem-superior-p1" id="logCadastrar"></div>
 
-              <div class="text-center texto-icone-p margem-superior-p1" id="logLogin">
-                <p class="log-login">
+                <div class="text-center texto-icone-p margem-superior-p1" id="logLogin">
+                  <p class="log-login">
 
-                </p>
-              </div>
+                  </p>
+                </div>
             </form>
 
             <div class="logomarcas">

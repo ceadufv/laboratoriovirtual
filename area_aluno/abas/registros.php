@@ -9,28 +9,30 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Data</th>
             <th scope="col">Prática</th>
             <th scope="col">Descrição</th>
+            <th scope="col">Data</th>
           </tr>
         </thead>
         <tbody>
           <?php 
-          $sql = $lab->getRegistrosAluno(@$_SESSION['id_usuario']);
+            require_once("../classes/LabJogo.class.php");
 
-          if(count($sql)) {
+            $sql = $lab->getRegistrosAluno($_SESSION['id_usuario']);
 
-            foreach($sql as $row) 
-            { 
-              echo "<tr>" .
-              "<td>" . $row["data_acao"] . "</td>" .
-              "<td>" . $row["nome_pratica"] . "</td>" .
-              "<td>" . $row["descricao"] . "</td>" .
-              "</tr>";
-            }
-          }else{
-            echo "<p><i class='fas fa-info-circle'></i> Você ainda não realizou nenhuma ação</p>";
-          } 
+            if(count($sql)) {
+
+              foreach($sql as $row) 
+              { 
+                echo "<tr>" .
+                "<td>" . $row["nome_pratica"] . "</td>" .
+                "<td>" . $row["descricao"] . "</td>" .
+                "<td>" . date('d/m/Y H:i:s', strtotime($row["data_acao"])) . "</td>" .
+                "</tr>";
+              }
+            }else{
+              echo "<p><i class='fas fa-info-circle'></i> Você ainda não realizou nenhuma ação</p>";
+            } 
           ?>
         </tbody>
       </table>

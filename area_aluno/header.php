@@ -21,6 +21,7 @@
 
     <link rel="shortcut icon" type="image/png" href="../imagens/favicon.png"/>
 
+    <script type="text/javascript" src="<?php echo URL_SITE; ?>area_aluno/js/default/tela_aluno.js"></script>
     <script type="text/javascript" src="dist/scripts.js"></script>
 
     <script>

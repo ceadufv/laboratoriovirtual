@@ -58,10 +58,10 @@ function login() {
         success: function (res) {
             if (res.sucesso) {
                 $('.log-login').text('Sucesso, você será redirecionado para a sua página.');
-                if (res.tipo === 1) {
+                if (res.tipo === 3) {
                     // Sessão de aluno
                     window.location.href = 'area_aluno/index.php?aba=inicio';
-                } else if (res.tipo === 2) {
+                } else {
                     // Sessão de professor, criação e administração
                     window.location.href = 'area_professor/index.php?aba=inicio';
                 }
