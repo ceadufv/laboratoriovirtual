@@ -1,12 +1,3 @@
-/*
-     https://phaser.io/examples/v3/search?search=drag
-     preload 
-     https://phaser.io/examples/v3/view/input/dragging/drag-with-multiple-scenes
-     container
-     https://phaser.io/examples/v3/view/game-objects/container/draggable-container
-     //drop
-     https://phaser.io/examples/v3/view/input/zones/circular-drop-zone
- */
 class ObjetoDefault {
     constructor(data) {
         this.dice = data;
@@ -78,9 +69,7 @@ class ObjetoDefault {
     }
 
     drop(pointer, dropZone) {
-
         Debug.error('drop', 'ObjetoDefault');
-
 
         var objeto_s = this;
         this.click = false;
@@ -91,15 +80,6 @@ class ObjetoDefault {
 
         if (dropZone.type == 'Zone') { //se tipo dropZone
             dropZone.refClass.normal();
-            /*
-            if(dropZone.refClass.getOcupado()){
-                objeto_s.x = objeto_s.input.dragStartX;
-                objeto_s.y = objeto_s.input.dragStartY;
-            }else{
-                dropZone.refClass.setOcupado(true);
-                objeto_s.x = dropZone.refClass.x;
-                objeto_s.y = dropZone.refClass.y;
-            }*/
             objeto_s.x = dropZone.refClass.x;
             objeto_s.y = dropZone.refClass.y;
         } else { //se tipo outro objeto
@@ -112,20 +92,28 @@ class ObjetoDefault {
         Debug.error(dropZone.ref_class, 'ObjetoDefault');
         Debug.error(objeto_s.ref_class, 'ObjetoDefault');
 
-        try {
-            Debug.warn('Interração', 'ObjetoDefault');
-            var class_str = 'new Interac_' + dropZone.ref_class.constructor.name + '_' + objeto_s.ref_class.constructor.name + '()';
-            Debug.log('class_str', 'ObjetoDefault');
-            Debug.log(class_str, 'ObjetoDefault');
-            CLASS_INTERRACT_NOW = eval(class_str);
-            CLASS_INTERRACT_NOW.init(objeto_s.ref_class, dropZone.ref_class);
-            Debug.log('SET CLASS_INTERRACT_NOW', 'ObjetoDefault');
-            Debug.log(CLASS_INTERRACT_NOW, 'ObjetoDefault');
-        } catch (e) {
-            Debug.error('Classe não definida!!!', 'ObjetoDefault');
-            Debug.error(class_str, 'ObjetoDefault');
-            console.error('Error-ObjectDefault ', e);
+        if (dropZone.type != 'Zone') { //se tipo dropZone
+            try {
+                Debug.warn('Interração', 'ObjetoDefault');
+                var class_str = 'new Interac_' + dropZone.ref_class.constructor.name + '_' + objeto_s.ref_class.constructor.name + '()';
+                Debug.log('class_str', 'ObjetoDefault');
+                Debug.log(class_str, 'ObjetoDefault');
+                CLASS_INTERRACT_NOW = eval(class_str);
+                CLASS_INTERRACT_NOW.init(objeto_s.ref_class, dropZone.ref_class);
+                Debug.log('SET CLASS_INTERRACT_NOW', 'ObjetoDefault');
+                Debug.log(CLASS_INTERRACT_NOW, 'ObjetoDefault');
+            } catch (e) {
+                Debug.error('Classe não definida!!!', 'ObjetoDefault');
+                Debug.error(class_str, 'ObjetoDefault');
+                console.error('Error-ObjectDefault ', e);
+
+                //Não encontrou interração
+                MenuInteract.montModalInteracMenu([]);
+            }
+        }else{
+            Debug.error('É dropZone', 'ObjetoDefault');
         }
+
         DropZones.ckeckUsado();
     }
 
@@ -142,18 +130,35 @@ class ObjetoDefault {
     drag(pointer, dragX, dragY) {
         this.x = dragX;
         this.y = dragY;
-        
+
+        /*
         Debug.log('drag', 'ObjetoDefault');
         Debug.log(this.x, 'ObjetoDefault');
         Debug.log(this.y, 'ObjetoDefault');
+        */
+    }
+
+    /** quando somento clica no objeto */
+    clickObject(objeto){
+        Debug.log('clickObject', 'ObjetoDefault');
+        try {
+            var class_str = 'new Interac_' + objeto.ref_class.constructor.name + '_Self()';
+            CLASS_INTERRACT_NOW = eval(class_str);
+            CLASS_INTERRACT_NOW.init(objeto_s.ref_class, dropZone.ref_class);
+        } catch (e) {
+            console.error('Error-ObjectDefault ', e);
+            //Não encontrou interração
+            MenuInteract.montModalInteracMenu([]);
+        }
     }
 
     dragend(pointer) {
+        console.log(this);
         Debug.log('dragend', 'ObjetoDefault');
         //se tiver na mesma posição
         //e click tiver ativado
         if (this.input.dragStartX == this.x && this.click) {
-            Debug.log('Click', 'ObjetoDefault');
+            this.ref_class.clickObject(this);
         }
 
         if (!this.drop) { //se não dropou em nada

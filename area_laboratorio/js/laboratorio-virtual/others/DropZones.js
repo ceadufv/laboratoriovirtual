@@ -8,7 +8,13 @@ class DropZones {
        Debug.error(zones, 'DropZones');
 
         for (var i = 0; i < zones.length; i++) {
+
+            //filtros
             if(zones[i].hidden)
+                continue;
+
+            //filtros
+            if(zones[i].region != 'bancada' && zones[i].region != 'lenco' && zones[i].region != 'bancada1')
                 continue;
 
             var drop = new DropZone();
@@ -27,6 +33,14 @@ class DropZones {
                 result.push(drops[i]);
         }
         return result;
+    }
+
+    /** pega um drop zone livre */
+    static getOneDropZoneLivre(){
+        var drops = DropZones.getZonesLivres();
+        if(drops){
+            return drops[0];
+        }
     }
 
     //DropZones.getZonesUsados();

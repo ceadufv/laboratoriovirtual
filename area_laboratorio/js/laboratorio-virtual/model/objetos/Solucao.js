@@ -1,7 +1,6 @@
 class Solucao extends ObjetoDefault {
     constructor(data) {
         super(data);
-        this.offset = -100;
         this.addObject(data);
     }
 
@@ -11,7 +10,7 @@ class Solucao extends ObjetoDefault {
         var config = {
             key: 'balao',
             x: data.x,
-            y: data.y-this.offset
+            y: data.y
         };
         this.addSpriteScene(config);
         this.insertDrag(this.gameobject);

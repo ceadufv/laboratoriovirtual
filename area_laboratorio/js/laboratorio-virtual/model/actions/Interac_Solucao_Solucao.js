@@ -14,18 +14,14 @@ class Interac_Solucao_Solucao{
         objctInit.gameobject.setTint(0x0000ff);
         var menu = [
             {
-                text: 'kkkkkk',
-                func: 'teste2'
-            },
-            {
                 text: 'Misturar',
                 func: 'misturar'
             }
         ];
         MenuInteract.montModalInteracMenu(menu);
     }
-
+    
     misturar(){
-        alert('OKKKKKKKK');
+        alert('misturar');
     }
 }

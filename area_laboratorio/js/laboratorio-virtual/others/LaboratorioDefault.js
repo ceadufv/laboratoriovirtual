@@ -60,7 +60,7 @@ class LaboratorioDefault {
                     OBJETOS_LAB.push(op);
                     break;
                 case 'phmetro':
-                    var op = new Phmetro({ x: drop.x, y: drop.y });
+                    var op = new Phmetro({ x: 1810, y: 510 });
                     OBJETOS_LAB.push(op);
                     break;
                 case 'bequer_repouso':

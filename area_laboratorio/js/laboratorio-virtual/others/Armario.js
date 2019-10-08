@@ -59,26 +59,27 @@ class Armario {
 
         var selecionados = Armario.getItensSelecionadosArmario();
         for (var i = 0; i < selecionados.length; i++) {
-            //jogo.armario().pegar(selecionados[i]);
 
-            if (selecionados[i].conceito == 'frasco_estoque') {
-                var arg = {
-                    x: 10,
-                    y: 10
-                };
-                var opp = new Solucao(arg);
-                Debug.error('Solucao', 'Armario');
-                Debug.error(opp, 'Armario');
-                OBJETOS_LAB.push(opp);
-            } else {
-                var arg = {
-                    x: 10,
-                    y: 10
-                };
-                var opp = new Pisseta(arg);
-                Debug.error('Pipeta', 'Armario');
-                Debug.error(opp, 'Armario');
-                OBJETOS_LAB.push(opp);
+            var arg = DropZones.getOneDropZoneLivre();
+            if(!arg){
+                alert('Não há espaço disponível na bancada')
+                return;
+            }
+            switch (selecionados[i].conceito) {
+                case 'frasco_estoque':
+                    var item = new Solucao(arg);
+                    Debug.error('Solucao', 'Armario');
+                    Debug.error(item, 'Armario');
+                    OBJETOS_LAB.push(item);
+                    break;
+
+                default:
+                    var item = new Pisseta(arg);
+                    Debug.error('Pipeta', 'Armario');
+                    Debug.error(item, 'Armario');
+                    OBJETOS_LAB.push(item);
+                    break;
+
             }
         }
         $('#armario').modal('hide');

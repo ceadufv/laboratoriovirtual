@@ -1,3 +1,12 @@
+/** 
+https://phaser.io/examples/v3/search?search=drag
+preload 
+https://phaser.io/examples/v3/view/input/dragging/drag-with-multiple-scenes
+container
+https://phaser.io/examples/v3/view/game-objects/container/draggable-container
+//drop
+https://phaser.io/examples/v3/view/input/zones/circular-drop-zone
+*/
 class Laboratorio {
     static init() {
         Debug.log('Laboratorio.init()', 'Laboratorio');

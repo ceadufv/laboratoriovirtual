@@ -11,7 +11,6 @@ class Phmetro extends ObjetoDefault {
             var group = GAME_SCENE.add.group();
             group.add(TextopH);
         */
-
         this.container = GAME_SCENE.add.container(data.x, data.y);
         this.insertSprites();
         //inserindo textos
