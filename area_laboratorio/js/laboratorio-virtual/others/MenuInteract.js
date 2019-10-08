@@ -3,15 +3,27 @@
  */
 class MenuInteract {
     static clickInteracMenu(element) {
+        Debug.warn('MenuInteract.clickInteracMenu', 'MenuInteract');
+
         var func = $(element).attr('data_funcion');
         try {
             eval('CLASS_INTERRACT_NOW.' + func + '();');
+            MenuInteract.closeInteracMenu();
         } catch (e) {
-            alert('função não existe na class!!!');
+            alert(func+' - função não existe na class!!!');
+            Debug.warn(func+' - função não existe na class!!!', 'MenuInteract');
         }
     }
 
+    static closeInteracMenu() {
+        Debug.warn('MenuInteract.closeInteracMenu', 'MenuInteract');
+        $('#interacao').modal('hide');
+    }
+
     static montModalInteracMenu(menu) {
+        Debug.warn('MenuInteract.montModalInteracMenu', 'MenuInteract');
+        Debug.warn(menu, 'MenuInteract');
+
         $('#interacao').modal();
         $('#interacao .modal-body *').remove();
         if (menu.length)
