@@ -59,9 +59,9 @@ include_once('../lab-config.php');
         <div class="modal-body">
           <div class="conteudo"></div>
           <div class="botoes">
-            <a href="#" class="btn btn-success" data-dismiss="" onclick="paginaAnterior()"><i class="fa fa-step-backward"></i> Anterior</a>
-            <a href="#" class="btn btn-success" data-dismiss="" onclick="proximaPagina()"><i class="fa fa-step-forward"></i> Próximo</a>
-            <a href="#" class="btn btn-success" data-dismiss="modal">Concluir</a>
+            <a href="javascript:void(0)" class="btn btn-success" id="animation-previous-page" onclick="PageAnimation.previousPage()"><i class="fa fa-step-backward"></i> Anterior</a>
+            <a href="javascript:void(0)" class="btn btn-success" id="animation-next-page"  onclick="PageAnimation.nextPage()"><i class="fa fa-step-forward"></i> Próximo</a>
+            <a href="javascript:void(0)" class="btn btn-success" data-dismiss="modal">Concluir</a>
           </div>
         </div>
       </div>
@@ -231,13 +231,19 @@ include_once('../lab-config.php');
   $diretorio->close();
   ?>
 
+
+
   <!-- OTHERS  -->
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/MenuInteract.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/Armario.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/ArmarioTabs.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/Pratica.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/Laboratorio.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/LaboratorioDefault.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/lab.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/QuimicaFormulas.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/PageAnimation.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/Debug.js"></script>
 
   <!-- ACTIONS  -->
   <?php

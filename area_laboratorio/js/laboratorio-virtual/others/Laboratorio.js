@@ -1,6 +1,7 @@
 class Laboratorio {
     static init() {
-        console.log('Laboratorio.init()');
+        Debug.log('Laboratorio.init()', 'Laboratorio');
+
         var width = 2520;
         var height = 1080;
         PHASER_CONFIG = {
@@ -68,7 +69,7 @@ class Laboratorio {
     }
 
     static preload() {
-        console.log('Laboratorio.preload');
+        Debug.log('Laboratorio.preload', 'Laboratorio');
         this.load.image('background', 'assets/laboratorio/background.png');
         this.load.image('popup', 'assets/laboratorio/popup.png');
 

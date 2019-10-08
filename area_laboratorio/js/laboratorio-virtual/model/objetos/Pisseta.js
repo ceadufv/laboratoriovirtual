@@ -14,6 +14,6 @@ class Pisseta extends ObjetoDefault {
         };
         this.addSpriteScene(config);
         this.insertDrag(this.gameobject);
-        console.log('addObject');
+        //console.log('addObject');
     }
 }

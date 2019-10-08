@@ -26,7 +26,7 @@ class ObjetoDefault {
         image1.ref_class = this;
     }
 
-    insertInteractive(objeto_s){
+    insertInteractive(objeto_s) {
         objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
         //objeto_s.setScrollFactor(0);
         //objeto_s.input.dropZone = false;
@@ -42,7 +42,7 @@ class ObjetoDefault {
         //objeto_s.on('pointerdown', LabHandler.onPointerOver);
         //objeto_s.on('pointerover', LabHandler.onPointerOver);
         //objeto_s.on('pointerout', LabHandler.onPointerOut);
-        
+
         objeto_s.on('pointerover', this.pointerover);
         objeto_s.on('pointerout', this.pointerout);
 
@@ -57,36 +57,39 @@ class ObjetoDefault {
         objeto_s.on('drop', this.drop);
     }
 
-    pointerover () {
+    pointerover() {
         var objeto_s = this;
         objeto_s.setTint(0x44ff44);
     }
 
-    pointerout () {
+    pointerout() {
         var objeto_s = this;
         objeto_s.clearTint();
     }
 
-    gameobjectover (pointer) {
+    gameobjectover(pointer) {
         var objeto_s = this;
         objeto_s.setTint(0x00ff00);
     }
 
-    gameobjectout (pointer) {
+    gameobjectout(pointer) {
         var objeto_s = this;
         objeto_s.clearTint();
     }
 
-    drop (pointer, dropZone) {
-        console.log('drop');
+    drop(pointer, dropZone) {
+
+        Debug.error('drop', 'ObjetoDefault');
+
+
         var objeto_s = this;
         this.click = false;
         this.drop = true;
-        console.log('drop');
-        console.error(dropZone);
-        console.error(objeto_s);
 
-        if(dropZone.type == 'Zone'){ //se tipo dropZone
+        Debug.error(dropZone, 'ObjetoDefault');
+        Debug.error(objeto_s, 'ObjetoDefault');
+
+        if (dropZone.type == 'Zone') { //se tipo dropZone
             dropZone.refClass.normal();
             /*
             if(dropZone.refClass.getOcupado()){
@@ -99,74 +102,83 @@ class ObjetoDefault {
             }*/
             objeto_s.x = dropZone.refClass.x;
             objeto_s.y = dropZone.refClass.y;
-        }else{ //se tipo outro objeto
+        } else { //se tipo outro objeto
             dropZone.setTint(0x000000);
             objeto_s.setTint(0x00ff00);
             objeto_s.x = objeto_s.input.dragStartX;
             objeto_s.y = objeto_s.input.dragStartY;
         }
 
-        console.error(dropZone.ref_class, objeto_s.ref_class);
+        Debug.error(dropZone.ref_class, 'ObjetoDefault');
+        Debug.error(objeto_s.ref_class, 'ObjetoDefault');
 
         try {
-            console.log('Interração');
+            Debug.warn('Interração', 'ObjetoDefault');
             var class_str = 'new Interac_' + dropZone.ref_class.constructor.name + '_' + objeto_s.ref_class.constructor.name + '()';
-            console.log('class_str', class_str);
+            Debug.log('class_str', 'ObjetoDefault');
+            Debug.log(class_str, 'ObjetoDefault');
             CLASS_INTERRACT_NOW = eval(class_str);
             CLASS_INTERRACT_NOW.init(objeto_s.ref_class, dropZone.ref_class);
-            console.log('SET CLASS_INTERRACT_NOW', CLASS_INTERRACT_NOW);
+            Debug.log('SET CLASS_INTERRACT_NOW', 'ObjetoDefault');
+            Debug.log(CLASS_INTERRACT_NOW, 'ObjetoDefault');
         } catch (e) {
-            console.error('Classe não definida!!!', class_str);
-            console.error('E', e);
+            Debug.error('Classe não definida!!!', 'ObjetoDefault');
+            Debug.error(class_str, 'ObjetoDefault');
+            console.error('Error-ObjectDefault ', e);
         }
-
         DropZones.ckeckUsado();
     }
 
-    dragleave (pointer, dropZone) {
-        console.log('dragleave', dropZone);
-        if(dropZone.type == 'Zone'){
+    dragleave(pointer, dropZone) {
+        Debug.log('dragleave', 'ObjetoDefault');
+        Debug.log(dropZone, 'ObjetoDefault');
+        if (dropZone.type == 'Zone') {
             dropZone.refClass.normal();
-        }else{
+        } else {
             dropZone.clearTint();
         }
     }
 
-    drag(pointer, dragX, dragY){
-       this.x = dragX;
-       this.y = dragY;
-       //console.log('drag', this.x, this.y);
+    drag(pointer, dragX, dragY) {
+        this.x = dragX;
+        this.y = dragY;
+        
+        Debug.log('drag', 'ObjetoDefault');
+        Debug.log(this.x, 'ObjetoDefault');
+        Debug.log(this.y, 'ObjetoDefault');
     }
 
-    dragend (pointer) {
-        console.log('dragend');
+    dragend(pointer) {
+        Debug.log('dragend', 'ObjetoDefault');
         //se tiver na mesma posição
         //e click tiver ativado
-        if(this.input.dragStartX == this.x && this.click){
-            console.log('Click');
+        if (this.input.dragStartX == this.x && this.click) {
+            Debug.log('Click', 'ObjetoDefault');
         }
 
-        if(!this.drop){ //se não dropou em nada
+        if (!this.drop) { //se não dropou em nada
             this.x = this.input.dragStartX;
             this.y = this.input.dragStartY;
         }
     }
-    dragenter (pointer, dropZone) {
-        console.log('dragenter', dropZone);
-        if(dropZone.type == 'Zone'){
+    dragenter(pointer, dropZone) {
+        Debug.log('dragenter', 'ObjetoDefault');
+        Debug.log(dropZone, 'ObjetoDefault');
+        if (dropZone.type == 'Zone') {
             dropZone.refClass.hover();
-        }else{
+        } else {
             dropZone.setTint(0x000000);
         }
     }
     dragstart(pointer, gameObject) {
-            console.log('dragstart', this);
-            this.click = true;
-            this.drop = false;
-            this.setTint(0xff0000);
-            for (var i = 0; i < OBJETOS_LAB.length; i++) {
-                OBJETOS_LAB[i].gameobject.input.dropZone = true;
-            }
-            this.input.dropZone = false;
+        Debug.log('dragstart', 'ObjetoDefault');
+        Debug.log(this, 'ObjetoDefault');
+        this.click = true;
+        this.drop = false;
+        this.setTint(0xff0000);
+        for (var i = 0; i < OBJETOS_LAB.length; i++) {
+            OBJETOS_LAB[i].gameobject.input.dropZone = true;
+        }
+        this.input.dropZone = false;
     }
 }
