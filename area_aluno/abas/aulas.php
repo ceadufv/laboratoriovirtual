@@ -7,16 +7,22 @@
         <div class="input-group">
         <select id="select_acessar_laboratorio" class="custom-select" required>
         <?php
-        include_once('../banco/conexao.php');
 
         // Lista as praticas disponiveis para o aluno
-        $sql = $lab->getPraticasAluno(@$_SESSION['id_usuario']);
+        $sql = $lab->getPraticasAluno($_SESSION['id_usuario']);
         
         if(count($sql)) {
 
             foreach($sql as $row) 
             { ?>
-                <option value=<?php echo $row['id']?>> <?php echo $row["nome_pratica"]?> </option>;
+                <option value=<?php echo $row['id']?>> 
+                    <?php   echo $row["nome_pratica"]; 
+                            echo ' - '; 
+                            // se o resumo for grande demais, adiciona três pontinhos pra não quebrar o select ...
+                            $row["resumo"] = (strlen($row["resumo"]) > 60) ? substr($row["resumo"],0,60).'...' : $row["resumo"]; 
+                            echo $row["resumo"];
+                    ?> 
+                </option>;
         <?php }
         }else{
             echo "Não há práticas disponíveis";
@@ -36,11 +42,6 @@
         </script>
         </div>
         <br>
-        
-        <p>Resumo da prática: </p>
-        <div id="aula_resumo" class="conteudoresumo">
-           Clique na prática desejada para ver seu resumo   
-        </div>
     </div>
 </div>
 

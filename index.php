@@ -51,7 +51,7 @@
                     <input type="password" class="form-control texto-icone" placeholder="SENHA" id="senhaLogin">
                   </div>
                 </div>
-                <button type="button" class="btn" onclick="login()">CONFIRMAR</button>
+                <button type="button" class="btn btn-primary" onclick="login()">CONFIRMAR</button>
 
                 <div class="loginsenha">
                   <!-- <a href="#">Esqueci o login/senha </a> -->

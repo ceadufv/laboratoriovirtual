@@ -9,7 +9,7 @@
         <span>Meus Alunos</span>
       </h3>
 
-      <p>Gerenciamento de alunos. Aqui é possível ver a lista de alunos que você acompanha, deletar do acompanhamento e adicionar novos.</p>
+      <p>Gerenciamento de alunos</p>
 
       <table class="table" id="tabela">
         <thead>
@@ -76,7 +76,7 @@
   </div>
 </div>
 <?php
-  //se confirmado, reseta a senha do usuário para 123456
+  //se confirmado, reseta a senha do aluno para 123456
 		if($_POST['confirmado'] == 'S') {
       $lab->resetarSenhaAluno($_POST['cod_usuario']);
 			exit();
