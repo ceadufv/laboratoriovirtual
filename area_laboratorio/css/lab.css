@@ -18,3 +18,7 @@ label:hover {
     /* text-shadow: #ea1f74 0px 0px 5px; */
     border: 1px solid #000;
 }
+
+.objeto-selecionado{
+    background: red !important;
+}

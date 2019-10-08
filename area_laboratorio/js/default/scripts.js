@@ -1,10 +1,13 @@
+/*
 $(document).ready(function () {
   $('#praticas').modal({ backdrop: 'static', keyboard: false })
   $('#praticas').modal('show');
 
+
   $("#fechar-armario").click(function () {
     $('#armario').modal('hide');
   });
+
 
   $('select[id="select_acessar_laboratorio"]').change(function () {
     getResumo($(this).val());
@@ -36,6 +39,7 @@ function sair_laboratorio(tipo_usuario) {
     window.location = URL_SITE + 'area_professor/index.php';
   }
 }
+
 
 function logoff() {
   window.location.href = URL_SITE+'logout.php';
@@ -91,3 +95,5 @@ function aba(tela) {
     $('.div-secoes').hide();
   }
 }
+
+*/

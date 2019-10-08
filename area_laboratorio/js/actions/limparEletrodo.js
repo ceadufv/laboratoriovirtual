@@ -5,6 +5,7 @@
 * @valid_target ["eletrodo"]
 */
 function limparEletrodo(interacao) {
+	console.log('limparEletrodo');
 	var source = interacao.source();
 	var target = interacao.target();
 

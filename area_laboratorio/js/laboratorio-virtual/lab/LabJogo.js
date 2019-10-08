@@ -9,8 +9,6 @@ var scene;
  * scena principal do game onde contem o Phaser
  * @author Wellerson
  * */
-var GAME_SCENE;
-
 
 LabJogo = function (data) {
 	this._data = data;
@@ -260,8 +258,18 @@ LabJogo.prototype.init = function (f) {
 		physics: {
 			default: 'arcade',
 			arcade: {
-				gravity: { y: 200 }
+				gravity: { y: 0 },
+				debug: true
 			}
+			/*
+			default: 'matter',
+			matter: {
+				gravity: {
+					x: 0,
+					y: 0
+				}
+			}
+			*/
 		},
 		scene: {
 			preload: preload,
@@ -382,10 +390,8 @@ LabJogo.prototype.init = function (f) {
 			draggable: false,
 			cursor: 'pointer',
 		});
-
-		//
-		armario_solucoes.on('pointerdown', function () { abrirArmario(this.texture.key); });
-		armario_vidrarias.on('pointerdown', function () { abrirArmario(this.texture.key); });
+		armario_solucoes.on('pointerdown', function () { Armario.abrirArmario(this.texture.key); });
+		armario_vidrarias.on('pointerdown', function () { Armario.abrirArmario(this.texture.key); });
 
 		//
 		var json = o._data.cenario;
