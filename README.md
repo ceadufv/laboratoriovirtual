@@ -13,15 +13,15 @@ Pedro de Almeida Sacramento/CEAD-UFV
 Thaynara Rocha Mendonça/DEQ-UFV  
 
 ### Equipe de desenvolvimento
-Bruno de Lima Santos/DEQ-UFV
-Carolina Castro Freitas Prado/DEQ-UFV
-Cesar Ruben Francisco Gennaro Campos/DPI-UFV
-Gustavo Freire da Silva/DEQ-UFV
-Maria Eduarda Oliveira Miranda/DPI-UFV
-Pedro de Almeida Sacramento/CEAD-UFV
-Thaynara Rocha Mendonça/DEQ-UFV
-Wellerson David Cardoso Vieira/CEAD-UFV
-Marcelo dos Santos Teixeira/CEAD-UFV
+Bruno de Lima Santos/DEQ-UFV  
+Carolina Castro Freitas Prado/DEQ-UFV  
+Cesar Ruben Francisco Gennaro Campos/DPI-UFV  
+Gustavo Freire da Silva/DEQ-UFV  
+Maria Eduarda Oliveira Miranda/DPI-UFV  
+Pedro de Almeida Sacramento/CEAD-UFV  
+Thaynara Rocha Mendonça/DEQ-UFV  
+Wellerson David Cardoso Vieira/CEAD-UFV  
+Marcelo dos Santos Teixeira/CEAD-UFV  
 
 ### Equipe de testes
 Angélica Lorena dos Santos Oliveira/DEQ-UFV  
