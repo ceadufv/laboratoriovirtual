@@ -1,6 +1,22 @@
 $(document).ready(function () {
     var url_site = URL_SITE;
 
+    $(".salvar").click(function(dados) {
+        acessar_laboratorio('salvar');
+
+    });
+
+    $(".treino").click(function(dados) {
+        acessar_laboratorio('treino');
+
+    });
+
+    function acessar_laboratorio(tipo_acesso){
+        var id = $('#select_acessar_laboratorio option:selected').val();
+        location.href="../area_laboratorio/lab.php?id_pratica="+id+'&tipo_acesso='+tipo_acesso;
+    }
+
+
 	//data table
 	$.extend( true, $.fn.dataTable.defaults, {
 		"searching": true,
