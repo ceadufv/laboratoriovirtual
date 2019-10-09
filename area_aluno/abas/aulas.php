@@ -32,8 +32,8 @@
                             <tr>
                                 <td><?php echo $row['nome_pratica']?></td>
                                 <td><?php echo $row['resumo']?></td>
-                                <td><button class="btn btn-primary" onclick="acessar_laboratorio('salvar')"><i class="fa fa-check-circle"></i> Realizar prática</button></td>
-                                <td><button class="btn btn-success" onclick="acessar_laboratorio('treino')"><i class="fa fa-check-circle"></i> Treinar</button></td>
+                                <td><button class="btn btn-primary salvar"><i class="fa fa-check-circle"></i> Realizar prática</button></td>
+                                <td><button class="btn btn-success treino"><i class="fa fa-check-circle"></i> Treinar</button></td>
                             </tr>
                             <?php 
                             }
@@ -48,13 +48,5 @@
 </div>
 
 <script>
-$(document).ready(function() {
-    $('#tabela').DataTable();
-
-    function acessar_laboratorio(tipo_acesso){
-        var id = $('#select_acessar_laboratorio option:selected').val();
-        location.href="../area_laboratorio/lab.php?id_pratica="+id+'&tipo_acesso='+tipo_acesso;
-    }
-
-} );    
+  
 </script>
