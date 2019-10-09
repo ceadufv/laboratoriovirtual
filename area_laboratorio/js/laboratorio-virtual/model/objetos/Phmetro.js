@@ -3,7 +3,7 @@ class Phmetro extends ObjetoDefault {
         super(data);
         this.addObject(data);
         this.countUpdate=0;
-        Debug.error('Phmetro.constructor', "Phmetro");
+        console.error('Phmetro.constructor', "Phmetro");
     }
 
     addObject(data) {

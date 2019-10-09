@@ -9,7 +9,7 @@ https://phaser.io/examples/v3/view/input/zones/circular-drop-zone
 */
 class Laboratorio {
     static init() {
-        Debug.log('Laboratorio.init()', 'Laboratorio');
+        console.log('Laboratorio.init()', 'Laboratorio');
 
         var width = 2520;
         var height = 1080;
@@ -78,7 +78,7 @@ class Laboratorio {
     }
 
     static preload() {
-        Debug.log('Laboratorio.preload', 'Laboratorio');
+        console.log('Laboratorio.preload', 'Laboratorio');
         this.load.setBaseURL(URL_SITE+'area_laboratorio/');
 
         this.load.image('background', 'assets/laboratorio/background.png');

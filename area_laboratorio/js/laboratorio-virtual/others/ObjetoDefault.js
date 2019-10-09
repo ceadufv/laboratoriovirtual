@@ -69,14 +69,14 @@ class ObjetoDefault {
     }
 
     drop(pointer, dropZone) {
-        Debug.error('drop', 'ObjetoDefault');
+        console.error('drop', 'ObjetoDefault');
 
         var objeto_s = this;
         this.click = false;
         this.drop = true;
 
-        Debug.error(dropZone, 'ObjetoDefault');
-        Debug.error(objeto_s, 'ObjetoDefault');
+        console.error(dropZone, 'ObjetoDefault');
+        console.error(objeto_s, 'ObjetoDefault');
 
         if (dropZone.type == 'Zone') { //se tipo dropZone
             dropZone.refClass.normal();
@@ -89,37 +89,37 @@ class ObjetoDefault {
             objeto_s.y = objeto_s.input.dragStartY;
         }
         
-        Debug.error(dropZone.A_REF_CLASS, 'ObjetoDefault');
-        Debug.error(objeto_s.A_REF_CLASS, 'ObjetoDefault');
+        console.error(dropZone.A_REF_CLASS, 'ObjetoDefault');
+        console.error(objeto_s.A_REF_CLASS, 'ObjetoDefault');
 
         if (dropZone.type != 'Zone') { //se tipo dropZone
             try {
-                Debug.warn('Interração', 'ObjetoDefault');
+                console.warn('Interração', 'ObjetoDefault');
                 var class_str = 'new Interac_' + objeto_s.A_REF_CLASS.constructor.name + '_' + dropZone.A_REF_CLASS.constructor.name + '()';
-                Debug.log('class_str', 'ObjetoDefault');
-                Debug.log(class_str, 'ObjetoDefault');
+                console.log('class_str', 'ObjetoDefault');
+                console.log(class_str, 'ObjetoDefault');
                 CLASS_INTERRACT_NOW = eval(class_str);
                 CLASS_INTERRACT_NOW.init(objeto_s.A_REF_CLASS, dropZone.A_REF_CLASS);
-                Debug.log('SET CLASS_INTERRACT_NOW', 'ObjetoDefault');
-                Debug.log(CLASS_INTERRACT_NOW, 'ObjetoDefault');
+                console.log('SET CLASS_INTERRACT_NOW', 'ObjetoDefault');
+                console.log(CLASS_INTERRACT_NOW, 'ObjetoDefault');
             } catch (e) {
-                Debug.error('Classe não definida!!!', 'ObjetoDefault');
-                Debug.error(class_str, 'ObjetoDefault');
+                console.error('Classe não definida!!!', 'ObjetoDefault');
+                console.error(class_str, 'ObjetoDefault');
                 console.error('Error-ObjectDefault ', e);
 
                 //Não encontrou interração
                 MenuInteract.montModalInteracMenu([]);
             }
         }else{
-            Debug.error('É dropZone', 'ObjetoDefault');
+            console.error('É dropZone', 'ObjetoDefault');
         }
 
         DropZones.ckeckUsado();
     }
 
     dragleave(pointer, dropZone) {
-        Debug.log('dragleave', 'ObjetoDefault');
-        Debug.log(dropZone, 'ObjetoDefault');
+        console.log('dragleave', 'ObjetoDefault');
+        console.log(dropZone, 'ObjetoDefault');
         if (dropZone.type == 'Zone') {
             dropZone.refClass.normal();
         } else {
@@ -132,15 +132,15 @@ class ObjetoDefault {
         this.y = dragY;
 
         /*
-        Debug.log('drag', 'ObjetoDefault');
-        Debug.log(this.x, 'ObjetoDefault');
-        Debug.log(this.y, 'ObjetoDefault');
+        console.log('drag', 'ObjetoDefault');
+        console.log(this.x, 'ObjetoDefault');
+        console.log(this.y, 'ObjetoDefault');
         */
     }
 
     /** quando somento clica no objeto */
     clickObject(objeto){
-        Debug.log('clickObject', 'ObjetoDefault');
+        console.log('clickObject', 'ObjetoDefault');
         try {
             var class_str = 'new Interac_' + objeto.A_REF_CLASS.constructor.name + '_Self()';
             CLASS_INTERRACT_NOW = eval(class_str);
@@ -154,7 +154,7 @@ class ObjetoDefault {
 
     dragend(pointer) {
         console.log(this);
-        Debug.log('dragend', 'ObjetoDefault');
+        console.log('dragend', 'ObjetoDefault');
         //se tiver na mesma posição
         //e click tiver ativado
         if (this.input.dragStartX == this.x && this.click) {
@@ -167,8 +167,8 @@ class ObjetoDefault {
         }
     }
     dragenter(pointer, dropZone) {
-        Debug.log('dragenter', 'ObjetoDefault');
-        Debug.log(dropZone, 'ObjetoDefault');
+        console.log('dragenter', 'ObjetoDefault');
+        console.log(dropZone, 'ObjetoDefault');
         if (dropZone.type == 'Zone') {
             dropZone.refClass.hover();
         } else {
@@ -176,8 +176,8 @@ class ObjetoDefault {
         }
     }
     dragstart(pointer, gameObject) {
-        Debug.log('dragstart', 'ObjetoDefault');
-        Debug.log(this, 'ObjetoDefault');
+        console.log('dragstart', 'ObjetoDefault');
+        console.log(this, 'ObjetoDefault');
         this.click = true;
         this.drop = false;
         this.setTint(0xff0000);
