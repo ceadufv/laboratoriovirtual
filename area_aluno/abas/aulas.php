@@ -43,6 +43,7 @@
                     ?>
                 </tbody>
             </table>
+            <input type="hidden" id="id_pratica" name="id_pratica" value="<?php echo $row['id'];?>">
         </div>
     </div>
 </div>
