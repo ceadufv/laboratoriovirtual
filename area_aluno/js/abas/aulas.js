@@ -23,8 +23,8 @@ $(document).ready(function () {
 		"searching": true,
 		"ordering": true,
 		"paging": true,
-		"colReorder": true
-		//"iDisplayLength": 50
+		"colReorder": true,
+		"iDisplayLength": 25
 	});
 
 	var exportOptions = {
