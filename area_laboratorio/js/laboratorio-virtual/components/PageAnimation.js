@@ -6,7 +6,7 @@ class PageAnimation {
     ];
     */
     static open(dados) {
-        Debug.warn('PageAnimation.open', 'PageAnimation');
+        console.warn('PageAnimation.open', 'PageAnimation');
        
         PageAnimation.page = 0;
         PageAnimation.page_total = dados.length - 1;
@@ -44,19 +44,19 @@ class PageAnimation {
             $('#animation-previous-page').removeClass('disabled', false);
         }
 
-        Debug.warn('PageAnimation.pageShow', 'PageAnimation');
-        Debug.warn(PageAnimation.page, 'PageAnimation');
+        console.warn('PageAnimation.pageShow', 'PageAnimation');
+        console.warn(PageAnimation.page, 'PageAnimation');
         $('#a-page-' + PageAnimation.page).show();
     }
     static hideAllPage() {
         $('.a-page').hide();
     }
     static nextPage() {
-        Debug.warn('PageAnimation.nextPage', 'PageAnimation');
+        console.warn('PageAnimation.nextPage', 'PageAnimation');
         PageAnimation.pageShow(PageAnimation.page + 1);
     }
     static previousPage() {
-        Debug.warn('PageAnimation.previousPage', 'PageAnimation');
+        console.warn('PageAnimation.previousPage', 'PageAnimation');
         PageAnimation.pageShow(PageAnimation.page - 1);
     }
 }

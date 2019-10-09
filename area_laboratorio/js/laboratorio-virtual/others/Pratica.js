@@ -1,14 +1,26 @@
 class Pratica {
     static initPratica() {
         console.log("Pratica.initPratica");
-        $.ajax({ url: URL_SITE + 'area_laboratorio/index-app.php?app=jogo&file=get-data-pratica-jogo&id_pratica=' + id_pratica }).done(function (data) {
+        $.ajax({ url: URL_SITE + 'area_laboratorio/index-app.php?app=jogo&file=get-data-pratica-jogo&id_pratica=' + ID_PRATICA }).done(function (data) {
             PRATICA_DATA = data;
+            Pratica.setTitlePage();
             ArmarioTabs.construirModal(data);
             Pratica.setFilesAlunoRoteiro(data);
             Laboratorio.init();
+
+            PracticeRegistration.register([{'desc': 'Carregou a pratica!!!', 'data':null}]);
         });
     }
-    
+
+    static setTitlePage() {
+        if (TIPO_ACESSO == 'treino')
+            var texto = PRATICA_DATA.nome + ' (treinamento)';
+        else
+            var texto = PRATICA_DATA.nome;
+
+        $('#titulopratica').text(texto);
+    }
+
     //arquivos de roteiro/cadernos
     static setFilesAlunoRoteiro(dados) {
         var html_a = '';

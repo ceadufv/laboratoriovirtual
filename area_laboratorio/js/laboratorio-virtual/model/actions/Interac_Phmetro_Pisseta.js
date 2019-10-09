@@ -3,7 +3,7 @@ class Interac_Phmetro_Pisseta {
         console.error('Interac_Phmetro_Pisseta constructor');
     }
     init(objctInit, objctDrop) {
-        return;
+        ///return;
 
         //CLASS_INTERRACT_NOW = new Interac_Pisseta_Phmetro();
         //CLASS_INTERRACT_NOW.init(objctInit, objctDrop);
@@ -26,7 +26,7 @@ class Interac_Phmetro_Pisseta {
         image3.setOrigin(0.5, 0.5);
         image3.setScale(20);
         image3.anims.play('explode');
-        alert(image3.x + ',' + image3.y);
+        //alert(image3.x + ',' + image3.y);
         image3.on('animationcomplete', function () {
             image3.destroy();
         }, GAME_SCENE, this);

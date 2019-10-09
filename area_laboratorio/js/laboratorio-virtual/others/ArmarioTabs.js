@@ -1,8 +1,8 @@
 
 class ArmarioTabs {
     static construirItem(tab, item) {
-        Debug.log('ArmarioTabs.construirItem', 'ArmarioTabs');
-        Debug.log(item, 'ArmarioTabs');
+        console.log('ArmarioTabs.construirItem', 'ArmarioTabs');
+        console.log(item, 'ArmarioTabs');
         
         var botao, class_opcao;
         if (item.disponivel == 'N') {

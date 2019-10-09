@@ -3,7 +3,7 @@
  */
 class MenuInteract {
     static clickInteracMenu(element) {
-        Debug.warn('MenuInteract.clickInteracMenu', 'MenuInteract');
+        console.warn('MenuInteract.clickInteracMenu', 'MenuInteract');
 
         var func = $(element).attr('data_funcion');
         try {
@@ -11,18 +11,18 @@ class MenuInteract {
             MenuInteract.closeInteracMenu();
         } catch (e) {
             alert(func+' | Função não existe na class | ocorreu um erro na função!!!');
-            Debug.warn(func+' - função não existe na class!!!', 'MenuInteract');
+            console.warn(func+' - função não existe na class!!!', 'MenuInteract');
         }
     }
 
     static closeInteracMenu() {
-        Debug.warn('MenuInteract.closeInteracMenu', 'MenuInteract');
+        console.warn('MenuInteract.closeInteracMenu', 'MenuInteract');
         $('#interacao').modal('hide');
     }
 
     static montModalInteracMenu(menu) {
-        Debug.warn('MenuInteract.montModalInteracMenu', 'MenuInteract');
-        Debug.warn(menu, 'MenuInteract');
+        console.warn('MenuInteract.montModalInteracMenu', 'MenuInteract');
+        console.warn(menu, 'MenuInteract');
 
         $('#interacao').modal();
         $('#interacao .modal-body *').remove();

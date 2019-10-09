@@ -14,8 +14,8 @@ include_once('../lab-config.php');
 
   <script>
     const URL_SITE = '<?php echo URL_SITE; ?>';
-    var id_pratica = parseInt('<?php echo $_REQUEST['id_pratica']; ?>');
-    var tipo_acesso = '<?php echo $_REQUEST['tipo_acesso']; ?>';
+    var ID_PRATICA = parseInt('<?php echo $_REQUEST['id_pratica']; ?>');
+    var TIPO_ACESSO = '<?php echo $_REQUEST['tipo_acesso']; ?>';
   </script>
 
   <!--vendors-->
@@ -36,7 +36,7 @@ include_once('../lab-config.php');
   <header>
     <nav class="navbar">
       <h1>NeoAlice</h1>
-      <h1 id="tituloPratica" class="text-center"></h1>
+      <h1 id="titulopratica" class="text-center"></h1>
       <div class="controle">
         <button id="info" type="button" style="background-color: grey" data-container="body" data-placement="bottom">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -214,6 +214,7 @@ include_once('../lab-config.php');
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/components/Debug.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/components/PageAnimation.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/components/MenuInteract.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/components/PracticeRegistration.js"></script>
 
   <!-- OTHERS  -->
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/Armario.js"></script>

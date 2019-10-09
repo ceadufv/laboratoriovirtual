@@ -55,7 +55,7 @@ class Armario {
 
     // Adiciona a bancada os objetos selecionados
     static addItensSelecionadosScene() {
-        Debug.log('Armario.addScene', 'Armario');
+        console.log('Armario.addScene', 'Armario');
 
         var selecionados = Armario.getItensSelecionadosArmario();
         for (var i = 0; i < selecionados.length; i++) {
@@ -68,15 +68,15 @@ class Armario {
             switch (selecionados[i].conceito) {
                 case 'frasco_estoque':
                     var item = new Solucao(arg);
-                    Debug.error('Solucao', 'Armario');
-                    Debug.error(item, 'Armario');
+                    console.error('Solucao', 'Armario');
+                    console.error(item, 'Armario');
                     SceneObjectsSLab.add(item);
                     break;
 
                 default:
                     var item = new Pisseta(arg);
-                    Debug.error('Pipeta', 'Armario');
-                    Debug.error(item, 'Armario');
+                    console.error('Pipeta', 'Armario');
+                    console.error(item, 'Armario');
                     SceneObjectsSLab.add(item);
                     break;
 
