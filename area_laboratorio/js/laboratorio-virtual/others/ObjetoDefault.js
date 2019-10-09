@@ -3,10 +3,10 @@ class ObjetoDefault {
         this.dice = data;
         this.gameobject = null;
         this.dropped = false;
-        this.classe = this;
     }
-
     destroy() {
+        SceneObjectsSLab.addIds();
+        SceneObjectsSLab.deleteObjectId(this.id);
         this.gameobject.destroy();
         this.gameobject = null;
     }
@@ -95,7 +95,7 @@ class ObjetoDefault {
         if (dropZone.type != 'Zone') { //se tipo dropZone
             try {
                 Debug.warn('Interração', 'ObjetoDefault');
-                var class_str = 'new Interac_' + dropZone.A_REF_CLASS.constructor.name + '_' + objeto_s.A_REF_CLASS.constructor.name + '()';
+                var class_str = 'new Interac_' + objeto_s.A_REF_CLASS.constructor.name + '_' + dropZone.A_REF_CLASS.constructor.name + '()';
                 Debug.log('class_str', 'ObjetoDefault');
                 Debug.log(class_str, 'ObjetoDefault');
                 CLASS_INTERRACT_NOW = eval(class_str);

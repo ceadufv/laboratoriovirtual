@@ -3,7 +3,6 @@ include_once('../lab-config.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
   <title>NeoAlice</title>
   <link rel="shortcut icon" type="image/png" href="<?php echo URL_SITE; ?>imagens/icons/favicon.png" />
@@ -60,7 +59,7 @@ include_once('../lab-config.php');
           <div class="conteudo"></div>
           <div class="botoes">
             <a href="javascript:void(0)" class="btn btn-success" id="animation-previous-page" onclick="PageAnimation.previousPage()"><i class="fa fa-step-backward"></i> Anterior</a>
-            <a href="javascript:void(0)" class="btn btn-success" id="animation-next-page"  onclick="PageAnimation.nextPage()"><i class="fa fa-step-forward"></i> Próximo</a>
+            <a href="javascript:void(0)" class="btn btn-success" id="animation-next-page" onclick="PageAnimation.nextPage()"><i class="fa fa-step-forward"></i> Próximo</a>
             <a href="javascript:void(0)" class="btn btn-success" data-dismiss="modal">Concluir</a>
           </div>
         </div>
@@ -183,85 +182,63 @@ include_once('../lab-config.php');
   <div id="AreaJogo"></div>
 
   <!-- 
-    #########
-    SCRIPTS 
-    #########
-  -->
+      #########
+      SCRIPTS 
+      #########
+    -->
 
- <?php
- /* <!-- LABS -->
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabElemento.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabSubstancia.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabSolution.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabAction.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabInteraction.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabUtils.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabState.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabHandler.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabError.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabPhmetro.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabArmario.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabEspectrofotometro.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabEspectrofotometro.class.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/LabMain.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/LabActions.php"></script>
-
-  <!-- default -->
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/default/scripts.js"></script>
-*/  ?>
-
-  <!--variaveis globais -->
+  <!-- VARS globais -->
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/VarsGlobal.js"></script>
- 
+
   <!--DROP ZONES -->
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/DropZone.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/DropZones.js"></script>
 
-
   <!-- OBJETOS  -->
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/ObjetoDefault.js"></script>
   <?php
-  $path = URL_SYSTEM."area_laboratorio/js/laboratorio-virtual/model/objetos/";
+  $path = URL_SYSTEM . "area_laboratorio/js/laboratorio-virtual/model/objetos/";
   $diretorio = dir($path);
-  while($arquivo = $diretorio -> read()){
-    if($arquivo == '.' || $arquivo == '..')
+  while ($arquivo = $diretorio->read()) {
+    if ($arquivo == '.' || $arquivo == '..')
       continue;
-      echo '<script type="text/javascript" src="'.URL_SITE.'area_laboratorio/js/laboratorio-virtual/model/objetos/'.$arquivo.'"></script>';
+    echo '<script type="text/javascript" src="' . URL_SITE . 'area_laboratorio/js/laboratorio-virtual/model/objetos/' . $arquivo . '"></script>';
   }
   $diretorio->close();
   ?>
 
+  <!-- business-rule -->
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/business-rule/QuimicaFormulas.js"></script>
 
+  <!-- COMPONENTS  -->
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/components/Debug.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/components/PageAnimation.js"></script>
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/components/MenuInteract.js"></script>
 
   <!-- OTHERS  -->
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/MenuInteract.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/Armario.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/ArmarioTabs.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/Pratica.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/Laboratorio.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/LaboratorioDefault.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/lab/lab.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/QuimicaFormulas.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/PageAnimation.js"></script>
-  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/Debug.js"></script>
 
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/laboratorio-virtual/others/SceneObjectsSLab.js"></script>
   <!-- ACTIONS  -->
   <?php
-  $path = URL_SYSTEM."area_laboratorio/js/laboratorio-virtual/model/actions/";
+  $path = URL_SYSTEM . "area_laboratorio/js/laboratorio-virtual/model/actions/";
   $diretorio = dir($path);
-  while($arquivo = $diretorio -> read()){
-    if($arquivo == '.' || $arquivo == '..')
+  while ($arquivo = $diretorio->read()) {
+    if ($arquivo == '.' || $arquivo == '..')
       continue;
-      echo '<script type="text/javascript" src="'.URL_SITE.'area_laboratorio/js/laboratorio-virtual/model/actions/'.$arquivo.'"></script>';
+    echo '<script type="text/javascript" src="' . URL_SITE . 'area_laboratorio/js/laboratorio-virtual/model/actions/' . $arquivo . '"></script>';
   }
   $diretorio->close();
   ?>
 
   <script>
-    $(document).ready(function () {
-        Pratica.initPratica();
+    $(document).ready(function() {
+      Pratica.initPratica();
     });
   </script>
 </body>
-
 </html>
