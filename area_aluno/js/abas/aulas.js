@@ -3,7 +3,6 @@ $(document).ready(function () {
 
     $(".salvar").click(function(dados) {
         acessar_laboratorio('salvar');
-
     });
 
     $(".treino").click(function(dados) {
@@ -12,7 +11,9 @@ $(document).ready(function () {
     });
 
     function acessar_laboratorio(tipo_acesso){
-        var id = $('#select_acessar_laboratorio option:selected').val();
+        //var id = $('#select_acessar_laboratorio option:selected').val();
+        //var id = $('#id_pratica').attr('value');
+        var id = $('#id_pratica').val();
         location.href="../area_laboratorio/lab.php?id_pratica="+id+'&tipo_acesso='+tipo_acesso;
     }
 
