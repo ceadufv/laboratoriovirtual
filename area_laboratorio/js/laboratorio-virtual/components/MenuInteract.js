@@ -10,7 +10,7 @@ class MenuInteract {
             eval('CLASS_INTERRACT_NOW.' + func + '();');
             MenuInteract.closeInteracMenu();
         } catch (e) {
-            alert(func+' - função não existe na class!!!');
+            alert(func+' | Função não existe na class | ocorreu um erro na função!!!');
             Debug.warn(func+' - função não existe na class!!!', 'MenuInteract');
         }
     }

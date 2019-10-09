@@ -70,14 +70,14 @@ class Armario {
                     var item = new Solucao(arg);
                     Debug.error('Solucao', 'Armario');
                     Debug.error(item, 'Armario');
-                    OBJETOS_LAB.push(item);
+                    SceneObjectsSLab.add(item);
                     break;
 
                 default:
                     var item = new Pisseta(arg);
                     Debug.error('Pipeta', 'Armario');
                     Debug.error(item, 'Armario');
-                    OBJETOS_LAB.push(item);
+                    SceneObjectsSLab.add(item);
                     break;
 
             }

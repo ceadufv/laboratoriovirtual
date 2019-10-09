@@ -39,33 +39,31 @@ class LaboratorioDefault {
         var itens = PRATICA_DATA.cenario.objetos;
         for (var j = 0; j < itens.length; j++) {
 
-            var drops = DropZones.getZonesLivres();
-            var drop = drops[0];
-
+            var drop = DropZones.getOneDropZoneLivre();
             switch (itens[j].concept) {
                 case 'pia':
                     var op = new Pia({ x: 2409.7999999999997, y: 292.27500086116794 });
-                    OBJETOS_LAB.push(op);
+                    SceneObjectsSLab.add(op);
                     break;
                 case 'pisseta':
                     var op = new Pisseta({ x: drop.x, y: drop.y });
-                    OBJETOS_LAB.push(op);
+                    SceneObjectsSLab.add(op);
                     break;
                 case 'bequer_vazio':
                     var op = new BequerVazio({ x: drop.x, y: drop.y });
-                    OBJETOS_LAB.push(op);
+                    SceneObjectsSLab.add(op);
                     break;
                 case 'lenco':
                     var op = new Lenco({ x: drop.x, y: drop.y });
-                    OBJETOS_LAB.push(op);
+                    SceneObjectsSLab.add(op);
                     break;
                 case 'phmetro':
                     var op = new Phmetro({ x: 1810, y: 510 });
-                    OBJETOS_LAB.push(op);
+                    SceneObjectsSLab.add(op);
                     break;
                 case 'bequer_repouso':
                     var op = new BequerRepouso({ x: drop.x, y: drop.y });
-                    OBJETOS_LAB.push(op);
+                    SceneObjectsSLab.add(op);
                     break;
             }
             /*

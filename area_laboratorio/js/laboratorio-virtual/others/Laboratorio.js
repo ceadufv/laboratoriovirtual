@@ -79,6 +79,8 @@ class Laboratorio {
 
     static preload() {
         Debug.log('Laboratorio.preload', 'Laboratorio');
+        this.load.setBaseURL(URL_SITE+'area_laboratorio/');
+
         this.load.image('background', 'assets/laboratorio/background.png');
         this.load.image('popup', 'assets/laboratorio/popup.png');
 
@@ -115,6 +117,9 @@ class Laboratorio {
         this.load.image('pisseta', 'assets/objetos/pisseta.png');
         this.load.image('espectrofotometro', 'assets/objetos/espectrofotometro2.png');
         this.load.image('tampa_espectrofotometro', 'assets/objetos/tampa_espectrofotometro.png');
+        
+        //SPRITE
+        this.load.spritesheet('ani_fire', 'assets/animations/fire/explosion_3_40_128.png',  { frameWidth: 128, frameHeight: 128, endFrame: 40 });
 
         //DROPZONES
         this.load.image('drop_zone', 'assets/dropzone/movel.png');
