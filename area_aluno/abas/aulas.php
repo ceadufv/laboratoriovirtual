@@ -1,9 +1,4 @@
-<link rel="stylesheet" type="text/css" href="../plugins/vendor/datatables/datatables.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
-<script type="text/javascript" src="../plugins/vendor/datatables/datatables.min.js"></script>
-<script type="text/javascript" src="js/abas/aulas.js"></script>
-
-
+<script type="text/javascript" src="js/abas/aulas.js"></script>    
 
 <div class="row">
     <div class="administrar col-md-12">
@@ -23,11 +18,14 @@
                 </thead>
                 <tbody>
                     <?php
+                        require_once("../classes/usuario/Usuario.class.php");
+                        $objUsuario = new Usuario();
+                        
                         // Lista as praticas disponiveis para o aluno
-                        $sql = $lab->getPraticasAluno($_SESSION['id_usuario']);
+                        $dados = $objUsuario->getPraticasAluno($_SESSION['id_usuario']);
 
-                        if(count($sql)) {
-                            foreach($sql as $row) 
+                        if(!empty($dados)) {
+                            foreach($dados as $row) 
                             { ?>
                             <tr>
                                 <td><?php echo $row['nome_pratica']?></td>
@@ -47,7 +45,3 @@
         </div>
     </div>
 </div>
-
-<script>
-  
-</script>

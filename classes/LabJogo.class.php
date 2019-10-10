@@ -69,7 +69,7 @@ class LabJogo
 
         return $result[0];
     }
-
+/*
     // TODO: Filtrar apenas as praticas que podem ser exibidas para o aluno
     function getPraticasAluno($id_aluno)
     {
@@ -79,7 +79,7 @@ class LabJogo
 
         return $sql->fetchAll();
     }
-
+*/
 
     // Lista as vidrarias disponiveis no armario da pratica atual
     // TODO: Usar lista de vidrarias de fato buscadas no banco
@@ -263,74 +263,8 @@ class LabJogo
 
             return $result; //echo json_encode($result);
         }
-
-        /*
-        $data = $this->getSubstancias();
-
-        $result = array();
-        
-        foreach ($data as $key => $value) {
-            $result[] = array(
-            "id" => (int) $value['id'],
-            "nome" => $value['nome'],
-            "dados" => json_decode($value['dados'])
-            );
-        }
-
-        // TODO: Substituir a proxima parte do codigo por essa chamada
-        //$sol = $this->getSolucoesPratica($id_pratica);
-
-        $solucoes = array();
-        $sql = $dbh->prepare('select * from solucoes');
-        $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();
-        if($sql->rowCount() != 0) {
-            while($row=$sql->fetch()) 
-            {
-                $composicoes = quebra($row["nomes_composicao"]);
-                $ids = quebra($row["ids_composicao"]);
-                $concentracoes = quebra($row["concentracao"]);
-                $substancias = substancias($composicoes,$ids,$concentracoes);      
-                $solucao = array(
-                    "id" => (int) $row["id_solucao"],
-                    "nome" => $row["nome"],
-                    "conceito" => "frasco_estoque",
-                    "descricao" => $row["descricao"],
-                    "tecnico" => $row["tecnico"],
-                    "intervalo" => (int) $row["intervalo"],
-                    "disponiveis" => 5,
-                    "data" => $substancias,
-                    "_data" => array(
-                        "volumeMaximo" => 1000
-                    )
-                );
-
-                substancias($composicoes,$ids,$concentracoes);
-                array_push($solucoes,$solucao);
-            }
-            //echo json_encode($solucoes, JSON_PRETTY_PRINT);
-        }
-
-        // Vidrarias disponiveis na pratica atual
-        $vidrarias = $this->getVidrariasPratica($id_pratica);
-
-        $pratica = $this->getPratica( $id_pratica );
-
-        $id_cenario = (!empty($pratica['id_cenario']))?$pratica['id_cenario']:1;
-
-        $cenario = $this->getCenario($id_cenario)['data'];
-
-        echo json_encode(
-            array(
-                "id" => $id_pratica,
-                "nome" => $pratica['nome'],
-                "elementos" => $result,
-                "armario" => array_merge($solucoes, $vidrarias),
-                "cenario" => $cenario
-            ), JSON_PRETTY_PRINT);
-        */
     }
-
+/*
     //Pega os alunos cadastrados no banco de dados
     //TODO: relacionar alunos e professores
     function getAlunos($id_professor)
@@ -341,7 +275,7 @@ class LabJogo
 
         return $sql->fetchAll();
     }
-
+*/
     //inserir aluno novo
     function insertAluno($nome, $email, $usuario)
     {
