@@ -14,12 +14,9 @@
         </thead>
         <tbody>
           <?php 
-            require_once("../classes/LabJogo.class.php");
-
-            $sql = $lab->getRegistrosAluno($_SESSION['id_usuario']);
-
+            //require_once("../classes/LabJogo.class.php");
+            //$sql = $lab->getRegistrosAluno($_SESSION['id_usuario']);
             if(count($sql)) {
-
               foreach($sql as $row) 
               { 
                 echo "<tr>" .
@@ -28,7 +25,6 @@
                 "<td>" . date('d/m/Y H:i:s', strtotime($row["data_acao"])) . "</td>" .
                 "</tr>";
               }
-
             } else {
               echo "<p><i class='fas fa-info-circle'></i> Você ainda não realizou nenhuma ação</p>";
             } 
