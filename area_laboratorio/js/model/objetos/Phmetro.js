@@ -17,7 +17,6 @@ class Phmetro extends ObjetoDefault {
         this.insertTextos();
 
         var eletrodo = this.container.list[3];
-        //this.insertDragTeste(eletrodo);
         this.insertDrag(eletrodo);
 
         this.gameobject = eletrodo;
@@ -30,19 +29,6 @@ class Phmetro extends ObjetoDefault {
         super.drop(pointer, dropZone);
         this.x = 266.16;
         this.y = 152.76;
-    }
-
-    /** depois deletar */
-    insertDragTeste(elemento) {
-        elemento.on('drag', function (pointer, dragX, dragY) {
-            this.x = dragX;
-            this.y = dragY;
-            console.log('drag', this.x, this.y);
-        });
-        elemento.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
-        GAME_SCENE.input.setDraggable(elemento);
-        elemento.setScrollFactor(1);
-        elemento.input.dropZone = false;
     }
 
     insertSprites() {
@@ -62,8 +48,8 @@ class Phmetro extends ObjetoDefault {
         this.graphics = GAME_SCENE.add.graphics({ lineStyle: { width: 5, color: 0x9e9e9e } });
         this.graphics.clear();
         container.add(this.graphics);
-
     }
+    
     insertTextos() {
         //get date now
         var utc = new Date().toJSON().slice(0, 10).split('-').reverse().join('/');
