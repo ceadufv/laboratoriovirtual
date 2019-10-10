@@ -83,8 +83,8 @@ class ObjetoDefault {
             objeto_s.x = dropZone.refClass.x;
             objeto_s.y = dropZone.refClass.y;
         } else { //se tipo outro objeto
-            dropZone.setTint(0x000000);
-            objeto_s.setTint(0x00ff00);
+            //dropZone.setTint(0x000000);
+            //objeto_s.setTint(0x00ff00);
             objeto_s.x = objeto_s.input.dragStartX;
             objeto_s.y = objeto_s.input.dragStartY;
         }
@@ -96,12 +96,10 @@ class ObjetoDefault {
             try {
                 console.warn('Interração', 'ObjetoDefault');
                 var class_str = 'new Interac_' + objeto_s.A_REF_CLASS.constructor.name + '_' + dropZone.A_REF_CLASS.constructor.name + '()';
-                console.log('class_str', 'ObjetoDefault');
-                console.log(class_str, 'ObjetoDefault');
+                console.log('class_str', class_str);
                 CLASS_INTERRACT_NOW = eval(class_str);
                 CLASS_INTERRACT_NOW.init(objeto_s.A_REF_CLASS, dropZone.A_REF_CLASS);
-                console.log('SET CLASS_INTERRACT_NOW', 'ObjetoDefault');
-                console.log(CLASS_INTERRACT_NOW, 'ObjetoDefault');
+                console.log('SET CLASS_INTERRACT_NOW', CLASS_INTERRACT_NOW, 'ObjetoDefault');
             } catch (e) {
                 console.error('Classe não definida!!!', 'ObjetoDefault');
                 console.error(class_str, 'ObjetoDefault');
@@ -167,8 +165,7 @@ class ObjetoDefault {
         }
     }
     dragenter(pointer, dropZone) {
-        console.log('dragenter', 'ObjetoDefault');
-        console.log(dropZone, 'ObjetoDefault');
+        console.log('dragenter', dropZone);
         if (dropZone.type == 'Zone') {
             dropZone.refClass.hover();
         } else {
