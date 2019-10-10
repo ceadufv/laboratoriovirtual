@@ -1,15 +1,17 @@
 <?php
+
 /**
  * Arquivo de configuração
  * @version 1.0.0
-*/
-$action = @$_REQUEST['action'];
-$error = @$_REQUEST['error'];
+ */
+error_reporting(0);
+$action = $_REQUEST['action'];
+$error = $_REQUEST['error'];
 $path = pathinfo(__FILE__);
-$config_file = $path['dirname'] . "/lab-config.php";
-$error_message = @$_REQUEST['error_message'];
-$error_title = @$_REQUEST['error_title'];
-$debug = @$_REQUEST['debug'];
+$config_file = "lab-config.php";
+$error_message = $_REQUEST['error_message'];
+$error_title = $_REQUEST['error_title'];
+$debug = $_REQUEST['debug'];
 $database_created = 0;
 
 // Estados
@@ -18,44 +20,38 @@ $estado = "index";
 // Verifica o estado atual do processo de instalacao
 switch ($action) {
   case "criar-config":
-    $estado = "erro-criar-config";
+    $estado = "criar-config";
 
-    // Verifica se conseguira escrever no arquivo
-    if (is_writeable($config_file)) {
-      $estado = "criar-config";
-    }
-
-    $db_name = @$_REQUEST['db_name'];
-    $db_user = @$_REQUEST['db_user'];
-    $db_password = @$_REQUEST['db_password'];
-    $db_host = @$_REQUEST['db_host'];
+    $db_name = $_REQUEST['db_name'];
+    $db_user = $_REQUEST['db_user'];
+    $db_password = $_REQUEST['db_password'];
+    $db_host = $_REQUEST['db_host'];
 
     $file = sprintf("<?php
-    /**
-    * As configurações básicas do Laboratorio Virtual de Quimica
-    */
-    session_start();
-    error_reporting(1);
-    define('DB_NAME', '%s');
-    define('DB_USER', '%s');
-    define('DB_PASSWORD', '%s');
-    define('DB_HOST', '%s');
-    define('LAB_DEBUG', false);
+/**
+* As configurações básicas do Laboratorio Virtual de Quimica
+*/
+session_start();
+error_reporting(1);
+define('DB_NAME', '%s');
+define('DB_USER', '%s');
+define('DB_PASSWORD', '%s');
+define('DB_HOST', '%s');
+define('LAB_DEBUG', false);
 
-    /** Caminho absoluto para o diretório raiz */
-    if ( !defined('ABSPATH') ) define('ABSPATH', dirname(__FILE__) . '/');
+/** Caminho absoluto para o diretório raiz */
+if ( !defined('ABSPATH') ) define('ABSPATH', dirname(__FILE__) . '/');
 
-    define('URL_SITE', '%s');
-    define('URL_SYSTEM', '%s');
-    include('register.php');
-    ?>
-    ",
-    addslashes($db_name),
-    addslashes($db_user),
-    addslashes($db_password),
-    addslashes($db_host),
-    (str_replace('install.php','',$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'])),
-    (dirname(__FILE__).'/')
+define('URL_SITE', '%s');
+define('URL_SYSTEM', '%s');
+include('register.php');
+?>",
+      addslashes($db_name),
+      addslashes($db_user),
+      addslashes($db_password),
+      addslashes($db_host),
+      (str_replace('install.php', '', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'])),
+      (dirname(__FILE__) . '/')
     );
     break;
   case "instalar":
@@ -63,7 +59,7 @@ switch ($action) {
 
     // Verifica se o arquivo lab-config.php existe e se possui as constantes esperadas
     if (file_exists($config_file)) {
-      @include($config_file);
+      include($config_file);
 
       if (
         defined('DB_NAME') &&
@@ -85,15 +81,14 @@ switch ($action) {
 switch ($estado) {
   case "criar-config":
     // Cria o arquivo de configuracao
-    $fp = @fopen($config_file, "w+");
-    $fwrite = @fwrite($fp, $file);
-    @fclose($fp);
-
+    $fp = fopen($config_file, "w+");
+    $fwrite = fwrite($fp, $file);
+    fclose($fp);
     if ($fwrite) {
       header("location:install.php?action=instalar");
       exit;
     } else {
-      header("location:install.php?action=error&error_title=" . urlencode("Erro no arquivo de configuração") . "&error_message=" . urlencode("O arquivo \"$config_file\" não foi criado corretamente."));
+      header("location:install.php?action=error&error_title=" . urlencode("Erro no arquivo de configuração") . "&error_message=" . urlencode("O arquivo \"$config_file\" não foi criado corretamente, verifique as permissões de arquivos e pastas."));
       exit;
     }
     break;
@@ -131,7 +126,6 @@ switch ($estado) {
     break;
 }
 
-echo $estado;
 ?>
     <!DOCTYPE html>
     <html>
@@ -140,25 +134,24 @@ echo $estado;
       <meta charset="UTF-8">
       <title>NeoAlice</title>
       <!-- Arquivos externos -->
+      <script src="plugins/vendor/jquery/3.4/jquery-3.4.1.min.js"></script>
+      <script src="plugins/vendor/jquery/3.4/jquery-migrate-1.4.1.min.js"></script>
 
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+     
+      <!-- bootstrap -->
+      <script src="plugins/vendor/bootstrap/4.3.1/dist/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="plugins/vendor/bootstrap/4.3.1/dist/css/bootstrap.min.css">
+      
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-      <!-- <link rel="stylesheet" href="frameworks/fontawesome/web-fonts-with-css/css/fontawesome-all.css"> -->
+      
       <!-- Arquivos próprios -->
       <link rel="stylesheet" href="estilos/basicos.css">
       <link rel="stylesheet" href="estilos/style.css">
-
-      <link rel="shortcut icon" type="image/png" href="imagens/favicon.png" />
-
+      <link rel="shortcut icon" type="image/png" href="imagens/icons/favicon.png" />
     </head>
 
     <body>
-
       <div class="section login">
         <div class="container">
           <div class="row d-flex justify-content-center align-items-center">
@@ -202,7 +195,7 @@ echo $estado;
                         <div class="input-group-prepend icone-formulario-principal">
                           <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-server"></i></div>
                         </div>
-                        <input type="text" name="db_host" class="form-control texto-icone" placeholder="Servidor">
+                        <input required type="text" name="db_host" class="form-control texto-icone" placeholder="Servidor">
                       </div>
                     </div>
 
@@ -211,7 +204,7 @@ echo $estado;
                         <div class="input-group-prepend icone-formulario-principal">
                           <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-database"></i></div>
                         </div>
-                        <input type="text" name="db_name" class="form-control texto-icone" placeholder="Nome do banco de dados">
+                        <input required type="text" name="db_name" class="form-control texto-icone" placeholder="Nome do banco de dados">
                       </div>
                     </div>
 
@@ -220,7 +213,7 @@ echo $estado;
                         <div class="input-group-prepend icone-formulario-principal">
                           <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-tag"></i></div>
                         </div>
-                        <input type="text" name="db_user" class="form-control texto-icone" placeholder="Usuário" id="usuarioLogin">
+                        <input required type="text" name="db_user" class="form-control texto-icone" placeholder="Usuário" id="usuarioLogin">
                       </div>
                       <div class="input-group input-group-sm margem-inferior-p1">
                         <div class="input-group-prepend icone-formulario-principal">
@@ -230,7 +223,7 @@ echo $estado;
                       </div>
                     </div>
 
-                    <button type="submit" class="btn btn-block">Instalar Laboratório</button>
+                    <button type="submit" class="btn btn-success btn-block">Instalar Laboratório</button>
 
                     <div class="text-center texto-icone-p margem-superior-p1" id="logLogin">
                       <p class="log-login"></p>
@@ -238,8 +231,6 @@ echo $estado;
                   </form>
                 <?php
                 endif;
-
-                //if ($estado == "criar-config"):
                 if ($estado == "erro-criar-config") {
                   ?>
                   <form class="opcoeslogin" method="post" action="install.php?action=instalar">
@@ -250,7 +241,7 @@ echo $estado;
                                                                                                                                                                                   ?></label>
                       <textarea class="form-control" rows="7" style="font-family: courier; font-weight: normal"><?php echo $file; ?></textarea>
 
-                      <button type="submit" class="btn btn-block">Continuar instalando</button>
+                      <button type="submit" class="btn btn-success btn-block">Continuar instalando</button>
                     </div>
                   </form>
                 <?php
@@ -267,25 +258,18 @@ echo $estado;
                           <strong>Usuário:</strong> admin<br />
                           <strong>Senha:</strong> <?php echo $new_password; ?>
                         </div>
-                        <button type="submit" class="btn btn-block">Acessar o laboratório</button>
+                        <button type="submit" class="btn btn-success btn-block">Acessar o laboratório</button>
                       <?php else : ?>
                         <strong>O banco de dados já existe!</strong>
                         Já existe uma instalação do laboratório no banco de dados '<?php echo DB_NAME; ?>'. Clique em acessar o laboratório se quiser prosseguir utilizando a instalação atual.<br /><br />
-                        <button type="submit" class="btn btn-block">Acessar o laboratório</button>
+                        <button type="submit" class="btn btn-success btn-block">Acessar o laboratório</button>
                       <?php endif; ?>
                     </div>
                   </form>
                 <?php
                 }
-                //endif;
                 ?>
                 <div class="logomarcas">
-                  <!--
-              <h3>Realização:</h3>
-              <div>
-
-              </div>
-            -->
                 </div>
 
               </div>
