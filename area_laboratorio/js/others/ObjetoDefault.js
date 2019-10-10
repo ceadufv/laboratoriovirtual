@@ -18,13 +18,13 @@ class ObjetoDefault {
     }
 
     insertInteractive(objeto_s) {
-        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
+        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/hover.cur), pointer' });
         //objeto_s.setScrollFactor(0);
         //objeto_s.input.dropZone = false;
     }
 
     insertDrag(objeto_s) {
-        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
+        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/hover.cur), pointer' });
         GAME_SCENE.input.setDraggable(objeto_s);
         objeto_s.setScrollFactor(1);
         objeto_s.input.dropZone = true;
