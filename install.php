@@ -111,7 +111,7 @@ switch ($estado) {
       try {
         $database_created = $dbh->exec($sql);
         $dbh->exec("
-          TRUNCATE TABLE acao_pratica;
+          #TRUNCATE TABLE acao_pratica;
           TRUNCATE TABLE modelo_pratica;
           TRUNCATE TABLE modelo_pratica_arquivo;
           TRUNCATE TABLE modelo_pratica_solucao;
@@ -125,7 +125,6 @@ switch ($estado) {
     }
     break;
 }
-
 ?>
     <!DOCTYPE html>
     <html>
@@ -177,9 +176,6 @@ switch ($estado) {
                 }
                 ?>
                 <?php
-
-
-
                 if ($estado == "index") :
                   ?>
                   <!--  -->
