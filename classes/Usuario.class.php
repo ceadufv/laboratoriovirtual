@@ -57,7 +57,8 @@ class Usuario {
         $stmt->bindValue(":email", $emailUsuario);
         $stmt->bindValue(":usuario", $loginUsuario);
         $stmt->bindValue(":senha", $senha);
-        $stmt->execute();
+        if($stmt->execute())
+            return true;
     }
 
 

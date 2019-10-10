@@ -162,7 +162,7 @@ ul {
 }
 
 ul li {
-  list-style: disc;
+  /*list-style: disc;*/
   text-align: left;
   color: rgba(0, 0, 0, 0.8);
 }

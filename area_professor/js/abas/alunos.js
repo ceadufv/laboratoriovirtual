@@ -2,10 +2,9 @@ $(document).ready(function() {
     var url_site = URL_SITE;
 
     $(".reset_senha").click(function(dados) {
-          var dados = new Array();
-          dados.push({'value': $('#reset').attr('cod-usuario'), 'name': 'cod_usuario'});
-          dados.push({'value': $('#reset').attr('nome-usuario'), 'name': 'nome_usuario'});
-          confirmarResetSenhaAluno(dados);
+        var dados = new Array();
+        dados.push({'value': $('#reset').attr('cod-usuario'), 'name': 'cod_usuario'});
+        confirmarResetSenhaAluno(dados);
     });
 
 
@@ -37,7 +36,7 @@ $(document).ready(function() {
     }
 
     function resetarSenhaAluno(dados) {
-        dados.push({'value': 'S', 'name': 'confirmado'});
+        dados.push({'value': 'S', 'name': 'resetar'});
 
         $.ajax({
 			method: "POST",
@@ -50,7 +49,7 @@ $(document).ready(function() {
 		});
     }
 
-/*
+
   //data table
   $.extend( true, $.fn.dataTable.defaults, {
     "searching": true,
@@ -87,5 +86,5 @@ $(document).ready(function() {
     $('.table-data')
     .removeClass( 'display' )
     .addClass('table table-striped table-bordered');    
-*/
+
 });
