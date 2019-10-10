@@ -29,7 +29,7 @@ include_once('../lab-config.php');
   <link rel="stylesheet" href="<?php echo URL_SITE; ?>plugins/vendor/bootstrap/4.3.1/dist/css/bootstrap.min.css">
 
   <!--vendors-->
-  <script src="<?php echo URL_SITE; ?>plugins/vendor/phaser/3.12.0/phaser.min.js"></script>
+  <script src="<?php echo URL_SITE; ?>plugins/vendor/phaser/3.19.0/phaser.min.js"></script>
   <script src="<?php echo URL_SITE; ?>plugins/vendor/phaser/GameScalePlugin.js"></script>
  
   <!-- estilos -->
@@ -185,7 +185,7 @@ include_once('../lab-config.php');
     </div>
   </div>
 
-  <div id="AreaJogo"></div>
+  <div id="area_jogo"></div>
 
   <!-- 
       #########
