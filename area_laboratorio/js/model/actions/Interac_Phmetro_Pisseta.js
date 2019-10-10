@@ -3,7 +3,7 @@ class Interac_Phmetro_Pisseta {
         console.error('Interac_Phmetro_Pisseta constructor');
     }
     init(objctInit, objctDrop) {
-        ///return;
+        return;
 
         //CLASS_INTERRACT_NOW = new Interac_Pisseta_Phmetro();
         //CLASS_INTERRACT_NOW.init(objctInit, objctDrop);
