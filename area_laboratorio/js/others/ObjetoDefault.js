@@ -176,6 +176,9 @@ class ObjetoDefault {
         }
     }
     dragstart(pointer, gameObject) {
+        //jogar pra frente
+        GAME_SCENE.children.bringToTop(gameObject);
+
         console.log('dragstart', 'ObjetoDefault');
         console.log(this, 'ObjetoDefault');
         this.click = true;
