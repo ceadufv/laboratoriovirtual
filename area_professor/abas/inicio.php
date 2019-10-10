@@ -1,3 +1,5 @@
+<script src="<?php echo URL_SITE; ?>area_professor/js/abas/inicio.js"></script>
+
 <div class="container">
   <div class="conteudocriacaopraticas">
     <div class="row">
@@ -12,16 +14,16 @@
           <select class="custom-select acessoDis" required id="listaDisciplinas">
             <?php
 
-            $sql = $lab->getDisciplinasProfessor(@$_SESSION['id_usuario']);
+            $sql = $lab->getDisciplinasProfessor($_SESSION['id_usuario']);
 
             if (count($sql)) {
 
               foreach ($sql as $row) { ?>
                 <option value=<?php echo $row['id_disciplina'] ?>> <?php echo $row["nome"] ?> </option>;
             <?php }
-            } else {
-              echo "Não há práticas disponíveis";
-            }
+              } else {
+                echo "Não há práticas disponíveis";
+              }
             ?>
           </select>
           <div class="input-group-append">
@@ -53,5 +55,3 @@
     </div>
   </div>
 </div>
-
-<script src="<?php echo URL_SITE; ?>area_professor/js/abas/inicio.js"></script>
