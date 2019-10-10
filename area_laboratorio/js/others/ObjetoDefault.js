@@ -62,7 +62,7 @@ class ObjetoDefault {
         var objeto_s = this;
         objeto_s.setTint(0x00ff00);
     }
-
+    
     gameobjectout(pointer) {
         var objeto_s = this;
         objeto_s.clearTint();
@@ -128,11 +128,8 @@ class ObjetoDefault {
     drag(pointer, dragX, dragY) {
         this.x = dragX;
         this.y = dragY;
-
         /*
-        console.log('drag', 'ObjetoDefault');
-        console.log(this.x, 'ObjetoDefault');
-        console.log(this.y, 'ObjetoDefault');
+        console.log('drag', this.x, this.y);
         */
     }
 
