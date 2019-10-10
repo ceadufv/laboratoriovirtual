@@ -41,8 +41,8 @@ class Interac_Phmetro_Pisseta {
         emitter.startFollow(image3);
         */
 
-        //var drop = DropZones.getOneDropZoneLivre();
-        var op = new Lenco({ x: x, y: y });
+        var drop = DropZones.getOneDropZoneLivre();
+        var op = new Lenco({ x: drop.x, y: drop.y });
         SceneObjectsSLab.add(op);
     }
 }
