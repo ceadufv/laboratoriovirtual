@@ -1,7 +1,7 @@
 <script type="text/javascript" src="js/abas/aulas.js"></script>    
 
 <div class="row">
-    <div class="administrar col-md-12">
+    <div class="col-md-12">
         <h3>
             <span>Práticas disponíveis</span>
         </h3>
@@ -18,7 +18,6 @@
                 </thead>
                 <tbody>
                     <?php
-                        require_once("../classes/usuario/Usuario.class.php");
                         $objUsuario = new Usuario();
                         
                         // Lista as praticas disponiveis para o aluno
@@ -30,7 +29,7 @@
                             <tr>
                                 <td><?php echo $row['nome_pratica']?></td>
                                 <td><?php echo $row['resumo']?></td>
-                                <td><button class="btn btn-primary salvar"><i class="fa fa-check-circle"></i> Realizar prática</button></td>
+                                <td><button class="btn btn-primary"><i class="fa fa-check-circle"></i> Realizar prática</button></td>
                                 <td><button class="btn btn-success treino"><i class="fa fa-check-circle"></i> Treinar</button></td>
                             </tr>
                             <?php 
