@@ -134,15 +134,15 @@ switch ($estado) {
       <meta charset="UTF-8">
       <title>NeoAlice</title>
       <!-- Arquivos externos -->
+      <!-- jquery -->
       <script src="plugins/vendor/jquery/3.4/jquery-3.4.1.min.js"></script>
       <script src="plugins/vendor/jquery/3.4/jquery-migrate-1.4.1.min.js"></script>
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-     
+      
       <!-- bootstrap -->
       <script src="plugins/vendor/bootstrap/4.3.1/dist/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="plugins/vendor/bootstrap/4.3.1/dist/css/bootstrap.min.css">
       
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
       
       <!-- Arquivos próprios -->

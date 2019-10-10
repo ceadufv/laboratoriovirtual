@@ -1,5 +1,8 @@
 <?php
-  if (!file_exists("lab-config.php")) header("location:install.php");
+if (!file_exists("lab-config.php")) 
+  header("location:install.php");
+
+include "lab-config.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,17 +10,23 @@
 <head>
   <meta charset="UTF-8">
   <title>NeoAlice</title>
-    <script src="plugins/vendor/jquery/jquery.js"></script>
-    <script src="plugins/vendor/popper.js/1.14.3/popper.min.js"></script>
-    <script src="plugins/vendor/bootstrap/4.1.3/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="plugins/vendor/bootstrap/4.1.3/bootstrap.min.css">
-    <link rel="stylesheet" href="plugins/vendor/fontawesome/5.11.2/css/all.css">
-    <link rel="shortcut icon" type="image/png" href="imagens/favicon.png" />
-  
-    <!-- Arquivos próprios -->
-    <link rel="stylesheet" href="estilos/basicos.css">
-    <link rel="stylesheet" href="estilos/style.css">
+  <!-- jquery -->
+  <script src="<?php echo URL_SITE; ?>plugins/vendor/jquery/3.4/jquery-3.4.1.min.js"></script>
+  <script src="<?php echo URL_SITE; ?>plugins/vendor/jquery/3.4/jquery-migrate-1.4.1.min.js"></script>
+
+  <!-- bootstrap -->
+  <script src="<?php echo URL_SITE; ?>plugins/vendor/bootstrap/4.3.1/dist/js/bootstrap.min.js"></script>
+  <script src="<?php echo URL_SITE; ?>plugins/vendor/bootstrap/4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="<?php echo URL_SITE; ?>plugins/vendor/bootstrap/4.3.1/dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="<?php echo URL_SITE; ?>plugins/vendor/fontawesome/5.11.2/css/all.css">
+  <link rel="shortcut icon" type="image/png" href="<?php echo URL_SITE; ?>imagens/icons/favicon.png" />
+
+  <!-- Arquivos próprios -->
+  <link rel="stylesheet" href="estilos/basicos.css">
+  <link rel="stylesheet" href="estilos/style.css">
 </head>
+
 <body>
   <div class="section login">
     <div class="container">
@@ -34,36 +43,36 @@
 
             <form class="opcoeslogin">
 
-                <h3>Insira suas credenciais de acesso ao laboratório</h3>
+              <h3>Insira suas credenciais de acesso ao laboratório</h3>
 
-                <div class="usuariosenha">
+              <div class="usuariosenha">
 
-                  <div class="input-group input-group-sm margem-inferior-p1">
-                    <div class="input-group-prepend icone-formulario-principal">
-                      <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-tag"></i></div>
-                    </div>
-                    <input type="text" class="form-control texto-icone" placeholder="NOME DE USUÁRIO" id="usuarioLogin">
+                <div class="input-group input-group-sm margem-inferior-p1">
+                  <div class="input-group-prepend icone-formulario-principal">
+                    <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-tag"></i></div>
                   </div>
-                  <div class="input-group input-group-sm margem-inferior-p1">
-                    <div class="input-group-prepend icone-formulario-principal">
-                      <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-lock"></i></div>
-                    </div>
-                    <input type="password" class="form-control texto-icone" placeholder="SENHA" id="senhaLogin">
+                  <input type="text" class="form-control texto-icone" placeholder="NOME DE USUÁRIO" id="usuarioLogin">
+                </div>
+                <div class="input-group input-group-sm margem-inferior-p1">
+                  <div class="input-group-prepend icone-formulario-principal">
+                    <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-lock"></i></div>
                   </div>
+                  <input type="password" class="form-control texto-icone" placeholder="SENHA" id="senhaLogin">
                 </div>
-                <button type="button" class="btn btn-primary" onclick="login()">CONFIRMAR</button>
+              </div>
+              <button type="button" class="btn btn-primary" onclick="login()">CONFIRMAR</button>
 
-                <div class="loginsenha">
-                  <!-- <a href="#">Esqueci o login/senha </a> -->
-                  <a href="javascript:void();" class="botao-cadastrar" onclick="abrirCadastro()">Quero me cadastrar</a>
-                </div>
+              <div class="loginsenha">
+                <!-- <a href="#">Esqueci o login/senha </a> -->
+                <a href="javascript:void();" class="botao-cadastrar" onclick="abrirCadastro()">Quero me cadastrar</a>
+              </div>
 
-                <div class="text-center texto-icone-p margem-superior-p1" id="logCadastrar"></div>
-                <div class="text-center texto-icone-p margem-superior-p1" id="logLogin">
-                  <p class="log-login">
+              <div class="text-center texto-icone-p margem-superior-p1" id="logCadastrar"></div>
+              <div class="text-center texto-icone-p margem-superior-p1" id="logLogin">
+                <p class="log-login">
 
-                  </p>
-                </div>
+                </p>
+              </div>
             </form>
           </div>
         </div>
