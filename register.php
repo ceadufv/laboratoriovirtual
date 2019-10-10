@@ -3,13 +3,13 @@ spl_autoload_register(function ($class_name) {
 
   $dir_classes = URL_SYSTEM . 'classes/';
   $diretorios = array('');
-  
+
   //procurando diretorios
   $diretorio = dir($dir_classes);
   while ($arquivo = $diretorio->read()) {
     if ($arquivo == '.' || $arquivo == '..')
       continue;
-    if (is_dir($dir_classes.$arquivo)) {
+    if (is_dir($dir_classes . $arquivo)) {
       $diretorios[] = $arquivo . '/';
     }
   }
