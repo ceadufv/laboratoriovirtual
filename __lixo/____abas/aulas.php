@@ -8,7 +8,6 @@
         <select id="select_acessar_laboratorio" class="custom-select" required>
         <?php
         include_once('../banco/conexao.php');
-
         // Lista as praticas disponiveis para o aluno
         $sql = $lab->getPraticasAluno(@$_SESSION['id_usuario']);
         

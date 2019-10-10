@@ -1,5 +1,4 @@
 <script type="text/javascript" src="js/abas/registros.js"></script>
-
 <div class="container">
   <div class="row">
     <div class="col-md-12 meuperfil">
@@ -17,17 +16,15 @@
           </thead>
           <tbody>
             <?php
-          //  require_once("../classes/LabJogo.class.php");
-
-            //$sql = $lab->getRegistrosAluno($_SESSION['id_usuario']);
-
-            if (count($sql)) {
-
-              foreach ($sql as $row) { ?>
+            $sessao = Login::getSession();
+            $objModeloPraticaUUsuario = new ModeloPraticaUUsuario();
+            $registros = $objModeloPraticaUUsuario->getHistoricoUsuario($sessao['id_usuario']);
+            if (count($registros)) {
+              foreach ($registros as $registro) { ?>
                 <tr>
-                  <td><?php echo $row['nome_pratica'] ?></td>
-                  <td><?php echo $row['descricao'] ?></td>
-                  <td><?php echo date('d/m/Y H:i:s', strtotime($row["data_acao"])) ?></td>
+                  <td><?php echo $registro['nome_pratica'] ?></td>
+                  <td><?php echo $registro['des_mopr_u_us'] ?></td>
+                  <td><?php echo date('d/m/Y H:i:s', strtotime($registro["datei_mopr_u_us"])) ?></td>
                 </tr>
             <?php
               }

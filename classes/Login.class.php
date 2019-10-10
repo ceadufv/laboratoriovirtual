@@ -11,12 +11,12 @@ class Login
     {
         global $banco;
         try {
-            
+
             // Busca usuário no banco
             $consulta = $banco->prepare('SELECT nome, id_tipo_usuario, usuario, id_usuario, email FROM usuarios_cadastrados WHERE usuario = :usuario AND senha = :senha');
             $consulta->execute(array(':usuario' => $user, ':senha' => sha1($pass)));
             $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
-            
+
             // Verifica se há usuário cadastrado
             if (!empty($resultado)) {
                 // Faz o login
@@ -45,7 +45,7 @@ class Login
     // Verifica se o arquivo sessao esta sendo aberto diretamente ou atraves de outro arquivo
     public static function ckeckTipoUser()
     {
-        if(in_array($_SESSION['tipo_usuario'], self::$permissao_usuario)){
+        if (in_array($_SESSION['tipo_usuario'], self::$permissao_usuario)) {
             return true;
         }
         return false;
@@ -76,5 +76,16 @@ class Login
     {
         header('location:' . URL_SITE);
         exit();
+    }
+
+    public static function getSession()
+    {
+        return array(
+            'nome' => $_SESSION['nome'],
+            'usuario' => $_SESSION['usuario'],
+            'email' => $_SESSION['email'],
+            'id_usuario' => $_SESSION['id_usuario'],
+            'tipo_usuario' => $_SESSION['tipo_usuario']
+        );
     }
 }
