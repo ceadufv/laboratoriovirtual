@@ -17,9 +17,9 @@
           </thead>
           <tbody>
             <?php
-            require_once("../classes/LabJogo.class.php");
+          //  require_once("../classes/LabJogo.class.php");
 
-            $sql = $lab->getRegistrosAluno($_SESSION['id_usuario']);
+            //$sql = $lab->getRegistrosAluno($_SESSION['id_usuario']);
 
             if (count($sql)) {
 

@@ -26,7 +26,7 @@ class Interac_Pisseta_Phmetro{
        this.objctDrop.lavado = true;
        var data = [
            {img: 'assets/actions/lavareletrodo.gif'},
-           {img: 'assets/actions/secareletrodo.gif'},
+           {img: 'assets/actions/secareletrodo.gif'}
         ];
        PageAnimation.open(data);
     }

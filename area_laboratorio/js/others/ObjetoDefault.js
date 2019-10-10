@@ -18,13 +18,13 @@ class ObjetoDefault {
     }
 
     insertInteractive(objeto_s) {
-        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
+        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/hover.cur), pointer' });
         //objeto_s.setScrollFactor(0);
         //objeto_s.input.dropZone = false;
     }
 
     insertDrag(objeto_s) {
-        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
+        objeto_s.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/hover.cur), pointer' });
         GAME_SCENE.input.setDraggable(objeto_s);
         objeto_s.setScrollFactor(1);
         objeto_s.input.dropZone = true;
@@ -62,7 +62,7 @@ class ObjetoDefault {
         var objeto_s = this;
         objeto_s.setTint(0x00ff00);
     }
-
+    
     gameobjectout(pointer) {
         var objeto_s = this;
         objeto_s.clearTint();
@@ -83,8 +83,8 @@ class ObjetoDefault {
             objeto_s.x = dropZone.refClass.x;
             objeto_s.y = dropZone.refClass.y;
         } else { //se tipo outro objeto
-            dropZone.setTint(0x000000);
-            objeto_s.setTint(0x00ff00);
+            //dropZone.setTint(0x000000);
+            //objeto_s.setTint(0x00ff00);
             objeto_s.x = objeto_s.input.dragStartX;
             objeto_s.y = objeto_s.input.dragStartY;
         }
@@ -96,12 +96,10 @@ class ObjetoDefault {
             try {
                 console.warn('Interração', 'ObjetoDefault');
                 var class_str = 'new Interac_' + objeto_s.A_REF_CLASS.constructor.name + '_' + dropZone.A_REF_CLASS.constructor.name + '()';
-                console.log('class_str', 'ObjetoDefault');
-                console.log(class_str, 'ObjetoDefault');
+                console.log('class_str', class_str);
                 CLASS_INTERRACT_NOW = eval(class_str);
                 CLASS_INTERRACT_NOW.init(objeto_s.A_REF_CLASS, dropZone.A_REF_CLASS);
-                console.log('SET CLASS_INTERRACT_NOW', 'ObjetoDefault');
-                console.log(CLASS_INTERRACT_NOW, 'ObjetoDefault');
+                console.log('SET CLASS_INTERRACT_NOW', CLASS_INTERRACT_NOW, 'ObjetoDefault');
             } catch (e) {
                 console.error('Classe não definida!!!', 'ObjetoDefault');
                 console.error(class_str, 'ObjetoDefault');
@@ -130,11 +128,8 @@ class ObjetoDefault {
     drag(pointer, dragX, dragY) {
         this.x = dragX;
         this.y = dragY;
-
         /*
-        console.log('drag', 'ObjetoDefault');
-        console.log(this.x, 'ObjetoDefault');
-        console.log(this.y, 'ObjetoDefault');
+        console.log('drag', this.x, this.y);
         */
     }
 
@@ -167,8 +162,7 @@ class ObjetoDefault {
         }
     }
     dragenter(pointer, dropZone) {
-        console.log('dragenter', 'ObjetoDefault');
-        console.log(dropZone, 'ObjetoDefault');
+        console.log('dragenter', dropZone);
         if (dropZone.type == 'Zone') {
             dropZone.refClass.hover();
         } else {
@@ -176,6 +170,9 @@ class ObjetoDefault {
         }
     }
     dragstart(pointer, gameObject) {
+        //jogar pra frente
+        GAME_SCENE.children.bringToTop(gameObject);
+
         console.log('dragstart', 'ObjetoDefault');
         console.log(this, 'ObjetoDefault');
         this.click = true;

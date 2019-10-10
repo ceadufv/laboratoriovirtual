@@ -2,7 +2,7 @@ class Phmetro extends ObjetoDefault {
     constructor(data) {
         super(data);
         this.addObject(data);
-        this.countUpdate=0;
+        this.countUpdate = 0;
         console.error('Phmetro.constructor', "Phmetro");
     }
 
@@ -25,27 +25,27 @@ class Phmetro extends ObjetoDefault {
         this.insertInteractive(this.gameobject);
     }
 
-    drop(pointer, dropZone){
+    drop(pointer, dropZone) {
         console.log('Phmetro.drop()');
         super.drop(pointer, dropZone);
         this.x = 266.16;
         this.y = 152.76;
     }
-    
+
     /** depois deletar */
-    insertDragTeste(elemento){
-        elemento.on('drag', function(pointer, dragX, dragY){
+    insertDragTeste(elemento) {
+        elemento.on('drag', function (pointer, dragX, dragY) {
             this.x = dragX;
             this.y = dragY;
             console.log('drag', this.x, this.y);
-         });
+        });
         elemento.setInteractive({ cursor: 'url(' + URL_SITE + 'area_laboratorio/assets/cursors/pen.cur), pointer' });
         GAME_SCENE.input.setDraggable(elemento);
         elemento.setScrollFactor(1);
         elemento.input.dropZone = false;
     }
 
-    insertSprites(){
+    insertSprites() {
         var container = this.container;
         var image3 = GAME_SCENE.add.sprite(244.12, -113.39, 'phmetro_braco');
         container.add(image3);
@@ -64,16 +64,16 @@ class Phmetro extends ObjetoDefault {
         container.add(this.graphics);
 
     }
-    insertTextos(){
+    insertTextos() {
         //get date now
-        var utc = new Date().toJSON().slice(0,10).split('-').reverse().join('/');
+        var utc = new Date().toJSON().slice(0, 10).split('-').reverse().join('/');
 
         var fonte = 'Open Sans Condensed';
-        var TextopH = GAME_SCENE.add.text(-37.80, -102.37, '7.000' , { fontFamily: fonte, fontSize: 32, color: '#ffffff' });
+        var TextopH = GAME_SCENE.add.text(-37.80, -102.37, '7.000', { fontFamily: fonte, fontSize: 32, color: '#ffffff' });
         var TextoModo1 = GAME_SCENE.add.text(-122.84, -119.69, 'Modo: pH', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
-        var TextoModo2 = GAME_SCENE.add.text(-126, -67.72, utc, { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });  
-        var TextoModo3 = GAME_SCENE.add.text(67.72, -119.69, '25º C', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });  
-        var TextoModo4 = GAME_SCENE.add.text(-10, -66.14, 'CAL:', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });  
+        var TextoModo2 = GAME_SCENE.add.text(-126, -67.72, utc, { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
+        var TextoModo3 = GAME_SCENE.add.text(67.72, -119.69, '25º C', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
+        var TextoModo4 = GAME_SCENE.add.text(-10, -66.14, 'CAL:', { fontFamily: 'Arial', fontSize: 17, color: '#ffffff' });
 
         this.container.add(TextopH);
         this.container.add(TextoModo1);
@@ -81,33 +81,33 @@ class Phmetro extends ObjetoDefault {
         this.container.add(TextoModo3);
         this.container.add(TextoModo4);
 
-        console.log('Container Phmetro',this.container.list);
+        console.log('Container Phmetro', this.container.list);
     }
 
-    updatePHVisor(){
+    updatePHVisor() {
         this.countUpdate = 0;
         var variacao = 0.2;
         var d = (Math.random() * variacao);
-        this.container.list[5].text = (7 + d-variacao/2).toFixed(3);
+        this.container.list[5].text = (7 + d - variacao / 2).toFixed(3);
     }
 
-    updateEletrodo(){
+    updateEletrodo() {
         var image3 = this.container.list[0];
         var eletrodo = this.container.list[3];
 
         this.graphics.clear();
         this.graphics.beginPath();
-        this.graphics.moveTo(image3.x+40, image3.y);
-        this.graphics.lineTo(eletrodo.x, eletrodo.y-100);
+        this.graphics.moveTo(image3.x + 40, image3.y);
+        this.graphics.lineTo(eletrodo.x, eletrodo.y - 100);
         this.graphics.strokePath();
         this.graphics.closePath();
     }
 
-    update(){
+    update() {
         this.countUpdate++;
-        if(this.countUpdate > 100)
+        if (this.countUpdate > 100)
             this.updatePHVisor();
-        
+
         this.updateEletrodo();
     }
 }

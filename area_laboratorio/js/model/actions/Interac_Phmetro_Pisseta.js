@@ -3,7 +3,7 @@ class Interac_Phmetro_Pisseta {
         console.error('Interac_Phmetro_Pisseta constructor');
     }
     init(objctInit, objctDrop) {
-        ///return;
+        return;
 
         //CLASS_INTERRACT_NOW = new Interac_Pisseta_Phmetro();
         //CLASS_INTERRACT_NOW.init(objctInit, objctDrop);
@@ -41,8 +41,8 @@ class Interac_Phmetro_Pisseta {
         emitter.startFollow(image3);
         */
 
-        //var drop = DropZones.getOneDropZoneLivre();
-        var op = new Lenco({ x: x, y: y });
+        var drop = DropZones.getOneDropZoneLivre();
+        var op = new Lenco({ x: drop.x, y: drop.y });
         SceneObjectsSLab.add(op);
     }
 }

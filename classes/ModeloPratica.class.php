@@ -5,6 +5,21 @@
  */
 class ModeloPratica
 {
+    //Pega aulas cadastradas dentro de cada disciplina
+    function getPraticasDisciplina($id_disciplina)
+    {
+        $db = Conexao::getInstance();
+        $sql = 'SELECT 
+                   *
+                FROM modelo_pratica
+                WHERE id_disciplina=:id_disciplina 
+                ORDER BY id_modelo_pratica DESC';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_disciplina',$id_disciplina);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Retorna um JSON com todo o conteudo necessario para a pratica ser exibida
     function getJsonLabPratica($id_pratica)
     {
