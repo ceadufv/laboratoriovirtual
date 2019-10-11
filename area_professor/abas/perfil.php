@@ -20,26 +20,51 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="nome">Nome</label>
-        <input type="text" class="form-control" name="nome" placeholder="Digite seu nome..." value="<?php echo $dados["nome"]?>" required>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="far fa-user"></i></span>
+          </div>      
+            <input type="text" class="form-control" name="nome" placeholder="Digite seu nome..." value="<?php echo $dados["nome"]?>" required>
+        </div>
       </div>
       <div class="form-group col-md-4">
         <label for="usuario">Login</label>
-        <input type="text" class="form-control" name="usuario" placeholder="Digite seu nome de usuário..." value="<?php echo $dados["usuario"]?>" required>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="far fa-user"></i></span>
+          </div>      
+          <input type="text" class="form-control" name="usuario" placeholder="Digite seu nome de usuário..." value="<?php echo $dados["usuario"]?>" required>
+        </div>
       </div>      
       <div class="form-group col-md-4">
-         <label for="email">E-mail</label>
-         <input type="email" class="form-control" name="email" placeholder="Digite seu e-mail..." value="<?php echo $dados["email"]?>" required>
-       </div>
+        <label for="email">E-mail</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="far fa-envelope"></i></span>
+            </div>               
+            <input type="email" class="form-control" name="email" placeholder="Digite seu e-mail..." value="<?php echo $dados["email"]?>" required>
+          </div>
+      </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="senha">Senha</label>
-        <input type="password" class="form-control" name="senha" placeholder="Digite sua senha..." required>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+          </div>              
+          <input type="password" class="form-control" name="senha" placeholder="Digite sua senha..." required>
+        </div>
       </div>
       <div class="form-group col-md-4">
         <label for="senha2">Digite novamente sua senha</label>
-        <input type="password" class="form-control" name="senha2" placeholder="Digite a mesma senha..." required>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+          </div>              
+          <input type="password" class="form-control" name="senha2" placeholder="Digite a mesma senha..." required>
+        </div>
       </div>
     </div>
     <input type="submit" class="btn btn-primary" value="Salvar">
