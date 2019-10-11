@@ -1,61 +1,56 @@
-$(document).ready(function() {
-    var url_site = URL_SITE;
-
-    $(".reset_senha").click(function(dados) {
+$(document).ready(function () {
+    $(".reset_senha").click(function (dados) {
         var dados = new Array();
-        dados.push({'value': $(this).attr('cod-usuario'), 'name': 'cod_usuario'});
-        confirmarResetSenhaAluno(dados);
+        dados.push({ 'value': $(this).attr('cod-usuario'), 'name': 'cod_usuario' });
+        dados.push({ 'value': 'S', 'name': 'resetar' });
+        bootbox.confirm({
+            message: 'Tem certeza que deseja resetar a senha desse aluno?',
+            callback: function (result) {
+                if (!result)
+                    return;
+                $.ajax({
+                    type: "POST",
+                    url: URL_SITE + 'area_professor/index-app.php?app=usuario&file=reset-senha-aluno',
+                    data: dados,
+                    success: function (data) {
+                        bootbox.alert('Senha alterada com sucesso para 123456');
+                    }
+                });
+            },
+            error: function (erro) {},
+        });
     });
 
-    function confirmarResetSenhaAluno(dados) {
-
-        $.ajax({
-            type: "POST",
-            url: url_site+'area_professor/index.php?aba=alunos',
-            data: dados,
-            
-            success: function(data) {
-                var msg = 'Tem certeza que deseja resetar a senha desse aluno?';
-
-                bootbox.confirm({
-                    message: msg,
-                    callback: function (result) {
-                        if(dados){
-                            if(result){
-                                resetarSenhaAluno(dados);
-                            } 
-                        }
-                    },
-                    error: function(erro) {
-                        alert('erro');
-                    },
+    $(".delete_user").click(function (dados) {
+        var dados = new Array();
+        dados.push({ 'value': $(this).attr('cod-usuario'), 'name': 'cod_usuario' });
+        bootbox.confirm({
+            message: 'Tem certeza que deseja deletar esse aluno?',
+            callback: function (result) {
+                if (!result)
+                    return;
+                $.ajax({
+                    type: "POST",
+                    url: URL_SITE + 'area_professor/index-app.php?app=usuario&file=delete-aluno',
+                    data: dados,
+                    success: function (data) {
+                        bootbox.alert('Aluno deletado com sucesso!!', function(){
+                            window.location.href = URL_SITE+'area_professor/index.php?aba=alunos';
+                        });
+                    }
                 });
-            }
+            },
+            error: function (erro) {},
         });
-    }
+    });
 
-    function resetarSenhaAluno(dados) {
-        dados.push({'value': 'S', 'name': 'resetar'});
-
-        $.ajax({
-			method: "POST",
-			url: url_site + 'area_professor/index.php?aba=alunos',
-			data: dados
-		})
-		.done(function (dados) {
-            alert('Senha alterada com sucesso para 123456');
-			//$('.modal-content').html(dados);
-		});
-    }
-
-
-  //data table
-  $.extend( true, $.fn.dataTable.defaults, {
-    "searching": true,
-    "ordering": true,
-    "paging": true,
-    "colReorder": true,
-    "iDisplayLength": 10
+    //data table
+    $.extend(true, $.fn.dataTable.defaults, {
+        "searching": true,
+        "ordering": true,
+        "paging": true,
+        "colReorder": true,
+        "iDisplayLength": 10
     });
 
     var exportOptions = {
@@ -72,18 +67,18 @@ $(document).ready(function() {
     };
 
     var oTable = $('.table-data').dataTable({
-       // dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-4'i><'col-sm-8'p>>",
-                
+        // dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-4'i><'col-sm-8'p>>",
+
         "language": {
-            "url": url_site+"plugins/vendor/datatables/Portuguese-Brasil.json"
+            "url": URL_SITE + "plugins/vendor/datatables/Portuguese-Brasil.json"
         },
 
         extend: 'colvis',
-        postfixButtons: [ 'colvisRestore' ]
+        postfixButtons: ['colvisRestore']
     });
 
     $('.table-data')
-    .removeClass( 'display' )
-    .addClass('table table-striped table-bordered');    
+        .removeClass('display')
+        .addClass('table table-striped table-bordered');
 
 });

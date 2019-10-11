@@ -1,11 +1,5 @@
 <?php
   $objUsuario = new Usuario();
-  //se confirmado, reseta a senha do aluno para 123456
-  if ($_POST['resetar'] == 'S') {
-    //reseta a senha para 123456
-    $objUsuario->resetarSenhaAluno($_POST['cod_usuario']);
-  }
-
   if ($_POST["acao"] == 'salvar') {
     if($objUsuario->insertAluno($_POST)) {
       if ($_GET["cadastro"] == 'ok')
@@ -52,7 +46,7 @@
             <th scope="col">Usuário</th>
             <th scope="col">Nome</th>
             <th scope="col">Email</th>
-            <th scope="col">Resetar Senha</th>
+            <th scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -68,7 +62,8 @@
                 <td><?php echo $row['nome'] ?></td>
                 <td><?php echo $row['email'] ?></td>
                 <td>
-                  <button class='btn btn-danger reset_senha' nome-usuario='<?php echo $row["nome"] ?>' cod-usuario='<?php echo $row["id_usuario"] ?>'>Resetar</button>
+                  <button class='btn btn-warning reset_senha' cod-usuario='<?php echo $row["id_usuario"] ?>'>Resetar</button>
+                  <button class='btn btn-danger delete_user' cod-usuario='<?php echo $row["id_usuario"] ?>'>Deletar</button>
                 </td>
               </tr>
           <?php

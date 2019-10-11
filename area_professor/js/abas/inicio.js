@@ -1,11 +1,7 @@
 $(document).ready(function () {
-    var url_site = URL_SITE;
-
     $(".removerDisciplina").click(function() {
-        
         var id_disciplina = $(this).attr('id_disciplina');
         var msg = 'Tem certeza que deseja remover essa disciplina?';
-
         bootbox.confirm({
             message: msg,
             callback: function (result) {
@@ -13,24 +9,19 @@ $(document).ready(function () {
                     return;
                 $.ajax({
                     type: "POST",
-                    url: url_site+'area_professor/index-app.php?app=disciplina&file=delete-disciplina',
+                    url: URL_SITE+'area_professor/index-app.php?app=disciplina&file=delete-disciplina',
                     data: {"id_disciplina": id_disciplina},
                     success: function(data) {
-                        alert('Removido com sucesso');
-                        window.location.href = url_site+'area_professor/index.php?aba=inicio';
+                        bootbox.alert('Removido com sucesso', function(){
+                            window.location.href = URL_SITE+'area_professor/index.php?aba=inicio';
+                        });
                     }
                 });
             },
-            error: function(erro) {
-                alert('erro');
-            },
+            error: function(erro) {},
         });
     });
-
-    function removerDisciplina() {
-        alert('oi');
-    }
-
+    
     //data table
     $.extend( true, $.fn.dataTable.defaults, {
         "searching": true,
@@ -57,7 +48,7 @@ $(document).ready(function () {
         //dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-4'i><'col-sm-8'p>>",
                 
         "language": {
-            "url": url_site+"plugins/vendor/datatables/Portuguese-Brasil.json"
+            "url": URL_SITE+"plugins/vendor/datatables/Portuguese-Brasil.json"
         },
 
         extend: 'colvis',
