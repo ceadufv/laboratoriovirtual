@@ -1,6 +1,7 @@
 class Bequer extends ObjetoDefault {
     constructor(data) {
         super(data);
+        this.data_item = data;
         this.addObject(data);
     }
 
@@ -10,6 +11,7 @@ class Bequer extends ObjetoDefault {
             x: data.x,
             y: data.y
         };
+        this.nome = data.nome;
         this.addSpriteScene(config);
         this.insertDrag(this.gameobject);
         console.log('addObject');
