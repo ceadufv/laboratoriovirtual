@@ -22,6 +22,8 @@ class Interac_Espectrofotometro_Self {
     }
 
     ligarEquipamento(){
+        this.objClass.container.list[2].visible = true;
+        this.objClass.container.list[3].visible = true;
         console.log('ligando...');
         MenuInteract.hideAllModal();
     }
