@@ -1,11 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="navegacao">
-        <a href="<?php echo URL_SITE; ?>area_professor/index.php?aba=inicio">Administração</a> >
-        <span class="disciplina_caminho"></span>
-      </div>
-
       <h3>
         <span>Selecionar ambientes para práticas</span>
         <div class="form">

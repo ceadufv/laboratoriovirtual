@@ -28,16 +28,16 @@ if ($_POST['acao'] == 'salvar-dados') {
 
   //balao
   $new_data['baloes'] = $objBalaoVolumetrico->getJsonForm($dados);
- 
+
   //pipeta
   $new_data['pipeta_volumetrica'] = $objPipetaVolumetrica->getJsonForm($dados);
- 
+
   //pipetador
   $new_data['pipetadores'] = $objPipetador->getJsonForm($dados);
-  
+
   //cubeta
   $new_data['cubetas'] = $objCubeta->getJsonForm($dados);
-  
+
   //micropipeta
   $new_data['micropipetas'] = $objMicroPipeta->getJsonForm($dados);
 
@@ -45,7 +45,7 @@ if ($_POST['acao'] == 'salvar-dados') {
   $new_data['bancada'] = $dados['bancada_tipo'];
   $new_data['disponivel_pratica'] = $dados['disponivel_pratica'];
   $new_data['bancada_tipo'] = $dados['bancada_tipo'];
-  
+
   $args = array();
   $args['nome'] = $dados['nome_pratica'];
   $args['resumo'] = $dados['resumo_pratica'];
@@ -65,7 +65,7 @@ if ($_POST['acao'] == 'salvar-dados') {
 //get pratica
 $objModeloPratica = new ModeloPratica();
 $objModeloPraticaArquivo = new ModeloPraticaArquivo();
-if(!empty($_GET['id_pratica'])){
+if (!empty($_GET['id_pratica'])) {
   $pratica_sel = $objModeloPratica->getPraticaPorCod($_GET['id_pratica']);
   //arquivos caderno
   $arquivos = $objModeloPraticaArquivo->getArquivosPratica($pratica_sel['id_modelo_pratica'], 'CADERNO');
@@ -73,7 +73,7 @@ if(!empty($_GET['id_pratica'])){
   //arquivos roteiro
   $arquivos = $objModeloPraticaArquivo->getArquivosPratica($pratica_sel['id_modelo_pratica'], 'ROTEIRO');
   $html_arquivos_roteiro = $objModeloPraticaArquivo->getItensHtml($arquivos);
-}else{
+} else {
   $pratica_sel = NULL;
 }
 ?>
@@ -81,37 +81,29 @@ if(!empty($_GET['id_pratica'])){
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-
-        <div class="navegacao">
-          <a href="<?php echo URL_SITE;?>area_professor/index.php?aba=inicio">Administração</a> >
-          <a href="<?php echo URL_SITE;?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_GET['id_disciplina'];?>" class="disciplina_caminho">Disciplina</a> >
-          <a class="cadastra_edita"> Cadastrar nova prática</a> >
-        </div>
-
         <h3>
-          <?php if(!$pratica_sel){?>
+          <?php if (!$pratica_sel) { ?>
             <span>Cadastrar nova prática</span>
-          <?php }else{?>
+          <?php } else { ?>
             <span>Atualizar prática</span>
-          <?php }?>
-          
+          <?php } ?>
+
           <div class="form">
-            <a href='<?php echo URL_SITE;?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>' class="btn btn-primary"><i class="fas fa-angle-left"></i> VOLTAR</a>
-            <?php if($pratica_sel['id_modelo_pratica']){ ?>
-              <a href='<?php echo URL_SITE;?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica_sel['id_modelo_pratica'];?>&tipo_acesso=treino=' class="btn btn-success"><i class="far fas fa-eye"></i> VISUALIZAR</a>
+            <a href='<?php echo URL_SITE; ?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>' class="btn btn-primary"><i class="fas fa-angle-left"></i> VOLTAR</a>
+            <?php if ($pratica_sel['id_modelo_pratica']) { ?>
+              <a href='<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica_sel['id_modelo_pratica']; ?>&tipo_acesso=treino=' class="btn btn-success"><i class="far fas fa-eye"></i> VISUALIZAR</a>
             <?php } ?>
           </div>
         </h3>
 
         <div class="form-group">
           <label>TÍTULO</label>
-          <input name="nome_pratica" value="<?php echo $pratica_sel['nome_pratica'];?>" class="form-control" type="text" placeholder="Digite aqui..." required />
+          <input name="nome_pratica" value="<?php echo $pratica_sel['nome_pratica']; ?>" class="form-control" type="text" placeholder="Digite aqui..." required />
         </div>
 
         <div class="form-group">
           <label>RESUMO</label>
-          <textarea name="resumo_pratica" class="form-control" 
-          placeholder="Digite aqui..." required cols="12" rows="4"><?php echo $pratica_sel['resumo'];?></textarea>
+          <textarea name="resumo_pratica" class="form-control" placeholder="Digite aqui..." required cols="12" rows="4"><?php echo $pratica_sel['resumo']; ?></textarea>
         </div>
 
         <input type="hidden" name="id_cenario" value="1" />
@@ -119,23 +111,34 @@ if(!empty($_GET['id_pratica'])){
         <input type="hidden" name="id_disciplina" value="<?php echo $_GET['id_disciplina']; ?>" />
 
         <div id="accordion" class="accordion">
-          <!-- solucoes --><?php include_once "abas/steps_aula/solucoes.php";  ?><!-- /solucoes -->
-          <!-- material --><?php include_once "abas/steps_aula/material_didatico.php"; ?><!-- /material -->
-          <!-- bancadas --><?php include_once "abas/steps_aula/bancadas.php"; ?><!-- /bancadas -->
-          <!-- bequer --><?php include_once "abas/steps_aula/bequers.php"; ?><!-- /bequer -->
-          <!-- balao_volumetrico --><?php include_once "abas/steps_aula/balao_volumetrico.php"; ?><!-- /balao_volumetrico -->
-          <!-- pipeta_volumetrica --><?php include_once "abas/steps_aula/pipeta_volumetrica.php"; ?><!-- /pipeta_volumetrica -->
-          <!-- pipetador --><?php include_once "abas/steps_aula/pipetador.php"; ?><!-- /pipetador -->
-          <!-- micro_pipeta --><?php include_once "abas/steps_aula/micro_pipeta.php"; ?><!-- /micro_pipeta -->
-          <!-- proveta --><?php include_once "abas/steps_aula/proveta.php"; ?><!-- /proveta -->
-          <!-- cubeta --><?php include_once "abas/steps_aula/cubeta.php"; ?><!-- /cubeta -->
-          <!-- espatula --><?php include_once "abas/steps_aula/espatula.php"; ?><!-- /micro_pipeta -->
+          <!-- solucoes --><?php include_once "abas/steps_aula/solucoes.php";  ?>
+          <!-- /solucoes -->
+          <!-- material --><?php include_once "abas/steps_aula/material_didatico.php"; ?>
+          <!-- /material -->
+          <!-- bancadas --><?php include_once "abas/steps_aula/bancadas.php"; ?>
+          <!-- /bancadas -->
+          <!-- bequer --><?php include_once "abas/steps_aula/bequers.php"; ?>
+          <!-- /bequer -->
+          <!-- balao_volumetrico --><?php include_once "abas/steps_aula/balao_volumetrico.php"; ?>
+          <!-- /balao_volumetrico -->
+          <!-- pipeta_volumetrica --><?php include_once "abas/steps_aula/pipeta_volumetrica.php"; ?>
+          <!-- /pipeta_volumetrica -->
+          <!-- pipetador --><?php include_once "abas/steps_aula/pipetador.php"; ?>
+          <!-- /pipetador -->
+          <!-- micro_pipeta --><?php include_once "abas/steps_aula/micro_pipeta.php"; ?>
+          <!-- /micro_pipeta -->
+          <!-- proveta --><?php include_once "abas/steps_aula/proveta.php"; ?>
+          <!-- /proveta -->
+          <!-- cubeta --><?php include_once "abas/steps_aula/cubeta.php"; ?>
+          <!-- /cubeta -->
+          <!-- espatula --><?php include_once "abas/steps_aula/espatula.php"; ?>
+          <!-- /micro_pipeta -->
 
           <div class="form-group">
             <label>Deixar aula disponivel aos alunos</label>
             <select name="disponivel_pratica" class="form-control">
               <option value="true">SIM</option>
-              <option value="false" <?php echo ($pratica_sel['dados']['disponivel_pratica'] == 'false' ? 'selected' : '') ;?>>NÃO</option>
+              <option value="false" <?php echo ($pratica_sel['dados']['disponivel_pratica'] == 'false' ? 'selected' : ''); ?>>NÃO</option>
             </select>
           </div>
 
