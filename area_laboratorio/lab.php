@@ -30,7 +30,7 @@ include_once('../lab-config.php');
 
   <!--vendors-->
   <script src="<?php echo URL_SITE; ?>plugins/vendor/phaser/3.19.0/phaser.min.js"></script>
-  <script src="<?php echo URL_SITE; ?>plugins/vendor/phaser/GameScalePlugin.js"></script>
+  <!--<script src="<?php echo URL_SITE; ?>plugins/vendor/phaser/3.12.0/GameScalePlugin.js"></script>-->
  
   <!-- estilos -->
   <link rel="stylesheet" href="<?php echo URL_SITE; ?>plugins/vendor/awesome/css/font-awesome.min.css">
@@ -73,7 +73,28 @@ include_once('../lab-config.php');
     </div>
   </div>
 
-  <div class="modal fade" id="interacao" tabindex="-1" role="dialog" aria-labelledby="LabelModal" aria-hidden="true">
+  <!-- interacao-1 -->
+  <div class="modal fade" id="interacao-1" tabindex="-1" role="dialog" aria-labelledby="LabelModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-dark">
+          <h5 class="modal-title">Interação</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class=""></div>
+          <div class="botoes">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- interacao-2 -->
+  <div class="modal fade" id="interacao-2" tabindex="-1" role="dialog" aria-labelledby="LabelModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-dark">

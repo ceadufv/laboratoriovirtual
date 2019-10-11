@@ -9,6 +9,8 @@ include "lab-config.php";
 
 <head>
   <meta charset="UTF-8">
+  <!-- responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NeoAlice</title>
   <!-- jquery -->
   <script src="<?php echo URL_SITE; ?>plugins/vendor/jquery/3.4/jquery-3.4.1.min.js"></script>

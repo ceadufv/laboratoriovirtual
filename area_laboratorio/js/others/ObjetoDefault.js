@@ -132,7 +132,7 @@ class ObjetoDefault {
         console.log('drag', this.x, this.y);
         */
     }
-
+    
     /** quando somento clica no objeto */
     clickObject(objeto){
         console.log('clickObject', 'ObjetoDefault');

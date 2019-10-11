@@ -59,27 +59,61 @@ class Armario {
 
         var selecionados = Armario.getItensSelecionadosArmario();
         for (var i = 0; i < selecionados.length; i++) {
+            var item_class = null;
+            var item_atual = selecionados[i];
 
             var arg = DropZones.getOneDropZoneLivre();
-            if(!arg){
+            if (!arg) {
                 alert('Não há espaço disponível na bancada')
                 return;
             }
-            switch (selecionados[i].conceito) {
-                case 'frasco_estoque':
-                    var item = new Solucao(arg);
-                    console.error('Solucao', 'Armario');
-                    console.error(item, 'Armario');
-                    SceneObjectsSLab.add(item);
+
+            item_atual.x = arg.x;
+            item_atual.y = arg.y;
+
+            switch (item_atual.conceito) {
+                case 'solucao':
+                    item_class = new Solucao(item_atual);
+                    break;
+
+                case 'balao':
+                    item_class = new Balao(item_atual);
+                    break;
+
+                case 'micropipeta':
+                    item_class = new Micropipeta(item_atual);
+                    break;
+
+                case 'bequer':
+                    item_class = new Bequer(item_atual);
+                    break;
+
+                case 'pipeta':
+                    item_class = new Pipeta(item_atual);
+                    break;
+
+                case 'cubeta':
+                    item_class = new Cubeta(item_atual);
+                    break;
+
+                case 'pipetador':
+                    item_class = new Pipetador(item_atual);
+                    break;
+
+                case 'micropipeta':
+                    item_class = new Micropipeta(item_atual);
                     break;
 
                 default:
-                    var item = new Pisseta(arg);
-                    console.error('Pipeta', 'Armario');
-                    console.error(item, 'Armario');
-                    SceneObjectsSLab.add(item);
+                    alert('Objeto Com Erro ou não encontrado, ' + item_atual.conceito);
+                    item_class = null;
                     break;
 
+            }
+
+            if (item_class) {
+                console.warn(item_class, item_atual);
+                SceneObjectsSLab.add(item_class);
             }
         }
         $('#armario').modal('hide');
@@ -89,10 +123,10 @@ class Armario {
     static getItensSelecionadosArmario() {
         var result = [];
         $('#armario .objeto-selecionado').each(function () {
-            result.push({
-                id: $(this).attr('data-id'),
-                conceito: $(this).attr('data-type'),
-            });
+            var dados = JSON.parse($(this).attr('dados_json'));
+            dados.id = $(this).attr('data-id');
+            dados.conceito = $(this).attr('data-type');
+            result.push(dados);
         });
         return result;
     }
