@@ -1,55 +1,75 @@
-<script type="text/javascript" src="js/abas/perfil.js"></script>
+<?php
+  $objUsuario = new Usuario();
+
+  if ($_POST["acao"] == 'atualizar') {
+    $_POST["id_usuario"] = $_SESSION['id_usuario'];
+
+    if($_POST["senha"] == $_POST["senha2"]) {
+        $objUsuario->atualizarDadosPerfil($_POST);
+    } else {
+        echo ('<div class="alert alert-danger" role="alert">As senhas digitadas não conferem!</div>');  
+    }
+  }
+  $dados = $objUsuario->getAlunoEspecifico($_SESSION['id_usuario']);
+?>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 meuperfil">
-      <h3>Meu perfil</h3>
-      <h4>Aqui é possível atualizar os dados da sua conta</h4>
-      <div id="dados" class="dados">
-        <form>
-          <div class="form-row">
-            <div class="col-md-4 mb-3">
-              <label for="validationDefault01">Nome</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="far fa-user"></i></span>
-                </div>
-                <input id="nome_novo" class="form-control" type="text" value="<?php echo ($_SESSION['nome']); ?>">
-              </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-md-4 mb-3">
-              <label for="validationDefaultUsername">Senha</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-key"></i></span>
-                </div>
-                <input id="senha1" class="form-control" type="password" placeholder="Digite aqui..." required>
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="validationDefaultUsername">Confirme sua senha</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-key"></i></span>
-                </div>
-                <input id="senha2" class="form-control" type="password" placeholder="Digite aqui..." required>
-              </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-md-4 mb-3">
-              <label for="validationDefaultUsername">E-mail</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="far fa-envelope"></i></span>
-                </div>
-                <input required id="email_novo" class="form-control" type="email" value="<?php echo $_SESSION['email']; ?>">
-              </div>
-            </div>
+  <h3>Meu perfil</h3>
+  <p>Aqui é possível atualizar os dados da sua conta.</p>
+  <form id="aluno" name="aluno" method="post">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="nome">Nome</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="far fa-user"></i></span>
+          </div>      
+            <input type="text" class="form-control" name="nome" placeholder="Digite seu nome..." value="<?php echo $dados["nome"]?>" required>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="usuario">Login</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="far fa-user"></i></span>
+          </div>      
+          <input type="text" class="form-control" name="usuario" placeholder="Digite seu nome de usuário..." value="<?php echo $dados["usuario"]?>" required>
+        </div>
+      </div>      
+      <div class="form-group col-md-4">
+        <label for="email">E-mail</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="far fa-envelope"></i></span>
+            </div>               
+            <input type="email" class="form-control" name="email" placeholder="Digite seu e-mail..." value="<?php echo $dados["email"]?>" required>
           </div>
-          <button id="salvar" type="button" class="btn btn-primary atualizar" >Salvar</button>
-        </form>
       </div>
     </div>
-  </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="senha">Senha</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+          </div>              
+          <input type="password" class="form-control" name="senha" placeholder="Digite sua senha..." required>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="senha2">Digite novamente sua senha</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+          </div>              
+          <input type="password" class="form-control" name="senha2" placeholder="Digite a mesma senha..." required>
+        </div>
+      </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Salvar">
+    <input type="hidden" name="acao" value="atualizar">
+  </form>
 </div>
+
+<script type="text/javascript" src="js/abas/perfil.js"></script>
