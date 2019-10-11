@@ -25,8 +25,6 @@
     <link rel="stylesheet" href="<?php echo URL_SITE; ?>estilos/style.css">
 
     <link rel="shortcut icon" type="image/png" href="<?php echo URL_SITE; ?>imagens/icons/favicon.png" />
-
-    <script type="text/javascript" src="<?php echo URL_SITE; ?>area_aluno/js/default/tela_aluno.js"></script>
     <script type="text/javascript" src="<?php echo URL_SITE; ?>area_aluno/js/default/scripts.js"></script>
     
     <script>

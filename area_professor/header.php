@@ -24,7 +24,6 @@
     <!-- Arquivos próprios area_professor -->
     <link rel="stylesheet" href="<?php echo URL_SITE; ?>estilos/basicos.css">
     <link rel="stylesheet" href="<?php echo URL_SITE; ?>estilos/style.css">
-
-    <script type="text/javascript" src="<?php echo URL_SITE; ?>area_professor/js/default/tela_professor.js"></script>
+    
     <script type="text/javascript" src="<?php echo URL_SITE; ?>area_professor/js/default/scripts.js"></script>
 </head>
