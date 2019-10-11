@@ -1,18 +1,30 @@
 <?php
-
 /**
  * @author Wellerson
  */
 class ModeloPratica
 {
+    //delete
+    function deletePratica($id_modelo_pratica)
+    {
+        $db = Conexao::getInstance();
+        $sql = 'DELETE FROM modelo_pratica
+                WHERE id_modelo_pratica = :id_modelo_pratica';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id_modelo_pratica',$id_modelo_pratica);
+        $stmt->execute();
+        return true;
+    }
+
     //Pega aulas cadastradas dentro de cada disciplina
     function getPraticasDisciplina($id_disciplina)
     {
         $db = Conexao::getInstance();
         $sql = 'SELECT 
                    *
-                FROM modelo_pratica
-                WHERE id_disciplina=:id_disciplina 
+                FROM modelo_pratica mp
+                LEFT JOIN disciplinas dd ON mp.id_disciplina=dd.id_disciplina 
+                WHERE mp.id_disciplina=:id_disciplina 
                 ORDER BY id_modelo_pratica DESC';
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id_disciplina',$id_disciplina);
