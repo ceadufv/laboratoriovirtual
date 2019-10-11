@@ -1,19 +1,27 @@
 class Armario {
 
     static updateArmarioLugaresDisponiveis() {
-        var selecionados = Armario.getItensSelecionadosArmario();
+        var counter = Armario.calcularQuantidadeSelecionada();
         var drops = DropZones.getZonesLivres();
-        var qtd = drops.length - selecionados.length;
+        var qtd = drops.length - counter;
         var txt = 'lugares restantes na bancada';
         if(qtd < 1){
             txt = 'lugar restante na bancada';
         }
         $('.armario-disponiveis').text('('+qtd+' '+txt+')');
     }
+    
+    static calcularQuantidadeSelecionada(){
+        var selecionados = Armario.getItensSelecionadosArmario();
+        var counter = 0;
+        for (let i = 0; i < selecionados.length; i++) {
+            counter +=  parseInt(selecionados[i].sele_qtd);
+        }
+        return counter;
+    }
 
     static armarioAtualizarSelecionados() {
-        var selecionados = Armario.getItensSelecionadosArmario();
-        var counter = selecionados.length;
+        var counter = Armario.calcularQuantidadeSelecionada();
         // Atualiza a indicacao de objetos selecionados
         var txt = counter + ' ';
         if (counter == 1)
@@ -138,13 +146,16 @@ class Armario {
 
     /** pega os itens selecionados no armario */
     static getItensSelecionadosArmario() {
+        console.log('getItensSelecionadosArmario');
         var result = [];
         $('#armario .objeto-selecionado').each(function () {
             var dados = JSON.parse($(this).attr('dados_json'));
             dados.id = $(this).attr('data-id');
             dados.conceito = $(this).attr('data-type');
+            dados.sele_qtd = $(this).parent().find('.s-quantidade input').val();
             result.push(dados);
         });
+        console.log(result);
         return result;
     }
 }

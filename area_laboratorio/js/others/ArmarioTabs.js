@@ -7,22 +7,25 @@ class ArmarioTabs {
 
         var dados_json = JSON.stringify(item);
 
-        var botao, class_opcao;
+        var botao = '';
+        var class_opcao = '';
+        var botao_qtd = '';
         if (item.disponivel == 'N') {
             botao = '';
             class_opcao = 'opcao-disabled';
         } else {
-            botao = '<button ' + "dados_json='" + dados_json + "'" + ' data-type="' + item.conceito + '" data-id="' + item.id + '" type="button" class="btn btn-dark m-3 botao" onClick="Armario.selecionarItem(this);">Selecionar</button>';
+            botao = '<button ' + "dados_json='" + dados_json + "'" + ' data-type="' + item.conceito + '" data-id="' + item.id + '" type="button" class="btn btn-primary botao-elmentos" onClick="Armario.selecionarItem(this);">Selecionar</button>';
+            botao_qtd = '<div class="s-quantidade"><small>Quantidade</small><br /><input type="number" value="0" max="'+item.qtd_maxima+'" min="0" /></div>';
             class_opcao = '';
         }
-        
+
         $('#tab_' + tab + ' .caixas')
             .append(
                 '<label disabled class="opcao ' + class_opcao + '" data-id="' + item.id + '">' +
-                '<input type="checkbox" style="display:none" value="' + item.id + '" />' +
                 '<p>' + item.nome + '</p>' +
                 '<img src="' + URL_SITE + 'area_laboratorio/assets/objetos/' + item.conceito + '.png" height="120px">' +
                 botao +
+                botao_qtd +
                 '</label>'
             );
     }
