@@ -7,7 +7,6 @@ $(document).ready(function() {
         confirmarResetSenhaAluno(dados);
     });
 
-
     function confirmarResetSenhaAluno(dados) {
 
         $.ajax({
@@ -56,7 +55,7 @@ $(document).ready(function() {
     "ordering": true,
     "paging": true,
     "colReorder": true,
-    "iDisplayLength": 25
+    "iDisplayLength": 10
     });
 
     var exportOptions = {
@@ -73,7 +72,7 @@ $(document).ready(function() {
     };
 
     var oTable = $('.table-data').dataTable({
-        //dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-4'i><'col-sm-8'p>>",
+       // dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-4'i><'col-sm-8'p>>",
                 
         "language": {
             "url": url_site+"plugins/vendor/datatables/Portuguese-Brasil.json"

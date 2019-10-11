@@ -30,7 +30,7 @@
           </div>
           <div>
             <hr>
-            <a href="http://www.cead.ufv.br" target="blank"><img src="../imagens/cead.png"></a>
+            <a href="http://www.cead.ufv.br" target="blank"><img src="../imagens/logo-cead-completo.png" width="80"></a>
             <a href="http://www.deq.ufv.br" target="blank"><img src="../imagens/deq.png"></a>
           </div>
         </div>

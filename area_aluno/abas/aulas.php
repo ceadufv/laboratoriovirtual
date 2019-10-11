@@ -10,10 +10,10 @@
             <table id="tabela" class="table table-striped table-bordered table-data" style="width:100%">
                 <thead>
                     <tr>
+                        <th>Disciplina</th>
                         <th>Nome da Prática</th>
                         <th>Resumo</th>
-                        <th></th>
-                        <th></th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,10 +27,13 @@
                             foreach($dados as $row) 
                             { ?>
                             <tr>
+                                <td><?php echo $row['nome']?></td>
                                 <td><?php echo $row['nome_pratica']?></td>
                                 <td><?php echo $row['resumo']?></td>
-                                <td><a class="btn btn-success" href="<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica['id_modelo_pratica'] ?>&tipo_acesso=salvar"><i class="far fa-eye"></i> Realizar Prática</a></td>
-                                <td><a class="btn btn-primary" href="<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica['id_modelo_pratica'] ?>&tipo_acesso=treino"><i class="far fa-eye"></i> Treinar</a></td>
+                                <td>
+                                    <a class="btn btn-success" href="<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica['id_modelo_pratica'] ?>&tipo_acesso=salvar"><i class="far fa-eye"></i> Realizar Prática</a>
+                                    <a class="btn btn-primary" href="<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica['id_modelo_pratica'] ?>&tipo_acesso=treino"><i class="far fa-eye"></i> Treinar</a>
+                                </td>
                             </tr>
                             <?php 
                             }

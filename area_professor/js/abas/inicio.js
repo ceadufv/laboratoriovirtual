@@ -1,64 +1,70 @@
-function selecionar_disciplina() {
-    var disciplina_acessada = $('#listaDisciplinas').val();
-    if (disciplina_acessada == '' || disciplina_acessada == undefined) {
-        alert('Selecione uma disciplina!');
-        return false;
-    }
-    window.location = URL_SITE + 'area_professor/index.php?aba=aulas&id_disciplina=' + disciplina_acessada;
-};
-
-function salvarDisciplina() {
-    var nome = $('#nome_disciplina_nova').val();
-    $.ajax({
-        url: URL_SITE + "area_professor/index-app.php?app=tudo&file=insert_disciplina",
-        type: 'POST',
-        data: {
-            nome: nome
-        },
-    }).done(function (data) {
-        console.log(data);
-        if (data.status == true) {
-            //Se for positivo, mostra ao utilizador uma janela de sucesso.
-            alert('Informações salvas com sucesso!');
-            location.href = URL_SITE + "area_professor/index.php?aba=inicio";
-        } else {
-            //Caso contrário dizemos que aconteceu algum erro.
-            alert('Erro com banco de dados. Tente novamente mais tarde. Se persistir o erro, contate o administrador.');
-        }
-    });
-}
-
-function remover_disciplina() {
-    disciplina_acessada = $('#listaDisciplinas').val();
-    $.ajax({
-        url: URL_SITE + "area_professor/index-app.php?app=tudo&file=apagar_disciplina",
-        type: 'POST',
-        data: {
-            id_disciplina: disciplina_acessada,
-        },
-        success: function (data) {
-            console.log(data);
-            if (data.status == true) {
-                window.location = URL_SITE + "area_professor/index.php?aba=inicio";
-            }
-            else {
-                alert("Erro no banco de dados. Se o problema permitir, contate o administrador");
-            }
-        },
-        error: function (data) {
-            alert('Erro na conexão. Se o problema permitir, contate o administrador');
-        }
-    });
-}
-
 $(document).ready(function () {
-    $('[data-toggle=confirmation-disciplina]').confirmation({
-        rootSelector: '[data-toggle=confirmation-disciplina]',
-        container: 'body',
-        onConfirm: function () {
-            remover_disciplina();
-        },
-        onCancel: function () {
-        },
+    var url_site = URL_SITE;
+
+    $(".removerDisciplina").click(function() {
+        
+        var id_disciplina = $(this).attr('id_disciplina');
+        var msg = 'Tem certeza que deseja remover essa disciplina?';
+
+        bootbox.confirm({
+            message: msg,
+            callback: function (result) {
+                if(!result)
+                    return;
+                $.ajax({
+                    type: "POST",
+                    url: url_site+'area_professor/index-app.php?app=disciplina&file=delete-disciplina',
+                    data: {"id_disciplina": id_disciplina},
+                    success: function(data) {
+                        alert('Removido com sucesso');
+                        window.location.href = url_site+'area_professor/index.php?aba=inicio';
+                    }
+                });
+            },
+            error: function(erro) {
+                alert('erro');
+            },
+        });
     });
+
+    function removerDisciplina() {
+        alert('oi');
+    }
+
+    //data table
+    $.extend( true, $.fn.dataTable.defaults, {
+        "searching": true,
+        "ordering": true,
+        "paging": true,
+        "colReorder": true,
+        "iDisplayLength": 10
+        });
+
+    var exportOptions = {
+        columns: [':visible'],
+        format: { //para retirar spações e tahs htmls
+            body: function (data, row, column, node) {
+                // Strip $ from salary column to make it numeric
+                var html = $.parseHTML(data);
+                html = $(html).text();//stripHtmlTags(data);
+                html = html.replace(/\s+/g, " ");
+                return html.replace(/(\r\n|\n|\r)/gm, "");
+            }
+        }
+    };
+
+    var oTable = $('.table-data').dataTable({
+        //dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-4'i><'col-sm-8'p>>",
+                
+        "language": {
+            "url": url_site+"plugins/vendor/datatables/Portuguese-Brasil.json"
+        },
+
+        extend: 'colvis',
+        postfixButtons: [ 'colvisRestore' ]
+    });
+
+    $('.table-data')
+    .removeClass( 'display' )
+    .addClass('table table-striped table-bordered');        
 });

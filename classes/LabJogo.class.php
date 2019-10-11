@@ -334,7 +334,7 @@ class LabJogo
 
     function apagarAula($id_pratica)
     { }
-
+/*
     function apagarDisciplina($id_disciplina)
     {
         global $banco;
@@ -345,7 +345,7 @@ class LabJogo
         $apagar = $apagar_disciplina->fetchAll(PDO::FETCH_ASSOC);
         return true;
     }
-
+*/
     function getResumo($id_pratica)
     {
         $sql = $this->_dbh->prepare('SELECT resumo FROM modelo_pratica WHERE id_modelo_pratica = ?');
@@ -355,7 +355,7 @@ class LabJogo
 
         return $sql->fetchAll();
     }
-
+/*
     function getDisciplinasProfessor($id_professor)
     {
         $sql = 'SELECT * FROM disciplinas WHERE id_professor = ?';
@@ -397,7 +397,7 @@ class LabJogo
             return false;
         }
     }
-
+*/
     function codificarSenha($senha)
     {
         return sha1($senha);
@@ -475,7 +475,7 @@ class LabJogo
             return false;
         }
     }
-
+/*
     function getRegistros($filtros)
     {
         $sql = $this->_dbh->prepare('SELECT nome_pratica, u.nome, data_acao, descricao FROM acao_pratica, usuarios_cadastrados AS u, modelo_pratica 
@@ -496,6 +496,7 @@ class LabJogo
 
         return $sql->fetchAll();
     }
+*/
 
     function getPraticaEdit($id_pratica)
     {

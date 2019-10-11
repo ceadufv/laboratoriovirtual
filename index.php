@@ -156,7 +156,7 @@ include "lab-config.php";
             <div>
               <hr>
               <a href="http://www.ufv.br" target="blank"><img src="imagens/UFV.png"></a>
-              <a href="http://www.cead.ufv.br" target="blank"><img src="imagens/cead.png"></a>
+              <a href="http://www.cead.ufv.br" target="blank"><img src="imagens/logo-cead-completo.png" width="80"></a>
               <a href="http://www.deq.ufv.br" target="blank"><img src="imagens/GPEQA.png"></a>
               <a href="http://www.capes.gov.br/uab" target="blank"><img src="imagens/uab2.png"></a>
               <a href="http://www.capes.gov.br/" target="blank"><img src="imagens/capes2.png"></a>

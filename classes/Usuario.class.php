@@ -8,8 +8,9 @@ class Usuario {
     public function getPraticasAluno(){
 
         $db = Conexao::getInstance();
-        $sql = "SELECT id_modelo_pratica AS id, nome_pratica, resumo 
-                FROM modelo_pratica 
+        $sql = "SELECT *, id_modelo_pratica AS id
+                FROM modelo_pratica mp
+                INNER JOIN disciplinas d ON d.id_disciplina  = mp.id_disciplina
                 ORDER BY nome_pratica";
         $stmt = $db->prepare($sql);
         $stmt->execute();
