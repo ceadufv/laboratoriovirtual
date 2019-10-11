@@ -1,5 +1,16 @@
 class Armario {
 
+    static updateArmarioLugaresDisponiveis() {
+        var selecionados = Armario.getItensSelecionadosArmario();
+        var drops = DropZones.getZonesLivres();
+        var qtd = drops.length - selecionados.length;
+        var txt = 'lugares restantes na bancada';
+        if(qtd < 1){
+            txt = 'lugar restante na bancada';
+        }
+        $('.armario-disponiveis').text('('+qtd+' '+txt+')');
+    }
+
     static armarioAtualizarSelecionados() {
         var selecionados = Armario.getItensSelecionadosArmario();
         var counter = selecionados.length;
@@ -18,8 +29,12 @@ class Armario {
         } else {
             $(element).addClass('objeto-selecionado');
         }
+
         // Atualiza na tela o numero de objetos selecionados
         Armario.armarioAtualizarSelecionados();
+
+        //atualiza quantidade de lugares disponiveis
+        Armario.updateArmarioLugaresDisponiveis();
     }
 
     static limparSelecaoArmario() {
@@ -32,6 +47,8 @@ class Armario {
     }
 
     static abrirArmario(a) {
+        Laboratorio.pause();
+
         // Limpa a selecao atual nos armarios, para comodidade do usuario
         Armario.limparSelecaoArmario();
 
@@ -50,6 +67,7 @@ class Armario {
     }
 
     static fecharArmario() {
+        Laboratorio.resume();
         $('#armario').modal('hide');
     }
 
@@ -61,7 +79,6 @@ class Armario {
         for (var i = 0; i < selecionados.length; i++) {
             var item_class = null;
             var item_atual = selecionados[i];
-
             var arg = DropZones.getOneDropZoneLivre();
             if (!arg) {
                 alert('Não há espaço disponível na bancada')

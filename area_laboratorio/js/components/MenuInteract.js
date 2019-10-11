@@ -20,6 +20,7 @@ class MenuInteract {
         console.log('MenuInteract.hideAllModal');
         $('#interacao-1').modal('hide');
         $('#interacao-2').modal('hide');
+        Laboratorio.resume();
     }
 
     //retira modal 1
@@ -29,6 +30,7 @@ class MenuInteract {
     }
 
     static montModalInteracMenu(menu) {
+        Laboratorio.pause();
         console.warn(menu, 'MenuInteract.montModalInteracMenu');
         $('#interacao-1 .modal-body').html('');
         if (menu.length)
@@ -47,6 +49,7 @@ class MenuInteract {
     }
 
     static montModalInteracHTML(html) {
+        Laboratorio.pause();
         console.log('MenuInteract.montModalInteracHTML', html);
         $('#interacao-2').modal('show');
         $('#interacao-2 .modal-body').html('');
