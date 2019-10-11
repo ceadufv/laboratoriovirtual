@@ -94,6 +94,17 @@ class Usuario {
         $stmt->execute();
     }
 
+    function deleteUser($id_usuario)
+    {
+        $db = Conexao::getInstance();
+
+        $sql = "DELETE FROM usuarios_cadastrados
+                WHERE id_usuario = :id_usuario";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(":id_usuario", $id_usuario);
+        $stmt->execute();
+    }
+
     function atualizarDadosPerfil($dados) {
 
         $db = Conexao::getInstance();
@@ -103,16 +114,15 @@ class Usuario {
                 nome = :nome,
                 email = :email,
                 senha = :senha,
-                id_tipo_usuario = :id_tipo_usuario,
                 usuario = :usuario
                 WHERE id_usuario = :id_usuario";
 
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(":nome", $nome);
-        $stmt->bindValue(":email", $email);
-        $stmt->bindValue(":senha", $senha);
-        $stmt->bindValue(":id_tipo_usuario", $id_tipo_usuario);
-        $stmt->bindValue(":usuario", $usuario);
+        $stmt->bindValue(":nome", $dados["nome"]);
+        $stmt->bindValue(":email", $dados["email"]);
+        $stmt->bindValue(":senha", sha1($dados["senha"]));
+        $stmt->bindValue(":id_usuario", $dados["id_usuario"]);
+        $stmt->bindValue(":usuario", $dados["usuario"]);
         if($stmt->execute())
             return true;
 

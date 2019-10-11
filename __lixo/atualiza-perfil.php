@@ -9,7 +9,4 @@
     //$resultado = array();
     //$resultado['status'] = $lab->setPerfil($nome, $senha, $email, $id_usuario);
     //echo json_encode($resultado);
-
-    $objDisciplina = new Disciplina();
-    $objDisciplina->atualizarDadosPerfil($_POST);
 ?>
