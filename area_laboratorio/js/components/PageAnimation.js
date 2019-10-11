@@ -6,6 +6,7 @@ class PageAnimation {
     ];
     */
     static open(dados) {
+        Laboratorio.pause();
         console.warn('PageAnimation.open', 'PageAnimation');
        
         PageAnimation.page = 0;

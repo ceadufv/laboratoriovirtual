@@ -1,4 +1,4 @@
-class Solucao extends ObjetoDefault {
+class Pipetador extends ObjetoDefault {
     constructor(data) {
         super(data);
         this.addObject(data);
@@ -6,7 +6,7 @@ class Solucao extends ObjetoDefault {
 
     addObject(data) {
         var config = {
-            key: 'frasco',
+            key: 'pipetador',
             x: data.x,
             y: data.y
         };

@@ -3,55 +3,41 @@ class ArmarioTabs {
     static construirItem(tab, item) {
         console.log('ArmarioTabs.construirItem', 'ArmarioTabs');
         console.log(item, 'ArmarioTabs');
-        
+
+
+        var dados_json = JSON.stringify(item);
+
         var botao, class_opcao;
         if (item.disponivel == 'N') {
             botao = '';
             class_opcao = 'opcao-disabled';
         } else {
-            botao = '<button data-type="' + item.conceito + '" data-id="' + item.id + '" type="button" class="btn btn-dark m-3 botao" onClick="Armario.selecionarItem(this);">Selecionar</button>';
+            botao = '<button ' + "dados_json='" + dados_json + "'" + ' data-type="' + item.conceito + '" data-id="' + item.id + '" type="button" class="btn btn-dark m-3 botao" onClick="Armario.selecionarItem(this);">Selecionar</button>';
             class_opcao = '';
         }
-
-        // Se for cubeta, no armário ela aparece maior (exceção)
-        if (item.conceito == 'cubeta') {
-            $('#tab_' + tab + ' .caixas')
-                .append(
-                    '<label class="opcao ' + class_opcao + '" data-id="' + item.id + '">' +
-                    '<input type="checkbox" style="display:none" value="' + item.id + '" />' +
-                    '<p>' + item.nome + '</p>' +
-                    '<img src="' + URL_SITE + 'area_laboratorio/assets/objetos/cubeta-armario.png" height="120px">' +
-                    botao +
-                    '</label>'
-                );
-        } else {
-            $('#tab_' + tab + ' .caixas')
-                .append(
-                    '<label disabled class="opcao ' + class_opcao + '" data-id="' + item.id + '">' +
-                    '<input type="checkbox" style="display:none" value="' + item.id + '" />' +
-                    '<p>' + item.nome + '</p>' +
-                    '<img src="' + URL_SITE + 'area_laboratorio/assets/objetos/' + item.conceito + '.png" height="120px">' +
-                    botao +
-                    '</label>'
-                );
-        }
+        
+        $('#tab_' + tab + ' .caixas')
+            .append(
+                '<label disabled class="opcao ' + class_opcao + '" data-id="' + item.id + '">' +
+                '<input type="checkbox" style="display:none" value="' + item.id + '" />' +
+                '<p>' + item.nome + '</p>' +
+                '<img src="' + URL_SITE + 'area_laboratorio/assets/objetos/' + item.conceito + '.png" height="120px">' +
+                botao +
+                '</label>'
+            );
     }
 
-    static construirVidraria(conceito, nome, item) {
+    static construirVidraria(conceito, item) {
         item.conceito = conceito;
-        item.nome = nome;
         //Adicionar vidrarias tab
         ArmarioTabs.construirItem('vidrarias', item)
     }
 
-    static construirSolucao(conceito, nome, item) {
+    static construirSolucao(conceito, item) {
         item.conceito = conceito;
-        item.nome = nome;
-
         //Adicionar solucao tab
         ArmarioTabs.construirItem('solucoes', item)
     }
-
 
     static construirModal(data) {
 
@@ -66,24 +52,24 @@ class ArmarioTabs {
         var dados_micropipeta = data.data.armario_vidrarias.micropipeta;
 
         for (var i = 0; i < dados_balao.length; i++)
-            dataArmario.push(ArmarioTabs.construirVidraria('balao', 'Balão', dados_balao[i]));
+            dataArmario.push(ArmarioTabs.construirVidraria('balao', dados_balao[i]));
 
         for (var i = 0; i < dados_bequer.length; i++)
-            dataArmario.push(ArmarioTabs.construirVidraria('bequer', 'Béquer', dados_bequer[i]));
+            dataArmario.push(ArmarioTabs.construirVidraria('bequer', dados_bequer[i]));
 
         for (var i = 0; i < dados_pipeta.length; i++)
-            dataArmario.push(ArmarioTabs.construirVidraria('pipeta', 'Pipeta', dados_pipeta[i]));
+            dataArmario.push(ArmarioTabs.construirVidraria('pipeta', dados_pipeta[i]));
 
         for (var i = 0; i < dados_cubeta.length; i++)
-            dataArmario.push(ArmarioTabs.construirVidraria('cubeta', 'Cubeta', dados_cubeta[i]));
+            dataArmario.push(ArmarioTabs.construirVidraria('cubeta', dados_cubeta[i]));
 
         for (var i = 0; i < dados_micropipeta.length; i++)
-            dataArmario.push(ArmarioTabs.construirVidraria('micropipeta', 'Micropipeta', dados_micropipeta[i]));
+            dataArmario.push(ArmarioTabs.construirVidraria('micropipeta', dados_micropipeta[i]));
 
         for (var i = 0; i < dados_pipetador.length; i++)
-            dataArmario.push(ArmarioTabs.construirVidraria('pipetador', 'Pipetador', dados_pipetador[i]));
+            dataArmario.push(ArmarioTabs.construirVidraria('pipetador', dados_pipetador[i]));
 
         for (var i = 0; i < dados_armario_solucoes.length; i++)
-            dataArmario.push(ArmarioTabs.construirSolucao('frasco_estoque', 'frasco_estoque', dados_armario_solucoes[i]));
+            dataArmario.push(ArmarioTabs.construirSolucao('solucao', dados_armario_solucoes[i]));
     }
 }

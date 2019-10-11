@@ -10,6 +10,13 @@ class Pratica {
 
             PracticeRegistration.register([{'desc': 'Carregou a pratica!!!', 'data':null}]);
         });
+
+
+        //funçoes boostrap modal, eventos
+        $('#armario').on('hide.bs.modal', function (e) {Laboratorio.resume();});
+        $('#interacao-1').on('hide.bs.modal', function (e) {Laboratorio.resume();});
+        $('#animacao').on('hide.bs.modal', function (e) {Laboratorio.resume();});
+        $('#interacao-2').on('hide.bs.modal', function (e) {Laboratorio.resume();});
     }
 
     static setTitlePage() {

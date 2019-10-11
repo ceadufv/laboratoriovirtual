@@ -31,7 +31,7 @@ class PipetaVolumetrica{
         foreach ($dados['pipeta_desvio_padrao'] as $key => $value) {
           $pipetas[] = array(
             'id' => $key+1,
-            'disponivel' => $dados['balao_disponivel'][$key],
+            'disponivel' => $dados['pipeta_disponivel'][$key],
             'qtd_maxima' => $dados['pipeta_qtd_maxima'][$key],
             'ambientacao' =>  $dados['pipeta_ambientacao'],
             'qtd_ambientes' => $dados['pipeta_qtd_ambientes'],

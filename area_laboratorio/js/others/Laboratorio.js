@@ -118,4 +118,11 @@ class Laboratorio {
         this.load.image('drop_zone_hover', 'assets/dropzone/movel-hover.png');
     }
 
+    static pause(){
+        GAME_SCENE.scene.pause();
+    }
+
+    static resume(){
+        GAME_SCENE.scene.resume();
+    }
 }

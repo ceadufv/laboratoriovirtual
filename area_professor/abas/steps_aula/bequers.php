@@ -80,7 +80,7 @@
                                 <td>
                                     <select <?php echo ($disabled);?> name="bequer_disponivel[]">
                                         <option value="N" <?php echo ($bequer['disponivel'] == 'N' ? 'selected' : '');?>>NÃO</option>
-                                        <option value="S" <?php ($bequer['disponivel'] == 'S') ? 'selected' : '' ?>>SIM</option>
+                                        <option value="S" <?php echo ($bequer['disponivel'] == 'S') ? 'selected' : '' ?>>SIM</option>
                                     </select>
                                     <input type="hidden" name="bequer_tamanho[]" value="<?php echo $bequer['tamanho']; ?>" />
                                 </td>

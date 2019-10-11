@@ -1,4 +1,16 @@
 class QuimicaFormulas {
+    
+    /**
+     * QuimicaFormulas.calcularVariacao(2, 1);
+     * variacao que o numero pode ir para baixo ou para cima
+     * neste exemplo podemos obter do numero 1 ao numero 3
+     * @author wellerson
+     */
+    static calcularVariacao(valor, variacao){
+        var vf = (Math.random() * variacao) - variacao;
+        return (valor + vf).toFixed(3);
+    }
+
     static cargaefetiva(pH, q0, somapKa, numpKa, j) {
         var termo0 = 1
         var alfai = 0;

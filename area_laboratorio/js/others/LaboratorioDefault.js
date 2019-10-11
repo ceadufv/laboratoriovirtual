@@ -61,6 +61,10 @@ class LaboratorioDefault {
                     var op = new Phmetro({ x: 1810, y: 510 });
                     SceneObjectsSLab.add(op);
                     break;
+                case 'espectrofotometro':
+                    var op = new Espectrofotometro({ x: 0, y: 0 });
+                    SceneObjectsSLab.add(op);
+                    break;
                 case 'bequer_repouso':
                     var op = new BequerRepouso({ x: drop.x, y: drop.y });
                     SceneObjectsSLab.add(op);

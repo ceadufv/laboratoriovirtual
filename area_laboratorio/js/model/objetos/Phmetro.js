@@ -12,6 +12,7 @@ class Phmetro extends ObjetoDefault {
             group.add(TextopH);
         */
         this.container = GAME_SCENE.add.container(data.x, data.y);
+
         this.insertSprites();
         //inserindo textos
         this.insertTextos();
@@ -72,11 +73,9 @@ class Phmetro extends ObjetoDefault {
 
     updatePHVisor() {
         this.countUpdate = 0;
-        var variacao = 0.2;
-        var d = (Math.random() * variacao);
-        this.container.list[5].text = (7 + d - variacao / 2).toFixed(3);
+        this.container.list[5].text = QuimicaFormulas.calcularVariacao(7, 0.2);;
     }
-
+    
     updateEletrodo() {
         var image3 = this.container.list[0];
         var eletrodo = this.container.list[3];

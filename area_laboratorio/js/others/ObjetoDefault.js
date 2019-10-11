@@ -50,7 +50,7 @@ class ObjetoDefault {
 
     pointerover() {
         var objeto_s = this;
-        objeto_s.setTint(0x44ff44);
+        objeto_s.setTint(0xeada11);
     }
 
     pointerout() {
@@ -70,7 +70,6 @@ class ObjetoDefault {
 
     drop(pointer, dropZone) {
         console.error('drop', 'ObjetoDefault');
-
         var objeto_s = this;
         this.click = false;
         this.drop = true;
@@ -83,8 +82,7 @@ class ObjetoDefault {
             objeto_s.x = dropZone.refClass.x;
             objeto_s.y = dropZone.refClass.y;
         } else { //se tipo outro objeto
-            //dropZone.setTint(0x000000);
-            //objeto_s.setTint(0x00ff00);
+            dropZone.clearTint();
             objeto_s.x = objeto_s.input.dragStartX;
             objeto_s.y = objeto_s.input.dragStartY;
         }
@@ -132,7 +130,7 @@ class ObjetoDefault {
         console.log('drag', this.x, this.y);
         */
     }
-
+    
     /** quando somento clica no objeto */
     clickObject(objeto){
         console.log('clickObject', 'ObjetoDefault');
@@ -166,18 +164,17 @@ class ObjetoDefault {
         if (dropZone.type == 'Zone') {
             dropZone.refClass.hover();
         } else {
-            dropZone.setTint(0x000000);
+            dropZone.setTint(0x7b7878);
         }
     }
-    dragstart(pointer, gameObject) {
-        //jogar pra frente
-        GAME_SCENE.children.bringToTop(gameObject);
 
-        console.log('dragstart', 'ObjetoDefault');
-        console.log(this, 'ObjetoDefault');
+    dragstart(pointer) {
+        //jogar pra frente
+        console.log('dragstart', this);
+        GAME_SCENE.children.bringToTop(this);
         this.click = true;
         this.drop = false;
-        this.setTint(0xff0000);
+        this.setTint(0x45b1e4);
         for (var i = 0; i < OBJETOS_LAB.length; i++) {
             OBJETOS_LAB[i].gameobject.input.dropZone = true;
         }
