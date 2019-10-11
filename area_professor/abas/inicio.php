@@ -22,11 +22,14 @@
         <br>
         <div class="collapse" id="adicionarDisciplina">
           <div class="card card-body">
-            <div class="form-row">
-                <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><b>Nome da disciplina:</b></label>
+            <div class="col-md-12">
                 <form id="formulario" method="post" action="<?php echo URL_SITE; ?>area_professor/index.php?aba=inicio" enctype="multipart/form-data">
-                  <input autofocus id="nome_disciplina" name="nome_disciplina" class="input-disciplina" type="text" placeholder="Digite o nome" required>
+                  <div class="form-group">
+                    <label><b>Nome da disciplina:</b></label>
+                    <input autofocus id="nome_disciplina" name="nome_disciplina" class="form-control" type="text" placeholder="Digite o nome" required>
+                  </div>
                   <input type="submit" class="btn btn-primary salvarDisciplina" value="Salvar">
+
                   <input type="hidden" id="acao" name="acao" value="salvarDisciplina">
                   <input type="hidden" id="id_professor" name="id_professor" value="<?php echo $_SESSION['id_usuario'] ?>">
                 </form>
@@ -37,6 +40,7 @@
         <table id="tabela" class="table table-striped table-bordered table-data" style="width:100%">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Nome da disciplina</th>
               <th>Ações</th>
             </tr>
@@ -45,11 +49,11 @@
             <?php
               // Lista as praticas disponiveis para o aluno
               $dados = $objDisciplina->getDisciplinasProfessor($_SESSION['id_usuario']);
-
               if (!empty($dados)) {
                 foreach ($dados as $row) {
             ?>
                 <tr>
+                  <td><?php echo $row['id_disciplina'] ?></td>
                   <td><?php echo $row['nome'] ?></td>
                   <td>
                     <a class="btn btn-success" href="<?php echo URL_SITE; ?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $row['id_disciplina'];?>"><i class="far fa-eye"></i> Acessar</a>
