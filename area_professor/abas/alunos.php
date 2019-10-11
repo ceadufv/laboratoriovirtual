@@ -18,7 +18,6 @@
   <div class="row">
     <div class="col-md-12">
       <h3><span>Meus Alunos</span></h3>
-
       <div class="aluno">
         <button class="btn azul" type=button data-toggle="collapse" href="#adicionarAluno"><i class="fas fa-plus-circle"></i> Cadastrar novo aluno</button>
         <br>
