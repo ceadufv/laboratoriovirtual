@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     $(".reset_senha").click(function(dados) {
         var dados = new Array();
-        dados.push({'value': $('#reset').attr('cod-usuario'), 'name': 'cod_usuario'});
+        dados.push({'value': $(this).attr('cod-usuario'), 'name': 'cod_usuario'});
         confirmarResetSenhaAluno(dados);
     });
 

@@ -35,7 +35,7 @@ $objUsuario = new Usuario();
                 <td><?php echo $row['nome'] ?></td>
                 <td><?php echo $row['email'] ?></td>
                 <td>
-                  <button id="reset" class='btn btn-danger reset_senha' nome-usuario='<?php echo $row["nome"] ?>' cod-usuario='<?php echo $row["id_usuario"] ?>'>Resetar</button>
+                  <button class='btn btn-danger reset_senha' nome-usuario='<?php echo $row["nome"] ?>' cod-usuario='<?php echo $row["id_usuario"] ?>'>Resetar</button>
                 </td>
               </tr>
           <?php

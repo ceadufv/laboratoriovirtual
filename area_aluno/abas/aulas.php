@@ -29,8 +29,8 @@
                             <tr>
                                 <td><?php echo $row['nome_pratica']?></td>
                                 <td><?php echo $row['resumo']?></td>
-                                <td><button class="btn btn-primary"><i class="fa fa-check-circle"></i> Realizar prática</button></td>
-                                <td><button class="btn btn-success treino"><i class="fa fa-check-circle"></i> Treinar</button></td>
+                                <td><a class="btn btn-success" href="<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica['id_modelo_pratica'] ?>&tipo_acesso=salvar"><i class="far fa-eye"></i> Realizar Prática</a></td>
+                                <td><a class="btn btn-primary" href="<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica['id_modelo_pratica'] ?>&tipo_acesso=treino"><i class="far fa-eye"></i> Treinar</a></td>
                             </tr>
                             <?php 
                             }
