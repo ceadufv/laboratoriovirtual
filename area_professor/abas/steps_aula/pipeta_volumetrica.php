@@ -56,11 +56,12 @@
                         </tr>
                         <?php
                         $objPipetaVolumetrica = new PipetaVolumetrica();
-                        if (empty($pratica_sel['dados']['pipetas']))
+                        if (empty($pratica_sel['dados']['pipeta_volumetrica']))
                             $pipetas = $objBalaoVolumetrico->getDefaultItens();
                         else
-                            $pipetas = $pratica_sel['dados']['pipetas'];
+                            $pipetas = $pratica_sel['dados']['pipeta_volumetrica'];
 
+                        
                         foreach ($pipetas as $key => $pipeta) {
                             $disabled = ($pipeta['disabled'] == 'S') ? 'disabled' : '';
                             ?>
@@ -74,7 +75,7 @@
                                 </td>
                                 <td><span><?php echo $pipeta['tamanho']; ?> mL</span></td>
                                 <td>
-                                    <input <?php echo $disabled; ?> name="pipeta_qtd_maxima[]" type="number" min="0" max="10" value="0">
+                                    <input <?php echo $disabled; ?> name="pipeta_qtd_maxima[]" type="number" min="0" max="10" value="<?php echo $pipeta['qtd_maxima']; ?>">
                                 </td>
                                 <td>
                                     <input <?php echo $disabled; ?> name="pipeta_faixa_aceitavel[]" type="number" min="90" max="110" value="110">
