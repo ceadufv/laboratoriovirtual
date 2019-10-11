@@ -397,7 +397,8 @@ class LabJogo
             return false;
         }
     }
-*/
+
+
     function codificarSenha($senha)
     {
         return sha1($senha);
@@ -475,7 +476,7 @@ class LabJogo
             return false;
         }
     }
-/*
+
     function getRegistros($filtros)
     {
         $sql = $this->_dbh->prepare('SELECT nome_pratica, u.nome, data_acao, descricao FROM acao_pratica, usuarios_cadastrados AS u, modelo_pratica 

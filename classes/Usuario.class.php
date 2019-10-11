@@ -32,6 +32,22 @@ class Usuario {
         return $result;
     }
 
+
+    //Pega os alunos cadastrados no banco de dados
+    public function getAlunoEspecifico($id_usuario)
+    {
+        $db = Conexao::getInstance();
+        $sql = "SELECT *
+                FROM usuarios_cadastrados 
+                WHERE id_usuario = :id_usuario";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(":id_usuario", $id_usuario);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
     function insertAluno($dados)
     {
         $db = Conexao::getInstance();
@@ -76,5 +92,29 @@ class Usuario {
         $stmt->bindValue(":senha", $senha);
         $stmt->bindValue(":id_usuario", $id_usuario);
         $stmt->execute();
+    }
+
+    function atualizarDadosPerfil($dados) {
+
+        $db = Conexao::getInstance();
+
+        $sql = "UPDATE usuarios_cadastrados
+                SET 
+                nome = :nome,
+                email = :email,
+                senha = :senha,
+                id_tipo_usuario = :id_tipo_usuario,
+                usuario = :usuario
+                WHERE id_usuario = :id_usuario";
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(":nome", $nome);
+        $stmt->bindValue(":email", $email);
+        $stmt->bindValue(":senha", $senha);
+        $stmt->bindValue(":id_tipo_usuario", $id_tipo_usuario);
+        $stmt->bindValue(":usuario", $usuario);
+        if($stmt->execute())
+            return true;
+
     }
 }

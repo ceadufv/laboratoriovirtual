@@ -1,54 +1,42 @@
+<?php
+  $objUsuario = new Usuario();
+
+  $dados = $objUsuario->getAlunoEspecifico($_SESSION['id_usuario']);
+
+  if($_POST["acao"] == 'salvar') {
+
+  }
+
+
+?>
 <script type="text/javascript" src="js/abas/perfil.js"></script>
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 meuperfil">
-      <h3>Meu perfil</h3>
-      <h4>Aqui é possível atualizar os dados da sua conta</h4>
-      <div id="dados" class="dados">
-        <form>
-          <div class="form-row">
-            <div class="col-md-4 mb-3">
-              <label for="validationDefault01">Nome</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="far fa-user"></i></span>
-                </div>
-                <input id="nome_novo" class="form-control" type="text" value="<?php echo ($_SESSION['nome']); ?>">
-              </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-md-4 mb-3">
-              <label for="validationDefaultUsername">Senha</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-key"></i></span>
-                </div>
-                <input id="senha1" class="form-control" type="password" placeholder="Digite aqui..." required>
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="validationDefaultUsername">Confirme sua senha</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-key"></i></span>
-                </div>
-                <input id="senha2" class="form-control" type="password" placeholder="Digite aqui..." required>
-              </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-md-4 mb-3">
-              <label for="validationDefaultUsername">E-mail</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="far fa-envelope"></i></span>
-                </div>
-                <input required id="email_novo" class="form-control" type="email" value="<?php echo $_SESSION['email']; ?>">
-              </div>
-            </div>
-          </div>
-          <button id="salvar" type="button" class="btn btn-primary atualizar">Salvar</button>
-        </form>
+  <form>
+    <div class="row">
+      <div class="col">  
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" id="nome" placeholder="Digite seu nome...">
+        </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col">    
+        <div class="form-control">
+            <label for="senha">Senha</label>
+            <input type="password" class="form-control" id="senha" placeholder="Digite sua senha...">
+
+            <label for="senha2">Digite novamente a senha</label>
+            <input type="password" class="form-control" id="senha2" placeholder="Digite novamente a mesma senha...">
+        </div>    
+      </div>
+    </div>
+    <div class="col">
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail...">
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
   </div>
 </div>
