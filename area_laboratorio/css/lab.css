@@ -26,7 +26,7 @@
 #armario .tab-content .caixas .opcao {
     padding: 1px;
     width: 180px;
-    height: 280px;
+    height: 250px;
     margin: 0;
     background: #ccc;
     margin: 0 10px 10px 0;
@@ -58,7 +58,7 @@
 
 #armario .tab-content .caixas .opcao-disabled {
     width: 180px;
-    height: 280px;
+    height: 250px;
     background: #f9f6f6;
     margin: 0 10px 10px 0;
     padding: 10px;
@@ -158,5 +158,12 @@
     width: 80px;
 }
 
+#armario .number-spinner{
+    margin:  20px 0px;
+}
+#armario .caixas small{
+    display: block;
+    margin-top: 10px;
+}
 /* --FIM ARMARIO ---- */
 /* ---------------- */
