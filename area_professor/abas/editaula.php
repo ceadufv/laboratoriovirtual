@@ -87,7 +87,6 @@ if (!empty($_GET['id_pratica'])) {
           <?php } else { ?>
             <span>Atualizar prática</span>
           <?php } ?>
-
           <div class="form">
             <a href='<?php echo URL_SITE; ?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>' class="btn btn-primary"><i class="fas fa-angle-left"></i> VOLTAR</a>
             <?php if ($pratica_sel['id_modelo_pratica']) { ?>
