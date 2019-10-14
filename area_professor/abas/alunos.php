@@ -22,13 +22,13 @@
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>Usuário</th>
+                  <th>Login do Usuário</th>
                   <th>E-mail</th>
                 </tr>
               </thead>
               <tbody>
                 <td><input id="nome_aluno" name="nome_aluno" class="form-control input-disciplina" type="text" placeholder="Insira o nome" focus required></td>
-                <td><input id="usuario_aluno" name="usuario_aluno" class="form-control input-disciplina" type="text" placeholder="Insira o nome de usuário" required></td>
+                <td><input id="usuario_aluno" name="usuario_aluno" class="form-control input-disciplina valida_login" type="text" placeholder="Insira o login..." required maxlength="15"></td>
                 <td><input type="email" id="email_aluno" name="email_aluno" class="form-control input-disciplina" type="email" placeholder="Digite o email" required></td>
               </tbody>
             </table>

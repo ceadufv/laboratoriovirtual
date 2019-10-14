@@ -1,4 +1,13 @@
 $(document).ready(function () {
+    $('.valida_login').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
     $(".reset_senha").click(function (dados) {
         var dados = new Array();
         dados.push({ 'value': $(this).attr('cod-usuario'), 'name': 'cod_usuario' });
@@ -8,6 +17,7 @@ $(document).ready(function () {
             callback: function (result) {
                 if (!result)
                     return;
+
                 $.ajax({
                     type: "POST",
                     url: URL_SITE + 'area_professor/index-app.php?app=usuario&file=reset-senha-aluno',
@@ -77,8 +87,11 @@ $(document).ready(function () {
         postfixButtons: ['colvisRestore']
     });
 
-    $('.table-data')
-        .removeClass('display')
-        .addClass('table table-striped table-bordered');
+    $('.table-data').removeClass('display').addClass('table table-striped table-bordered');
 
+    // fim data table
+    function validaLogin(login) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;$
+        return re.test(String(login).toLowerCase());
+    }
 });

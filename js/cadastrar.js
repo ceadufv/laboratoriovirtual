@@ -1,3 +1,16 @@
+$(document).ready(function () {
+
+  $('.valida_login').on('keypress', function (event) {
+    var regex = new RegExp("^[a-zA-Z0-9]+$");
+    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+        event.preventDefault();
+        return false;
+    }
+  });
+});
+
+
 function cadastrar(url, f) {
   //Remove texto informativo
   $('.log-cadastrar').remove();
@@ -11,7 +24,7 @@ function cadastrar(url, f) {
 
   var emailValido = validarEmail(email);
   console.log(emailValido)
-
+  
   // Controle de erros
   if (nome === '' || email === '' || usuario === '' || senha === '' || tipo === '') {
     $('#logCadastrar').append('<p class="log-cadastrar">Informações insuficientes, por favor revise</p>');

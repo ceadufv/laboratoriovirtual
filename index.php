@@ -66,7 +66,7 @@ include "lab-config.php";
 
               <div class="loginsenha">
                 <!-- <a href="#">Esqueci o login/senha </a> -->
-                <a href="javascript:void();" class="botao-cadastrar" onclick="abrirCadastro()">Quero me cadastrar</a>
+                <button type="button" class="btn btn-default " onclick="abrirCadastro()">Quero me cadastrar</button>
               </div>
 
               <div class="text-center texto-icone-p margem-superior-p1" id="logCadastrar"></div>
@@ -104,7 +104,7 @@ include "lab-config.php";
                 <div class="input-group-text texto-icone icone-formulario-secundario"><i class="fas fa-user-tag"></i>
                 </div>
               </div>
-              <input type="text" class="form-control texto-icone" placeholder="NOME DE USUÁRIO" id="usuarioCadastro">
+              <input type="text" class="form-control texto-icone valida_login" placeholder="NOME DE USUÁRIO" id="usuarioCadastro" maxlength="16">
             </div>
             <div class="input-group input-group-sm margem-inferior-p1">
               <div class="input-group-prepend icone-formulario-principal">

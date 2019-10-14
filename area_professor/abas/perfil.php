@@ -33,7 +33,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="far fa-user"></i></span>
           </div>      
-          <input type="text" class="form-control" name="usuario" placeholder="Digite seu nome de usuário..." value="<?php echo $dados["usuario"]?>" required>
+          <input type="text" class="form-control valida_login" name="usuario" placeholder="Digite seu nome de usuário..." value="<?php echo $dados["usuario"]?>" maxlength="16" required>
         </div>
       </div>      
       <div class="form-group col-md-4">
