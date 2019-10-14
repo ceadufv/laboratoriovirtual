@@ -91,7 +91,7 @@ if (!empty($_GET['id_pratica'])) {
           <div class="form">
             <a href='<?php echo URL_SITE; ?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>' class="btn btn-primary"><i class="fas fa-angle-left"></i> VOLTAR</a>
             <?php if ($pratica_sel['id_modelo_pratica']) { ?>
-              <a target="_blank" href='<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica_sel['id_modelo_pratica']; ?>&tipo_acesso=treino=' class="btn btn-success"><i class="far fas fa-eye"></i> VISUALIZAR</a>
+              <a target="_blank" href='<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica_sel['id_modelo_pratica']; ?>&tipo_acesso=treino' class="btn btn-success"><i class="far fas fa-eye"></i> VISUALIZAR</a>
             <?php } ?>
           </div>
         </h3>

@@ -1,10 +1,9 @@
 class ArmarioTabs {
     static construirItem(tab, item) {
-        console.log('ArmarioTabs.construirItem', 'ArmarioTabs');
-        console.log(item, 'ArmarioTabs');
+        console.log('ArmarioTabs.construirItem', item);
 
         if (item.qtd_maxima == undefined)
-            item.qtd_maxima = 2;
+            item.qtd_maxima = 1;
 
         var dados_json = JSON.stringify(item);
 
