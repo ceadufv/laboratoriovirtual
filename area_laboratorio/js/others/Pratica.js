@@ -4,14 +4,13 @@ class Pratica {
         $.ajax({ url: URL_SITE + 'area_laboratorio/index-app.php?app=jogo&file=get-data-pratica-jogo&id_pratica=' + ID_PRATICA }).done(function (data) {
             PRATICA_DATA = data;
             Pratica.setTitlePage();
-            ArmarioTabs.construirModal(data);
+            ArmarioTabs.construirTabs(data);
             Pratica.setFilesAlunoRoteiro(data);
             Laboratorio.init();
 
-            PracticeRegistration.register([{'desc': 'Carregou a pratica!!!', 'data':null}]);
+            PracticeRegistration.register([{'desc': 'Carregou a pratica', 'data':null}]);
         });
-
-
+        
         //funçoes boostrap modal, eventos
         $('#armario').on('hide.bs.modal', function (e) {Laboratorio.resume();});
         $('#interacao-1').on('hide.bs.modal', function (e) {Laboratorio.resume();});

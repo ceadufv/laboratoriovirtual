@@ -47,7 +47,7 @@ include_once('../lab-config.php');
         <button id="info" type="button" style="background-color: grey" data-container="body" data-placement="bottom">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
         </button>
-        <button class="fechar" onclick="Pratica.sairLaboratorio(<?php echo $_SESSION['tipo_usuario'] ?>)"><i class="fa fa-sign-out" aria-hidden="true"></i>VOLTAR</button>
+        <button class="fechar" onclick="Pratica.sairLaboratorio(<?php echo $_SESSION['tipo_usuario'] ?>)">SAIR <i class="fa fa-sign-out" aria-hidden="true"></i></button>
       </div>
     </nav>
   </header>
@@ -64,6 +64,9 @@ include_once('../lab-config.php');
   <!-- VARS globais -->
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/others/VarsGlobal.js"></script>
 
+  <!-- DEFT-->
+  <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/default/armario-default.js"></script>
+  
   <!--DROP ZONES -->
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/others/DropZone.js"></script>
   <script type="text/javascript" src="<?php echo URL_SITE; ?>area_laboratorio/js/others/DropZones.js"></script>

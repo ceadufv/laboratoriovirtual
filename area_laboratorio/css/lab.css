@@ -1,30 +1,169 @@
-/*.on {
-    background-color: #0f0;
-}
-
-.on::after {
-    content: "ON";
-}
-
-.off {
-    background-color: #f00;
-}
-
-.off::after {
-    content: "OFF";
-}
-
-label:hover {
-    text-shadow: #ea1f74 0px 0px 5px;
-    border: 1px solid #000;
-}
-*/
-
-.objeto-selecionado{
+.objeto-selecionado {
     background: red !important;
 }
-#area_jogo canvas{
-    width: 100%; 
+
+#area_jogo canvas {
+    width: 100%;
     height: 100%;
     z-index: -1;
 }
+
+
+
+/* CSS ARMARIO */
+#armario .modal-lg {
+    max-width: 1300px;
+}
+
+#armario .tab-content .caixas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    align-items: flex-start;
+}
+
+#armario .tab-content .caixas .opcao {
+    padding: 1px;
+    width: 180px;
+    height: 250px;
+    margin: 0;
+    background: #ccc;
+    margin: 0 10px 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+
+#armario .tab-content .caixas .botao-elmentos {
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#armario .tab-content .caixas .s-quantidade {
+    text-align: center;
+    display: block;
+}
+
+#armario .tab-content .caixas .s-quantidade input {
+    text-align: center;
+}
+
+#armario .tab-content .caixas .opcao:hover {
+    background-color: #e0e0e0;
+    border: 1px dashed #000;
+}
+
+#armario .tab-content .caixas .opcao-disabled {
+    width: 180px;
+    height: 250px;
+    background: #f9f6f6;
+    margin: 0 10px 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 0.8;
+    border: 1px dashed transparent;
+}
+
+#armario .tab-content .caixas .opcao-disabled:hover {
+    opacity: 0.7;
+    background: #f9f6f6;
+    border-color: #ccc;
+    border: 1px dashed #ccc;
+}
+
+#armario .tab-content .caixas .opcao.objetoselecionado {
+    -webkit-box-shadow: inset 0px 0px 8px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0px 0px 8px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px 0px 8px 3px rgba(0, 0, 0, 0.1);
+}
+
+#armario .tab-content .caixas .opcao img {
+    height: 105px
+}
+
+#armario .tab-content .caixas .opcao .informacaoselecionados {
+    margin-top: 30px;
+}
+
+#armario .tab-content .caixas .opcao .numeroinput {
+    float: right;
+    padding: 5px;
+    width: 25%;
+    height: 33px;
+}
+
+#armario .tab-content .caixas .opcao .botao {
+    margin: 10px 0 0 0;
+}
+
+#armario .classesdebotoes {
+    display: grid;
+    position: relative;
+    margin-top: -450px;
+}
+
+#armario .botaocircular {
+    width: 36px;
+    height: 31px;
+    margin-top: 90px;
+    border-radius: 20px;
+    outline: none;
+}
+
+#armario .botaocircular2 {
+    margin-top: 10px;
+    width: 36px;
+    height: 31px;
+    border-radius: 20px;
+    outline: none;
+}
+
+#armario .rotulo {
+    background: #f1f1f1;
+    position: relative;
+    margin-top: 48px;
+    padding: 20px 15px;
+    text-align: center;
+}
+
+#armario .rotulo:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 16px 16px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .1) #fff;
+}
+
+#armario .rotulo h4 {
+    font-size: 16px;
+}
+
+#armario .rotulo p {
+    font-size: 14px;
+    text-align: center;
+    margin: 0px;
+    font-weight: bold;
+}
+
+#armario .rotulo button {
+    width: 160px;
+}
+
+#armario .botoesfinais button {
+    width: 80px;
+}
+
+#armario .number-spinner{
+    margin:  20px 0px;
+}
+#armario .caixas small{
+    display: block;
+    margin-top: 10px;
+}
+/* --FIM ARMARIO ---- */
+/* ---------------- */

@@ -22,7 +22,7 @@ include(URL_SYSTEM.'area_professor/header.php');
           <button class="opcoes tab-alunos <?php echo ($aba_s == 'alunos' ? 'ativo' : '')?>" onclick="window.location = 'index.php?aba=alunos'">Alunos</button>
           <button class="opcoes tab-perfil <?php echo ($aba_s == 'perfil' ? 'ativo' : '')?>" onclick="window.location = 'index.php?aba=perfil'">Meu perfil</button>
           <button class="opcoes tab-sobre <?php echo ($aba_s == 'sobre' ? 'ativo' : '')?>" onclick="window.location = 'index.php?aba=sobre'">Sobre o projeto</button>
-          <button class="opcoes tab-sair" onclick="logoff()">Sair</button>
+          <button class="opcoes tab-sair" onclick="window.location = URL_SITE+'logout.php'">Sair</button>
         </div>
       </section>
       

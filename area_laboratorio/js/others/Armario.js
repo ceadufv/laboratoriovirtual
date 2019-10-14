@@ -1,19 +1,33 @@
 class Armario {
+    static limparSelecaoArmario() {
+        $('#armario .number-input-objeto').each(function () {
+            $(this).val('0');
+        });
+        Armario.updateInterface();
+        return true;
+    }
+
+    static updateInterface() {
+        // Atualiza na tela o numero de objetos selecionados
+        Armario.armarioAtualizarSelecionados();
+
+        //atualiza quantidade de lugares disponiveis
+        Armario.updateArmarioLugaresDisponiveis();
+    }
 
     static updateArmarioLugaresDisponiveis() {
-        var selecionados = Armario.getItensSelecionadosArmario();
+        var counter = Armario.calcularQuantidadeSelecionada();
         var drops = DropZones.getZonesLivres();
-        var qtd = drops.length - selecionados.length;
+        var qtd = drops.length - counter;
         var txt = 'lugares restantes na bancada';
-        if(qtd < 1){
+        if (qtd < 1) {
             txt = 'lugar restante na bancada';
         }
-        $('.armario-disponiveis').text('('+qtd+' '+txt+')');
+        $('.armario-disponiveis').text('(' + qtd + ' ' + txt + ')');
     }
 
     static armarioAtualizarSelecionados() {
-        var selecionados = Armario.getItensSelecionadosArmario();
-        var counter = selecionados.length;
+        var counter = Armario.calcularQuantidadeSelecionada();
         // Atualiza a indicacao de objetos selecionados
         var txt = counter + ' ';
         if (counter == 1)
@@ -23,27 +37,13 @@ class Armario {
         $('.armario-contador').text(txt);
     }
 
-    static selecionarItem(element) {
-        if ($(element).hasClass('objeto-selecionado')) {
-            $(element).removeClass('objeto-selecionado');
-        } else {
-            $(element).addClass('objeto-selecionado');
+    static calcularQuantidadeSelecionada() {
+        var selecionados = Armario.getItensSelecionadosArmario();
+        var counter = 0;
+        for (let i = 0; i < selecionados.length; i++) {
+            counter += parseInt(selecionados[i].sele_qtd);
         }
-
-        // Atualiza na tela o numero de objetos selecionados
-        Armario.armarioAtualizarSelecionados();
-
-        //atualiza quantidade de lugares disponiveis
-        Armario.updateArmarioLugaresDisponiveis();
-    }
-
-    static limparSelecaoArmario() {
-        $('button[data-id]').each(function () {
-            $(this).removeClass('objeto-selecionado');
-        });
-
-        $('.armario-lotado').hide();
-        $('.armario-contador').text('0 selecionados');
+        return counter;
     }
 
     static abrirArmario(a) {
@@ -71,6 +71,11 @@ class Armario {
         $('#armario').modal('hide');
     }
 
+    static updateMaxItem(ele){
+        //setando o input para maximo que se pode pegar do item
+        $(ele).attr('max', $(ele).attr('max') - 1);
+    }
+
     // Adiciona a bancada os objetos selecionados
     static addItensSelecionadosScene() {
         console.log('Armario.addScene', 'Armario');
@@ -79,58 +84,66 @@ class Armario {
         for (var i = 0; i < selecionados.length; i++) {
             var item_class = null;
             var item_atual = selecionados[i];
-            var arg = DropZones.getOneDropZoneLivre();
-            if (!arg) {
-                alert('Não há espaço disponível na bancada')
-                return;
-            }
 
-            item_atual.x = arg.x;
-            item_atual.y = arg.y;
+            for (var j = 0; j < item_atual.sele_qtd; j++) {
 
-            switch (item_atual.conceito) {
-                case 'solucao':
-                    item_class = new Solucao(item_atual);
-                    break;
+                var arg = DropZones.getOneDropZoneLivre();
+                if (!arg) {
+                    alert('Não há espaço disponível na bancada')
+                    return;
+                }
+                
+                //update max de item
+                this.updateMaxItem(item_atual.this_ele);
+                delete item_atual.this_ele;
+                
+                item_atual.x = arg.x;
+                item_atual.y = arg.y;
 
-                case 'balao':
-                    item_class = new Balao(item_atual);
-                    break;
+                switch (item_atual.conceito) {
+                    case 'solucao':
+                        item_class = new Solucao(item_atual);
+                        break;
 
-                case 'micropipeta':
-                    item_class = new Micropipeta(item_atual);
-                    break;
+                    case 'balao':
+                        item_class = new Balao(item_atual);
+                        break;
 
-                case 'bequer':
-                    item_class = new Bequer(item_atual);
-                    break;
+                    case 'micropipeta':
+                        item_class = new Micropipeta(item_atual);
+                        break;
 
-                case 'pipeta':
-                    item_class = new Pipeta(item_atual);
-                    break;
+                    case 'bequer':
+                        item_class = new Bequer(item_atual);
+                        break;
 
-                case 'cubeta':
-                    item_class = new Cubeta(item_atual);
-                    break;
+                    case 'pipeta':
+                        item_class = new Pipeta(item_atual);
+                        break;
 
-                case 'pipetador':
-                    item_class = new Pipetador(item_atual);
-                    break;
+                    case 'cubeta':
+                        item_class = new Cubeta(item_atual);
+                        break;
 
-                case 'micropipeta':
-                    item_class = new Micropipeta(item_atual);
-                    break;
+                    case 'pipetador':
+                        item_class = new Pipetador(item_atual);
+                        break;
 
-                default:
-                    alert('Objeto Com Erro ou não encontrado, ' + item_atual.conceito);
-                    item_class = null;
-                    break;
+                    case 'micropipeta':
+                        item_class = new Micropipeta(item_atual);
+                        break;
 
-            }
+                    default:
+                        alert('Objeto Com Erro ou não encontrado, ' + item_atual.conceito);
+                        item_class = null;
+                        break;
 
-            if (item_class) {
-                console.warn(item_class, item_atual);
-                SceneObjectsSLab.add(item_class);
+                }
+
+                if (item_class) {
+                    console.warn(item_class, item_atual);
+                    SceneObjectsSLab.add(item_class);
+                }
             }
         }
         $('#armario').modal('hide');
@@ -138,13 +151,20 @@ class Armario {
 
     /** pega os itens selecionados no armario */
     static getItensSelecionadosArmario() {
+        console.log('getItensSelecionadosArmario');
         var result = [];
-        $('#armario .objeto-selecionado').each(function () {
-            var dados = JSON.parse($(this).attr('dados_json'));
-            dados.id = $(this).attr('data-id');
-            dados.conceito = $(this).attr('data-type');
-            result.push(dados);
+        $('#armario .number-input-objeto').each(function () {
+            var sele_qtd = $(this).val();
+            if (sele_qtd > 0) {
+                var dados = JSON.parse($(this).attr('dados_json'));
+                dados.id = $(this).attr('data-id');
+                dados.conceito = $(this).attr('data-type');
+                dados.sele_qtd = sele_qtd;
+                dados.this_ele = this,
+                    result.push(dados);
+            }
         });
+        console.log(result);
         return result;
     }
 }

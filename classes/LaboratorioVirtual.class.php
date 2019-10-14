@@ -77,39 +77,31 @@ class LaboratorioVirtual{
      * formata os dados para a pratica
      */
     private function formatArmarioVidrarias($result){
-        
-        //baloes
-        $result['data']['armario_vidrarias']['balao'] = $result['data']['baloes'];
+
+        $result['armario']['baloes'] = $result['data']['baloes'];
         unset($result['data']['baloes']);
 
-        //bequer
-        $result['data']['armario_vidrarias']['bequer'] = $result['data']['bequers'];
+        $result['armario']['bequers'] = $result['data']['bequers'];
         unset($result['data']['bequers']);
-       
-        //pipeta_volumetrica
-        $result['data']['armario_vidrarias']['pipeta'] = $result['data']['pipeta_volumetrica'];
-        unset($result['data']['pipeta_volumetrica']);
-        
-        //cubetas
-        $result['data']['armario_vidrarias']['cubeta'] = $result['data']['cubetas'];
+
+        $result['armario']['cubetas'] = $result['data']['cubetas'];
         unset($result['data']['cubetas']);
-        
-        //pipetadores
-        $result['data']['armario_vidrarias']['pipetador'] = $result['data']['pipetadores'];
-        unset($result['data']['pipetadores']);
-        
-        //micro pipeta
-        $result['data']['armario_vidrarias']['micropipeta'] = $result['data']['micropipetas'];
+
+        $result['armario']['micropipetas'] = $result['data']['micropipetas'];
         unset($result['data']['micropipetas']);
+
+        $result['armario']['pipeta_volumetrica'] = $result['data']['pipeta_volumetrica'];
+        unset($result['data']['pipeta_volumetrica']);
+
+        $result['armario']['pipetadores'] = $result['data']['pipetadores'];
+        unset($result['data']['pipetadores']);
 
         return $result;
     }
 
     private function formatSolucoes($result){
-
-        $solucoes = array();
         $solucoes_armario = array();
-        foreach ($result['solucoes'] as $solucao) {
+        foreach ($result['armario']['solucoes'] as $solucao) {
             $solucao_t = array(
                 'composicao'=> json_decode($solucao['composicoes'], true),
                 'descricao'=> $solucao['desc_moprsi'],
@@ -117,19 +109,13 @@ class LaboratorioVirtual{
                 'id'=>$solucao['cod_moprsi'],
                 'intervalo'=> 3,
                 'nome'=>$solucao['nome_moprsi'],
-                'tecnico'=>$solucao['resp_moprsi']
+                'tecnico'=>$solucao['resp_moprsi'],
+                'in_armario'=>$solucao['armario_moprsi']
             );
-
-            if($solucao['armario_moprsi'] == 'S'){
-                $solucoes_armario[] = $solucao_t;
-            }else{
-                $solucoes[] = $solucao_t;
-            }
+            $solucoes_armario[] = $solucao_t;
         }
-        $result['data']['armario_solucoes'] = $solucoes_armario;
-        $result['data']['solucoes'] = $solucoes;
+        $result['armario']['solucoes'] = $solucoes_armario;
         return $result;
     }
-
 }
 ?>
