@@ -5,6 +5,7 @@ $args = array(
     'dados_mopr_u_us'=>$_POST['data'],
     'fk_id_modelo_pratica'=>$_POST['id_pratica'],
     'des_mopr_u_us'=>$_POST['desc'],
+    'type_mopr_u_us'=>$_POST['type'],
 );
 
 if(empty($args['fk_id_usuario']) || empty($args['fk_id_modelo_pratica']) || empty($args['des_mopr_u_us'])){
@@ -13,6 +14,5 @@ if(empty($args['fk_id_usuario']) || empty($args['fk_id_modelo_pratica']) || empt
 }
 
 $objModeloPraticaUUsuario = new ModeloPraticaUUsuario();
-$objModeloPraticaUUsuario->salvarHistorico($args);
-echo json_encode(array('success'=>true,'msg'=>'OK'));
-?>
+$id = $objModeloPraticaUUsuario->salvarHistorico($args);
+echo json_encode(array('success'=>true,'msg'=>'OK', 'id'=>$id));

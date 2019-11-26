@@ -15,7 +15,7 @@ $objModeloPraticaArquivo = new ModeloPraticaArquivo();
 
 
 $resultado = $objModeloPratica->getJsonLabPratica($id_pratica);
-$resultado['cenario'] = $objCenario->getCenario($resultado['id_cenario'])['data'];
+$resultado['cenario'] = $objCenario->getCenario($resultado['fk_id_cenario'])['data'];
 $resultado['substancias'] = $objSubstancias->getAllSubstancias();
 $resultado['armario']['solucoes'] = $objModeloPraticaSolucao->getSolucoesPratica($id_pratica);
 

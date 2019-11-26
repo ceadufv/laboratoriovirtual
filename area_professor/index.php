@@ -38,4 +38,4 @@ include(URL_SYSTEM.'area_professor/header.php');
 <script>
 const URL_SITE = "<?php echo URL_SITE;?>";
 </script>
- <?php include('footer.php'); ?>
+<?php include('../views/footer.php'); ?>

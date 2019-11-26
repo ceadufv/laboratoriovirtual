@@ -19,7 +19,8 @@ class BalaoVolumetrico{
                 'tamanho'=> $valor,
                 'qtd_maxima'=> 0,
                 'volume_maximo'=> 80,
-                'desvio_padrao'=> 10
+                'desvio_padrao'=> 0,01,
+                'faixa_aceitavel'=> 90
             );
         }
         return $baloes;

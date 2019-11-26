@@ -6,12 +6,11 @@ class Cubeta extends ObjetoDefault {
 
     addObject(data) {
         var config = {
-            key: 'cubeta',
+            key: 'cubeta_vazia',
             x: data.x,
             y: data.y
         };
         this.addSpriteScene(config);
         this.insertDrag(this.gameobject);
-        console.log('addObject');
     }
 }

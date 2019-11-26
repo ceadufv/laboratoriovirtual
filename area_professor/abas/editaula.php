@@ -42,16 +42,21 @@ if ($_POST['acao'] == 'salvar-dados') {
   $new_data['micropipetas'] = $objMicroPipeta->getJsonForm($dados);
 
   //outros
-  $new_data['bancada'] = $dados['bancada_tipo'];
-  $new_data['disponivel_pratica'] = $dados['disponivel_pratica'];
-  $new_data['bancada_tipo'] = $dados['bancada_tipo'];
+
+  //frascos default
+  $new_data['frascos'] = (new Frasco())->getDefaultItens();
+  
+  //ponteira default
+  $new_data['ponteiras'] = (new Ponteira())->getDefaultItens();
 
   $args = array();
   $args['nome'] = $dados['nome_pratica'];
   $args['resumo'] = $dados['resumo_pratica'];
-  $args['id_cenario'] = $dados['bancada_tipo'];
+  $args['fk_id_cenario'] = $dados['fk_id_cenario'];
   $args['id_disciplina'] = $dados['id_disciplina'];
   $args['id_modelo_pratica'] = $dados['id_modelo_pratica'];
+  $args['disponivel_mopr'] = $dados['disponivel_mopr'];
+  $args['fk_cod_mopr_u_us'] = $dados['fk_cod_mopr_u_us'];
   $args['data'] = json_encode($new_data);
   $id = $objModeloPratica->salvarPratica($args);
   if (empty($id)) {
@@ -90,10 +95,17 @@ if (!empty($_GET['id_pratica'])) {
           <div class="form">
             <a href='<?php echo URL_SITE; ?>area_professor/index.php?aba=aulas&id_disciplina=<?php echo $_REQUEST['id_disciplina']; ?>' class="btn btn-primary"><i class="fas fa-angle-left"></i> VOLTAR</a>
             <?php if ($pratica_sel['id_modelo_pratica']) { ?>
-              <a target="_blank" href='<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica_sel['id_modelo_pratica']; ?>&tipo_acesso=treino' class="btn btn-success"><i class="far fas fa-eye"></i> VISUALIZAR</a>
+              <a href='<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica_sel['id_modelo_pratica']; ?>&tipo_acesso=treino' class="btn btn-success"><i class="far fas fa-eye"></i> VISUALIZAR</a>
             <?php } ?>
+            <button type="submit" class="btn btn-success salvar-pratica">Salvar</button>
           </div>
         </h3>
+
+
+        <div class="form-group">
+          <label>ID SAVE</label>
+          <input type="number" <?php echo (empty($_GET['id_pratica']) ? 'disabled' : '')?> name="fk_cod_mopr_u_us" value="<?php echo $pratica_sel['fk_cod_mopr_u_us']; ?>" class="form-control" placeholder="Digite aqui o id do save para carregar o laboratório montado para o aluno" />
+        </div>
 
         <div class="form-group">
           <label>TÍTULO</label>
@@ -105,6 +117,8 @@ if (!empty($_GET['id_pratica'])) {
           <textarea name="resumo_pratica" class="form-control" placeholder="Digite aqui..." required cols="12" rows="4"><?php echo $pratica_sel['resumo']; ?></textarea>
         </div>
 
+
+
         <input type="hidden" name="id_cenario" value="1" />
         <input type="hidden" name="id_modelo_pratica" value="<?php echo $_GET['id_pratica']; ?>" />
         <input type="hidden" name="id_disciplina" value="<?php echo $_GET['id_disciplina']; ?>" />
@@ -113,9 +127,7 @@ if (!empty($_GET['id_pratica'])) {
           <!-- solucoes --><?php include_once "abas/steps_aula/solucoes.php";  ?>
           <!-- /solucoes -->
           <!-- material --><?php include_once "abas/steps_aula/material_didatico.php"; ?>
-          <!-- /material -->
-          <!-- bancadas --><?php include_once "abas/steps_aula/bancadas.php"; ?>
-          <!-- /bancadas -->
+          <!-- cenarios --><?php include_once "abas/steps_aula/cenarios.php"; ?>
           <!-- bequer --><?php include_once "abas/steps_aula/bequers.php"; ?>
           <!-- /bequer -->
           <!-- balao_volumetrico --><?php include_once "abas/steps_aula/balao_volumetrico.php"; ?>
@@ -135,9 +147,9 @@ if (!empty($_GET['id_pratica'])) {
 
           <div class="form-group">
             <label>Deixar aula disponivel aos alunos</label>
-            <select name="disponivel_pratica" class="form-control">
-              <option value="true">SIM</option>
-              <option value="false" <?php echo ($pratica_sel['dados']['disponivel_pratica'] == 'false' ? 'selected' : ''); ?>>NÃO</option>
+            <select name="disponivel_mopr" class="form-control">
+              <option value="S">SIM</option>
+              <option value="N" <?php echo ($pratica_sel['disponivel_mopr'] == 'N' ? 'selected' : ''); ?>>NÃO</option>
             </select>
           </div>
 

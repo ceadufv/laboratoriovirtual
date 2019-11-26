@@ -78,13 +78,13 @@
                                     <span><?php echo ($balao['tamanho']); ?> mL</span>
                                 </td>
                                 <td>
-                                    <input <?php echo $disabled; ?> name="balao_qtd_maxima[]" type="number" min="0" max="10" value="0">
+                                    <input <?php echo $disabled; ?> name="balao_qtd_maxima[]" type="number" min="0" max="10" value="<?php echo $balao['qtd_maxima'];?>">
                                 </td>
                                 <td>
-                                    <input <?php echo $disabled; ?> name="balao_faixa_aceitavel[]" type="number" min="90" max="110" value="110">
+                                    <input <?php echo $disabled; ?> name="balao_faixa_aceitavel[]" type="number" min="0" max="110" step="0.1" value="<?php echo $balao['faixa_aceitavel']?>">
                                 </td>
                                 <td>
-                                    <input <?php echo $disabled; ?> name="balao_desvio_padrao[]" type="number" min="0.0" max="1.0" step="0.01" value="0.01">
+                                    <input <?php echo $disabled; ?> name="balao_desvio_padrao[]" type="number" min="0.0" max="1.0" step="0.01" value="<?php echo $balao['desvio_padrao']?>">
                                 </td>
                             </tr>
                         <?php

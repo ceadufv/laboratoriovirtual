@@ -8,7 +8,11 @@ class Conexao
         self::conectar();
         return self::$db;
     }
-    
+
+    public static function getError(){
+        return self::$error;
+    }
+
     private static function conectar()
     {
         if(self::$db)

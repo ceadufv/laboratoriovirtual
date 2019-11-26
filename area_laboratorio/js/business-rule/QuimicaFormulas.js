@@ -1,39 +1,44 @@
 class QuimicaFormulas {
-    
     /**
      * QuimicaFormulas.calcularVariacao(2, 1);
      * variacao que o numero pode ir para baixo ou para cima
      * neste exemplo podemos obter do numero 1 ao numero 3
      * @author wellerson
      */
-    static calcularVariacao(valor, variacao){
+    static calcularVariacao(valor, variacao) {
         var vf = (Math.random() * variacao) - variacao;
         return (valor + vf).toFixed(3);
     }
 
-    static cargaefetiva(pH, q0, somapKa, numpKa, j) {
-        var termo0 = 1
-        var alfai = 0;
-        for (var i = 1; i <= numpKa[j - 1]; i++) {
-            termo0 = termo0 + Math.pow(10, i * pH - somapKa[i - 1][j - 1]);
+    /** função de montecarlo
+     * @verificada dia 31/10/2019
+     * @param {number} sd é o desvio padrão
+     * @returns {number} numero aleatorio
+     * QuimicaFormulas.MC(1.5)
+     */
+    static MC(sd) {
+        var mc;
+        var i = 0;
+        while (i == 0) {
+            var random1 = 2 * Math.random() - 1;
+            var random2 = 2 * Math.random() - 1;
+            var Sum = random2 * random2 + random1 * random1;
+            if (Sum <= 1) {
+                var M2 = -2 * (Math.log(Sum) / Sum);
+                var M = Math.sqrt(M2);
+                mc = random1 * M * sd;
+                break;
+            }
         }
-        var alfa0 = 1 / termo0;
-        var qef1 = alfa0 * q0[j - 1];
-        for (var i = 1; i <= numpKa[j - 1]; i++) {
-            alfai = Math.pow(10, i * pH - somapKa[i - 1][j - 1]) / termo0;
-            qef1 = alfai * (q0[j - 1] - 1) + qef1;
-        }
-        return qef1;
-    }
-    
-    static wat(pH, pKw, Hfi) {
-        if (QuimicaFormulas.IsMissing(Hfi)) {
-            Hfi = 0
-        }
-        return Math.pow(10, (-pH + Hfi)) - Math.pow(10, pH - pKw + Hfi);
+        return mc;
     }
 
-    static IsMissing(arg) {
+    /**
+     * verifica se está vazio
+     * @param {*} arg  valor
+     * @returns {boolean}
+     */
+    static isMissing(arg) {
         if (!arg || arg == "" || arg == undefined || arg.length <= 0) {
             return true;
         } else {

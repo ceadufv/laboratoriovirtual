@@ -1,33 +1,50 @@
-class PracticeRegistration{
-    static register(data){
+class PracticeRegistration {
+
+    //PracticeRegistration.saveWorld('teste', 'SAVE');
+    static saveWorld(msg, type = "REGISTRO", elemt_resp=".resp-save-id") {
+        var data = [{
+            'desc': msg,
+            'data': OBJETOS_LAB,
+            'type': type,
+            'elemt_resp': elemt_resp
+        }];
+        this.register(data);
+    }
+    static register(data) {
         /*
         var data = [{
             'desc': 'Lavou a ...',
-            'data': [{}]
+            'data': [{}],
+            'type': ''
         }];
         */
-        console.log(data);
-        if(!data){
-            console.log('PracticeRegistration');
+        if (!data) {
             return;
         }
-
+        console.warn('PracticeRegistration', data);
 
         for (let i = 0; i < data.length; i++) {
-            const element = data[i];
-
+            const item = data[i];
+            
             var dados = [
-                {'name': 'desc', 'value': element.desc},
-                {'name': 'id_aluno', 'value': 1},
-                {'name': 'id_pratica', 'value': 1},
-                {'name': 'data', 'value': JSON.stringify(data)}
+                { 'name': 'desc', 'value': item.desc },
+                { 'name': 'id_aluno', 'value': ID_USUARIO },
+                { 'name': 'id_pratica', 'value': ID_PRATICA },
+                { 'name': 'data', 'value': JSON.stringify(item) },
+                { 'name': 'type', 'value': item.type }
             ];
-
+            
             $.ajax({
                 type: "post",
                 url: URL_SITE + 'area_laboratorio/index-app.php?app=jogo&file=save-acao-aluno-pratica-jogo&id_pratica=' + ID_PRATICA,
                 data: dados,
-                success: function (response) {}
+                success: function (response) {
+                    if(item.type == 'SAVE')
+                        CookieP.setCookie('id_save', response.id);
+
+                    $(item.elemt_resp).text(response.id);
+                    console.log('id: ' + response.id);
+                }
             });
         }
     }

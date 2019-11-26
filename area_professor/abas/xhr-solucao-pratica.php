@@ -124,7 +124,7 @@ if (!empty($_GET['cod_moprsi'])) {
 
                     <div class="box">
                         <h4>Concentração (mol/L)</h4>
-                        <input name="especies_concentracao" id="especies_concentracao" autofocus min="0" value="0.1" type="number" step="0.1" />
+                        <input name="especies_concentracao" id="especies_concentracao" autofocus min="0" value="0" type="number" step="0.1" />
                         <button type="button" onclick="adicionar_especie()" class="btn verde">Adicionar</button>
                     </div>
                 </div>

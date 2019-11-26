@@ -1,0 +1,17 @@
+{
+    "name": "NeoAlice",
+    "short_name": "NeoAlice",
+    "lang": "pt-BR",
+    "start_url": "https://sistemas.cead.ufv.br/capes/novolaboratorio/",
+    "display": "standalone",
+    "theme_color": "#00ad94",
+    "background_color": "#00ad94",
+    "description": "NeoAlice",
+    "icons": [
+        {
+            "src": "../../imagens/icons/favicon.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }
+    ]
+}

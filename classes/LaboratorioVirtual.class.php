@@ -95,6 +95,12 @@ class LaboratorioVirtual{
 
         $result['armario']['pipetadores'] = $result['data']['pipetadores'];
         unset($result['data']['pipetadores']);
+        
+        $result['armario']['frascos'] = $result['data']['frascos'];
+        unset($result['data']['frascos']);
+
+        $result['armario']['ponteiras'] = $result['data']['ponteiras'];
+        unset($result['data']['ponteiras']);
 
         return $result;
     }
@@ -110,7 +116,9 @@ class LaboratorioVirtual{
                 'intervalo'=> 3,
                 'nome'=>$solucao['nome_moprsi'],
                 'tecnico'=>$solucao['resp_moprsi'],
-                'in_armario'=>$solucao['armario_moprsi']
+                'in_armario'=>$solucao['armario_moprsi'],
+                'volume_atual'=> 3,
+                'volume_max'=> 3
             );
             $solucoes_armario[] = $solucao_t;
         }

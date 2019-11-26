@@ -36,13 +36,15 @@ class ModeloPratica
     function getJsonLabPratica($id_pratica)
     {
         $db = Conexao::getInstance();
-        $sql = "SELECT id_modelo_pratica as id,
-                    id_cenario,
+        $sql = "SELECT 
+                    id_modelo_pratica as id,
+                    fk_id_cenario,
                     nome_pratica as nome,
                     id_usuario,
                     resumo,
                     id_disciplina,
-                    disponivel,
+                    disponivel_mopr,
+                    fk_cod_mopr_u_us as id_save,
                     data
                 FROM modelo_pratica where id_modelo_pratica=:id_pratica";
         $stmt = $db->prepare($sql);
@@ -73,21 +75,29 @@ class ModeloPratica
 
     public function salvarPratica($dados)
     {
+        if(empty($dados['fk_cod_mopr_u_us'])){
+            $dados['fk_cod_mopr_u_us'] = null;
+        }
+
         $db = Conexao::getInstance();
         if (!empty($dados['id_modelo_pratica'])) { // Atualizar
             try {
                 $sql = "UPDATE modelo_pratica 
                         SET
-                            id_cenario=:id_cenario,
+                            fk_id_cenario=:fk_id_cenario,
                             nome_pratica=:nome_pratica,
                             resumo=:resumo,
+                            disponivel_mopr=:disponivel_mopr,
+                            fk_cod_mopr_u_us=:fk_cod_mopr_u_us,
                             data=:data
                         WHERE id_modelo_pratica=:id_modelo_pratica";
                 $stmt = $db->prepare($sql);
                 $stmt->execute(array(
-                    ':id_cenario' => $dados['id_cenario'],
+                    ':fk_id_cenario' => $dados['fk_id_cenario'],
                     ':nome_pratica' => $dados['nome'],
                     ':resumo' => $dados['resumo'],
+                    ':disponivel_mopr' => $dados['disponivel_mopr'],
+                    ':fk_cod_mopr_u_us' => $dados['fk_cod_mopr_u_us'],
                     ':data' => $dados['data'],
                     ':id_modelo_pratica' => $dados['id_modelo_pratica']
                 ));
@@ -97,16 +107,18 @@ class ModeloPratica
             }
         } else { //insert
             $sql = "INSERT INTO modelo_pratica
-                    (id_cenario, id_disciplina, nome_pratica, resumo, data)
+                    (fk_id_cenario, id_disciplina, nome_pratica, resumo, data, disponivel_mopr, fk_cod_mopr_u_us)
                     VALUES
-                    (:id_cenario, :id_disciplina, :nome_pratica, :resumo, :data)";
+                    (:fk_id_cenario, :id_disciplina, :nome_pratica, :resumo, :data, :disponivel_mopr, :fk_cod_mopr_u_us)";
             $stmt = $db->prepare($sql);
             $stmt->execute(array(
-                ':id_cenario' => $dados['id_cenario'],
+                ':fk_id_cenario' => $dados['fk_id_cenario'],
                 ':id_disciplina' => $dados['id_disciplina'],
                 ':nome_pratica' => $dados['nome'],
                 ':resumo' => $dados['resumo'],
-                ':data' => $dados['data']
+                ':data' => $dados['data'],
+                ':disponivel_mopr' => $dados['disponivel_mopr'],
+                ':fk_cod_mopr_u_us' => $dados['fk_cod_mopr_u_us']
             ));
             return $db->lastInsertId();
         }

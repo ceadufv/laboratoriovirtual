@@ -1,6 +1,5 @@
 <?php
 spl_autoload_register(function ($class_name) {
-
   $dir_classes = URL_SYSTEM . 'classes/';
   $diretorios = array('');
 

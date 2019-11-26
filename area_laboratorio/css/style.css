@@ -12,48 +12,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-header .navbar {
-  background: #1b1615;
-  padding: 0;
-  color: #fff;
-  -webkit-box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, .5);
-  -moz-box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, .5);
-  box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, .5);
-  justify-content: space-between;
-}
-
-header .navbar h1 {
-  font-weight: 600;
-  font-size: 16px;
-  padding: 0 15px;
-  margin: 0px;
-  text-align: left;
-}
-
-header .navbar .controle {
-  background: #c14447;
-  padding: 0;
-}
-
-header .navbar .controle button {
-  padding: 15px 15px;
-  background: transparent;
-  border: 0px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  margin: 0px;
-  outline: 0px;
-}
-
-header .navbar .controle button i {
-  color: rgba(255, 255, 255, .5);
-}
-
-header .navbar .controle button:hover {
-  background: rgba(0, 0, 0, .1);
-}
-
 .modal .modal-content {
   padding: 10px;
 }

@@ -11,6 +11,7 @@ class Usuario {
         $sql = "SELECT *, id_modelo_pratica AS id
                 FROM modelo_pratica mp
                 INNER JOIN disciplinas d ON d.id_disciplina  = mp.id_disciplina
+                WHERE disponivel_mopr = 'S'
                 ORDER BY nome_pratica";
         $stmt = $db->prepare($sql);
         $stmt->execute();

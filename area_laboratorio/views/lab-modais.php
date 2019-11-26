@@ -67,99 +67,44 @@
         <div class="row">
           <div class="col-md-10">
             <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a id="solucoes-tab" href="#solucoes-content" class="nav-link active" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Soluções</a>
-              </li>
+              <?php
+              $abas = array();
+              $abas[] = array('id' => 'solucoes', 'nome' => 'Soluções');
+              $abas[] = array('id' => 'ponteiras', 'nome' => 'Ponteiras');
+              $abas[] = array('id' => 'micropipetas', 'nome' => 'Micropipetas');
+              $abas[] = array('id' => 'bequers', 'nome' => 'Bequers');
+              $abas[] = array('id' => 'frascos', 'nome' => 'Frascos');
+              $abas[] = array('id' => 'baloes', 'nome' => 'Balões');
+              $abas[] = array('id' => 'pipetas', 'nome' => 'Pipetas');
+              $abas[] = array('id' => 'pipetadores', 'nome' => 'Pipetadores');
+              $abas[] = array('id' => 'cubetas', 'nome' => 'Cubetas');
+              if($login['tipo_usuario'] == 2) //somente aparece para o professor
+                $abas[] = array('id' => 'professor', 'nome' => 'Professor');
 
-              <li class="nav-item">
-                <a href="#bequers-content" id="bequers-tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">
-                  Bequers
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="#baloes-content" id="baloes-tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">
-                  Balões
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="#micropipetas-content" id="micropipetas-tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">
-                  Micropipetas
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="#pipetas-content" id="pipetas-tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">
-                  Pipetas volumétrica
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="#pipetadores-content" id="pipetadores-tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">
-                  Pipetadores
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="#cubetas-content" id="cubetas-tab" class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">
-                  Cubetas
-                </a>
-              </li>
-
-              <!--
+              foreach ($abas as $aba) {?>
                 <li class="nav-item">
-                  <a id="vidrarias-tab" href="#vidrarias-content" class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">
-                    Outros
+                  <a href="#<?php echo $aba['id']; ?>-content" id="<?php echo $aba['id']; ?>-tab" class="nav-link <?php echo ($aba['id'] == 'solucoes' ? 'active' : '')?>" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">
+                    <?php echo $aba['nome']; ?>
                   </a>
                 </li>
--->
+              <?php
+              }?>
             </ul>
             <div class="tab-content" id="myTabContent">
-              <div aria-labelledby="solucoes-tab" id="solucoes-content" class="tab-pane fade show active" role="tabpanel">
-                <div class="caixas">
-
+              <?php
+              foreach ($abas as $aba) {
+                ?>
+                <div aria-labelledby="<?php echo $aba['id']; ?>-tab" id="<?php echo $aba['id']; ?>-content" class="tab-pane fade <?php echo ($aba['id'] == 'solucoes' ? 'show active' : '')?>" role="tabpanel">
+                  <div class="caixas">
+                  </div>
                 </div>
-              </div>
-
-              <div aria-labelledby="vidrarias-tab" id="vidrarias-content" class="tab-pane fade" role="tabpanel">
-                <div class="caixas">
-                </div>
-              </div>
-
-              <div aria-labelledby="micropipetas-tab" id="micropipetas-content" class="tab-pane fade" role="tabpanel">
-                <div class="caixas">
-                </div>
-              </div>
-
-              <div aria-labelledby="bequers-tab" id="bequers-content" class="tab-pane fade" role="tabpanel">
-                <div class="caixas">
-                </div>
-              </div>
-
-              <div aria-labelledby="baloes-tab" id="baloes-content" class="tab-pane fade" role="tabpanel">
-                <div class="caixas">
-                </div>
-              </div>
-
-              <div aria-labelledby="pipetas-tab" id="pipetas-content" class="tab-pane fade" role="tabpanel">
-                <div class="caixas">
-                </div>
-              </div>
-
-              <div aria-labelledby="pipetadores-tab" id="pipetadores-content" class="tab-pane fade" role="tabpanel">
-                <div class="caixas">
-                </div>
-              </div>
-              
-              <div aria-labelledby="cubetas-tab" id="cubetas-content" class="tab-pane fade" role="tabpanel">
-                <div class="caixas">
-                </div>
-              </div>
+              <?php
+              }
+              ?>
 
             </div>
           </div><!-- fecha primeira coluna -->
-          <div class="col-2">
+          <div class="col-md-2">
             <div class="rotulo mt-2 p-2">
               <h4 class="armario-contador">0 selecionados</h4>
               <p class="armario-disponiveis"></p>

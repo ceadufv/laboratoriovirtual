@@ -1,6 +1,6 @@
 class Interac_Phmetro_Self{
     constructor(){
-        console.error('Interac_Phmetro_Pisseta constructor');
+      
     }
     init(objClass){
         this.objClass = objClass;
@@ -17,11 +17,12 @@ class Interac_Phmetro_Self{
     calibrarPhmetro(){
         //get date now
        var utc = new Date().toJSON().slice(0,10).split('-').reverse().join('/');
-
-       var visor = this.objClass.container.list[9];
+       //var visor = this.objClass.container.list[9]; 
+       var visor = this.objClass.container.getByName('calibracao');
        visor.text = 'CAL: '+utc;
+       this.objClass.data_cabibracao = visor.text;
        this.objClass.calibrado = true;
-
+       
        var data = [
            {img: 'assets/actions/lerpadrao4.gif', title: 'Lendo primeiro padrão'},
            {img: 'assets/actions/lavareletrodo.gif', title: 'Lavando'},

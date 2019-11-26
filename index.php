@@ -1,12 +1,11 @@
 <?php
 if (!file_exists("lab-config.php")) 
   header("location:install.php");
-
+  
 include "lab-config.php";
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <!-- responsive -->
@@ -15,6 +14,8 @@ include "lab-config.php";
   <!-- jquery -->
   <script src="<?php echo URL_SITE; ?>plugins/vendor/jquery/3.4/jquery-3.4.1.min.js"></script>
   <script src="<?php echo URL_SITE; ?>plugins/vendor/jquery/3.4/jquery-migrate-1.4.1.min.js"></script>
+
+  <link rel="manifest" href="<?php echo URL_SITE; ?>assets/manifest/manifest.json" />
 
   <!-- bootstrap -->
   <script src="<?php echo URL_SITE; ?>plugins/vendor/bootstrap/4.3.1/dist/js/bootstrap.min.js"></script>
@@ -121,9 +122,7 @@ include "lab-config.php";
                 </div>
               </div>
               <select class="form-control texto-icone" onchange="alterarIconeTipo()" id="listaTipoUsuario">
-                <option value="">Tipo de usuário</option>
-                <option value="1" selected>Estudante</option>
-                <option value="2" disabled>Professor</option>
+                <option value="3" selected>Estudante</option>
               </select>
             </div>
 
@@ -135,51 +134,8 @@ include "lab-config.php";
       </div>
     </div>
   </div>
+<script src="js/cadastrar.js"></script>
+<script src="js/pages/index.js"></script>
 
-  <footer class="container-fluid footer" id="contato">
-    <div class="row">
-      <div class="col-md-5 m-3">
-        <div class="address">
-          <img class="icone img-responsive" src="imagens/endereco2.png">
-          <div>
-            <p>Prédio da CEAD, Avenida PH Rolfs s/n</p>
-            <p>Campus Universitário, 36570-000, Viçosa/MG</p>
-            <p>Telefones: (31) 3899 2858 | (31) 3899 3987</p>
-            <p>E-mail: cead@ufv.br</p>
-          </div>
-        </div>
-      </div>
-      <div class="col m-3">
-        <div class="logos">
-          <div class="parceiros">
-            <div>
-              <h3>Realização:</h3>
-            </div>
-            <div>
-              <hr>
-              <a href="http://www.ufv.br" target="blank"><img src="imagens/UFV.png"></a>
-              <a href="http://www.cead.ufv.br" target="blank"><img src="imagens/logo-cead-completo.png" width="80"></a>
-              <a href="http://www.deq.ufv.br" target="blank"><img src="imagens/GPEQA.png"></a>
-              <a href="http://www.capes.gov.br/uab" target="blank"><img src="imagens/uab2.png"></a>
-              <a href="http://www.capes.gov.br/" target="blank"><img src="imagens/capes2.png"></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="w-100"></div>
-      <div class="col copyright">
-        <div class="float-left">
-          <h4>©2019 - Todos os Direitos Reservados - Desenvolvido pela Cead</h4>
-        </div>
-        <div class="float-right creative">
-          <img src="https://acervo.cead.ufv.br/wp-content/themes/acervo/img/creativecommons.png">
-          <p><small>Exceto onde indicado de outra forma, todos os conteúdos disponibilizados nesta página são licenciados sob uma licença Creative Commons</small></p>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <script src="js/cadastrar.js"></script>
-  <script src="js/pages/index.js"></script>
-</body>
 
-</html>
+<?php include('views/footer.php'); ?>

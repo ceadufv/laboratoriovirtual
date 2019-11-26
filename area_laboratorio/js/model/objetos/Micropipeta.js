@@ -12,6 +12,7 @@ class Micropipeta extends ObjetoDefault {
         };
         this.addSpriteScene(config);
         this.insertDrag(this.gameobject);
-        console.log('addObject');
+        this.gameobject.setOrigin(0.5, 0.5);
+        this.gameobject.setScale(0.85);
     }
 }

@@ -1,0 +1,510 @@
+{
+"frames": {
+	"pipeta_enchendo_00.png": {
+		"frame": {"x":1896, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_01.png": {
+		"frame": {"x":1896, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_02.png": {
+		"frame": {"x":1896, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_03.png": {
+		"frame": {"x":1817, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_04.png": {
+		"frame": {"x":1817, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_05.png": {
+		"frame": {"x":1817, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_06.png": {
+		"frame": {"x":1817, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_07.png": {
+		"frame": {"x":1738, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_08.png": {
+		"frame": {"x":1738, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_09.png": {
+		"frame": {"x":1738, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_10.png": {
+		"frame": {"x":1738, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_11.png": {
+		"frame": {"x":1659, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_12.png": {
+		"frame": {"x":1659, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_13.png": {
+		"frame": {"x":1659, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_14.png": {
+		"frame": {"x":1659, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_15.png": {
+		"frame": {"x":1580, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_16.png": {
+		"frame": {"x":1580, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_17.png": {
+		"frame": {"x":1580, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_18.png": {
+		"frame": {"x":1580, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_19.png": {
+		"frame": {"x":1501, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_20.png": {
+		"frame": {"x":1501, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_21.png": {
+		"frame": {"x":1501, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_22.png": {
+		"frame": {"x":1501, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_23.png": {
+		"frame": {"x":1422, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_24.png": {
+		"frame": {"x":1422, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_25.png": {
+		"frame": {"x":1422, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_26.png": {
+		"frame": {"x":1422, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_27.png": {
+		"frame": {"x":1343, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_28.png": {
+		"frame": {"x":1343, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_29.png": {
+		"frame": {"x":1343, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_30.png": {
+		"frame": {"x":1343, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_31.png": {
+		"frame": {"x":1264, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_32.png": {
+		"frame": {"x":1264, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_33.png": {
+		"frame": {"x":1264, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_34.png": {
+		"frame": {"x":1264, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_35.png": {
+		"frame": {"x":1185, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_36.png": {
+		"frame": {"x":1185, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_37.png": {
+		"frame": {"x":1185, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_38.png": {
+		"frame": {"x":1185, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_39.png": {
+		"frame": {"x":1106, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_40.png": {
+		"frame": {"x":1106, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_41.png": {
+		"frame": {"x":1106, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_42.png": {
+		"frame": {"x":1106, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_43.png": {
+		"frame": {"x":1027, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_44.png": {
+		"frame": {"x":1027, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_45.png": {
+		"frame": {"x":1027, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_46.png": {
+		"frame": {"x":1027, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_47.png": {
+		"frame": {"x":948, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_48.png": {
+		"frame": {"x":948, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_49.png": {
+		"frame": {"x":1896, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_50.png": {
+		"frame": {"x":948, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_51.png": {
+		"frame": {"x":869, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_52.png": {
+		"frame": {"x":869, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_53.png": {
+		"frame": {"x":869, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_54.png": {
+		"frame": {"x":869, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_55.png": {
+		"frame": {"x":790, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_56.png": {
+		"frame": {"x":790, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_57.png": {
+		"frame": {"x":790, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_58.png": {
+		"frame": {"x":790, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_59.png": {
+		"frame": {"x":711, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_60.png": {
+		"frame": {"x":711, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_61.png": {
+		"frame": {"x":711, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_62.png": {
+		"frame": {"x":711, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_63.png": {
+		"frame": {"x":632, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_64.png": {
+		"frame": {"x":632, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_65.png": {
+		"frame": {"x":632, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_66.png": {
+		"frame": {"x":632, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_67.png": {
+		"frame": {"x":553, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_68.png": {
+		"frame": {"x":553, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_69.png": {
+		"frame": {"x":553, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_70.png": {
+		"frame": {"x":553, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_71.png": {
+		"frame": {"x":474, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_72.png": {
+		"frame": {"x":474, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_73.png": {
+		"frame": {"x":474, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_74.png": {
+		"frame": {"x":474, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_75.png": {
+		"frame": {"x":395, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_76.png": {
+		"frame": {"x":395, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_77.png": {
+		"frame": {"x":395, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_78.png": {
+		"frame": {"x":395, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_79.png": {
+		"frame": {"x":316, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_80.png": {
+		"frame": {"x":316, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_81.png": {
+		"frame": {"x":316, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_82.png": {
+		"frame": {"x":316, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_83.png": {
+		"frame": {"x":237, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_84.png": {
+		"frame": {"x":237, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_85.png": {
+		"frame": {"x":237, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_86.png": {
+		"frame": {"x":237, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_87.png": {
+		"frame": {"x":158, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_88.png": {
+		"frame": {"x":158, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_89.png": {
+		"frame": {"x":158, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_90.png": {
+		"frame": {"x":158, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_91.png": {
+		"frame": {"x":79, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_92.png": {
+		"frame": {"x":79, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_93.png": {
+		"frame": {"x":79, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_94.png": {
+		"frame": {"x":79, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_95.png": {
+		"frame": {"x":0, "y":1380, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_96.png": {
+		"frame": {"x":0, "y":920, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_97.png": {
+		"frame": {"x":0, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_98.png": {
+		"frame": {"x":0, "y":0, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	},
+	"pipeta_enchendo_99.png": {
+		"frame": {"x":948, "y":460, "w":78, "h":459},
+		"spriteSourceSize": {"x":0,"y":0,"w":78,"h":459},
+		"sourceSize": {"w":78,"h":459}
+	}
+
+},
+"meta": {
+	"image": "sprites.png",
+	"size": {"w": 1975, "h": 1840},
+	"scale": "1"
+}
+}

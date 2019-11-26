@@ -4,27 +4,41 @@ class Interac_Espectrofotometro_Self {
     }
     init(objClass) {
         this.objClass = objClass;
-
-
-        if (objClass.foco == 'tampa') {
-            this.clickTampa();
-            return;
+        var menu = [
+            {
+                text: 'CONFIGURAR EQUIPAMENTO',
+                func: 'configurar'
+            }
+        ];
+        
+        if (objClass.tampa_aberta) {
+            menu.push({
+                text: 'FECHAR TAMPA',
+                func: 'fecharTampa'
+            });
         } else {
-            //objClass.gameobject.setTint(0x0000ff);
-            var menu = [
-                {
-                    text: 'CONFIGURAR EQUIPAMENTO',
-                    func: 'configurar'
-                }
-            ];
-            MenuInteract.montModalInteracMenu(menu);
+            menu.push({
+                text: 'ABRIR TAMPA',
+                func: 'abrirTampa'
+            });
         }
+        MenuInteract.montModalInteracMenu(menu);
     }
 
-    ligarEquipamento(){
-        this.objClass.container.list[2].visible = true;
-        this.objClass.container.list[3].visible = true;
+    abrirTampa() {
+        this.objClass.tampa_aberta = true;
+        this.objClass.changeTexture();
+    }
+
+    fecharTampa() {
+        this.objClass.tampa_aberta = false;
+        this.objClass.changeTexture();
+    }
+
+    ligarEquipamento() {
         console.log('ligando...');
+        this.objClass.ligado = true;
+        this.objClass.changeTexture();
         MenuInteract.hideAllModal();
     }
     configurar() {
@@ -60,18 +74,5 @@ class Interac_Espectrofotometro_Self {
         html += '</form>';
         html += '</div>';
         MenuInteract.montModalInteracHTML(html);
-    }
-    clickTampa() {
-        var menu = [
-            {
-                text: 'ABRIR TAMPA',
-                func: 'abrirTampa'
-            },
-            {
-                text: 'FECHAR TAMPA',
-                func: 'fecharTampa'
-            },
-        ];
-        MenuInteract.montModalInteracMenu(menu);
     }
 }

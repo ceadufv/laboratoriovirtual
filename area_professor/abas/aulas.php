@@ -43,7 +43,7 @@
                     <a class="btn btn-primary" href="<?php echo URL_SITE; ?>area_professor/index.php?aba=editaula&id_disciplina=<?php echo $pratica['id_disciplina']; ?>&id_pratica=<?php echo $pratica['id_modelo_pratica']; ?>">
                       <i class="fas fa-edit" aria-hidden="true"></i> EDITAR
                     </a>
-                    <a class="btn btn-success" href="<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica['id_modelo_pratica'] ?>&tipo_acesso=treino">
+                    <a target="_blank" class="btn btn-success" href="<?php echo URL_SITE; ?>area_laboratorio/lab.php?id_pratica=<?php echo $pratica['id_modelo_pratica'] ?>&tipo_acesso=treino">
                       <i class="far fa-eye"></i> Visualizar
                     </a>
                     <button id_modelo_pratica="<?php echo $pratica["id_modelo_pratica"] ?>" class="btn btn-danger deletar-pratica">

@@ -1,3 +1,73 @@
+/*====================== 
+===================== 
+DEFAULTS
+ ==========================
+ ===================== */
+body,
+html {
+    background: #b8b7a7;
+}
+
+/*====================== 
+===================== 
+HEADER
+ ==========================
+ ===================== */
+header .navbar {
+    background: #535358;
+    padding: 0;
+    color: #fff;
+    /*-webkit-box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, .5);
+    box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, .5);
+    */
+    justify-content: space-between;
+}
+
+header .navbar h1 {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0 15px;
+    margin: 0px;
+    text-align: left;
+}
+
+header .navbar .controle {
+    /*background: #c14447;*/
+    padding: 0;
+}
+
+header .navbar .controle button {
+    padding: 11px 12px;
+    background: transparent;
+    border: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0px;
+    outline: 0px;
+}
+
+header .navbar .controle .bg-new {
+    background: #c14447;
+}
+
+header .navbar .controle button i {
+    color: rgba(255, 255, 255, .5);
+}
+
+header .navbar .controle button:hover {
+    background: rgba(0, 0, 0, .1);
+}
+
+@media all and (display-mode: fullscreen) {
+    header .navbar .controle button {
+        padding: 8px 8px;
+    }
+}
+
+/* FIM HEADER*/
+
 .objeto-selecionado {
     background: red !important;
 }
@@ -8,9 +78,12 @@
     z-index: -1;
 }
 
+/*====================== 
+===================== 
+ARMARIO 
+ ==========================
+ ===================== */
 
-
-/* CSS ARMARIO */
 #armario .modal-lg {
     max-width: 1300px;
 }
@@ -81,7 +154,8 @@
 }
 
 #armario .tab-content .caixas .opcao img {
-    height: 105px
+    max-width: 100%;
+    max-height: 100%;
 }
 
 #armario .tab-content .caixas .opcao .informacaoselecionados {
@@ -158,12 +232,15 @@
     width: 80px;
 }
 
-#armario .number-spinner{
-    margin:  20px 0px;
+#armario .number-spinner {
+    margin: 20px 0px;
 }
-#armario .caixas small{
+
+#armario .caixas small {
     display: block;
     margin-top: 10px;
 }
+#armario .title-element{
+    font-weight: bold;
+}
 /* --FIM ARMARIO ---- */
-/* ---------------- */

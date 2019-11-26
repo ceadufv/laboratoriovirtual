@@ -11,7 +11,9 @@ class MenuInteract {
         } catch (e) {
             alert(func+' | Função não existe na class | ocorreu um erro na função!!!');
             console.warn(func+' - função não existe na class!!!');
-            console.error('MenuInteract.clickInteracMenu',e);
+            console.error('MenuInteract.clickInteracMenu', e);
+
+            
         }
     }
 

@@ -42,4 +42,4 @@ $sessao = Login::getSession();
       aba('<?php echo $aba_s; ?>');
     });
   </script>
-  <?php include('footer.php'); ?>
+ <?php include('../views/footer.php'); ?>

@@ -22,10 +22,15 @@ function deletar_linha(obj) {
 }
 
 function adicionar_especie() {
+    var concentracao = parseFloat($('#especies_concentracao').val());
+
+    if(concentracao <= 0 || isNaN(concentracao))
+        return;
+
     var atual = {
         id: $('#especies_disponiveis').val(),
         nome: $('#especies_disponiveis option:selected').text(),
-        concentracao: $('#especies_concentracao').val(),
+        concentracao: concentracao,
     };
     adicionar_especie_lista(atual);
 };

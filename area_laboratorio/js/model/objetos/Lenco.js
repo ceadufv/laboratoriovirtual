@@ -12,5 +12,7 @@ class Lenco extends ObjetoDefault {
         };
         this.addSpriteScene(config);
         this.insertDrag(this.gameobject);
+        this.gameobject.setOrigin(0.5, 0.9);
+        this.gameobject.setScale(0.85);
     }
 }

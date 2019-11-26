@@ -27,14 +27,16 @@
                                 <h3 data-toggle="tooltip" data-placement="bottom" title="Faixas de volume disponíveis no laboratório">Faixa de volume</h3>
                             </td>
                             <td>
+                            </td>
+                            <td>
                                 <h3 data-toggle="tooltip" data-placement="bottom" title="Quantidade máxima disponível">Quantidade máxima</h3>
                             </td>
                         </tr>
                         <?php
                         $objMicropipeta = new MicroPipeta();
-                        if (empty($pratica_sel['dados']['micropipetas']))
+                        if (empty($pratica_sel['dados']['micropipetas'])){
                             $micropipetas = $objMicropipeta->getDefaultItens();
-                        else
+                        }else
                             $micropipetas = $pratica_sel['dados']['micropipetas'];
 
                         foreach ($micropipetas as $micropipeta){
@@ -51,7 +53,11 @@
                                     <input disabled type="text" name="micropipeta_name[]" value="<?php echo $micropipeta['nome']; ?>" />
                                 </td>
                                 <td>
-                                    <input <?php echo $disabled; ?> name="micropipeta_qtd_maxima" type="number" min="0" max="10" value="0">
+                                    <input disabled type="text" name="micropipeta_volume_max[]" value="<?php echo $micropipeta['volume_max']; ?>" />
+                                    <input disabled type="text" name="micropipeta_volume_min[]" value="<?php echo $micropipeta['volume_min']; ?>" />
+                                </td>
+                                <td>
+                                    <input <?php echo $disabled; ?> name="micropipeta_qtd_maxima[]" type="number" min="0" max="10" value="<?php echo $micropipeta['qtd_maxima']; ?>">
                                 </td>
                             </tr>
                         <?php } ?>
